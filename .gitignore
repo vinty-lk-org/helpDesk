@@ -1,0 +1,7 @@
+*.log
+*.jar
+*.war
+.gitignore
+.idea/
+helpdesk.iml
+out/
