@@ -9,5 +9,4 @@ import org.junit.runners.Suite;
         PrivilegeTest.class
 })
 public class AssertTestStarter {
-
 }
