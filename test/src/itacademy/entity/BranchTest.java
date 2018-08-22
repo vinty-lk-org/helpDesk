@@ -11,5 +11,5 @@ public class BranchTest {
         Assert.assertEquals("Минск", branch.getName());
         branch.setName("Минск2");
         Assert.assertEquals("Минск2", branch.getName());
-    }
+}
 }
