@@ -1,4 +1,4 @@
-package itacademy.entity;
+package itacademy.domainModel.entity;
 
 import org.junit.Assert;
 import org.junit.Test;

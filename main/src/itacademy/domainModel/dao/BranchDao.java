@@ -1,7 +1,7 @@
-package itacademy.dao;
+package itacademy.domainModel.dao;
 
 import itacademy.connection.ConnectionManager;
-import itacademy.entity.Branch;
+import itacademy.domainModel.entity.Branch;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

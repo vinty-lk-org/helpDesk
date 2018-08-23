@@ -1,13 +1,12 @@
-package itacademy.entity;
-
+package itacademy.domainModel.entity;
 
 import lombok.*;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @ToString
-public class TargetOfJob {
+public class Branch {
     private Long id;
     private String name;
 }

@@ -1,6 +1,6 @@
-package itacademy.dao;
+package itacademy.domainModel.dao;
 
-import itacademy.entity.Branch;
+import itacademy.domainModel.entity.Branch;
 import org.junit.Assert;
 import org.junit.Test;
 

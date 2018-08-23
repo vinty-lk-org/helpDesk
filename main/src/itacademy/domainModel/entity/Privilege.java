@@ -1,4 +1,4 @@
-package itacademy.entity;
+package itacademy.domainModel.entity;
 
 import lombok.*;
 
@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @ToString
-public class Subdivision {
+public class Privilege {
     private Long id;
     private String name;
 }
