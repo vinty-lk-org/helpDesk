@@ -59,8 +59,7 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
         preparedStatement.setString(1, subdivision.getName());
         preparedStatement.executeUpdate();
         ResultSet rs = preparedStatement.getGeneratedKeys();
-        if(rs.next())
-        {
+        if (rs.next()) {
           id = rs.getLong(1);
         }
       }
@@ -68,6 +67,19 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
       e.printStackTrace();
     }
     return id;
+  }
+
+  @Override
+  public void delete(Long id) {
+    String sql = "DELETE FROM subdivisions WHERE (id = ?)";
+    try (Connection connection = ConnectionManager.getConnection()) {
+      try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        preparedStatement.setLong(1, id);
+        preparedStatement.executeUpdate();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 }
 

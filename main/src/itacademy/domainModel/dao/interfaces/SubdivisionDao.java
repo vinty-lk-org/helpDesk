@@ -10,4 +10,6 @@ public interface SubdivisionDao {
 
   Long save(Subdivision subdivision);
 
+  void delete(Long id);
+
 }
