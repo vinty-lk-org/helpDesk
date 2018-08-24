@@ -10,4 +10,4 @@ public class PrivilegeTest {
     System.out.println("Это совместный репозиторий");
     System.out.println("для теста на гит №1");
   }
-}
+} 
