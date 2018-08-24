@@ -4,6 +4,7 @@ import itacademy.domainModel.entity.Subdivision;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -24,5 +25,23 @@ public class SubdivisionDaoImplTest {
     }
     Assert.assertEquals(subdivision.getName(), nameSubdivision);
     dao.delete(id);
+  }
+
+  @Test
+  public void findAllTest() {
+    Long id1 = dao.save(new Subdivision("ABC"));
+    Long id2 = dao.save(new Subdivision("DEF"));
+    List<Subdivision> subdivisionList = dao.findAll();
+
+    Assert.assertNotNull(subdivisionList);
+    Assert.assertTrue(subdivisionList.size() >= 2);
+
+    for (Subdivision s : subdivisionList) {
+      if (s.getId().equals(id1)) {
+        Assert.assertEquals(s.getName(), "ABC");
+      }
+      dao.delete(id1);
+      dao.delete(id2);
+    }
   }
 }

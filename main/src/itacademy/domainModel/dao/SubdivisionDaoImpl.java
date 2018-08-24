@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class SubdivisionDaoImpl implements SubdivisionDao {
@@ -30,6 +32,24 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
     return new Subdivision(
             resultSet.getLong("id"),
             resultSet.getString("name"));
+  }
+
+  @Override
+  public List<Subdivision> findAll() {
+    List<Subdivision> subdivisionList = new ArrayList<>();
+    try (Connection connection = ConnectionManager.getConnection()) {
+      String sql = "SELECT * FROM subdivisions ORDER BY name";
+      try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+          while (resultSet.next()){
+            subdivisionList.add(createSubdivisionFromResultSet(resultSet));
+          }
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return subdivisionList;
   }
 
   @Override
