@@ -48,7 +48,7 @@ public class BranchDaoImpl implements BranchDao {
         List<Branch> branches = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM branch ORDER BY name;")) {
+                    "SELECT * FROM branches ORDER BY name;")) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
                        branches.add(createBranchFromResultSet(resultSet));
