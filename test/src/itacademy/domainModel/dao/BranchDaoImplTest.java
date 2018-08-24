@@ -24,6 +24,13 @@ public class BranchDaoImplTest {
   }
 
   @Test
+  public void deleteForIdTest() {
+    List<Branch> branches = BranchDaoImpl.getInstance().findAll();
+    Assert.assertNotNull(branches);
+    System.out.println(branches);
+  }
+
+  @Test
   public void saveTest() {
 
   }

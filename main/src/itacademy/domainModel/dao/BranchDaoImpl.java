@@ -51,7 +51,7 @@ public class BranchDaoImpl implements BranchDao {
                     "SELECT * FROM branch ORDER BY name;")) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                       branches.add(createBranchFromResultSet(resultSet));
+                        branches.add(createBranchFromResultSet(resultSet));
                     }
                 }
             }
@@ -60,4 +60,22 @@ public class BranchDaoImpl implements BranchDao {
         }
         return branches;
     }
+    @Override
+    public Long deleteForId() {
+        List<Branch> branches = new ArrayList<>();
+        try (Connection connection = ConnectionManager.getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM branch ORDER BY name;")) {
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        branches.add(createBranchFromResultSet(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0L;
+    }
+
 }
