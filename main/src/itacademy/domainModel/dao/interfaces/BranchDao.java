@@ -12,5 +12,5 @@ public interface BranchDao {
 
     List<Branch> findAll();
 
-    Long deleteForId ();
+    void delete(Long id);
     }

@@ -45,10 +45,10 @@ public class BranchDaoImpl implements BranchDao {
 
     @Override
     public List<Branch> findAll() {
+        String sql = "SELECT * FROM branches ORDER BY name;";
         List<Branch> branches = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM branches ORDER BY name;")) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
                         branches.add(createBranchFromResultSet(resultSet));
@@ -60,22 +60,20 @@ public class BranchDaoImpl implements BranchDao {
         }
         return branches;
     }
+
+
+
     @Override
-    public Long deleteForId() {
-        List<Branch> branches = new ArrayList<>();
+    public void delete(Long id) {
+        String sql = "DELETE FROM subdivisions WHERE (id = ?)";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM branch ORDER BY name;")) {
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    while (resultSet.next()) {
-                        branches.add(createBranchFromResultSet(resultSet));
-                    }
-                }
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setLong(1, id);
+                preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0L;
     }
 
 }

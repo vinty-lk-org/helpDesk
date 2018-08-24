@@ -10,7 +10,7 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 
 public class SubdivisionDaoImplTest {
-  SubdivisionDaoImpl dao = new SubdivisionDaoImpl();
+  private SubdivisionDaoImpl dao = new SubdivisionDaoImpl();
 
   @Test
   public void save() {
