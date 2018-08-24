@@ -54,7 +54,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         try (ResultSet resultSet = preparedStatement.executeQuery()) {
           while (resultSet.next()) {
             System.out.println("--------------");
-                list.add((T) modelClass);
+                list.add(null);
           }
         }
       }

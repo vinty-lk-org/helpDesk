@@ -4,15 +4,17 @@ import itacademy.domainModel.entity.TargetOfJob;
 import itacademy.dto.db.TargetOfJobDto;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class TargetOfJobDtoDaoImplTest {
-  private Class<TargetOfJobDto> targetOfJobDtoClass = TargetOfJobDto.class;
 
   @Test
   public void test() {
 
-    TargetOfJobDtoDaoImpl targetOfJobDtoDao = new TargetOfJobDtoDaoImpl(targetOfJobDtoClass);
-    targetOfJobDtoDao.findAll();
+    TargetOfJobDtoDaoImpl targetOfJobDtoDao = new TargetOfJobDtoDaoImpl(TargetOfJobDto.class);
+    List<TargetOfJobDto> all = targetOfJobDtoDao.findAll();
+    System.out.println(all);
   }
 }
