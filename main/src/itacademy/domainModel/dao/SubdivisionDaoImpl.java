@@ -11,7 +11,19 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class SubdivisionDaoImpl implements SubdivisionDao {
+  private static final Object LOCK = new Object();
+  private static SubdivisionDaoImpl INSTANCE = null;
 
+  public static SubdivisionDaoImpl getInstance() {
+    if (INSTANCE == null) {
+      synchronized (LOCK) {
+        if (INSTANCE == null) {
+          INSTANCE = new SubdivisionDaoImpl();
+        }
+      }
+    }
+    return INSTANCE;
+  }
 
   private Subdivision createSubdivisionFromResultSet(ResultSet resultSet) throws SQLException {
     return new Subdivision(
@@ -35,5 +47,11 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
       e.printStackTrace();
     }
     return Optional.empty();
+  }
+
+  @Override
+  public Long save(Subdivision subdivision) {
+
+    return null;
   }
 }

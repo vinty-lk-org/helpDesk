@@ -8,4 +8,6 @@ public interface SubdivisionDao {
 
   Optional<Subdivision> findById(Long id);
 
+  Long save(Subdivision subdivision);
+
 }
