@@ -1,15 +1,18 @@
 package itacademy.domainModel.dao.interfaces;
 
-import itacademy.domainModel.entity.Privilege;
+import itacademy.domainModel.entity.*;
 
-import java.util.List;
+import java.util.*;
 
 public interface PrivilegeDao {
 
-    Privilege findById(Long id);
+
+    Optional<Privilege> findById(Long id);
 
     Long save(Privilege privilege);
 
+
     List<Privilege> findAll();
 
+    void delete(Long id);
 }
