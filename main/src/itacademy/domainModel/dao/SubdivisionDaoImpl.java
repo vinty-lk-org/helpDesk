@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Optional;
 
 public class SubdivisionDaoImpl implements SubdivisionDao {
@@ -51,7 +52,22 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
 
   @Override
   public Long save(Subdivision subdivision) {
-
-    return null;
+    Long id = 0L;
+    String sql = "INSERT INTO subdivisions (name) VALUES (?)";
+    try (Connection connection = ConnectionManager.getConnection()) {
+      try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        preparedStatement.setString(1, subdivision.getName());
+        preparedStatement.executeUpdate();
+        ResultSet rs = preparedStatement.getGeneratedKeys();
+        if(rs.next())
+        {
+          id = rs.getLong(1);
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return id;
   }
 }
+
