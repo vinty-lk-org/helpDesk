@@ -1,13 +1,12 @@
 package itacademy.domainModel.dao;
 
+import itacademy.domainModel.dao.impl.SubdivisionDaoImpl;
 import itacademy.domainModel.entity.Subdivision;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.Assert.*;
 
 public class SubdivisionDaoImplTest {
   private SubdivisionDaoImpl dao = new SubdivisionDaoImpl();

@@ -1,12 +1,10 @@
 package itacademy.domainModel.dao;
 
-import itacademy.domainModel.entity.TargetOfJob;
+import itacademy.domainModel.dao.implDto.TargetOfJobDtoDaoImpl;
 import itacademy.dto.db.TargetOfJobDto;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class TargetOfJobDtoDaoImplTest {
 

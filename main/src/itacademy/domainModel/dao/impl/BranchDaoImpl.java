@@ -1,4 +1,4 @@
-package itacademy.domainModel.dao;
+package itacademy.domainModel.dao.impl;
 
 import itacademy.connection.ConnectionManager;
 import itacademy.domainModel.dao.interfaces.BranchDao;

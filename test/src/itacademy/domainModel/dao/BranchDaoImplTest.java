@@ -1,5 +1,6 @@
 package itacademy.domainModel.dao;
 
+import itacademy.domainModel.dao.impl.BranchDaoImpl;
 import itacademy.domainModel.entity.Branch;
 import org.junit.Assert;
 import org.junit.Test;
