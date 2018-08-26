@@ -38,7 +38,7 @@ public class BranchDaoImplTest {
 
     @Test
     public void saveTest() {
-        Branch myBranch = new Branch("Запись для теста №1 (save)");
+        Branch myBranch = new Branch("Запись для теста №1 (save)", "test");
         Long id = dao.save(myBranch);
         Assert.assertNotNull(id);
         Optional<Branch> branchOptional = dao.findById(id);

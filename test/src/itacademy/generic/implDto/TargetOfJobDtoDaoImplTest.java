@@ -1,7 +1,6 @@
-package itacademy.domain.dao.implDto;
+package itacademy.generic.implDto;
 
-import itacademy.domain.dao.implDto.TargetOfJobDtoDaoImpl;
-import itacademy.dto.db.TargetOfJobDto;
+import itacademy.generic.db.TargetOfJobDto;
 import org.junit.Test;
 
 import java.util.List;

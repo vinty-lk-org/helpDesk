@@ -36,6 +36,8 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
             resultSet.getString("name"));
   }
 
+  
+
   @Override
   public List<Subdivision> findAll() {
     List<Subdivision> subdivisionList = new ArrayList<>();

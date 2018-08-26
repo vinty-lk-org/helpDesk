@@ -9,6 +9,12 @@ import lombok.*;
 public class Branch {
     private Long id;
     private String name;
+    private String adress;
+
+    public Branch(String name, String adress) {
+        this.name = name;
+        this.adress = adress;
+    }
 
     public Branch(String name) {
         this.name = name;

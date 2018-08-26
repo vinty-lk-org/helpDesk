@@ -1,7 +1,6 @@
-package itacademy.domain.dao.implDto;
+package itacademy.generic.implDto;
 
-import itacademy.dto.db.BranchDto;
-import itacademy.dto.db.PrivilegeDto;
+import itacademy.generic.db.PrivilegeDto;
 import org.junit.Test;
 
 import java.util.List;
