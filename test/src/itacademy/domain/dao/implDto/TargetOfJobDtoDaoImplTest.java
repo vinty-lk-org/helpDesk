@@ -1,4 +1,4 @@
-package itacademy.domain.dao;
+package itacademy.domain.dao.implDto;
 
 import itacademy.domain.dao.implDto.TargetOfJobDtoDaoImpl;
 import itacademy.dto.db.TargetOfJobDto;

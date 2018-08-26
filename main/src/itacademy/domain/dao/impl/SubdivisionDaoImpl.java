@@ -102,4 +102,3 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
     }
   }
 }
-

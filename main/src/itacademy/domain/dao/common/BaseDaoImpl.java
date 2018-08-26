@@ -13,31 +13,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseDaoImpl<T> implements BaseDao<T> {
-    private final Class<T> modelClass;
-    private List<String> fieldNames;
     private static final String TABLE_NAME = "TABLE_NAME";
+    private final Class<T> modelClass;
     String fmt = "%6S:  %-12s = %s%n";
+    private List<String> fieldNames;
 
     public BaseDaoImpl(Class<T> modelClass) {
         this.modelClass = modelClass;
         fieldNames = null;
     }
 
-    private static class SomeContainer<T> {
-        T createContents(Class<T> clazz) throws IllegalAccessException, InstantiationException {
-            return clazz.newInstance();
-        }
-    }
-
     private T createObjFromResultSet(ResultSet resultSet) throws SQLException, InstantiationException, IllegalAccessException, NoSuchFieldException {
         SomeContainer<T> container = new SomeContainer<>();
         T contents = container.createContents(modelClass);
-        Class<?> c = contents.getClass();
+
         for (int i = 0; i < fieldNames.size(); i++) {
             String fieldName = fieldNames.get(i);
-            Field chap = c.getDeclaredField(fieldName);
+            Field chap = modelClass.getDeclaredField(fieldName);
             Type type = chap.getGenericType();
-            if ((!fieldName.equals(TABLE_NAME)) && (type.getTypeName().equals("java.lang.Long")))  {
+            if ((!fieldName.equals(TABLE_NAME)) && (type.getTypeName().equals("java.lang.Long"))) {
                 chap.setAccessible(true);
                 chap.set(contents, resultSet.getLong(fieldName));
             }
@@ -110,9 +104,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
                 Field field = modelClass.getDeclaredField(TABLE_NAME);
                 field.setAccessible(true);
                 Class<?> t = field.getType();
-                if (t == String.class) {
-                    return String.valueOf(field.get(null));
-                }
+                return String.valueOf(field.get(null));
             }
         }
         return null;
@@ -128,5 +120,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     private TypeVariable<Class<T>>[] getTypeField() {
         return modelClass.getTypeParameters();
+    }
+
+    private static class SomeContainer<T> {
+        T createContents(Class<T> clazz) throws IllegalAccessException, InstantiationException {
+            return clazz.newInstance();
+        }
     }
 }
