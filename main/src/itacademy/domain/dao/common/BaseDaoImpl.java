@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BaseDaoImpl<T> implements BaseDao<T> {
     private static final String TABLE_NAME = "TABLE_NAME";
@@ -83,13 +84,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public T findById(Long id) {
+    public Optional<T> findById(Long id) {
         return null;
     }
 
     @Override
-    public void save(T entity) {
-
+    public Long save(T entity) {
+        return null;
     }
 
     @Override

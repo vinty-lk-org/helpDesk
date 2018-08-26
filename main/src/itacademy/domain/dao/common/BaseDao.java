@@ -1,15 +1,16 @@
 package itacademy.domain.dao.common;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BaseDao<T> {
 
-    void save(T entity);
+    Long save(T entity);
 
     void  delete(Long id);
 
     List<T> findAll();
 
-    T findById(Long id);
+    Optional<T> findById(Long id);
 
 }

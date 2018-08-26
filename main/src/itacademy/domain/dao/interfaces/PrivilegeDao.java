@@ -1,18 +1,10 @@
 package itacademy.domain.dao.interfaces;
 
+import itacademy.domain.dao.common.BaseDao;
 import itacademy.domain.entity.*;
 
 import java.util.*;
 
-public interface PrivilegeDao {
+public interface PrivilegeDao extends BaseDao<Privilege> {
 
-
-    Optional<Privilege> findById(Long id);
-
-    Long save(Privilege privilege);
-
-
-    List<Privilege> findAll();
-
-    void delete(Long id);
 }

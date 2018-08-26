@@ -1,16 +1,8 @@
 package itacademy.domain.dao.interfaces;
 
+import itacademy.domain.dao.common.BaseDao;
 import itacademy.domain.entity.Branch;
 
-import java.util.List;
+public interface BranchDao extends BaseDao<Branch> {
 
-public interface BranchDao {
-
-    Branch findById(Long id);
-
-    Long save(Branch branch);
-
-    List<Branch> findAll();
-
-    void delete(Long id);
-    }
+}

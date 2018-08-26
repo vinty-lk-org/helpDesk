@@ -3,11 +3,13 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.*;
 import itacademy.domain.dao.interfaces.PrivilegeDao;
 import itacademy.domain.entity.*;
+import lombok.NoArgsConstructor;
 
 import java.sql.*;
 import java.util.*;
 import java.util.Optional;
 
+@NoArgsConstructor
 public class PrivilegeDaoImpl implements PrivilegeDao {
     public static final Object LOCK = new Object();
     private static PrivilegeDaoImpl INSTANCE = null;
@@ -75,7 +77,7 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
-                    id = resultSet.getLong(1);
+                    id = resultSet.getLong("id");
                 }
             }
         } catch (SQLException e) {

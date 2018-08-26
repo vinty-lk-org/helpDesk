@@ -1,7 +1,7 @@
 package itacademy.domain.entity;
 
-import itacademy.domain.dao.BranchDaoImplTest;
-import itacademy.domain.dao.SubdivisionDaoImplTest;
+import itacademy.domain.dao.impl.BranchDaoImplTest;
+import itacademy.domain.dao.impl.SubdivisionDaoImplTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
