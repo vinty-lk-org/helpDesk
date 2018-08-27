@@ -3,7 +3,6 @@ package itacademy.domain.dao.impl;
 import itacademy.domain.entity.Branch;
 import itacademy.domain.entity.Subdivision;
 import itacademy.domain.entity.SystemUser;
-import itacademy.domain.entity.TargetOfJob;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,22 +36,22 @@ public class SystemUserDaoImplTest {
     @Test
     public void delete() {
     }
+
     @Test
     public void findAll() {
         List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
         userList.forEach(System.out::println);
     }
 
-  @Test
-  public void findByIdPrcTest() {
-    SystemUser user = null;
-    List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
-    SystemUser systemUser = userList.get(0);
-    Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findByIdPrc(systemUser.getId());
-    if (optionalSystemUser.isPresent()) {
-      user = optionalSystemUser.get();
-      System.out.println(user);
+    @Test
+    public void findByIdPrcTest() {
+        SystemUser user = null;
+        List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
+        SystemUser systemUser = userList.get(0);
+        Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findByIdPrc(systemUser.getId());
+        if (optionalSystemUser.isPresent()) {
+            user = optionalSystemUser.get();
+        }
+        Assert.assertEquals(systemUser.getName(), user.getName());
     }
-    Assert.assertNotNull(user);
-  }
 }

@@ -8,6 +8,7 @@ public class StrssTest {
 
     @Test
     public void stressTest() {
+        System.out.println("для теста");
         for (int i = 0; i < 100; i++) {
             String randomWord = DaoHelper.getRandomWord(5, 10, false);
             Branch branch = new Branch(randomWord);
