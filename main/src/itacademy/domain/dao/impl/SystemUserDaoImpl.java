@@ -43,12 +43,12 @@ public class SystemUserDaoImpl implements SystemUserDao {
             resultSet.getString("e_mail"),
             resultSet.getString("password"),
             new Branch(
-                    resultSet.getLong("id"),
-                    resultSet.getString("name"),
-                    resultSet.getString("adress")),
+                    resultSet.getLong("b_id"),
+                    resultSet.getString("b_name"),
+                    resultSet.getString("b_adress")),
             new Subdivision(
-                    resultSet.getLong("id"),
-                    resultSet.getString("name")));
+                    resultSet.getLong("s_id"),
+                    resultSet.getString("s_name")));
   }
 
   @Override
@@ -101,11 +101,11 @@ public class SystemUserDaoImpl implements SystemUserDao {
               "  su.family,\n" +
               "  su.e_mail,\n" +
               "  su.password,\n" +
-              "  b.id,\n" +
-              "  b.name,\n" +
-              "  b.adress,\n" +
-              "  s.id,\n" +
-              "  s.name\n" +
+              "  b.id as b_id,\n" +
+              "  b.name as b_name,\n" +
+              "  b.adress as b_adress,\n" +
+              "  s.id as s_id,\n" +
+              "  s.name as s_name\n" +
               "from system_users su, branches b, subdivisions s\n" +
               "where su.branch_id = b.id\n" +
               "      and su.subdivision_id = s.id;";
