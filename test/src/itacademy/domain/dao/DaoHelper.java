@@ -1,7 +1,5 @@
 package itacademy.domain.dao;
 
-import org.junit.Test;
-
 import java.util.Random;
 
 public class DaoHelper {

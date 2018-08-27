@@ -1,6 +1,5 @@
 package itacademy.domain.dao.impl;
 
-import itacademy.domain.dao.DaoHelper;
 import itacademy.domain.entity.Branch;
 import org.junit.Assert;
 import org.junit.Before;
@@ -49,13 +48,4 @@ public class BranchDaoImplTest {
         Assert.assertEquals(myBranch.getName(), name);
         dao.delete(id);
     }
-
-//    @Test
-//    public void stressTest() {
-//        for (int i = 0; i < 100 ; i++) {
-//            String randomWord = DaoHelper.getRandomWord(5, 10, false);
-//            Branch branch = new Branch(randomWord);
-//            dao.save(branch);
-//        }
-//    }
 }
