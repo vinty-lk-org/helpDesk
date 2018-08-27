@@ -1,15 +1,13 @@
 package itacademy.domain.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
 public class SystemUser {
     private Long id;
     private String name;

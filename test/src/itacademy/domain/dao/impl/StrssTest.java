@@ -14,4 +14,8 @@ public class StrssTest {
             BranchDaoImpl.getInstance().save(branch);
         }
     }
+    @Test
+    public void save() {
+
+    }
 }
