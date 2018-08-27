@@ -154,14 +154,14 @@ public class SystemUserDaoImpl implements SystemUserDao {
         return Optional.empty();
     }
 
-  public List<SystemUser> findAllPrc() {
+  public List<SystemUser> findByIdPrc(Long id) {
     List<SystemUser> systemUsersList = new ArrayList<>();
     String sql = "{ ? = call system_user_findbyid(?)}";
     try (Connection connection = ConnectionManager.getConnection();
          CallableStatement proc = connection.prepareCall(sql)) {
       connection.setAutoCommit(false);
       proc.registerOutParameter(1, Types.OTHER);
-      proc.setInt(2, 23);
+      proc.setLong(2, id);
       proc.execute();
       ResultSet resultSet = (ResultSet) proc.getObject(1);
       while (resultSet.next()) {
