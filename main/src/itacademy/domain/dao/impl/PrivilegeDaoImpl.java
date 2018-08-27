@@ -98,4 +98,6 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
             e.printStackTrace();
         }
     }
+
+
 }
