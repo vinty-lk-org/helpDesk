@@ -42,7 +42,17 @@ public class SystemUserDaoImplTest {
         List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
         userList.forEach(System.out::println);
     }
-    @Test
-    public void findById() {
+
+  @Test
+  public void findByIdPrcTest() {
+    SystemUser user = null;
+    List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
+    SystemUser systemUser = userList.get(0);
+    Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findByIdPrc(systemUser.getId());
+    if (optionalSystemUser.isPresent()) {
+      user = optionalSystemUser.get();
+      System.out.println(user);
     }
+    Assert.assertNotNull(user);
+  }
 }
