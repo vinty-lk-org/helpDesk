@@ -15,3 +15,6 @@ BEGIN
   RETURN ref;
 END;
 $$;
+
+alter function system_user_findbyid(integer)
+  owner to root;
