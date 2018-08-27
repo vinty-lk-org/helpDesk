@@ -14,7 +14,7 @@ public class TargetOfJobDtoDaoImplTest {
   public void test() {
 
     TargetOfJobDtoDaoImpl targetOfJobDtoDao = new TargetOfJobDtoDaoImpl(TargetOfJobDto.class);
-    List<TargetOfJobDto> all = targetOfJobDtoDao.findAll();
+     List<TargetOfJobDto> all = targetOfJobDtoDao.findAll();
     System.out.println(all);
   }
 }
