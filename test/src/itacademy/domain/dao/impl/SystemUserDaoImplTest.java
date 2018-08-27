@@ -14,6 +14,7 @@ public class SystemUserDaoImplTest {
 
     @Test
     public void save() {
+        System.out.println("нужна проверка теста");
         SystemUserDaoImpl user = SystemUserDaoImpl.getInstance();
         SystemUser systemUser = new SystemUser();
         systemUser.setName("Пользователь тест");
