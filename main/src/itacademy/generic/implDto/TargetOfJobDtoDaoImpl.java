@@ -1,8 +1,8 @@
-package itacademy.domain.dao.implDto;
+package itacademy.generic.implDto;
 
-import itacademy.domain.dao.common.BaseDaoImpl;
-import itacademy.domain.dao.interfacesDto.TargetOfJobDtoDao;
-import itacademy.dto.db.TargetOfJobDto;
+import itacademy.generic.BaseDaoImpl;
+import itacademy.generic.interfacesDto.TargetOfJobDtoDao;
+import itacademy.generic.db.TargetOfJobDto;
 
 public class TargetOfJobDtoDaoImpl extends BaseDaoImpl<TargetOfJobDto> implements TargetOfJobDtoDao {
 

@@ -29,7 +29,8 @@ public class BranchDaoImpl implements BranchDao {
     private Branch createBranchFromResultSet(ResultSet resultSet) throws SQLException {
         return new Branch(
                 resultSet.getLong("id"),
-                resultSet.getString("name"));
+                resultSet.getString("name"),
+                resultSet.getString("adress"));
     }
 
     @Override

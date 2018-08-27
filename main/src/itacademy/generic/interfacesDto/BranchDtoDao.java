@@ -1,7 +1,7 @@
-package itacademy.domain.dao.interfacesDto;
+package itacademy.generic.interfacesDto;
 
 import itacademy.domain.dao.common.BaseDao;
-import itacademy.dto.db.BranchDto;
+import itacademy.generic.db.BranchDto;
 
 public interface BranchDtoDao extends BaseDao<BranchDto> {
 }

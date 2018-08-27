@@ -1,8 +1,8 @@
-package itacademy.domain.dao.implDto;
+package itacademy.generic.implDto;
 
-import itacademy.domain.dao.common.BaseDaoImpl;
-import itacademy.domain.dao.interfacesDto.BranchDtoDao;
-import itacademy.dto.db.BranchDto;
+import itacademy.generic.BaseDaoImpl;
+import itacademy.generic.interfacesDto.BranchDtoDao;
+import itacademy.generic.db.BranchDto;
 
 public class BranchDtoDaoImpl extends BaseDaoImpl<BranchDto> implements BranchDtoDao {
 

@@ -1,6 +1,5 @@
 package itacademy.domain.dao.impl;
 
-import itacademy.domain.dao.DaoHelper;
 import itacademy.domain.entity.Branch;
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,7 +37,7 @@ public class BranchDaoImplTest {
 
     @Test
     public void saveTest() {
-        Branch myBranch = new Branch("Запись для теста №1 (save)");
+        Branch myBranch = new Branch("Запись для теста №1 (save)", "test");
         Long id = dao.save(myBranch);
         Assert.assertNotNull(id);
         Optional<Branch> branchOptional = dao.findById(id);
@@ -48,14 +47,5 @@ public class BranchDaoImplTest {
         }
         Assert.assertEquals(myBranch.getName(), name);
         dao.delete(id);
-    }
-
-    @Test
-    public void stressTest() {
-        for (int i = 0; i < 100 ; i++) {
-            String randomWord = DaoHelper.getRandomWord(5, 10, false);
-            Branch branch = new Branch(randomWord);
-            dao.save(branch);
-        }
     }
 }

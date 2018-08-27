@@ -1,4 +1,4 @@
-package itacademy.dto.db;
+package itacademy.generic.db;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,63 +1,63 @@
 package itacademy.domain.dao.impl;
 
-import itacademy.connection.*;
-import itacademy.domain.dao.interfaces.PrivilegeDao;
-import itacademy.domain.entity.*;
-import lombok.NoArgsConstructor;
+import itacademy.connection.ConnectionManager;
+import itacademy.domain.dao.interfaces.TargetOfJobDao;
+import itacademy.domain.entity.TargetOfJob;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-@NoArgsConstructor
-public class PrivilegeDaoImpl implements PrivilegeDao {
-    public static final Object LOCK = new Object();
-    private static PrivilegeDaoImpl INSTANCE = null;
 
-    public static PrivilegeDaoImpl getInstance() {
+public class TargetOfJobDaoImpl implements TargetOfJobDao {
+    public static final Object LOCK = new Object();
+    private static itacademy.domain.dao.impl.TargetOfJobDaoImpl INSTANCE = null;
+
+    public static itacademy.domain.dao.impl.TargetOfJobDaoImpl getInstance() {
         if (INSTANCE == null) {
             synchronized (LOCK) {
                 if (INSTANCE == null) {
-                    INSTANCE = new PrivilegeDaoImpl();
+                    INSTANCE = new itacademy.domain.dao.impl.TargetOfJobDaoImpl();
                 }
             }
         }
         return INSTANCE;
     }
 
-    private Privilege createPrivilegeFromResultSet(ResultSet resultSet) throws SQLException {
-        return new Privilege(
+    private TargetOfJob createTargetOfJobFromResultSet(ResultSet resultSet) throws SQLException {
+        return new TargetOfJob(
                 resultSet.getLong("id"),
                 resultSet.getString("name"));
     }
 
     @Override
-    public List<Privilege> findAll() {
-        String sql = "SELECT * FROM privileges ORDER BY name;";
-        List<Privilege> privileges = new ArrayList<>();
+    public List<TargetOfJob> findAll() {
+        String sql = "SELECT * FROM targets_of_jobs ORDER BY name;";
+        List<TargetOfJob> TargetOfJob = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        privileges.add(createPrivilegeFromResultSet(resultSet));
+                        TargetOfJob.add(createTargetOfJobFromResultSet(resultSet));
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return privileges;
+        return TargetOfJob;
     }
 
     @Override
-    public Optional<Privilege> findById(Long id) {
+    public Optional<TargetOfJob> findById(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
-            String sql = "SELECT * FROM privileges p WHERE p.id = ?";
+            String sql = "SELECT * FROM targets_of_jobs p WHERE p.id = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                        return Optional.of(createPrivilegeFromResultSet(resultSet));
+                        return Optional.of(createTargetOfJobFromResultSet(resultSet));
                     }
                 }
             }
@@ -68,12 +68,12 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
     }
 
     @Override
-    public Long save(Privilege privilege) {
+    public Long save(TargetOfJob targetOfJob) {
         Long id = 0L;
-        String sql = "INSERT INTO privileges (name) VALUES (?)";
+        String sql = "INSERT INTO targets_of_jobs (name) VALUES (?)";
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setString(1, privilege.getName());
+                preparedStatement.setString(1, targetOfJob.getName());
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
@@ -86,9 +86,10 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
         return id;
     }
 
+
     @Override
     public void delete(Long id) {
-        String sql = "DELETE FROM privileges WHERE (id = ?)";
+        String sql = "DELETE FROM targets_of_jobs WHERE (id = ?)";
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = (connection.prepareStatement(sql))) {
                 preparedStatement.setLong(1, id);
@@ -98,6 +99,4 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
             e.printStackTrace();
         }
     }
-
-
 }

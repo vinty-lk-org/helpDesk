@@ -1,6 +1,7 @@
-package itacademy.domain.dao.common;
+package itacademy.generic;
 
 import itacademy.connection.ConnectionManager;
+import itacademy.domain.dao.common.BaseDao;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
