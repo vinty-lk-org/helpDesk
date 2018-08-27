@@ -6,10 +6,7 @@ import itacademy.domain.entity.Branch;
 import itacademy.domain.entity.Subdivision;
 import itacademy.domain.entity.SystemUser;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -50,15 +47,42 @@ public class SystemUserDaoImpl implements SystemUserDao {
 
     @Override
     public Long save(SystemUser entity) {
-        String sql = "insert into  system_users (name, family, e_mail, password, branch_id, subdivision_id)\n" +
-                "values (?, ?, ?, ?, ?, ?);";
-        return null;
+        Long id = 0L;
+        String sql = "INSERT INTO system_users (name, family, e_mail, password, branch_id, subdivision_id)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?);";
+                try (Connection connection = ConnectionManager.getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                preparedStatement.setString(1, entity.getName());
+                preparedStatement.setString(2,entity.getFamaly());
+                preparedStatement.setString(3,entity.getEmail());
+                preparedStatement.setString(4,entity.getPassword());
+                preparedStatement.setInt(5,1);
+                preparedStatement.setInt(6,1);
+//                preparedStatement.setInt(5, entity.getBranchId());
+//                preparedStatement.setInt(6,entity.getSubdivisionId());
+                preparedStatement.executeUpdate();
+                ResultSet resultSet = preparedStatement.getGeneratedKeys();
+                if (resultSet.next()) {
+                    id = resultSet.getLong("id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 
     @Override
     public void delete(Long id) {
-
-        String sql = "delete from system_users where id = ? ;";
+        String sql = "DELETE FROM system_users WHERE (id = ?)";
+        try (Connection connection = ConnectionManager.getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setLong(1, id);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -92,7 +116,6 @@ public class SystemUserDaoImpl implements SystemUserDao {
         return systemUsersList;
     }
 
-
     @Override
     public Optional<SystemUser> findById(Long id) {
         String sql = "select\n" +
@@ -110,6 +133,18 @@ public class SystemUserDaoImpl implements SystemUserDao {
                 "where su.branch_id = b.id\n" +
                 "      and su.subdivision_id = s.id" +
                 "      and su.id = ? ;";
+        try (Connection connection = ConnectionManager.getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setLong(1, id);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return Optional.of(createSystemUserFromResultSet(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return Optional.empty();
     }
 }
