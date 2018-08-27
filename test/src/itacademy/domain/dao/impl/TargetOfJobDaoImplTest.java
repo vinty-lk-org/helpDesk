@@ -1,6 +1,5 @@
 package itacademy.domain.dao.impl;
 
-import itacademy.domain.entity.Subdivision;
 import itacademy.domain.entity.TargetOfJob;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,26 +29,19 @@ public class TargetOfJobDaoImplTest {
     }
 
     @Test
-    public void findById() {
-    }
-
-    @Test
     public void save() {
-        TargetOfJobDaoImpl target = TargetOfJobDaoImpl.getInstance();
+        TargetOfJobDaoImpl dao = TargetOfJobDaoImpl.getInstance();
         TargetOfJob targetOfJob = new TargetOfJob();
         targetOfJob.setName("Работа №1");
-        Long id = target.save(targetOfJob);
+        Long id = dao.save(targetOfJob);
         Assert.assertNotNull(id);
-        Optional<TargetOfJob> optionalTargetOfJob = target.findById(id);
+        Optional<TargetOfJob> optionalTargetOfJob = dao.findById(id);
         String nameSubdivision = "";
         if (optionalTargetOfJob.isPresent()) {
             nameSubdivision = optionalTargetOfJob.get().getName();
         }
         Assert.assertEquals(targetOfJob.getName(), nameSubdivision);
-        target.delete(id);
+        dao.delete(id);
     }
 
-    @Test
-    public void delete() {
-    }
 }
