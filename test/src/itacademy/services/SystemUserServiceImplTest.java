@@ -1,4 +1,4 @@
-package itacademy.service;
+package itacademy.services;
 
 import itacademy.dto.SystemUserDto;
 import org.junit.Assert;

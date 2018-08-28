@@ -1,6 +1,6 @@
 package servlets;
 
-import itacademy.service.SystemUserServiceImpl;
+import itacademy.services.SystemUserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +18,15 @@ public class HelloServlet extends HttpServlet {
     showPage(req, resp);
   }
 
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    super.doPost(req, resp);
+  }
+
   private void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     req.setAttribute("users", SystemUserServiceImpl.getInstance().getAllSystemUsersDto());
+    req.setAttribute("myName", "Ярослав Зыскунов клевый парень.");
     getServletContext().getRequestDispatcher("/WEB-INF/jsp/hello.jsp").forward(req, resp);
   }
 }

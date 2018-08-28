@@ -14,12 +14,14 @@ public class Branch {
     private String name;
     private String adress;
 
+    public Branch(String name) {
+        this.name = name;
+    }
+
     public Branch(String name, String adress) {
         this.name = name;
         this.adress = adress;
     }
 
-    public Branch(String name) {
-        this.name = name;
-    }
+
 }

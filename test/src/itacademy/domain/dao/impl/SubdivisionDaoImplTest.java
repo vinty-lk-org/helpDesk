@@ -31,10 +31,8 @@ public class SubdivisionDaoImplTest {
         Long id1 = dao.save(new Subdivision("ABC"));
         Long id2 = dao.save(new Subdivision("DEF"));
         List<Subdivision> subdivisionList = dao.findAll();
-
         Assert.assertNotNull(subdivisionList);
         Assert.assertTrue(subdivisionList.size() >= 2);
-
         for (Subdivision s : subdivisionList) {
             if (s.getId().equals(id1)) {
                 Assert.assertEquals(s.getName(), "ABC");

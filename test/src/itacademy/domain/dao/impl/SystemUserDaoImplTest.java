@@ -13,15 +13,14 @@ public class SystemUserDaoImplTest {
 
     @Test
     public void save() {
-        System.out.println("нужна проверка теста");
         SystemUserDaoImpl user = SystemUserDaoImpl.getInstance();
         SystemUser systemUser = new SystemUser();
         systemUser.setName("Пользователь тест");
         systemUser.setFamaly("Фамилия тест");
         systemUser.setEmail("email test");
         systemUser.setPassword("pass test");
-        systemUser.setBranchId(new Branch("филиал тест"));
-        systemUser.setSubdivisionId(new Subdivision("админ тест"));
+        systemUser.setBranch(new Branch(3L, "Минск", "Минск-сити"));
+        systemUser.setSubdivision(new Subdivision(1L,"админ тест"));
         Long id = user.save(systemUser);
         Assert.assertNotNull(id);
         Optional<SystemUser> optionalSystemUser = user.findById(id);
