@@ -166,7 +166,7 @@ public class SystemUserDaoImpl implements SystemUserDao {
     }
 
     public Optional<SystemUser> findByEmail (String email) {
-        String sql = "{ ? = call system_user_findbyemail2(?)}";
+        String sql = "{ ? = call system_user_findby_email(?)}";
         try (Connection connection = ConnectionManager.getConnection();
              CallableStatement proc = connection.prepareCall(sql)) {
             connection.setAutoCommit(false);

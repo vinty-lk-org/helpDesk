@@ -21,7 +21,7 @@ alter function system_user_findbyid(integer)
   owner to root;
 
 # find_by_email
-create or replace function system_user_findby_email(e_mail character varying)
+create or replace function system_user_findby_email(e_mail CHARACTER VARYING)
 returns refcursor
 language plpgsql
 as $$
@@ -47,5 +47,5 @@ RETURN ref;
 END;
 $$;
 
-alter function system_user_findby_email( integer )
+alter function system_user_findby_email(CHARACTER VARYING)
 owner to root;
