@@ -1,5 +1,6 @@
 package itacademy.domain.dao.impl;
 
+import itacademy.domain.dao.DaoHelper;
 import itacademy.domain.entity.Branch;
 import itacademy.domain.entity.Subdivision;
 import itacademy.domain.entity.SystemUser;
@@ -53,7 +54,6 @@ public class SystemUserDaoImplTest {
     userList = userDao.findAll();
     Assert.assertEquals(1, (userList.size() - countRecordOnStart));
     userDao.delete(id);
-
   }
 
   @Test
@@ -120,5 +120,11 @@ public class SystemUserDaoImplTest {
       systemUser = optionalSystemUser.get();
     }
     Assert.assertEquals(email, systemUser.getEmail());
+  }
+
+  @Test
+  public void test() {
+    String randomPhone = DaoHelper.getRandomPhone();
+    System.out.println(randomPhone);
   }
 }

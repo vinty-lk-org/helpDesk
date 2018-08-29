@@ -28,11 +28,13 @@ public class DaoHelper {
         return r.ints(min, (max + 1)).findFirst().getAsInt();
     }
 
-    private static final int PHONE_NUMBER_LENGTH = 13;
+    private static final int PHONE_NUMBER_LENGTH = 7;
     public static String getRandomPhone() {
-        String s = "123456789";
+        String s = "0123456789";
         StringBuffer phoneNumber = new StringBuffer();
-
+        phoneNumber.append("+375-");
+        String[] codeOperatorArray = {"29", "44", "33", "25", "17"};
+        phoneNumber.append(codeOperatorArray[(new Random().nextInt(codeOperatorArray.length))] + "-");
         for (int i = 0; i < PHONE_NUMBER_LENGTH; i++) {
             phoneNumber.append(s.charAt(new Random().nextInt(s.length())));
         }
