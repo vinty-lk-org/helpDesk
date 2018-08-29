@@ -67,7 +67,7 @@ public class SystemUserDaoImplTest {
         assert user != null;
         Assert.assertEquals(systemUser.getEmail(), user.getEmail());
     }
-
+    // TODO А это что за адовое название??? этот метод проверяет вторую почту? У тебя их ДВЕ?!!!
     @Test
     public void findByEmail2() {
         SystemUser user = null;
