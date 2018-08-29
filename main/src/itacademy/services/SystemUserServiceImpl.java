@@ -1,10 +1,9 @@
-package itacademy.service;
+package itacademy.services;
 
 import itacademy.domain.dao.impl.SystemUserDaoImpl;
 import itacademy.domain.entity.SystemUser;
 import itacademy.dto.SystemUserDto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,8 +37,8 @@ public class SystemUserServiceImpl implements SystemUserService{
              systemUser.getFamaly(),
              systemUser.getEmail(),
              systemUser.getPassword(),
-             systemUser.getBranchId().getName(),
-             systemUser.getSubdivisionId().getName()
+             systemUser.getBranch().getName(),
+             systemUser.getSubdivision().getName()
      ))
      .collect(Collectors.toList());
   }

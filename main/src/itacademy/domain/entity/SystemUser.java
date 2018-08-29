@@ -14,6 +14,6 @@ public class SystemUser {
     private String famaly;
     private String email;
     private String password;
-    private Branch branchId;
-    private Subdivision subdivisionId;
+    private Branch branch;
+    private Subdivision subdivision;
 }

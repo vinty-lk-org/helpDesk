@@ -13,15 +13,14 @@ public class SystemUserDaoImplTest {
 
     @Test
     public void save() {
-        System.out.println("нужна проверка теста");
         SystemUserDaoImpl user = SystemUserDaoImpl.getInstance();
         SystemUser systemUser = new SystemUser();
         systemUser.setName("Пользователь тест");
         systemUser.setFamaly("Фамилия тест");
         systemUser.setEmail("email test");
         systemUser.setPassword("pass test");
-        systemUser.setBranchId(new Branch("филиал тест"));
-        systemUser.setSubdivisionId(new Subdivision("админ тест"));
+        systemUser.setBranch(new Branch(3L, "Минск", "Минск-сити"));
+        systemUser.setSubdivision(new Subdivision(1L, "админ тест"));
         Long id = user.save(systemUser);
         Assert.assertNotNull(id);
         Optional<SystemUser> optionalSystemUser = user.findById(id);
@@ -54,4 +53,37 @@ public class SystemUserDaoImplTest {
         }
         Assert.assertEquals(systemUser.getName(), user.getName());
     }
+
+    @Test
+    public void findByEmail() {
+        SystemUser user = null;
+        List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
+        SystemUser systemUser = userList.get(0);
+        Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findByEmail("lkghost7@gmail.com");
+        if (optionalSystemUser.isPresent()) {
+            user = optionalSystemUser.get();
+        }
+        assert user != null;
+        Assert.assertEquals(systemUser.getEmail(), user.getEmail());
+    }
+
+    @Test
+    public void findByEmail2() {
+        SystemUser user = null;
+        List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
+        SystemUser systemUser = userList.get(0);
+//        System.out.println(systemUser);
+        Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findByemail2("lkghost7@gmail.com");
+//        String emailTest = systemUser.getEmail();
+//        System.out.println(optionalSystemUser);
+//        user = optionalSystemUser.get();
+//        System.out.println(user);
+//        System.out.println(systemUser.getEmail());
+//        System.out.println(user.getEmail());
+        if (optionalSystemUser.isPresent()) {
+            user = optionalSystemUser.get();
+        }
+        Assert.assertEquals(systemUser.getEmail(), user.getEmail());
+    }
+
 }
