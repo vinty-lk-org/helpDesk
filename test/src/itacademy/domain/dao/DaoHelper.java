@@ -28,4 +28,14 @@ public class DaoHelper {
         return r.ints(min, (max + 1)).findFirst().getAsInt();
     }
 
+    private static final int PHONE_NUMBER_LENGTH = 13;
+    public static String getRandomPhone() {
+        String s = "123456789";
+        StringBuffer phoneNumber = new StringBuffer();
+
+        for (int i = 0; i < PHONE_NUMBER_LENGTH; i++) {
+            phoneNumber.append(s.charAt(new Random().nextInt(s.length())));
+        }
+        return phoneNumber.toString();
+    }
 }

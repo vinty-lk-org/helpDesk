@@ -40,6 +40,7 @@ public class SystemUserDaoImplTest {
   @Test
   public void findAll() {
     List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
+    SystemUserDaoImpl userDao = SystemUserDaoImpl.getInstance();
     BranchDaoImpl branchDao = BranchDaoImpl.getInstance();
     SubdivisionDaoImpl subdivisionDao = SubdivisionDaoImpl.getInstance();
     long countRecordOnStart = userList.size();
@@ -48,9 +49,11 @@ public class SystemUserDaoImplTest {
     systemUser.setPassword("myPass");
     systemUser.setBranch(branchDao.findAll().get(0));
     systemUser.setSubdivision(subdivisionDao.findAll().get(0));
-    Long id = SystemUserDaoImpl.getInstance().save(systemUser);
-    userList = SystemUserDaoImpl.getInstance().findAll();
+    Long id = userDao.save(systemUser);
+    userList = userDao.getInstance().findAll();
     Assert.assertTrue((userList.size() - countRecordOnStart) == 1);
+    userDao.delete(id);
+
   }
 
   @Test
