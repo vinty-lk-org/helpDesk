@@ -305,7 +305,7 @@ INSERT INTO branches VALUES (1, 'Колядичи');
 INSERT INTO privileges VALUES (1, 'Admin');
 INSERT INTO privileges VALUES (2, 'User');
 INSERT INTO privileges VALUES (3, 'Operator');
-INSERT INTO privileges VALUES (4, 'Executor');
+INSERT INTO privileges VALUES (4, 'ExecutorSql');
 
 
 --
@@ -489,7 +489,7 @@ ALTER TABLE ONLY tasks
 --
 
 ALTER TABLE ONLY tasks
-    ADD CONSTRAINT task_type_of_job_id_fk FOREIGN KEY (type_of_job_id) REFERENCES privileges(id);
+    ADD CONSTRAINT task_type_of_job_id_fk FOREIGN KEY (target_of_job_id) REFERENCES privileges(id);
 
 
 --
