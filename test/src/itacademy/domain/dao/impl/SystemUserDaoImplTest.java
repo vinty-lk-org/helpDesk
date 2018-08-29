@@ -63,6 +63,7 @@ public class SystemUserDaoImplTest {
         if (optionalSystemUser.isPresent()) {
             user = optionalSystemUser.get();
         }
+        // TODO ЭТО ЧТО ЗА ПИЗДЕЦ???????
         assert user != null;
         Assert.assertEquals(systemUser.getEmail(), user.getEmail());
     }
