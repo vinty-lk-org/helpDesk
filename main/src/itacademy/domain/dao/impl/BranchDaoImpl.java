@@ -5,101 +5,103 @@ import itacademy.domain.dao.interfaces.BranchDao;
 import itacademy.domain.entity.Branch;
 import lombok.NoArgsConstructor;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @NoArgsConstructor
 public class BranchDaoImpl implements BranchDao {
-    private static final Object LOCK = new Object();
-    private static BranchDaoImpl INSTANCE = null;
+  private static final Object LOCK = new Object();
+  private static BranchDaoImpl INSTANCE = null;
+  private static final String SQL_SELECT_BY_ID = "SELECT * FROM branches br WHERE br.id = ?";
+  private static final String SQL_DELETE_BY_ID = "DELETE FROM branches WHERE (id = ?)";
+  private static final String SQL_INSERT = "INSERT INTO branches (name) VALUES (?)";
+  private static final String SQL_FIND_ALL = "SELECT * FROM branches ORDER BY name;";
 
-    public static BranchDaoImpl getInstance() {
+  public static BranchDaoImpl getInstance() {
+    if (INSTANCE == null) {
+      synchronized (LOCK) {
         if (INSTANCE == null) {
-            synchronized (LOCK) {
-                if (INSTANCE == null) {
-                    INSTANCE = new BranchDaoImpl();
-                }
-            }
+          INSTANCE = new BranchDaoImpl();
         }
-        return INSTANCE;
+      }
     }
+    return INSTANCE;
+  }
 
-    private Branch createBranchFromResultSet(ResultSet resultSet) throws SQLException {
-        return new Branch(
-                resultSet.getLong("id"),
-                resultSet.getString("name"),
-                resultSet.getString("adress"));
-    }
+  private Branch createBranchFromResultSet(ResultSet resultSet) throws SQLException {
+    return new Branch(
+            resultSet.getLong("id"),
+            resultSet.getString("name"),
+            resultSet.getString("adress"));
+  }
 
-    @Override
-    public Optional<Branch> findById(Long id) {
-        String sql = "SELECT * FROM branches br WHERE br.id = ?";
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setLong(1, id);
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if (resultSet.next()) {
-                        return Optional.of(createBranchFromResultSet(resultSet));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+  @Override
+  public Long save(Branch branch) {
+    Long id = 0L;
+    try (Connection connection = ConnectionManager.getConnection()) {
+      try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
+        preparedStatement.setString(1, branch.getName());
+        preparedStatement.execute();
+        ResultSet resultSet = preparedStatement.getGeneratedKeys();
+        if (resultSet.next()) {
+          id = resultSet.getLong("id");
         }
-        return Optional.empty();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+    return id;
+  }
 
-    @Override
-    public Long save(Branch branch) {
-        Long id = 0L;
-        String sql = "INSERT INTO branches (name) VALUES (?)";
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setString(1, branch.getName());
-                preparedStatement.executeUpdate();
-                ResultSet resultSet = preparedStatement.getGeneratedKeys();
-                if (resultSet.next()) {
-                    id = resultSet.getLong("id");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+  @Override
+  public Optional<Branch> findById(Long id) {
+    try (Connection connection = ConnectionManager.getConnection()) {
+      try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)) {
+        preparedStatement.setLong(1, id);
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+          if (resultSet.next()) {
+            return Optional.of(createBranchFromResultSet(resultSet));
+          }
         }
-        return id;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+    return Optional.empty();
+  }
 
-
-    @Override
-    public List<Branch> findAll() {
-        String sql = "SELECT * FROM branches ORDER BY name;";
-        List<Branch> branches = new ArrayList<>();
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    while (resultSet.next()) {
-                        branches.add(createBranchFromResultSet(resultSet));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+  @Override
+  public List<Branch> findAll() {
+    List<Branch> branches = new ArrayList<>();
+    try (Connection connection = ConnectionManager.getConnection()) {
+      try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL)) {
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+          while (resultSet.next()) {
+            branches.add(createBranchFromResultSet(resultSet));
+          }
         }
-        return branches;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+    return branches;
+  }
 
-    @Override
-    public void delete(Long id) {
-        String sql = "DELETE FROM branches WHERE (id = ?)";
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setLong(1, id);
-                preparedStatement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+  @Override
+  public void delete(Long id) {
+    try (Connection connection = ConnectionManager.getConnection()) {
+      try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
+        preparedStatement.setLong(1, id);
+        preparedStatement.execute();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
-
+  }
 }

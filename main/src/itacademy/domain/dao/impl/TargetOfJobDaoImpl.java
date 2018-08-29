@@ -86,7 +86,6 @@ public class TargetOfJobDaoImpl implements TargetOfJobDao {
         return id;
     }
 
-
     @Override
     public void delete(Long id) {
         String sql = "DELETE FROM targets_of_jobs WHERE (id = ?)";

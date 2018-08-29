@@ -1,8 +1,11 @@
 package itacademy.domain.dao;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.util.Random;
 
-public class DaoHelper {
+public class TestDaoHelper {
 
     public static String getRandomWord(int lengthWordBegin, int lengthWordEnd, boolean isCapitalFirstChar) {
         String text = "abcdefghijklmnopqrstuvwxyz";
@@ -29,6 +32,7 @@ public class DaoHelper {
     }
 
     private static final int PHONE_NUMBER_LENGTH = 7;
+
     public static String getRandomPhone() {
         String s = "0123456789";
         StringBuilder phoneNumber = new StringBuilder();
@@ -40,4 +44,6 @@ public class DaoHelper {
         }
         return phoneNumber.toString();
     }
+
+
 }
