@@ -29,6 +29,7 @@ public class DaoHelper {
     }
 
     private static final int PHONE_NUMBER_LENGTH = 7;
+
     public static String getRandomPhone() {
         String s = "0123456789";
         StringBuilder phoneNumber = new StringBuilder();
