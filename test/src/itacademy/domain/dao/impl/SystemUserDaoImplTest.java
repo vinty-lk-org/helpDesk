@@ -53,7 +53,7 @@ public class SystemUserDaoImplTest {
         }
         Assert.assertEquals(systemUser.getName(), user.getName());
     }
-
+    //TODO Тест - хардкод. Негодный.
     @Test
     public void findByEmail() {
         SystemUser user = null;
@@ -64,10 +64,17 @@ public class SystemUserDaoImplTest {
             user = optionalSystemUser.get();
         }
         // TODO ЭТО ЧТО ЗА ПИЗДЕЦ???????
+        // TODO Если Идея тебе что-то подсказывает - этоне значит, что надо бездумно это вставлять!
+        // TODO - что ты проверяешь? Не пусто ли в user??? АХУЕТЬ!!! Ты только что это проверил!!!
+        // TODO - вот ЭТИМ кодом!
+        // TODO if (optionalSystemUser.isPresent()) {
+        // TODO           user = optionalSystemUser.get();
+        // TODO       }
         assert user != null;
         Assert.assertEquals(systemUser.getEmail(), user.getEmail());
     }
     // TODO А это что за адовое название??? этот метод проверяет вторую почту? У тебя их ДВЕ?!!!
+    //TODO Тест - хардкод. Негодный.
     @Test
     public void findByEmail2() {
         SystemUser user = null;
@@ -85,6 +92,19 @@ public class SystemUserDaoImplTest {
             user = optionalSystemUser.get();
         }
         Assert.assertEquals(systemUser.getEmail(), user.getEmail());
+    }
+
+    @Test
+    public void findByEmailPrc() {
+        SystemUser systemUser = null;
+        List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
+        String email = userList.get(0).getEmail();
+        Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findByEmail(email);
+        if (optionalSystemUser.isPresent()) {
+            systemUser = optionalSystemUser.get();
+        }
+        Assert.assertEquals(email, systemUser.getEmail());
+    }
     }
 
 }
