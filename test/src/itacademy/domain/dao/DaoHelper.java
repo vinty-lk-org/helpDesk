@@ -31,10 +31,10 @@ public class DaoHelper {
     private static final int PHONE_NUMBER_LENGTH = 7;
     public static String getRandomPhone() {
         String s = "0123456789";
-        StringBuffer phoneNumber = new StringBuffer();
+        StringBuilder phoneNumber = new StringBuilder();
         phoneNumber.append("+375-");
         String[] codeOperatorArray = {"29", "44", "33", "25", "17"};
-        phoneNumber.append(codeOperatorArray[(new Random().nextInt(codeOperatorArray.length))] + "-");
+        phoneNumber.append(codeOperatorArray[(new Random().nextInt(codeOperatorArray.length))]).append("-");
         for (int i = 0; i < PHONE_NUMBER_LENGTH; i++) {
             phoneNumber.append(s.charAt(new Random().nextInt(s.length())));
         }
