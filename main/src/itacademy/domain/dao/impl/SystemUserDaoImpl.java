@@ -183,35 +183,4 @@ public class SystemUserDaoImpl implements SystemUserDao {
         }
         return Optional.empty();
     }
-
-    public Optional<SystemUser> findByemail2(String email) {
-        String sql = "select\n" +
-                "  su.id,\n" +
-                "  su.name,\n" +
-                "  su.family,\n" +
-                "  su.e_mail,\n" +
-                "  su.password,\n" +
-                "  b.id as b_id,\n" +
-                "  b.name as b_name,\n" +
-                "  b.adress as b_adress,\n" +
-                "  s.id as s_id,\n" +
-                "  s.name as s_name\n" +
-                "from system_users su, branches b, subdivisions s\n" +
-                "where su.branch_id = b.id\n" +
-                "      and su.subdivision_id = s.id" +
-                "      and su.e_mail = ? ;";
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, email);
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if (resultSet.next()) {
-                        return Optional.of(createSystemUserFromResultSet(resultSet));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return Optional.empty();
-    }
 }

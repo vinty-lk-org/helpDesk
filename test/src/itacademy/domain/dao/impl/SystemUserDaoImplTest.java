@@ -1,6 +1,6 @@
 package itacademy.domain.dao.impl;
 
-import itacademy.domain.dao.DaoHelper;
+import itacademy.domain.dao.TestDaoHelper;
 import itacademy.domain.entity.Branch;
 import itacademy.domain.entity.Subdivision;
 import itacademy.domain.entity.SystemUser;
@@ -13,9 +13,8 @@ import java.util.Optional;
 public class SystemUserDaoImplTest {
 
   @Test
-  // TODO user - содержит внутри пользователя? Точно? Или это экземпляр класса? instance - например.
   public void save() {
-    SystemUserDaoImpl user = SystemUserDaoImpl.getInstance();
+    SystemUserDaoImpl dao = SystemUserDaoImpl.getInstance();
     SystemUser systemUser = new SystemUser();
     systemUser.setName("Пользователь тест");
     systemUser.setFamaly("Фамилия тест");
@@ -23,19 +22,15 @@ public class SystemUserDaoImplTest {
     systemUser.setPassword("pass test");
     systemUser.setBranch(new Branch(3L, "Минск", "Минск-сити"));
     systemUser.setSubdivision(new Subdivision(1L, "админ тест"));
-    Long id = user.save(systemUser);
+    Long id = dao.save(systemUser);
     Assert.assertNotNull(id);
-    Optional<SystemUser> optionalSystemUser = user.findById(id);
+    Optional<SystemUser> optionalSystemUser = dao.findById(id);
     String nameSystemUser = "";
     if (optionalSystemUser.isPresent()) {
       nameSystemUser = optionalSystemUser.get().getName();
     }
     Assert.assertEquals(systemUser.getName(), nameSystemUser);
-    user.delete(id);
-  }
-
-  @Test
-  public void delete() {
+    dao.delete(id);
   }
 
   @Test
@@ -68,48 +63,6 @@ public class SystemUserDaoImplTest {
     Assert.assertEquals(systemUser.getName(), user.getName());
   }
 
-  //TODO Тест - хардкод. Негодный.
-  @Test
-  public void findByEmail() {
-    SystemUser user = null;
-    List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
-    SystemUser systemUser = userList.get(0);
-    Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findByEmail("lkghost7@gmail.com");
-    if (optionalSystemUser.isPresent()) {
-      user = optionalSystemUser.get();
-    }
-    // TODO ЭТО ЧТО ЗА ПИЗДЕЦ???????
-    // TODO Если Идея тебе что-то подсказывает - этоне значит, что надо бездумно это вставлять!
-    // TODO - что ты проверяешь? Не пусто ли в user??? АХУЕТЬ!!! Ты только что это проверил!!!
-    // TODO - вот ЭТИМ кодом!
-    // TODO if (optionalSystemUser.isPresent()) {
-    // TODO           user = optionalSystemUser.get();
-    // TODO       }
-    assert user != null;
-    Assert.assertEquals(systemUser.getEmail(), user.getEmail());
-  }
-
-  // TODO А это что за адовое название??? этот метод проверяет вторую почту? У тебя их ДВЕ?!!!
-  //TODO Тест - хардкод. Негодный.
-  @Test
-  public void findByEmail2() {
-    SystemUser user = null;
-    List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
-    SystemUser systemUser = userList.get(0);
-//        System.out.println(systemUser);
-    Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findByemail2("lkghost7@gmail.com");
-//        String emailTest = systemUser.getEmail();
-//        System.out.println(optionalSystemUser);
-//        user = optionalSystemUser.get();
-//        System.out.println(user);
-//        System.out.println(systemUser.getEmail());
-//        System.out.println(user.getEmail());
-    if (optionalSystemUser.isPresent()) {
-      user = optionalSystemUser.get();
-    }
-    Assert.assertEquals(systemUser.getEmail(), user.getEmail());
-  }
-
   @Test
   public void findByEmailPrc() {
     SystemUser systemUser = null;
@@ -122,9 +75,5 @@ public class SystemUserDaoImplTest {
     Assert.assertEquals(email, systemUser.getEmail());
   }
 
-  @Test
-  public void test() {
-    String randomPhone = DaoHelper.getRandomPhone();
-    System.out.println(randomPhone);
-  }
+
 }

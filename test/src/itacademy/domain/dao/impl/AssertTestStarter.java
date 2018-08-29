@@ -1,17 +1,16 @@
-package itacademy.domain.entity;
+package itacademy.domain.dao.impl;
 
-import itacademy.domain.dao.impl.*;
+import itacademy.domain.dao.TestDaoHelperTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        BranchTest.class,
-        PrivilegeTest.class,
         SubdivisionDaoImplTest.class,
         BranchDaoImplTest.class,
         SystemUserDaoImplTest.class,
-        TargetOfJobDaoImplTest.class
+        TargetOfJobDaoImplTest.class,
+        TestDaoHelperTest.class
 })
 public class AssertTestStarter {
 }
