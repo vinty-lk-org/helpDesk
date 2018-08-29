@@ -1,6 +1,5 @@
 package itacademy.domain.dao.impl;
 
-import itacademy.domain.dao.TestDaoHelper;
 import itacademy.domain.entity.Branch;
 import itacademy.domain.entity.Subdivision;
 import itacademy.domain.entity.SystemUser;
@@ -74,6 +73,4 @@ public class SystemUserDaoImplTest {
     }
     Assert.assertEquals(email, systemUser.getEmail());
   }
-
-
 }
