@@ -12,6 +12,7 @@ import java.util.Optional;
 public class SystemUserDaoImplTest {
 
   @Test
+  // TODO user - содержит внутри пользователя? Точно? Или это экземпляр класса? instance - например.
   public void save() {
     SystemUserDaoImpl user = SystemUserDaoImpl.getInstance();
     SystemUser systemUser = new SystemUser();
@@ -39,7 +40,17 @@ public class SystemUserDaoImplTest {
   @Test
   public void findAll() {
     List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
-    userList.forEach(System.out::println);
+    BranchDaoImpl branchDao = BranchDaoImpl.getInstance();
+    SubdivisionDaoImpl subdivisionDao = SubdivisionDaoImpl.getInstance();
+    long countRecordOnStart = userList.size();
+    SystemUser systemUser = new SystemUser();
+    systemUser.setEmail("myEmail");
+    systemUser.setPassword("myPass");
+    systemUser.setBranch(branchDao.findAll().get(0));
+    systemUser.setSubdivision(subdivisionDao.findAll().get(0));
+    Long id = SystemUserDaoImpl.getInstance().save(systemUser);
+    userList = SystemUserDaoImpl.getInstance().findAll();
+    Assert.assertTrue((userList.size() - countRecordOnStart) == 1);
   }
 
   @Test
