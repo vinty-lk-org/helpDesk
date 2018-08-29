@@ -22,6 +22,4 @@ public class Branch {
         this.name = name;
         this.adress = adress;
     }
-
-
 }

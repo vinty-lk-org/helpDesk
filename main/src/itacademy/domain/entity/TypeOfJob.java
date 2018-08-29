@@ -2,12 +2,14 @@ package itacademy.domain.entity;
 
 import lombok.*;
 
-@Getter
-@Setter
 @AllArgsConstructor
+@Setter
+@Getter
 @ToString
 @NoArgsConstructor
-public class Privilege {
+
+public class TypeOfJob {
     private Long id;
     private String name;
+
 }

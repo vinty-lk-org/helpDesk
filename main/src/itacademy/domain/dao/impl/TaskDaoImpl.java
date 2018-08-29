@@ -2,9 +2,10 @@ package itacademy.domain.dao.impl;
 
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.TaskDao;
-import itacademy.domain.entity.Privilege;
 import itacademy.domain.entity.SystemUser;
+import itacademy.domain.entity.TargetOfJob;
 import itacademy.domain.entity.Task;
+import itacademy.domain.entity.TypeOfJob;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,23 +30,23 @@ public class TaskDaoImpl implements TaskDao {
         return INSTANCE;
     }
 
-    private Privilege createPrivilegeFromResultSet2(ResultSet resultSet) throws SQLException {
-        return new Privilege(
-                resultSet.getLong("id"),
-                resultSet.getString("name"));
-    }
-
     private Task createTaskDaoFromResultSet(ResultSet resultSet) throws SQLException {
         return new Task(
                 resultSet.getLong("id"),
                 resultSet.getString("name"),
                 resultSet.getString("text"),
+                new TypeOfJob(
+                        resultSet.getLong("id"),
+                        resultSet.getString("name")),
+                new TargetOfJob(
+                        resultSet.getLong("id"),
+                        resultSet.getString("name")),
                 new SystemUser(
-                        resultSet.getLong("su_id"),
-                        resultSet.getString("su_name"),
-                        resultSet.getString("su_family"),
-                        resultSet.getString("su_email")));
-
+                        resultSet.getLong("su_id")),
+                new SystemUser(
+                        resultSet.getLong("op_id")),
+                new SystemUser(
+                        resultSet.getLong("ex_id")));
     }
 
     @Override
@@ -66,7 +67,6 @@ public class TaskDaoImpl implements TaskDao {
         }
     }
 
-
     @Override
     public List<Task> findAll() {
         List<Task> taskList = new ArrayList<>();
@@ -84,8 +84,8 @@ public class TaskDaoImpl implements TaskDao {
                     "  su.password as su_pass,\n" +
                     "  su.branch_id,\n" +
                     "  su.subdivision_id,\n" +
-                    "  ts.executor_id,\n" +
-                    "  ts.operator_id\n" +
+                    "  ts.executor_id as ex_id,\n" +
+                    "  ts.operator_id as op_id\n" +
                     "from tasks ts, privileges p, system_users su\n" +
                     "where ts.type_of_job_id = p.id\n" +
                     "      and ts.system_user_id = su.id;";

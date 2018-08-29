@@ -23,4 +23,8 @@ public class SystemUser {
         this.famaly = famaly;
         this.email = email;
     }
+
+    public SystemUser(Long id) {
+        this.id = id;
+    }
 }
