@@ -50,8 +50,8 @@ public class SystemUserDaoImplTest {
     systemUser.setBranch(branchDao.findAll().get(0));
     systemUser.setSubdivision(subdivisionDao.findAll().get(0));
     Long id = userDao.save(systemUser);
-    userList = userDao.getInstance().findAll();
-    Assert.assertTrue((userList.size() - countRecordOnStart) == 1);
+    userList = userDao.findAll();
+    Assert.assertEquals(1, (userList.size() - countRecordOnStart));
     userDao.delete(id);
 
   }
