@@ -23,7 +23,6 @@ public class BranchDaoImpl implements BranchDao {
   private static final String SQL_INSERT = "INSERT INTO branches (name) VALUES (?)";
   private static final String SQL_FIND_ALL = "SELECT * FROM branches ORDER BY name;";
 
-
   public static BranchDaoImpl getInstance() {
     if (INSTANCE == null) {
       synchronized (LOCK) {
@@ -105,6 +104,4 @@ public class BranchDaoImpl implements BranchDao {
       e.printStackTrace();
     }
   }
-
-
 }
