@@ -168,7 +168,7 @@ CREATE TABLE targets_of_jobs (
 );
 
 
-ALTER TABLE targets_of_jobs OWNER TO root;
+ALTER TABLE listeners2 OWNER TO root;
 
 --
 -- Name: targets_of_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: root
