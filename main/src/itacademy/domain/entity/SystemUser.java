@@ -8,6 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
+@Builder
+
 public class SystemUser {
     private Long id;
     private String name;
@@ -19,5 +21,9 @@ public class SystemUser {
 
     public SystemUser(Long id) {
         this.id = id;
+    }
+
+    public SystemUser(String name) {
+        this.name = name;
     }
 }

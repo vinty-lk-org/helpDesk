@@ -8,6 +8,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 
 public class Task {
     private Long id;
@@ -19,4 +20,11 @@ public class Task {
     private SystemUser operatorId;
 
 
+    public Task(Long id, String name, String text, Listener listener, SystemUser systemUserId) {
+        this.id = id;
+        this.name = name;
+        this.text = text;
+        this.listener = listener;
+        this.systemUserId = systemUserId;
+    }
 }

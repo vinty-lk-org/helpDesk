@@ -4,6 +4,6 @@ import itacademy.domain.dao.common.BaseDao;
 import itacademy.domain.entity.Listener;
 
 
-public interface TargetOfJobDao extends BaseDao<Listener> {
+public interface ListenerDao extends BaseDao<Listener> {
 
 }

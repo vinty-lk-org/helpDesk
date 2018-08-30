@@ -1,7 +1,7 @@
 package itacademy.domain.dao.impl;
 
 import itacademy.connection.ConnectionManager;
-import itacademy.domain.dao.interfaces.TargetOfJobDao;
+import itacademy.domain.dao.interfaces.ListenerDao;
 import itacademy.domain.entity.Listener;
 
 import java.sql.*;
@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class TargetOfJobDaoImpl implements TargetOfJobDao {
+public class ListenerDaoImpl implements ListenerDao {
     public static final Object LOCK = new Object();
-    private static itacademy.domain.dao.impl.TargetOfJobDaoImpl INSTANCE = null;
+    private static ListenerDaoImpl INSTANCE = null;
 
-    public static itacademy.domain.dao.impl.TargetOfJobDaoImpl getInstance() {
+    public static ListenerDaoImpl getInstance() {
         if (INSTANCE == null) {
             synchronized (LOCK) {
                 if (INSTANCE == null) {
-                    INSTANCE = new itacademy.domain.dao.impl.TargetOfJobDaoImpl();
+                    INSTANCE = new ListenerDaoImpl();
                 }
             }
         }
@@ -33,7 +33,7 @@ public class TargetOfJobDaoImpl implements TargetOfJobDao {
 
     @Override
     public List<Listener> findAll() {
-        String sql = "SELECT * FROM listeners2 ORDER BY name;";
+        String sql = "SELECT * FROM listeners ORDER BY name;";
         List<Listener> TargetOfJob = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -52,7 +52,7 @@ public class TargetOfJobDaoImpl implements TargetOfJobDao {
     @Override
     public Optional<Listener> findById(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
-            String sql = "SELECT * FROM listeners2 p WHERE p.id = ?";
+            String sql = "SELECT * FROM listeners p WHERE p.id = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -70,7 +70,7 @@ public class TargetOfJobDaoImpl implements TargetOfJobDao {
     @Override
     public Long save(Listener targetOfJob) {
         Long id = 0L;
-        String sql = "INSERT INTO listeners2 (name) VALUES (?)";
+        String sql = "INSERT INTO listeners (name) VALUES (?)";
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, targetOfJob.getName());
@@ -88,7 +88,7 @@ public class TargetOfJobDaoImpl implements TargetOfJobDao {
 
     @Override
     public void delete(Long id) {
-        String sql = "DELETE FROM listeners2 WHERE (id = ?)";
+        String sql = "DELETE FROM listeners WHERE (id = ?)";
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = (connection.prepareStatement(sql))) {
                 preparedStatement.setLong(1, id);

@@ -15,4 +15,8 @@ public class Listener {
     public Listener(String name) {
         this.name = name;
     }
+
+    public Listener(Long id) {
+        this.id = id;
+    }
 }

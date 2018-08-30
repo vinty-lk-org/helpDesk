@@ -7,11 +7,11 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Optional;
 
-public class TargetOfJobDaoImplTest {
+public class ListenerDaoImplTest {
 
     @Test
     public void findAllTest() {
-        TargetOfJobDaoImpl dao = TargetOfJobDaoImpl.getInstance();
+        ListenerDaoImpl dao = ListenerDaoImpl.getInstance();
         Long id1 = dao.save(new Listener("testData1"));
         Long id2 = dao.save(new Listener("testData2"));
         List<Listener> targetOfJobsList = dao.findAll();
@@ -30,7 +30,7 @@ public class TargetOfJobDaoImplTest {
 
     @Test
     public void save() {
-        TargetOfJobDaoImpl dao = TargetOfJobDaoImpl.getInstance();
+        ListenerDaoImpl dao = ListenerDaoImpl.getInstance();
         Listener targetOfJob = new Listener();
         targetOfJob.setName("Работа №1");
         Long id = dao.save(targetOfJob);

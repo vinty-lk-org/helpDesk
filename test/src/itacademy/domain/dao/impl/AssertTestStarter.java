@@ -6,10 +6,11 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        SubdivisionDaoImplTest.class,
         BranchDaoImplTest.class,
+        ListenerDaoImplTest.class,
+        SubdivisionDaoImplTest.class,
         SystemUserDaoImplTest.class,
-        TargetOfJobDaoImplTest.class,
+        TaskDaoImplTest.class,
         TestDaoHelperTest.class
 })
 public class AssertTestStarter {
