@@ -1,6 +1,6 @@
 package itacademy.domain.dao.impl;
 
-import itacademy.domain.entity.TargetOfJob;
+import itacademy.domain.entity.Listener;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,14 +12,14 @@ public class TargetOfJobDaoImplTest {
     @Test
     public void findAllTest() {
         TargetOfJobDaoImpl dao = TargetOfJobDaoImpl.getInstance();
-        Long id1 = dao.save(new TargetOfJob("testData1"));
-        Long id2 = dao.save(new TargetOfJob("testData2"));
-        List<TargetOfJob> targetOfJobsList = dao.findAll();
+        Long id1 = dao.save(new Listener("testData1"));
+        Long id2 = dao.save(new Listener("testData2"));
+        List<Listener> targetOfJobsList = dao.findAll();
 
         Assert.assertNotNull(targetOfJobsList);
         Assert.assertTrue(targetOfJobsList.size() >= 2);
 
-        for (TargetOfJob target : targetOfJobsList) {
+        for (Listener target : targetOfJobsList) {
             if (target.getId().equals(id1)) {
                 Assert.assertEquals(target.getName(), "testData1");
             }
@@ -31,11 +31,11 @@ public class TargetOfJobDaoImplTest {
     @Test
     public void save() {
         TargetOfJobDaoImpl dao = TargetOfJobDaoImpl.getInstance();
-        TargetOfJob targetOfJob = new TargetOfJob();
+        Listener targetOfJob = new Listener();
         targetOfJob.setName("Работа №1");
         Long id = dao.save(targetOfJob);
         Assert.assertNotNull(id);
-        Optional<TargetOfJob> optionalTargetOfJob = dao.findById(id);
+        Optional<Listener> optionalTargetOfJob = dao.findById(id);
         String nameSubdivision = "";
         if (optionalTargetOfJob.isPresent()) {
             nameSubdivision = optionalTargetOfJob.get().getName();

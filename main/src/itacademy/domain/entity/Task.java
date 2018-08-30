@@ -14,7 +14,7 @@ public class Task {
     private String name;
     private String text;
     private TypeOfJob typeOfJob;
-    private TargetOfJob targetOfJobId;
+    private Listener targetOfJobId;
     private SystemUser systemUserId;
     private SystemUser executorId;
     private SystemUser operatorId;

@@ -3,14 +3,11 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.TaskDao;
 import itacademy.domain.entity.SystemUser;
-import itacademy.domain.entity.TargetOfJob;
+import itacademy.domain.entity.Listener;
 import itacademy.domain.entity.Task;
 import itacademy.domain.entity.TypeOfJob;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,7 +35,7 @@ public class TaskDaoImpl implements TaskDao {
                 new TypeOfJob(
                         resultSet.getLong("id"),
                         resultSet.getString("name")),
-                new TargetOfJob(
+                new Listener(
                         resultSet.getLong("id"),
                         resultSet.getString("name")),
                 new SystemUser(
@@ -87,7 +84,7 @@ public class TaskDaoImpl implements TaskDao {
                     "  ts.executor_id as ex_id,\n" +
                     "  ts.operator_id as op_id\n" +
                     "from tasks ts, privileges p, system_users su\n" +
-                    "where ts.type_of_job_id = p.id\n" +
+                    "where ts.listener_id = p.id\n" +
                     "      and ts.system_user_id = su.id;";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -101,6 +98,31 @@ public class TaskDaoImpl implements TaskDao {
         }
         return taskList;
     }
+
+//    @Override
+//    public Long save(SystemUser entity) {
+//        Long id = 0L;
+//        String sql = "INSERT INTO system_users (name, family, e_mail, password, branch_id, subdivision_id)\n" +
+//                "VALUES (?, ?, ?, ?, ?, ?);";
+//        try (Connection connection = ConnectionManager.getConnection()) {
+//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//                preparedStatement.setString(1, entity.getName());
+//                preparedStatement.setString(2, entity.getFamaly());
+//                preparedStatement.setString(3, entity.getEmail());
+//                preparedStatement.setString(4, entity.getPassword());
+//                preparedStatement.setLong(5, entity.getBranch().getId());
+//                preparedStatement.setLong(6, entity.getSubdivision().getId());
+//                preparedStatement.executeUpdate();
+//                ResultSet resultSet = preparedStatement.getGeneratedKeys();
+//                if (resultSet.next()) {
+//                    id = resultSet.getLong("id");
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return id;
+//    }
 
     @Override
     public Optional<Task> findById(Long id) {

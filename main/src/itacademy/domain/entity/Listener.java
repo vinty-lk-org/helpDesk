@@ -8,11 +8,11 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
-public class TargetOfJob {
+public class Listener {
     private Long id;
     private String name;
 
-    public TargetOfJob(String name) {
+    public Listener(String name) {
         this.name = name;
     }
 }
