@@ -1,6 +1,7 @@
 package itacademy.domain.dao.impl;
 
 import itacademy.domain.entity.Branch;
+import itacademy.domain.entity.Task;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,5 +48,13 @@ public class BranchDaoImplTest {
         }
         Assert.assertEquals(myBranch.getName(), name);
         dao.delete(id);
+    }
+
+    @Test
+    public void findAllSimple() {
+        List<Branch> branchList = BranchDaoImpl.getInstance().findAll();
+        for (Branch branch : branchList) {
+            System.out.println(branch);
+        }
     }
 }

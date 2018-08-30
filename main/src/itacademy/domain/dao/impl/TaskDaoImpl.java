@@ -39,11 +39,11 @@ public class TaskDaoImpl implements TaskDao {
                         resultSet.getLong("id"),
                         resultSet.getString("name")),
                 new SystemUser(
-                        resultSet.getLong("su_id")),
+                        resultSet.getLong("t_id")),
                 new SystemUser(
-                        resultSet.getLong("op_id")),
+                        resultSet.getLong("t_id")),
                 new SystemUser(
-                        resultSet.getLong("ex_id")));
+                        resultSet.getLong("t_id")));
     }
 
     @Override
@@ -68,24 +68,24 @@ public class TaskDaoImpl implements TaskDao {
     public List<Task> findAll() {
         List<Task> taskList = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
-            String sql = "select\n" +
-                    "  ts.id,\n" +
-                    "  ts.name,\n" +
-                    "  p.id        as p_id,\n" +
-                    "  p.name      as p_name,\n" +
-                    "  ts.text,\n" +
-                    "  su.id       as su_id,\n" +
-                    "  su.name     as su_name,\n" +
-                    "  su.family   as su_family,\n" +
-                    "  su.e_mail   as su_email,\n" +
-                    "  su.password as su_pass,\n" +
-                    "  su.branch_id,\n" +
-                    "  su.subdivision_id,\n" +
-                    "  ts.executor_id as ex_id,\n" +
-                    "  ts.operator_id as op_id\n" +
-                    "from tasks ts, privileges p, system_users su\n" +
-                    "where ts.listener_id = p.id\n" +
-                    "      and ts.system_user_id = su.id;";
+            String sql = "  select\n" +
+                    "    t.id as t_id,\n" +
+                    "    t.name,\n" +
+                    "    t.text,\n" +
+                    "    l.id,\n" +
+                    "    l.name,\n" +
+                    "    s.id,\n" +
+                    "    s.name,\n" +
+                    "    s.family,\n" +
+                    "    s.e_mail,\n" +
+                    "    s.privilege_id,\n" +
+                    "    s.branch_id,\n" +
+                    "    s.subdivision_id\n" +
+                    "  from tasks t,\n" +
+                    "    listeners l,\n" +
+                    "    system_users s\n" +
+                    "  where t.listener_id = l.id\n" +
+                    "        and t.system_user_id = s.id;";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {

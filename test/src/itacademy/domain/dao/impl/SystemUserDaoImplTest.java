@@ -44,6 +44,7 @@ public class SystemUserDaoImplTest {
     systemUser.setPassword("myPass");
     systemUser.setBranch(branchDao.findAll().get(0));
     systemUser.setSubdivision(subdivisionDao.findAll().get(0));
+    System.out.println(systemUser);
     Long id = userDao.save(systemUser);
     userList = userDao.findAll();
     Assert.assertEquals(1, (userList.size() - countRecordOnStart));
