@@ -35,7 +35,7 @@ public class SubdivisionDaoImplTest {
         Assert.assertTrue(subdivisionList.size() >= 2);
         for (Subdivision s : subdivisionList) {
             if (s.getId().equals(id1)) {
-                Assert.assertEquals(s.getName(), "ABC");
+                Assert.assertEquals("ABC", s.getName());
             }
             dao.delete(id1);
             dao.delete(id2);
