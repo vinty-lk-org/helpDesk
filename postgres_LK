@@ -16,7 +16,6 @@ select
   s.name as s_name,
   s.family as s_family,
   s.e_mail as s_email,
-  s.privilege_id,
   s.branch_id,
   s.subdivision_id
 from tasks t,
