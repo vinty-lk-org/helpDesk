@@ -17,13 +17,6 @@ public class SystemUser {
     private Branch branch;
     private Subdivision subdivision;
 
-    public SystemUser(Long id, String name, String famaly, String email) {
-        this.id = id;
-        this.name = name;
-        this.famaly = famaly;
-        this.email = email;
-    }
-
     public SystemUser(Long id) {
         this.id = id;
     }

@@ -1,0 +1,32 @@
+create or replace function tasks_find_all()
+returns refcursor
+language plpgsql
+as $$
+DECLARE
+ref refcursor;
+BEGIN
+OPEN ref FOR
+select
+  t.id,
+  t.name,
+  t.text,
+  l.id as l_id,
+  l.name as l_name,
+  s.id  as s_id,
+  s.name as s_name,
+  s.family as s_family,
+  s.e_mail as s_email,
+  s.privilege_id,
+  s.branch_id,
+  s.subdivision_id
+from tasks t,
+  listeners l,
+  system_users s
+where t.listener_id = l.id
+      and t.system_user_id = s.id;
+RETURN ref;
+END;
+$$;
+
+alter function tasks_find_all()
+owner to root;

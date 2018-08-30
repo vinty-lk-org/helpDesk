@@ -31,6 +31,14 @@ public class TaskDaoImplTest {
         for (Task task : taskList) {
             System.out.println(task);
         }
+    }
+
+        @Test
+        public void findAllPrc() {
+            List<Task> taskList = TaskDaoImpl.getInstance().findAllPrc();
+            for (Task task : taskList) {
+                System.out.println(task);
+            }
         //TODO Вроде работает.
 
     }

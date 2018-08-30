@@ -13,10 +13,10 @@ public class Task {
     private Long id;
     private String name;
     private String text;
-    private TypeOfJob typeOfJob;
-    private Listener targetOfJobId;
+    private Listener listener;
     private SystemUser systemUserId;
     private SystemUser executorId;
     private SystemUser operatorId;
+
 
 }
