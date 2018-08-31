@@ -13,6 +13,10 @@ import java.util.Optional;
 @NoArgsConstructor
 public class SubdivisionDaoImpl implements SubdivisionDao {
     private static final Object LOCK = new Object();
+    private static final String SQL_FIND_ALL = "SELECT * FROM subdivisions ORDER BY name";
+    private static final String SQL_FIND_ID = "SELECT * FROM subdivisions s WHERE s.id = ?";
+    private static final String SQL_SAVE = "INSERT INTO subdivisions (name) VALUES (?)";
+    private static final String SQL_DELETE = "DELETE FROM subdivisions WHERE (id = ?)";
     private static SubdivisionDaoImpl INSTANCE = null;
 
     public static SubdivisionDaoImpl getInstance() {
@@ -36,8 +40,7 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
     public List<Subdivision> findAll() {
         List<Subdivision> subdivisionList = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
-            String sql = "SELECT * FROM subdivisions ORDER BY name";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
                         subdivisionList.add(createSubdivisionFromResultSet(resultSet));
@@ -53,8 +56,7 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
     @Override
     public Optional<Subdivision> findById(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
-            String sql = "SELECT * FROM subdivisions s WHERE s.id = ?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ID)) {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
@@ -71,9 +73,8 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
     @Override
     public Long save(Subdivision subdivision) {
         Long id = 0L;
-        String sql = "INSERT INTO subdivisions (name) VALUES (?)";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, subdivision.getName());
                 preparedStatement.executeUpdate();
                 ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -89,9 +90,8 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
 
     @Override
     public void delete(Long id) {
-        String sql = "DELETE FROM subdivisions WHERE (id = ?)";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE)) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.executeUpdate();
             }

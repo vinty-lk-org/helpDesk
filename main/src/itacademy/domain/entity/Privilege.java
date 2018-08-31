@@ -10,4 +10,8 @@ import lombok.*;
 public class Privilege {
     private Long id;
     private String name;
+
+    public Privilege(String name) {
+        this.name = name;
+    }
 }

@@ -12,6 +12,37 @@ import java.util.Optional;
 public class SystemUserDaoImplTest {
 
     @Test
+    public void findAll() {
+        List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
+        SystemUserDaoImpl userDao = SystemUserDaoImpl.getInstance();
+        BranchDaoImpl branchDao = BranchDaoImpl.getInstance();
+        SubdivisionDaoImpl subdivisionDao = SubdivisionDaoImpl.getInstance();
+        long countRecordOnStart = userList.size();
+        SystemUser systemUser = new SystemUser();
+        systemUser.setEmail("myEmail");
+        systemUser.setPassword("myPass");
+        systemUser.setBranch(branchDao.findAll().get(0));
+        systemUser.setSubdivision(subdivisionDao.findAll().get(0));
+        System.out.println(systemUser);
+        Long id = userDao.save(systemUser);
+        userList = userDao.findAll();
+        Assert.assertEquals(1, (userList.size() - countRecordOnStart));
+        userDao.delete(id);
+    }
+
+    @Test
+    public void findById() {
+        SystemUser user = null;
+        List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
+        SystemUser systemUser = userList.get(0);
+        Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findById(systemUser.getId());
+        if (optionalSystemUser.isPresent()) {
+            user = optionalSystemUser.get();
+        }
+        Assert.assertEquals(systemUser.getName(), user.getName());
+    }
+
+    @Test
     public void save() {
         SystemUserDaoImpl dao = SystemUserDaoImpl.getInstance();
         SystemUser systemUser = new SystemUser();
@@ -33,38 +64,7 @@ public class SystemUserDaoImplTest {
     }
 
     @Test
-    public void findAll() {
-        List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
-        SystemUserDaoImpl userDao = SystemUserDaoImpl.getInstance();
-        BranchDaoImpl branchDao = BranchDaoImpl.getInstance();
-        SubdivisionDaoImpl subdivisionDao = SubdivisionDaoImpl.getInstance();
-        long countRecordOnStart = userList.size();
-        SystemUser systemUser = new SystemUser();
-        systemUser.setEmail("myEmail");
-        systemUser.setPassword("myPass");
-        systemUser.setBranch(branchDao.findAll().get(0));
-        systemUser.setSubdivision(subdivisionDao.findAll().get(0));
-        System.out.println(systemUser);
-        Long id = userDao.save(systemUser);
-        userList = userDao.findAll();
-        Assert.assertEquals(1, (userList.size() - countRecordOnStart));
-        userDao.delete(id);
-    }
-
-    @Test
-    public void findByIdPrcTest() {
-        SystemUser user = null;
-        List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
-        SystemUser systemUser = userList.get(0);
-        Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findById(systemUser.getId());
-        if (optionalSystemUser.isPresent()) {
-            user = optionalSystemUser.get();
-        }
-        Assert.assertEquals(systemUser.getName(), user.getName());
-    }
-
-    @Test
-    public void findByEmailPrc() {
+    public void findByEmail() {
         SystemUser systemUser = null;
         List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
         String email = userList.get(0).getEmail();

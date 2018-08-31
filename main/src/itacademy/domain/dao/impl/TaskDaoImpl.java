@@ -13,6 +13,10 @@ import java.util.Optional;
 
 public class TaskDaoImpl implements TaskDao {
     private static final Object LOCK = new Object();
+    private static final String SQL_FIND_ALL = "{ ? = call tasks_find_all()}";
+    private static final String SQL_FIND_ID = "{ ? = call tasks_findbyid(?)}";
+    private static final String SQL_SAVE = "INSERT INTO tasks (name, listener_id, text, system_user_id, executor_id, operator_id)" + "VALUES (?, ?, ?, ?, ?, ?);";
+    private static final String SQL_DELETE = "DELETE FROM tasks WHERE (id = ?)";
     private static TaskDaoImpl INSTANCE = null;
 
     public static TaskDaoImpl getInstance() {
@@ -41,9 +45,8 @@ public class TaskDaoImpl implements TaskDao {
     @Override
     public List<Task> findAll() {
         List<Task> taskList = new ArrayList<>();
-        String sql = "{ ? = call tasks_find_all()}";
         try (Connection connection = ConnectionManager.getConnection();
-             CallableStatement proc = connection.prepareCall(sql)) {
+             CallableStatement proc = connection.prepareCall(SQL_FIND_ALL)) {
             connection.setAutoCommit(false);
             proc.registerOutParameter(1, Types.OTHER);
             proc.execute();
@@ -60,9 +63,8 @@ public class TaskDaoImpl implements TaskDao {
 
     @Override
     public Optional<Task> findById(Long id) {
-        String sql = "{ ? = call tasks_findbyid(?)}";
         try (Connection connection = ConnectionManager.getConnection();
-             CallableStatement proc = connection.prepareCall(sql)) {
+             CallableStatement proc = connection.prepareCall(SQL_FIND_ID)) {
             connection.setAutoCommit(false);
             proc.registerOutParameter(1, Types.OTHER);
             proc.setInt(2, Math.toIntExact(id));
@@ -81,10 +83,8 @@ public class TaskDaoImpl implements TaskDao {
     @Override
     public Long save(Task task) {
         Long id = 0L;
-        String sql = "INSERT INTO tasks (name, listener_id, text, system_user_id, executor_id, operator_id)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?);";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, task.getName());
                 preparedStatement.setLong(2, task.getListener().getId());
                 preparedStatement.setString(3, task.getText());
@@ -105,9 +105,8 @@ public class TaskDaoImpl implements TaskDao {
 
     @Override
     public void delete(Long id) {
-        String sql = "DELETE FROM tasks WHERE (id = ?)";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = (connection.prepareStatement(sql))) {
+            try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.executeUpdate();
             }

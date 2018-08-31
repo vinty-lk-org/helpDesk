@@ -14,12 +14,10 @@ public class ListenerDaoImplTest {
         ListenerDaoImpl dao = ListenerDaoImpl.getInstance();
         Long id1 = dao.save(new Listener("testData1"));
         Long id2 = dao.save(new Listener("testData2"));
-        List<Listener> targetOfJobsList = dao.findAll();
-
-        Assert.assertNotNull(targetOfJobsList);
-        Assert.assertTrue(targetOfJobsList.size() >= 2);
-
-        for (Listener target : targetOfJobsList) {
+        List<Listener> listenerList = dao.findAll();
+        Assert.assertNotNull(listenerList);
+        Assert.assertTrue(listenerList.size() >= 2);
+        for (Listener target : listenerList) {
             if (target.getId().equals(id1)) {
                 Assert.assertEquals(target.getName(), "testData1");
             }
@@ -31,17 +29,16 @@ public class ListenerDaoImplTest {
     @Test
     public void save() {
         ListenerDaoImpl dao = ListenerDaoImpl.getInstance();
-        Listener targetOfJob = new Listener();
-        targetOfJob.setName("Работа №1");
-        Long id = dao.save(targetOfJob);
+        Listener listener = new Listener();
+        listener.setName("Работа №1");
+        Long id = dao.save(listener);
         Assert.assertNotNull(id);
-        Optional<Listener> optionalTargetOfJob = dao.findById(id);
+        Optional<Listener> optionalListener = dao.findById(id);
         String nameSubdivision = "";
-        if (optionalTargetOfJob.isPresent()) {
-            nameSubdivision = optionalTargetOfJob.get().getName();
+        if (optionalListener.isPresent()) {
+            nameSubdivision = optionalListener.get().getName();
         }
-        Assert.assertEquals(targetOfJob.getName(), nameSubdivision);
+        Assert.assertEquals(listener.getName(), nameSubdivision);
         dao.delete(id);
     }
-
 }

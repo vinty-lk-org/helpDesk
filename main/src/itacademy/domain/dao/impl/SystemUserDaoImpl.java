@@ -13,6 +13,11 @@ import java.util.Optional;
 
 public class SystemUserDaoImpl implements SystemUserDao {
     private static final Object LOCK = new Object();
+    private static final String SQL_FIND_ALL = "{ ? = call system_user_find_all()}";
+    private static final String SQL_FIND_ID = "{ ? = call system_user_findbyid(?)}";
+    private static final String SQL_SAVE = "INSERT INTO system_users (name, family, e_mail, password, branch_id, subdivision_id)" + "VALUES (?, ?, ?, ?, ?, ?);";
+    private static final String SQL_DELETE = "DELETE FROM system_users WHERE (id = ?)";
+    private static final String SQL_FIND_EMAIL = "{ ? = call system_user_findby_email(?)}";
     private static SystemUserDaoImpl INSTANCE = null;
     private static String SYSTEM_USERS = "system_users";
     private static String BRANCHES = "branches";
@@ -46,12 +51,48 @@ public class SystemUserDaoImpl implements SystemUserDao {
     }
 
     @Override
+    public List<SystemUser> findAll() {
+        List<SystemUser> SystemUserList = new ArrayList<>();
+        try (Connection connection = ConnectionManager.getConnection();
+             CallableStatement proc = connection.prepareCall(SQL_FIND_ALL)) {
+            connection.setAutoCommit(false);
+            proc.registerOutParameter(1, Types.OTHER);
+            proc.execute();
+            ResultSet resultSet = (ResultSet) proc.getObject(1);
+            while (resultSet.next()) {
+                SystemUserList.add(createSystemUserFromResultSet(resultSet));
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return SystemUserList;
+    }
+
+    @Override
+    public Optional<SystemUser> findById(Long id) {
+        try (Connection connection = ConnectionManager.getConnection();
+             CallableStatement proc = connection.prepareCall(SQL_FIND_ID)) {
+            connection.setAutoCommit(false);
+            proc.registerOutParameter(1, Types.OTHER);
+            proc.setInt(2, Math.toIntExact(id));
+            proc.execute();
+            ResultSet resultSet = (ResultSet) proc.getObject(1);
+            while (resultSet.next()) {
+                return Optional.of(createSystemUserFromResultSet(resultSet));
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
+    @Override
     public Long save(SystemUser entity) {
         Long id = 0L;
-        String sql = "INSERT INTO system_users (name, family, e_mail, password, branch_id, subdivision_id)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?);";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, entity.getName());
                 preparedStatement.setString(2, entity.getFamaly());
                 preparedStatement.setString(3, entity.getEmail());
@@ -72,9 +113,8 @@ public class SystemUserDaoImpl implements SystemUserDao {
 
     @Override
     public void delete(Long id) {
-        String sql = "DELETE FROM system_users WHERE (id = ?)";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE)) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.executeUpdate();
             }
@@ -83,92 +123,9 @@ public class SystemUserDaoImpl implements SystemUserDao {
         }
     }
 
-    @Override
-    public List<SystemUser> findAll() {
-        List<SystemUser> systemUsersList = new ArrayList<>();
-        try (Connection connection = ConnectionManager.getConnection()) {
-            String sql = "select\n" +
-                    "  su.id,\n" +
-                    "  su.name,\n" +
-                    "  su.family,\n" +
-                    "  su.e_mail,\n" +
-                    "  su.password,\n" +
-                    "  b.id as b_id,\n" +
-                    "  b.name as b_name,\n" +
-                    "  b.adress as b_adress,\n" +
-                    "  s.id as s_id,\n" +
-                    "  s.name as s_name\n" +
-                    "from system_users su, branches b, subdivisions s\n" +
-                    "where su.branch_id = b.id\n" +
-                    "      and su.subdivision_id = s.id;";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    while (resultSet.next()) {
-                        systemUsersList.add(createSystemUserFromResultSet(resultSet));
-                    }
-                }
-            }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
-        return systemUsersList;
-    }
-
-    @Override
-    public Optional<SystemUser> findById(Long id) {
-        String sql = "select\n" +
-                "  su.id,\n" +
-                "  su.name,\n" +
-                "  su.family,\n" +
-                "  su.e_mail,\n" +
-                "  su.password,\n" +
-                "  b.id as b_id,\n" +
-                "  b.name as b_name,\n" +
-                "  b.address as b_address,\n" +
-                "  s.id as s_id,\n" +
-                "  s.name as s_name\n" +
-                "from system_users su, branches b, subdivisions s\n" +
-                "where su.branch_id = b.id\n" +
-                "      and su.subdivision_id = s.id" +
-                "      and su.id = ? ;";
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setLong(1, id);
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if (resultSet.next()) {
-                        return Optional.of(createSystemUserFromResultSet(resultSet));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return Optional.empty();
-    }
-
-    public Optional<SystemUser> findByIdPrc(Long id) {
-        String sql = "{ ? = call system_user_findbyid(?)}";
+    public Optional<SystemUser> findByEmail(String email) {
         try (Connection connection = ConnectionManager.getConnection();
-             CallableStatement proc = connection.prepareCall(sql)) {
-            connection.setAutoCommit(false);
-            proc.registerOutParameter(1, Types.OTHER);
-            proc.setInt(2, Math.toIntExact(id));
-            proc.execute();
-            ResultSet resultSet = (ResultSet) proc.getObject(1);
-            while (resultSet.next()) {
-                return Optional.of(createSystemUserFromResultSet(resultSet));
-            }
-            resultSet.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return Optional.empty();
-    }
-
-    public Optional<SystemUser> findByEmail (String email) {
-        String sql = "{ ? = call system_user_findby_email(?)}";
-        try (Connection connection = ConnectionManager.getConnection();
-             CallableStatement proc = connection.prepareCall(sql)) {
+             CallableStatement proc = connection.prepareCall(SQL_FIND_EMAIL)) {
             connection.setAutoCommit(false);
             proc.registerOutParameter(1, Types.OTHER);
             proc.setString(2, email);

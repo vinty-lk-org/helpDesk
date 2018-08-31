@@ -11,6 +11,10 @@ import java.util.Optional;
 
 public class ListenerDaoImpl implements ListenerDao {
     public static final Object LOCK = new Object();
+    private static final String SQL_FIND_ALL = "SELECT * FROM listeners ORDER BY name;";
+    private static final String SQLFIND_ID = "SELECT * FROM listeners p WHERE p.id = ?";
+    private static final String SQL_SAVE = "INSERT INTO listeners (name) VALUES (?)";
+    private static final String SQL_DELETE = "DELETE FROM listeners WHERE (id = ?)";
     private static ListenerDaoImpl INSTANCE = null;
 
     public static ListenerDaoImpl getInstance() {
@@ -32,10 +36,9 @@ public class ListenerDaoImpl implements ListenerDao {
 
     @Override
     public List<Listener> findAll() {
-        String sql = "SELECT * FROM listeners ORDER BY name;";
         List<Listener> TargetOfJob = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
                         TargetOfJob.add(createTargetOfJobFromResultSet(resultSet));
@@ -51,8 +54,7 @@ public class ListenerDaoImpl implements ListenerDao {
     @Override
     public Optional<Listener> findById(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
-            String sql = "SELECT * FROM listeners p WHERE p.id = ?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(ListenerDaoImpl.SQLFIND_ID)) {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
@@ -69,9 +71,8 @@ public class ListenerDaoImpl implements ListenerDao {
     @Override
     public Long save(Listener targetOfJob) {
         Long id = 0L;
-        String sql = "INSERT INTO listeners (name) VALUES (?)";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, targetOfJob.getName());
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -87,9 +88,8 @@ public class ListenerDaoImpl implements ListenerDao {
 
     @Override
     public void delete(Long id) {
-        String sql = "DELETE FROM listeners WHERE (id = ?)";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = (connection.prepareStatement(sql))) {
+            try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.executeUpdate();
             }
