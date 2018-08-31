@@ -1,12 +1,13 @@
 package itacademy.domain.dao.impl;
 
-import itacademy.connection.*;
+import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.PrivilegeDao;
-import itacademy.domain.entity.*;
+import itacademy.domain.entity.Privilege;
 import lombok.NoArgsConstructor;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @NoArgsConstructor
@@ -98,6 +99,4 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
             e.printStackTrace();
         }
     }
-
-
 }

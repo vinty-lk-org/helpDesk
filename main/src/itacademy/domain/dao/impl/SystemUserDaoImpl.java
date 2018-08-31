@@ -39,10 +39,61 @@ public class SystemUserDaoImpl implements SystemUserDao {
                 new Branch(
                         resultSet.getLong("b_id"),
                         resultSet.getString("b_name"),
-                        resultSet.getString("b_adress")),
+                        resultSet.getString("b_address")),
                 new Subdivision(
                         resultSet.getLong("s_id"),
                         resultSet.getString("s_name")));
+    }
+
+    @Override
+    public List<SystemUser> findAll() {
+        List<SystemUser> systemUsersList = new ArrayList<>();
+        try (Connection connection = ConnectionManager.getConnection()) {
+            String sql = "select\n" +
+                    "  su.id,\n" +
+                    "  su.name,\n" +
+                    "  su.family,\n" +
+                    "  su.e_mail,\n" +
+                    "  su.password,\n" +
+                    "  b.id as b_id,\n" +
+                    "  b.name as b_name,\n" +
+                    "  b.address as b_address,\n" +
+                    "  s.id as s_id,\n" +
+                    "  s.name as s_name\n" +
+                    "from system_users su, branches b, subdivisions s\n" +
+                    "where su.branch_id = b.id\n" +
+                    "      and su.subdivision_id = s.id;";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        systemUsersList.add(createSystemUserFromResultSet(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        return systemUsersList;
+    }
+
+    @Override
+    public Optional<SystemUser> findById(Long id) {
+        String sql = "{ ? = call system_user_findbyid(?)}";
+        try (Connection connection = ConnectionManager.getConnection();
+             CallableStatement proc = connection.prepareCall(sql)) {
+            connection.setAutoCommit(false);
+            proc.registerOutParameter(1, Types.OTHER);
+            proc.setInt(2, Math.toIntExact(id));
+            proc.execute();
+            ResultSet resultSet = (ResultSet) proc.getObject(1);
+            while (resultSet.next()) {
+                return Optional.of(createSystemUserFromResultSet(resultSet));
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
     }
 
     @Override
@@ -83,89 +134,7 @@ public class SystemUserDaoImpl implements SystemUserDao {
         }
     }
 
-    @Override
-    public List<SystemUser> findAll() {
-        List<SystemUser> systemUsersList = new ArrayList<>();
-        try (Connection connection = ConnectionManager.getConnection()) {
-            String sql = "select\n" +
-                    "  su.id,\n" +
-                    "  su.name,\n" +
-                    "  su.family,\n" +
-                    "  su.e_mail,\n" +
-                    "  su.password,\n" +
-                    "  b.id as b_id,\n" +
-                    "  b.name as b_name,\n" +
-                    "  b.adress as b_adress,\n" +
-                    "  s.id as s_id,\n" +
-                    "  s.name as s_name\n" +
-                    "from system_users su, branches b, subdivisions s\n" +
-                    "where su.branch_id = b.id\n" +
-                    "      and su.subdivision_id = s.id;";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    while (resultSet.next()) {
-                        systemUsersList.add(createSystemUserFromResultSet(resultSet));
-                    }
-                }
-            }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
-        return systemUsersList;
-    }
-
-    @Override
-    public Optional<SystemUser> findById(Long id) {
-        String sql = "select\n" +
-                "  su.id,\n" +
-                "  su.name,\n" +
-                "  su.family,\n" +
-                "  su.e_mail,\n" +
-                "  su.password,\n" +
-                "  b.id as b_id,\n" +
-                "  b.name as b_name,\n" +
-                "  b.adress as b_adress,\n" +
-                "  s.id as s_id,\n" +
-                "  s.name as s_name\n" +
-                "from system_users su, branches b, subdivisions s\n" +
-                "where su.branch_id = b.id\n" +
-                "      and su.subdivision_id = s.id" +
-                "      and su.id = ? ;";
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setLong(1, id);
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if (resultSet.next()) {
-                        return Optional.of(createSystemUserFromResultSet(resultSet));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return Optional.empty();
-    }
-
-    public Optional<SystemUser> findByIdPrc(Long id) {
-        String sql = "{ ? = call system_user_findbyid(?)}";
-        try (Connection connection = ConnectionManager.getConnection();
-             CallableStatement proc = connection.prepareCall(sql)) {
-            connection.setAutoCommit(false);
-            proc.registerOutParameter(1, Types.OTHER);
-            proc.setInt(2, Math.toIntExact(id));
-            proc.execute();
-            ResultSet resultSet = (ResultSet) proc.getObject(1);
-            while (resultSet.next()) {
-                return Optional.of(createSystemUserFromResultSet(resultSet));
-            }
-            resultSet.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return Optional.empty();
-    }
-
-    public Optional<SystemUser> findByEmail (String email) {
+    public Optional<SystemUser> findByEmail(String email) {
         String sql = "{ ? = call system_user_findby_email(?)}";
         try (Connection connection = ConnectionManager.getConnection();
              CallableStatement proc = connection.prepareCall(sql)) {

@@ -25,7 +25,7 @@ SET default_with_oids = false;
 CREATE TABLE public.branches (
     id integer NOT NULL,
     name character varying(255),
-    adress character varying(255)
+    address character varying(255)
 );
 
 
@@ -293,8 +293,8 @@ SELECT pg_catalog.setval('public.branch_id_seq', 324, true);
 -- Data for Name: branches; Type: TABLE DATA; Schema: public; Owner: root
 --
 
-INSERT INTO public.branches (id, name, adress) VALUES (3, 'Минск', 'Minsk city');
-INSERT INTO public.branches (id, name, adress) VALUES (1, 'Колядичи', 'Minsk city');
+INSERT INTO public.branches (id, name, address) VALUES (3, 'Минск', 'Minsk city');
+INSERT INTO public.branches (id, name, address) VALUES (1, 'Колядичи', 'Minsk city');
 
 
 --

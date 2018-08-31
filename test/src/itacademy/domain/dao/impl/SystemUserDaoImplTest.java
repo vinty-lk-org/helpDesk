@@ -56,7 +56,7 @@ public class SystemUserDaoImplTest {
     SystemUser user = null;
     List<SystemUser> userList = SystemUserDaoImpl.getInstance().findAll();
     SystemUser systemUser = userList.get(0);
-    Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findByIdPrc(systemUser.getId());
+    Optional<SystemUser> optionalSystemUser = SystemUserDaoImpl.getInstance().findById(systemUser.getId());
     if (optionalSystemUser.isPresent()) {
       user = optionalSystemUser.get();
     }

@@ -35,20 +35,7 @@ public class TaskDaoImpl implements TaskDao {
                         resultSet.getLong("l_id"),
                         resultSet.getString("l_name")),
                 new SystemUser(
-                       resultSet.getLong("s_id")));
-    }
-
-    @Override
-    public void delete(Long id) {
-        String sql = "DELETE FROM tasks WHERE (id = ?)";
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = (connection.prepareStatement(sql))) {
-                preparedStatement.setLong(1, id);
-                preparedStatement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+                        resultSet.getLong("s_id")));
     }
 
     @Override
@@ -69,6 +56,26 @@ public class TaskDaoImpl implements TaskDao {
             e.printStackTrace();
         }
         return taskList;
+    }
+
+    @Override
+    public Optional<Task> findById(Long id) {
+        String sql = "{ ? = call tasks_findbyid(?)}";
+        try (Connection connection = ConnectionManager.getConnection();
+             CallableStatement proc = connection.prepareCall(sql)) {
+            connection.setAutoCommit(false);
+            proc.registerOutParameter(1, Types.OTHER);
+            proc.setInt(2, Math.toIntExact(id));
+            proc.execute();
+            ResultSet resultSet = (ResultSet) proc.getObject(1);
+            while (resultSet.next()) {
+                return Optional.of(createTaskDaoFromResultSet(resultSet));
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
     }
 
     @Override
@@ -95,60 +102,17 @@ public class TaskDaoImpl implements TaskDao {
         }
         return id;
     }
+
     @Override
-    public Optional<Task> findById(Long id) {
-        String sql = "{ ? = call tasks_findbyid(?)}";
-        try (Connection connection = ConnectionManager.getConnection();
-             CallableStatement proc = connection.prepareCall(sql)) {
-            connection.setAutoCommit(false);
-            proc.registerOutParameter(1, Types.OTHER);
-            proc.setInt(2, Math.toIntExact(id));
-            proc.execute();
-            ResultSet resultSet = (ResultSet) proc.getObject(1);
-            while (resultSet.next()) {
-                return Optional.of(createTaskDaoFromResultSet(resultSet));
+    public void delete(Long id) {
+        String sql = "DELETE FROM tasks WHERE (id = ?)";
+        try (Connection connection = ConnectionManager.getConnection()) {
+            try (PreparedStatement preparedStatement = (connection.prepareStatement(sql))) {
+                preparedStatement.setLong(1, id);
+                preparedStatement.executeUpdate();
             }
-            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Optional.empty();
     }
 }
-
-
-
-//    @Override
-//    public List<Task> findAll() {
-//        List<Task> taskList = new ArrayList<>();
-//        try (Connection connection = ConnectionManager.getConnection()) {
-//            String sql = "select\n" +
-//                    "  t.id,\n" +
-//                    "  t.name,\n" +
-//                    "  t.text,\n" +
-//                    "  l.id l_id,\n" +
-//                    "  l.name l_name,\n" +
-//                    "  s.id s_id,\n" +
-//                    "  s.name s_name,\n" +
-//                    "  s.family s_family,\n" +
-//                    "  s.e_mail s_email,\n" +
-//                    "  s.branch_id,\n" +
-//                    "  s.subdivision_id\n" +
-//                    "from tasks t,\n" +
-//                    "  listeners l,\n" +
-//                    "  system_users s\n" +
-//                    "where t.listener_id = l.id\n" +
-//                    "      and t.system_user_id = s.id;";
-//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-//                    while (resultSet.next()) {
-//                        taskList.add(createTaskDaoFromResultSet(resultSet));
-//                    }
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return taskList;
-//    }
-

@@ -13,7 +13,7 @@ BEGIN
          su.password,
          b.id     as b_id,
          b.name   as b_name,
-         b.adress as b_adress,
+         b.address as b_adress,
          s.id     as s_id,
          s.name   as s_name
   from system_users su,
@@ -44,7 +44,7 @@ BEGIN
          su.password,
          b.id     as b_id,
          b.name   as b_name,
-         b.adress as b_adress,
+         b.address as b_adress,
          s.id     as s_id,
          s.name   as s_name
   from system_users su,
