@@ -1,7 +1,6 @@
 package itacademy.domain.dao.impl;
 
 import itacademy.domain.entity.Branch;
-import itacademy.domain.entity.Task;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

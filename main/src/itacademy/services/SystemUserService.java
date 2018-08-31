@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface SystemUserService {
 
-  List<SystemUserDto> getAllSystemUsersDto();
-
+    List<SystemUserDto> getAllSystemUsersDto();
 }
