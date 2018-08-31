@@ -159,3 +159,31 @@ $$;
 
 alter function system_user_findbyid( integer )
 owner to root;
+
+# SystemUser find_all
+
+create function system_user_find_all()
+  returns refcursor
+language plpgsql
+as $$
+DECLARE
+  ref refcursor;
+BEGIN
+  OPEN ref FOR
+  select
+    su.id,
+    su.name,
+    su.family,
+    su.e_mail,
+    su.password,
+    b.id      as b_id,
+    b.name    as b_name,
+    b.address as b_address,
+    s.id      as s_id,
+    s.name    as s_name
+  from system_users su, branches b, subdivisions s
+  where su.branch_id = b.id
+        and su.subdivision_id = s.id;
+  RETURN ref;
+END;
+$$;
