@@ -30,7 +30,7 @@ $$;
 alter function tasks_find_all()
 owner to root;
 
-create function tasks_findbyid(p_id integer)
+create or replace function tasks_findbyid(p_id integer)
   returns refcursor
   language plpgsql
 as $$
