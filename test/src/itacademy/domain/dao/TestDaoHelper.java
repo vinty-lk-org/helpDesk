@@ -1,11 +1,10 @@
 package itacademy.domain.dao;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.util.Random;
 
 public class TestDaoHelper {
+
+    private static final int PHONE_NUMBER_LENGTH = 7;
 
     public static String getRandomWord(int lengthWordBegin, int lengthWordEnd, boolean isCapitalFirstChar) {
         String text = "abcdefghijklmnopqrstuvwxyz";
@@ -31,8 +30,6 @@ public class TestDaoHelper {
         return r.ints(min, (max + 1)).findFirst().getAsInt();
     }
 
-    private static final int PHONE_NUMBER_LENGTH = 7;
-
     public static String getRandomPhone() {
         String s = "0123456789";
         StringBuilder phoneNumber = new StringBuilder();
@@ -44,6 +41,4 @@ public class TestDaoHelper {
         }
         return phoneNumber.toString();
     }
-
-
 }

@@ -95,7 +95,7 @@ public class SystemUserDaoImpl implements SystemUserDao {
                     "  su.password,\n" +
                     "  b.id as b_id,\n" +
                     "  b.name as b_name,\n" +
-                    "  b.address as b_address,\n" +
+                    "  b.adress as b_adress,\n" +
                     "  s.id as s_id,\n" +
                     "  s.name as s_name\n" +
                     "from system_users su, branches b, subdivisions s\n" +

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
 public class ListenerDaoImpl implements ListenerDao {
     public static final Object LOCK = new Object();
     private static ListenerDaoImpl INSTANCE = null;
