@@ -11,7 +11,8 @@ import org.junit.runners.Suite;
         SubdivisionDaoImplTest.class,
         SystemUserDaoImplTest.class,
         TaskDaoImplTest.class,
-        TestDaoHelperTest.class
+        TestDaoHelperTest.class,
+        PrivilegeDaoImplTest.class
 })
 public class AssertTestStarter {
 }
