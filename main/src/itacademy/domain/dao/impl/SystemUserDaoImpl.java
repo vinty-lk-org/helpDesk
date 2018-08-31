@@ -39,7 +39,7 @@ public class SystemUserDaoImpl implements SystemUserDao {
                 new Branch(
                         resultSet.getLong("b_id"),
                         resultSet.getString("b_name"),
-                        resultSet.getString("b_adress")),
+                        resultSet.getString("b_address")),
                 new Subdivision(
                         resultSet.getLong("s_id"),
                         resultSet.getString("s_name")));
@@ -95,7 +95,7 @@ public class SystemUserDaoImpl implements SystemUserDao {
                     "  su.password,\n" +
                     "  b.id as b_id,\n" +
                     "  b.name as b_name,\n" +
-                    "  b.adress as b_adress,\n" +
+                    "  b.address as b_address,\n" +
                     "  s.id as s_id,\n" +
                     "  s.name as s_name\n" +
                     "from system_users su, branches b, subdivisions s\n" +
@@ -124,7 +124,7 @@ public class SystemUserDaoImpl implements SystemUserDao {
                 "  su.password,\n" +
                 "  b.id as b_id,\n" +
                 "  b.name as b_name,\n" +
-                "  b.adress as b_adress,\n" +
+                "  b.address as b_address,\n" +
                 "  s.id as s_id,\n" +
                 "  s.name as s_name\n" +
                 "from system_users su, branches b, subdivisions s\n" +

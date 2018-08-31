@@ -18,10 +18,10 @@ import java.util.Optional;
 public class BranchDaoImpl implements BranchDao {
   private static final Object LOCK = new Object();
   private static BranchDaoImpl INSTANCE = null;
-  private static final String SQL_SELECT_BY_ID = "SELECT b.id, b.name, b.adress FROM branches b WHERE b.id = ?;";
+  private static final String SQL_SELECT_BY_ID = "SELECT b.id, b.name, b.address FROM branches b WHERE b.id = ?;";
   private static final String SQL_DELETE_BY_ID = "DELETE FROM branches WHERE (id = ?)";
   private static final String SQL_INSERT = "INSERT INTO branches (name) VALUES (?)";
-  private static final String SQL_FIND_ALL = "SELECT b.id, b.name, b.adress FROM branches b ORDER BY name;;";
+  private static final String SQL_FIND_ALL = "SELECT b.id, b.name, b.address FROM branches b ORDER BY name;;";
 
   public static BranchDaoImpl getInstance() {
     if (INSTANCE == null) {
@@ -38,7 +38,7 @@ public class BranchDaoImpl implements BranchDao {
     return new Branch(
             resultSet.getLong("id"),
             resultSet.getString("name"),
-            resultSet.getString("adress"));
+            resultSet.getString("address"));
   }
 
   @Override
