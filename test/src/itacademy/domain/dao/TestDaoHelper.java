@@ -1,5 +1,7 @@
 package itacademy.domain.dao;
 
+import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Random;
 
 public class TestDaoHelper {
@@ -40,5 +42,25 @@ public class TestDaoHelper {
             phoneNumber.append(s.charAt(new Random().nextInt(s.length())));
         }
         return phoneNumber.toString();
+    }
+
+    public static String getRandomEmail() {
+       return TestDaoHelper.getRandomWord(5, 10, false) + "@" +
+                TestDaoHelper.getRandomWord(3, 5, false) + ".com";
+    }
+
+    public static Long getRandomIdFromList(List<?> objects){
+        Long id = null;
+        int index = getRandomNumberInRange(0, objects.size() - 1);
+        Object o = objects.get(index);
+        Class<?> oClass = o.getClass();
+        try {
+            Field field = oClass.getDeclaredField("id");
+            field.setAccessible(true);
+            id = Long.valueOf(field.get(o).toString());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 }

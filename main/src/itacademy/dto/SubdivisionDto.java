@@ -13,16 +13,12 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class BranchDto implements Serializable {
-
-  private static final long serialVersionUID = -2924089612664407591L;
-
+public class SubdivisionDto implements Serializable {
+  private static final long serialVersionUID = -1693953400106934438L;
   private Long id;
   private String name;
-  private String address;
 
-  public BranchDto(String name, String address) {
+  public SubdivisionDto(String name) {
     this.name = name;
-    this.address = address;
   }
 }

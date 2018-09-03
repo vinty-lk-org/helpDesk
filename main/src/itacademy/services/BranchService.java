@@ -7,6 +7,8 @@ import itacademy.dto.SystemUserDto;
 import java.util.List;
 
 public interface BranchService {
-
   BranchDto mapperBranch(Branch branch);
+
+  List<BranchDto> getAllBranchesDto();
+
 }

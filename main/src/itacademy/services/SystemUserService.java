@@ -7,4 +7,6 @@ import java.util.List;
 public interface SystemUserService {
 
   List<SystemUserDto> getAllSystemUsersDto();
+
+  Long saveUser(SystemUserDto systemUserDto);
 }

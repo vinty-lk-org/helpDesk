@@ -1,6 +1,8 @@
 package itacademy.services;
 
 import itacademy.domain.dao.impl.SystemUserDaoImpl;
+import itacademy.domain.entity.Branch;
+import itacademy.domain.entity.Subdivision;
 import itacademy.domain.entity.SystemUser;
 import itacademy.dto.SystemUserDto;
 
@@ -27,11 +29,15 @@ public class SystemUserServiceImpl implements SystemUserService {
 
     @Override
     public List<SystemUserDto> getAllSystemUsersDto() {
-        List<SystemUserDto> mapper = mapper(SystemUserDaoImpl.getInstance().findAll());
-        return mapper;
+        return mapperListSystemUserToDto(SystemUserDaoImpl.getInstance().findAll());
     }
 
-    private List<SystemUserDto> mapper(List<SystemUser> systemUsersList) {
+    @Override
+    public Long saveUser(SystemUserDto systemUserDto) {
+        return SystemUserDaoImpl.getInstance().save(mapperSystemUserDtoToSystemUser(systemUserDto));
+    }
+
+    private List<SystemUserDto> mapperListSystemUserToDto(List<SystemUser> systemUsersList) {
         return systemUsersList.stream()
                 .map(systemUser -> new SystemUserDto(
                         systemUser.getId(),
@@ -43,5 +49,15 @@ public class SystemUserServiceImpl implements SystemUserService {
                         systemUser.getSubdivision().getName()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    private SystemUser mapperSystemUserDtoToSystemUser(SystemUserDto userDto) {
+        return new SystemUser(
+                userDto.getName(),
+                userDto.getFamily(),
+                userDto.getEmail(),
+                userDto.getPassword(),
+                new Branch(userDto.getBranchId()),
+                new Subdivision(userDto.getSubdivisionId()));
     }
 }
