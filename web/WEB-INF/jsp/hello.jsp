@@ -8,7 +8,9 @@
 
 <body>
 <jsp:include page="../jsp/fragments/nav.jsp"/>
-
+<c:if test="${not empty pageContext.request.userPrincipal}">
+    User: <c:out value="${pageContext.request.userPrincipal.name}" />
+</c:if>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <h2>Привет из сервлета "hello.jsp"</h2>

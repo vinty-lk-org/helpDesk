@@ -27,16 +27,30 @@
                     <input type="password" name="password2" placeholder="mypassword">
                 </label>
                 <label>Введите ваше имя
-                    <input type="text" name="nameUser" placeholder="mypassword">
+                    <input type="text" name="nameUser" placeholder="Иван">
                 </label>
                 <label>Введите вашу фамилию
                     <input type="text" name="family" placeholder="Иванов">
                 </label>
-
+                <label for="branches">Выберите из списка ваше местоположение (филиал)
+                    <select name="branch_id" id="branches">
+                        <c:forEach items="${requestScope.branches}" var="branch">
+                            <option value="${branch.id}">${branch.name} ( ${branch.address})</option>
+                        </c:forEach>
+                    </select>
+                </label>
+                <label for="subdivisions">Выберете из списка ваш отдел (подразделение)
+                    <select name="subdivision_id" id="subdivisions">
+                        <c:forEach items="${requestScope.subdivisions}" var="subdivision">
+                            <option value="${subdivision.id}">${subdivision.name}</option>
+                        </c:forEach>
+                    </select>
+                </label>
                 <div class="expanded button-group">
-                    <button type="submit" class="hollow button success color-bar" href="#"><b>Зарегистритовать
+                    <button type="submit" class="hollow button primary color-bar" href="#"><b>Зарегистритовать
                         пользователя</b></button>
-                    <A class="hollow button alert" href="${pageContext.request.contextPath}/login" title="Отмена"> Отмена </A>
+                    <A class="hollow button alert" href="${pageContext.request.contextPath}/login" title="Отмена">
+                        Отмена </A>
                     </button>
                 </div>
             </form>
