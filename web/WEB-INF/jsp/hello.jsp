@@ -1,37 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
+
 <head>
-    <link rel="stylesheet" href="../resources/css/foundation.min.css">
-    <title>Title</title>
-    <script type="text/javascript">
-        <%@include file="../../resources/js/myJs.js" %>
-    </script>
-    <script type="text/javascript">
-        <%@include file="../../resources/js/vendor/jquery-3.3.1.min.js" %>
-    </script>
-    <script type="text/javascript">
-        <%@include file="../../resources/js/vendor/foundation.min.js" %>
-    </script>
-    <title>Hello</title>
+    <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
+
 <body>
-<nav class="hover-underline-menu" data-menu-underline-from-center>
-    <ul class="dropdown menu" data-dropdown-menu>
-        <li><a href="/HelpDesk" text="Главная"></a></li>
-        <li>
-            <a href="/HelpDesk">Test</a>
-            <ul class="menu vertical">
-                <li><a href="/HelpDesk">Test - базовая информация</a></li>
-                <li><a href="/HelpDesk">Test - общее описание</a></li>
-            </ul>
-        </li>
-        <a href="/Admin">Администратор</a>
-        <a href="/Operator">Оператор</a>
-        <li><a href="/logout">Выход</a></li>
-    </ul>
-</nav>
+<jsp:include page="../jsp/fragments/nav.jsp"/>
+
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <h2>Привет из сервлета "hello.jsp"</h2>
@@ -113,7 +90,10 @@
         <div class="medium-3 cell">
         </div>
     </div>
-    <script src="../../resources/js/app.js"></script>
+    <script>
+        console.log("Hello!");
+        $(document).foundation();
+    </script>
 </div>
 </body>
 </html>
