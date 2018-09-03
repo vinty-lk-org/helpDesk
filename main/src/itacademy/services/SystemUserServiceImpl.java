@@ -27,7 +27,8 @@ public class SystemUserServiceImpl implements SystemUserService {
 
     @Override
     public List<SystemUserDto> getAllSystemUsersDto() {
-        return mapper(SystemUserDaoImpl.getInstance().findAll());
+        List<SystemUserDto> mapper = mapper(SystemUserDaoImpl.getInstance().findAll());
+        return mapper;
     }
 
     private List<SystemUserDto> mapper(List<SystemUser> systemUsersList) {
@@ -35,7 +36,7 @@ public class SystemUserServiceImpl implements SystemUserService {
                 .map(systemUser -> new SystemUserDto(
                         systemUser.getId(),
                         systemUser.getName(),
-                        systemUser.getFamaly(),
+                        systemUser.getFamily(),
                         systemUser.getEmail(),
                         systemUser.getPassword(),
                         systemUser.getBranch().getName(),

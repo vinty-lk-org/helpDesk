@@ -15,7 +15,7 @@ public class BranchDaoImpl implements BranchDao {
     private static final Object LOCK = new Object();
     private static final String SQL_SELECT_BY_ID = "SELECT b.id, b.name, b.address FROM branches b WHERE b.id = ?;";
     private static final String SQL_DELETE_BY_ID = "DELETE FROM branches WHERE (id = ?)";
-    private static final String SQL_INSERT = "INSERT INTO branches (name) VALUES (?)";
+    private static final String SQL_INSERT = "INSERT INTO branches (name, address) VALUES (?, ?)";
     private static final String SQL_FIND_ALL = "SELECT b.id, b.name, b.address FROM branches b ORDER BY name;;";
     private static BranchDaoImpl INSTANCE = null;
 
@@ -77,7 +77,8 @@ public class BranchDaoImpl implements BranchDao {
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, branch.getName());
-                preparedStatement.execute();
+                preparedStatement.setString(2, branch.getAddress());
+                preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
                     id = resultSet.getLong("id");

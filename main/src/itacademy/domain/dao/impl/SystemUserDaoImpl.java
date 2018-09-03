@@ -94,7 +94,7 @@ public class SystemUserDaoImpl implements SystemUserDao {
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, entity.getName());
-                preparedStatement.setString(2, entity.getFamaly());
+                preparedStatement.setString(2, entity.getFamily());
                 preparedStatement.setString(3, entity.getEmail());
                 preparedStatement.setString(4, entity.getPassword());
                 preparedStatement.setLong(5, entity.getBranch().getId());
