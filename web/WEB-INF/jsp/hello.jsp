@@ -9,10 +9,10 @@
         <%@include file="../../resources/js/myJs.js" %>
     </script>
     <script type="text/javascript">
-        <%@include file="../../resources/js/jquery.js" %>
+        <%@include file="../../resources/js/vendor/jquery-3.3.1.min.js" %>
     </script>
     <script type="text/javascript">
-        <%@include file="../../resources/js/foundation.min.js" %>
+        <%@include file="../../resources/js/vendor/foundation.min.js" %>
     </script>
     <title>Hello</title>
 </head>
@@ -113,6 +113,7 @@
         <div class="medium-3 cell">
         </div>
     </div>
+    <script src="../../resources/js/app.js"></script>
 </div>
 </body>
 </html>
