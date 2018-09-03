@@ -22,6 +22,6 @@ public class RegistrationController extends HttpServlet {
     System.out.println(nameUser);
     System.out.println(password);
 
-    getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
+    getServletContext().getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req, resp);
   }
 }

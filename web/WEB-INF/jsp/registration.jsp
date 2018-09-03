@@ -1,50 +1,43 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="../resources/css/foundation.min.css">
-<%--<script src="../../resources/js/foundation.min.js"></script>--%>
-<%--<script type="text/javascript" src="../../resources/js/jquery.js"></script>--%>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/jquery.js" />
-</script>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/foundation.min.js" />
-</script>
 <html>
 <head>
     <title>registration</title>
+    <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
-<h2> registration </h2>
-<nav class="hover-underline-menu" data-menu-underline-from-center>
-    <ul class="dropdown menu" data-dropdown-menu>
-        <li><a href="/HelpDesk" text="Логин"></a></li>
-        <li>
-            <a href="/HelpDesk">Test</a>
-        </li>
-        <a href="/Admin">Администратор</a>
-        <a href="/Operator">Оператор</a>
-        <li><a href="/logout">Выход</a></li>
-    </ul>
-</nav>
+
+<jsp:include page="../jsp/fragments/nav.jsp"/>
+
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
         </div>
         <div class="medium-6 cell">
-            <form action="${pageContext.request.contextPath}/login" method="post">
-                <label>Введите адрес вашей почты. Это ваш логин.
-                    <input type="text" name="nameUser" placeholder="vinty@i.ua">
+            <h2>Страница регистрации</h2>
+            <form action="${pageContext.request.contextPath}/registration" method="post">
+                <label>Введите адрес вашей почты (это будет вашим логином)
+                    <input type="text" name="email" placeholder="vinty@i.ua">
                 </label>
-                <label>Введите ваш пароль, полученный при регистрации.
+                <label>Введите ваш пароль
                     <input type="password" name="password" placeholder="mypassword">
                 </label>
-                <div class="expanded button-group">
+                <label>Введите ваш пароль еще раз, что бы убедится в правильности ввода
+                    <input type="password" name="password2" placeholder="mypassword">
+                </label>
+                <label>Введите ваше имя
+                    <input type="text" name="nameUser" placeholder="mypassword">
+                </label>
+                <label>Введите вашу фамилию
+                    <input type="text" name="family" placeholder="Иванов">
+                </label>
 
-                    <button class="hollow button success color-bar" href="#"><b>Войти в систему</b></button>
-                    <%--<button class="hollow button success" href="#">Войти в систему</button>--%>
-                    <%--<button class="hollow button alert" href="#">Регистрация"</button>--%>
-                    <button class="hollow button secondary" href="#"><b>Регистрация</b></button>
+                <div class="expanded button-group">
+                    <button type="submit" class="hollow button success color-bar" href="#"><b>Зарегистритовать
+                        пользователя</b></button>
+                    <A class="hollow button alert" href="${pageContext.request.contextPath}/login" title="Отмена"> Отмена </A>
+                    </button>
                 </div>
             </form>
         </div>
@@ -52,11 +45,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/jquery.js" />
-</script>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/foundation.min.js" />
-</script>
+<script src="../../resources/js/app.js"></script>
 </body>
 </html>
