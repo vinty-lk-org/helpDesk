@@ -2,17 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="../resources/css/foundation.min.css">
-<%--<script src="../../resources/js/foundation.min.js"></script>--%>
-<%--<script type="text/javascript" src="../../resources/js/jquery.js"></script>--%>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/jquery.js" />
-</script>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/foundation.min.js" />
-</script>
 <html>
 <head>
-    <title>Login</title>
+    <title>Title</title>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/myJs.js" %>
+    </script>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/vendor/jquery-3.3.1.min.js" %>
+    </script>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/vendor/foundation.min.js" %>
+    </script>
+    <title>login</title>
 </head>
 <body>
 <nav class="hover-underline-menu" data-menu-underline-from-center>
@@ -48,11 +50,8 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/jquery.js" />
-</script>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/foundation.min.js" />
-</script>
+</div>
+<script src="../../resources/js/app.js"></script>
+</div>
 </body>
 </html>

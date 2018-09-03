@@ -2,16 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="../resources/css/foundation.min.css">
-<%--<script src="../../resources/js/foundation.min.js"></script>--%>
-<%--<script type="text/javascript" src="../../resources/js/jquery.js"></script>--%>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/jquery.js" />
-</script>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/foundation.min.js" />
-</script>
 <html>
 <head>
+    <title>Title</title>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/myJs.js" %>
+    </script>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/vendor/jquery-3.3.1.min.js" %>
+    </script>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/vendor/foundation.min.js" %>
+    </script>
     <title>helpDesk</title>
 </head>
 <body>
@@ -105,11 +107,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/jquery.js" />
-</script>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/foundation.min.js" />
-</script>
+<script src="../../resources/js/app.js"></script>
 </body>
 </html>
