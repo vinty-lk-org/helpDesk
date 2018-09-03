@@ -13,7 +13,7 @@ import lombok.*;
 public class SystemUser {
     private Long id;
     private String name;
-    private String famaly;
+    private String family;
     private String email;
     private String password;
     private Branch branch;

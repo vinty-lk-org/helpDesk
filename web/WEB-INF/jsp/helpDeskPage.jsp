@@ -4,11 +4,15 @@
 <link rel="stylesheet" href="../resources/css/foundation.min.css">
 <%--<script src="../../resources/js/foundation.min.js"></script>--%>
 <%--<script type="text/javascript" src="../../resources/js/jquery.js"></script>--%>
+<script type="text/javascript">
+    <jsp:include page="../../resources/js/jquery.js" />
+</script>
+<script type="text/javascript">
+    <jsp:include page="../../resources/js/foundation.min.js" />
+</script>
 <html>
 <head>
-    <title>Title</title>
-    <script type="text/javascript"><%@include file="./js/myJs.js"%></script>
-    <title>Hello</title>
+    <title>helpDesk</title>
 </head>
 <body>
 <nav class="hover-underline-menu" data-menu-underline-from-center>
@@ -30,13 +34,6 @@
     <div class="grid-x grid-padding-x">
         <h2>Привет из сервлета "hello.jsp"</h2>
         ${requestScope.myName}
-
-<select name="users" id="users">
-    <c:forEach items="${requestScope.users}" var="user">
-        <option value="${user.id}">${user.name} ${user.family} ${user.subdivisionName} </option>
-    </c:forEach>
-</select>
-
 
         <div class="medium-6 cell">
             <select name="users" id="users">
@@ -108,5 +105,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    <jsp:include page="../../resources/js/jquery.js" />
+</script>
+<script type="text/javascript">
+    <jsp:include page="../../resources/js/foundation.min.js" />
+</script>
 </body>
 </html>

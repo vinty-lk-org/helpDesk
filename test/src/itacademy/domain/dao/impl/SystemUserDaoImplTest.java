@@ -47,7 +47,7 @@ public class SystemUserDaoImplTest {
         SystemUserDaoImpl dao = SystemUserDaoImpl.getInstance();
         SystemUser systemUser = new SystemUser();
         systemUser.setName("Пользователь тест");
-        systemUser.setFamaly("Фамилия тест");
+        systemUser.setFamily("Фамилия тест");
         systemUser.setEmail("email test");
         systemUser.setPassword("pass test");
         systemUser.setBranch(new Branch(3L, "Минск", "Минск-сити"));
