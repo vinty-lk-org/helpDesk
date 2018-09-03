@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Title</title>
+    <script type="text/javascript"><%@include file="./js/myJs.js"%></script>
 </head>
 <body>
 <h2>Привет из сервлета "hello.jsp"</h2>
@@ -13,5 +14,7 @@ ${requestScope.myName}
         <option value="${user.id}">${user.name} ${user.family} ${user.subdivisionName} </option>
     </c:forEach>
 </select>
+
+
 </body>
 </html>
