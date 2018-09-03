@@ -1,18 +1,19 @@
+
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
-    <link rel="stylesheet" href="../resources/css/foundation.min.css">
+    <link rel="stylesheet" href="../../../resources/css/foundation.min.css">
     <title>Title</title>
     <script type="text/javascript">
-        <%@include file="../../resources/js/myJs.js" %>
+        <%@include file="../../../resources/js/myJs.js" %>
     </script>
     <script type="text/javascript">
-        <%@include file="../../resources/js/vendor/jquery-3.3.1.min.js" %>
+        <%@include file="../../../resources/js/vendor/jquery-3.3.1.min.js" %>
     </script>
     <script type="text/javascript">
-        <%@include file="../../resources/js/vendor/foundation.min.js" %>
+        <%@include file="../../../resources/js/vendor/foundation.min.js" %>
     </script>
     <title>Hello</title>
 </head>
@@ -113,7 +114,7 @@
         <div class="medium-3 cell">
         </div>
     </div>
-    <script src="../../resources/js/app.js"></script>
+    <script src="../../../resources/js/app.js"></script>
 </div>
 </body>
 </html>

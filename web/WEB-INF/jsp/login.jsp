@@ -1,25 +1,31 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="../resources/css/foundation.min.css">
-<%--<script src="../../resources/js/foundation.min.js"></script>--%>
-<%--<script type="text/javascript" src="../../resources/js/jquery.js"></script>--%>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/jquery.js" />
-</script>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/foundation.min.js" />
-</script>
+
 <html>
 <head>
+    <link rel="stylesheet" href="../../resources/css/foundation.min.css">
     <title>Login</title>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/myJs.js" %>
+    </script>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/vendor/jquery-3.3.1.min.js" %>
+    </script>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/vendor/foundation.min.js" %>
+    </script>
 </head>
 <body>
 <nav class="hover-underline-menu" data-menu-underline-from-center>
     <ul class="dropdown menu" data-dropdown-menu>
-        <li><a href="/HelpDesk" text="Логин"></a></li>
+        <li><a href="/HelpDesk" text="Главная"></a></li>
         <li>
             <a href="/HelpDesk">Test</a>
+            <ul class="menu vertical">
+                <li><a href="/HelpDesk">Test - базовая информация</a></li>
+                <li><a href="/HelpDesk">Test - общее описание</a></li>
+            </ul>
         </li>
         <a href="/Admin">Администратор</a>
         <a href="/Operator">Оператор</a>
@@ -48,11 +54,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/jquery.js" />
-</script>
-<script type="text/javascript">
-    <jsp:include page="../../resources/js/foundation.min.js" />
-</script>
+<script src="../../resources/js/app.js"></script>
 </body>
 </html>
