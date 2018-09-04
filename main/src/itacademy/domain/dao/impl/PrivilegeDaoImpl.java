@@ -3,15 +3,13 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.PrivilegeDao;
 import itacademy.domain.entity.Privilege;
-import itacademy.domain.entity.SystemUser;
-import lombok.NoArgsConstructor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@NoArgsConstructor
+
 public class PrivilegeDaoImpl implements PrivilegeDao {
     public static final Object LOCK = new Object();
     private static final String SQL_FIND_ALL = "SELECT * FROM privileges ORDER BY name;";

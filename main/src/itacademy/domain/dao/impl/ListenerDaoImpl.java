@@ -3,12 +3,12 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.ListenerDao;
 import itacademy.domain.entity.Listener;
-import itacademy.domain.entity.SystemUser;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 public class ListenerDaoImpl implements ListenerDao {
     public static final Object LOCK = new Object();
@@ -29,7 +29,7 @@ public class ListenerDaoImpl implements ListenerDao {
         return INSTANCE;
     }
 
-    private Listener createTargetOfJobFromResultSet(ResultSet resultSet) throws SQLException {
+    private Listener createLisinerFromResultSet(ResultSet resultSet) throws SQLException {
         return new Listener(
                 resultSet.getLong("id"),
                 resultSet.getString("name"));
@@ -37,19 +37,19 @@ public class ListenerDaoImpl implements ListenerDao {
 
     @Override
     public List<Listener> findAll() {
-        List<Listener> TargetOfJob = new ArrayList<>();
+        List<Listener> Listener = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        TargetOfJob.add(createTargetOfJobFromResultSet(resultSet));
+                        Listener.add(createLisinerFromResultSet(resultSet));
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return TargetOfJob;
+        return Listener;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class ListenerDaoImpl implements ListenerDao {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                        return Optional.of(createTargetOfJobFromResultSet(resultSet));
+                        return Optional.of(createLisinerFromResultSet(resultSet));
                     }
                 }
             }
@@ -70,11 +70,11 @@ public class ListenerDaoImpl implements ListenerDao {
     }
 
     @Override
-    public Long save(Listener targetOfJob) {
+    public Long save(Listener Listener) {
         Long id = 0L;
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setString(1, targetOfJob.getName());
+                preparedStatement.setString(1, Listener.getName());
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {

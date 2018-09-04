@@ -3,15 +3,12 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.SubdivisionDao;
 import itacademy.domain.entity.Subdivision;
-import itacademy.domain.entity.SystemUser;
-import lombok.NoArgsConstructor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@NoArgsConstructor
 public class SubdivisionDaoImpl implements SubdivisionDao {
     private static final Object LOCK = new Object();
     private static final String SQL_FIND_ALL = "SELECT * FROM subdivisions ORDER BY name";

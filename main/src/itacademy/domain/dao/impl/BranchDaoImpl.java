@@ -3,15 +3,13 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.BranchDao;
 import itacademy.domain.entity.Branch;
-import itacademy.domain.entity.SystemUser;
-import lombok.NoArgsConstructor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@NoArgsConstructor
+
 public class BranchDaoImpl implements BranchDao {
     private static final Object LOCK = new Object();
     private static final String SQL_SELECT_BY_ID = "SELECT b.id, b.name, b.address FROM branches b WHERE b.id = ?;";
