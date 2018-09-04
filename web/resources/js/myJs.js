@@ -33,7 +33,7 @@ function mySubmit() {
 
     if (mustHaveCheck >= 3) {
         swal("Пользователь успешно зарегестрирован!", "А теперь входите под ним в систему...", "success")
-        // swal("fdfdfdfd", "ggggggggg", "alert")
+        // https://sweetalert.js.org/guides/
             .then(() => frm1.submit())
         ;
     }
