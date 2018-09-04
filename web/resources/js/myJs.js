@@ -32,7 +32,11 @@ function mySubmit() {
     checkInput3();
 
     if (mustHaveCheck >= 3) {
-        frm1.submit();
+        swal("Пользователь успешно зарегестрирован!", "А теперь входите под ним в систему...", "success")
+        // swal("fdfdfdfd", "ggggggggg", "error")
+        // swal("fdfdfdfd", "ggggggggg", "alert")
+            .then(() => frm1.submit())
+        ;
     }
 }
 
