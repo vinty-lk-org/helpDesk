@@ -112,4 +112,29 @@ public class DumpOldMethod {
 
 
 
+    //  @Override
+//  public Long save(SystemUser entity) {
+//    Long id = 0L;
+//    String SQL = "{call system_user_save(?, ?, ?, ?, ?, ?)}";
+//    try (Connection connection = ConnectionManager.getConnection();
+//         CallableStatement callableStatement = connection.prepareCall(SQL)) {
+//      connection.setAutoCommit(false);
+//      callableStatement.setString(1, entity.getName());
+//      callableStatement.setString(2, entity.getFamily());
+//      callableStatement.setString(3, entity.getEmail());
+//      callableStatement.setString(4, entity.getPassword());
+//      callableStatement.setLong(5, entity.getBranch().getId());
+//      callableStatement.setLong(6, entity.getSubdivision().getId());
+////      String.valueOf(Statement.RETURN_GENERATED_KEYS);
+//      callableStatement.execute();
+//      ResultSet generatedKeys = callableStatement.getGeneratedKeys();
+//      if (generatedKeys.next()){
+//        return generatedKeys.getLong(1);
+//      }
+//    } catch (SQLException e) {
+//      e.printStackTrace();
+//    }
+//    return id;
+//  }
+
 }
