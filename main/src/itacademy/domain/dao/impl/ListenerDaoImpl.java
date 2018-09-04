@@ -3,6 +3,7 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.ListenerDao;
 import itacademy.domain.entity.Listener;
+import itacademy.domain.entity.SystemUser;
 
 import java.sql.*;
 import java.util.ArrayList;

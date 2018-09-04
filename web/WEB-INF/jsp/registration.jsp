@@ -47,10 +47,10 @@
                     </select>
                 </label>
                 <div class="expanded button-group">
-                    <button type="submit" class="hollow button primary color-bar" href="#"><b>Зарегистритовать
+                    <button type="submit" class="button success color-bar" href="#"><b>Зарегистритовать
                         пользователя</b></button>
-                    <A class="hollow button alert" href="${pageContext.request.contextPath}/login" title="Отмена">
-                        Отмена </A>
+                    <A class="hollow button primary" href="${pageContext.request.contextPath}/login" title="На страницу Логина">
+                        На страницу Логина </A>
                     </button>
                 </div>
             </form>

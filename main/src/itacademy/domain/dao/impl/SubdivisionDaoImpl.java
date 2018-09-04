@@ -3,6 +3,7 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.SubdivisionDao;
 import itacademy.domain.entity.Subdivision;
+import itacademy.domain.entity.SystemUser;
 import lombok.NoArgsConstructor;
 
 import java.sql.*;

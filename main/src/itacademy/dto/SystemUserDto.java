@@ -23,6 +23,7 @@ public class SystemUserDto {
   private String branchName;
   private Long subdivisionId;
   private String subdivisionName;
+  private Long usersIdPrivilegesId;
 
   public SystemUserDto(Long id,
                        String name,

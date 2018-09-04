@@ -5,12 +5,12 @@ import java.util.Optional;
 
 public interface BaseDao<T> {
 
-    Long save(T entity);
+  Long save(T entity);
 
-    void  delete(Long id);
+  void delete(Long id);
 
-    List<T> findAll();
+  List<T> findAll();
 
-    Optional<T> findById(Long id);
+  Optional<T> findById(Long id);
 
 }

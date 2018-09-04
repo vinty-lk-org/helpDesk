@@ -6,13 +6,15 @@
 </head>
 
 <body>
-<jsp:include page="../jsp/fragments/nav.jsp"/>
-
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
         </div>
         <div class="medium-6 cell">
+            <jsp:include page="../jsp/fragments/nav.jsp"/>
+            <br>
+            <br>
+            <br>
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <label>Введите адрес вашей почты. Это ваш логин.
                     <input type="text" name="nameUser" placeholder="vinty@i.ua">

@@ -27,7 +27,7 @@ public class RegistrationController extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     SystemUserServiceImpl.getInstance().saveUser(getReqForCreateSystemUserDto(req));
-    getServletContext().getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req, resp);
+    getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
   }
 
   private SystemUserDto getReqForCreateSystemUserDto(HttpServletRequest request) {
