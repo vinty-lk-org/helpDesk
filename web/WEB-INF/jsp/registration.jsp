@@ -14,7 +14,7 @@
         <br>
         <div class="grid-x grid-padding-x">
             <div class="medium-6 cell">
-                <h3>Обязательныве поля</h3>
+                <h3>Обязательные поля</h3>
                 <div class="row">
                     <div id="divInput1" class="callout secondary border-none" onmouseover="divHover(this)"
                          onmouseout="divNorm(this)">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="medium-6 cell">
-                <h3>Не обязательныве поля</h3>
+                <h3>Необязательные поля</h3>
                 <br>
 
                 <div class="row">
