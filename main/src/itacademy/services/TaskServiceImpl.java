@@ -7,6 +7,22 @@ import java.sql.*;
 
 public class TaskServiceImpl implements TaskService {
     private static final String SQL_SAVE = "INSERT INTO tasks (name,  text)" + "VALUES (?, ?);";
+    private static final Object LOCK = new Object();
+    private static TaskServiceImpl INSTANCE = null;
+
+    private TaskServiceImpl() {
+    }
+
+    public static TaskServiceImpl getInstance() {
+        if (INSTANCE == null) {
+            synchronized (LOCK) {
+                if (INSTANCE == null) {
+                    INSTANCE = new TaskServiceImpl();
+                }
+            }
+        }
+        return INSTANCE;
+    }
 
     @Override
     public Long saveTask(TaskDto task) {
