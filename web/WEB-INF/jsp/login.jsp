@@ -24,7 +24,8 @@
                 </label>
                 <div class="expanded button-group">
                     <button type="submit" class="button success">Войти в систему</button>
-                    <A class="hollow button primary" href="${pageContext.request.contextPath}/registration" title="Отзывы"> Регистрация </A>
+                    <A class="hollow button primary" href="${pageContext.request.contextPath}/registration"
+                       title="Отзывы"> Регистрация </A>
                 </div>
             </form>
 

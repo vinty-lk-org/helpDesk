@@ -7,25 +7,35 @@
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
-
-<jsp:include page="../jsp/fragments/nav.jsp"/>
-
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
         </div>
         <div class="medium-6 cell">
+            <jsp:include page="../jsp/fragments/nav.jsp"/>
             <h2>Страница регистрации</h2>
-            <form action="${pageContext.request.contextPath}/registration" method="post">
-                <label>Введите адрес вашей почты (это будет вашим логином)
-                    <input type="text" name="email" placeholder="vinty@i.ua">
-                </label>
-                <label>Введите ваш пароль
-                    <input type="password" name="password" placeholder="mypassword">
-                </label>
-                <label>Введите ваш пароль еще раз, что бы убедится в правильности ввода
-                    <input type="password" name="password2" placeholder="mypassword">
-                </label>
+            <form name="form1" id="form1" action="${pageContext.request.contextPath}/registration" method="post">
+                <div id="divInput1" class="callout secondary border-none" onmouseover="divHover(this)"
+                     onmouseout="divNorm(this)">
+                    <label>Введите ваш e-mail
+                        <input name="email" type="text" id="middle-label"><span style="color:red"
+                                                                                id="input1Error"></span>
+                    </label>
+                </div>
+                <div id="divInput2" class="callout secondary border-none" onmouseover="divHover(this)"
+                     onmouseout="divNorm(this)">
+                    <label>Придумайте пароль ддлинной не менее 4 символа
+                        <input name="password" type="text" id="middle-labe2">
+                        <span style="color:red" id="input2Error"></span>
+                    </label>
+                </div>
+                <div id="divInput3" class="callout secondary border-none" onmouseover="divHover(this)"
+                     onmouseout="divNorm(this)">
+                    <label>Введите ваш пароль еще раз, что бы убедится в правильности ввода
+                        <input name="passwordTwo" type="text" id="middle-labe3">
+                        <span style="color:red" id="input3Error"></span>
+                    </label>
+                </div>
                 <label>Введите ваше имя
                     <input type="text" name="nameUser" placeholder="Иван">
                 </label>
@@ -47,9 +57,10 @@
                     </select>
                 </label>
                 <div class="expanded button-group">
-                    <button type="submit" class="button success color-bar" href="#"><b>Зарегистритовать
+                    <button name="but1" type="button" onclick="mySubmit()" class="button success color-bar"><b>Зарегистритовать
                         пользователя</b></button>
-                    <A class="hollow button primary" href="${pageContext.request.contextPath}/login" title="На страницу Логина">
+                    <A class="hollow button primary" href="${pageContext.request.contextPath}/login"
+                       title="На страницу Логина">
                         На страницу Логина </A>
                     </button>
                 </div>
@@ -60,5 +71,6 @@
     </div>
 </div>
 <script src="../../resources/js/app.js"></script>
+<script src="../../resources/js/myJs.js"></script>
 </body>
 </html>
