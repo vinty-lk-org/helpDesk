@@ -42,7 +42,8 @@ function mySubmit() {
     }
 }
 
-function checkInput1() {
+
+async function checkInput1() {
     var elemInput1 = frm1.elements.email;
     var at = elemInput1.value.indexOf("@");
     var dot = elemInput1.value.indexOf(".");
@@ -56,13 +57,23 @@ function checkInput1() {
     }
     document.getElementById("input1Error").innerHTML = "";
     mustHaveCheck++;
+
+    await fetch(getUrl() + "/api/email",
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "GET",
+            body: JSON.stringify({email: elemInput1.value})
+        });
     return true;
 }
 
 function checkInput2() {
     if (elemInput2.value.length < maxCountPassword && elemInput2.value.length > 0) {
         document.getElementById("input2Error").innerHTML
-            = "* пароль должен быть "+ maxCountPassword + " символа минимум, вы же ввели " + elemInput2.value.length;
+            = "* пароль должен быть " + maxCountPassword + " символа минимум, вы же ввели " + elemInput2.value.length;
         return false;
     }
     if (elemInput2.value.length === 0) {
@@ -81,7 +92,7 @@ function checkInput3() {
         return false;
     }
     if (elemInput3.value.length < maxCountPassword) {
-        document.getElementById("input3Error").innerHTML = "* поле не должно быть меньше "+ maxCountPassword + " символа";
+        document.getElementById("input3Error").innerHTML = "* поле не должно быть меньше " + maxCountPassword + " символа";
         return false;
     }
     if (elemInput2.value !== elemInput3.value) {

@@ -78,6 +78,11 @@
     </div>
 </form>
 </div>
+<script>
+    function getUrl() {
+        return `${pageContext.request.contextPath}/registration`
+    }
+</script>
 <script src="../../resources/js/app.js"></script>
 <script src="../../resources/js/myJs.js"></script>
 </body>
