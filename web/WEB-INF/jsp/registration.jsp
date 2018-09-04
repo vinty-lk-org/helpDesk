@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="medium-6 cell">
-                <h3>Не обязательныве поля</h3>
+                <h3>Не обязательные поля</h3>
                 <br>
 
                 <div class="row">
