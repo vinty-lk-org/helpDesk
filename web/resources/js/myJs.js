@@ -33,10 +33,12 @@ function mySubmit() {
 
     if (mustHaveCheck >= 3) {
         swal("Пользователь успешно зарегестрирован!", "А теперь входите под ним в систему...", "success")
-        // swal("fdfdfdfd", "ggggggggg", "error")
         // swal("fdfdfdfd", "ggggggggg", "alert")
             .then(() => frm1.submit())
         ;
+    }
+    if (mustHaveCheck < 3) {
+        swal("Не все поля заполнены!", "Обязательно ввести E-Mail, и пароль. Не забудьте его подтвердить.", "error");
     }
 }
 
