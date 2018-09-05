@@ -26,7 +26,8 @@ SET default_with_oids = false;
 
 CREATE TABLE branches (
     id integer NOT NULL,
-    name character varying(255)
+    name character varying(255),
+    address character varying(255)
 );
 
 
@@ -51,6 +52,39 @@ ALTER TABLE branch_id_seq OWNER TO root;
 --
 
 ALTER SEQUENCE branch_id_seq OWNED BY branches.id;
+
+
+--
+-- Name: listeners; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE listeners (
+    id integer NOT NULL,
+    name character varying(100)
+);
+
+
+ALTER TABLE listeners OWNER TO root;
+
+--
+-- Name: listeners_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE listeners_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE listeners_id_seq OWNER TO root;
+
+--
+-- Name: listeners_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE listeners_id_seq OWNED BY listeners.id;
 
 
 --
@@ -127,7 +161,7 @@ CREATE TABLE system_users (
     id integer NOT NULL,
     name character varying(50) DEFAULT NULL::character varying,
     family character varying(50) DEFAULT NULL::character varying,
-    e_mail character varying(50) NOT NULL,
+    e_mail character varying(50),
     privilege_id integer,
     password character varying(100) NOT NULL,
     branch_id integer,
@@ -159,46 +193,13 @@ ALTER SEQUENCE system_user_id_seq OWNED BY system_users.id;
 
 
 --
--- Name: targets_of_jobs; Type: TABLE; Schema: public; Owner: root
---
-
-CREATE TABLE targets_of_jobs (
-    id integer NOT NULL,
-    name character varying(100)
-);
-
-
-ALTER TABLE targets_of_jobs OWNER TO root;
-
---
--- Name: targets_of_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: root
---
-
-CREATE SEQUENCE targets_of_jobs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE targets_of_jobs_id_seq OWNER TO root;
-
---
--- Name: targets_of_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
---
-
-ALTER SEQUENCE targets_of_jobs_id_seq OWNED BY targets_of_jobs.id;
-
-
---
 -- Name: tasks; Type: TABLE; Schema: public; Owner: root
 --
 
 CREATE TABLE tasks (
     id integer NOT NULL,
     name character varying(50) DEFAULT NULL::character varying,
-    type_of_job_id integer,
+    listener_id integer,
     text text,
     system_user_id integer,
     executor_id integer,
@@ -249,6 +250,13 @@ ALTER TABLE ONLY branches ALTER COLUMN id SET DEFAULT nextval('branch_id_seq'::r
 
 
 --
+-- Name: listeners id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY listeners ALTER COLUMN id SET DEFAULT nextval('listeners_id_seq'::regclass);
+
+
+--
 -- Name: privileges id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -270,13 +278,6 @@ ALTER TABLE ONLY system_users ALTER COLUMN id SET DEFAULT nextval('system_user_i
 
 
 --
--- Name: targets_of_jobs id; Type: DEFAULT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY targets_of_jobs ALTER COLUMN id SET DEFAULT nextval('targets_of_jobs_id_seq'::regclass);
-
-
---
 -- Name: tasks id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -287,15 +288,33 @@ ALTER TABLE ONLY tasks ALTER COLUMN id SET DEFAULT nextval('task_id_seq'::regcla
 -- Name: branch_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('branch_id_seq', 4, true);
+SELECT pg_catalog.setval('branch_id_seq', 342, true);
 
 
 --
 -- Data for Name: branches; Type: TABLE DATA; Schema: public; Owner: root
 --
 
-INSERT INTO branches VALUES (3, 'Минск');
-INSERT INTO branches VALUES (1, 'Колядичи');
+INSERT INTO branches VALUES (3, 'Минск', 'Minsk city');
+INSERT INTO branches VALUES (1, 'Колядичи', 'Minsk city');
+INSERT INTO branches VALUES (325, 'Запись для теста №1 (save)', NULL);
+INSERT INTO branches VALUES (326, 'ABC', NULL);
+INSERT INTO branches VALUES (327, 'DEF', NULL);
+
+
+--
+-- Data for Name: listeners; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO listeners VALUES (1, 'рограммисты');
+INSERT INTO listeners VALUES (2, 'Хозяйственный отдел');
+
+
+--
+-- Name: listeners_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('listeners_id_seq', 20, true);
 
 
 --
@@ -319,7 +338,7 @@ SELECT pg_catalog.setval('privileges_id_seq', 4, true);
 -- Name: subdivision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('subdivision_id_seq', 12, true);
+SELECT pg_catalog.setval('subdivision_id_seq', 154, true);
 
 
 --
@@ -329,14 +348,13 @@ SELECT pg_catalog.setval('subdivision_id_seq', 12, true);
 INSERT INTO subdivisions VALUES (1, 'Админы');
 INSERT INTO subdivisions VALUES (2, 'Бухгалтерия
 ');
-INSERT INTO subdivisions VALUES (3, 'Маркетинг');
 
 
 --
 -- Name: system_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('system_user_id_seq', 37, true);
+SELECT pg_catalog.setval('system_user_id_seq', 73, true);
 
 
 --
@@ -344,33 +362,24 @@ SELECT pg_catalog.setval('system_user_id_seq', 37, true);
 --
 
 INSERT INTO system_users VALUES (23, 'Ярослав', 'Зыскунов', 'lkghost7@gmail.com', NULL, '1', 3, 1);
-INSERT INTO system_users VALUES (22, 'Виталий', 'Ушаков', 'vinty@i.ua', NULL, '1', 1, 1);
-
-
---
--- Data for Name: targets_of_jobs; Type: TABLE DATA; Schema: public; Owner: root
---
-
-
-
---
--- Name: targets_of_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
---
-
-SELECT pg_catalog.setval('targets_of_jobs_id_seq', 1, false);
+INSERT INTO system_users VALUES (38, 'ff', 'sdfgsdfg', 'sdfg@fsdg.com', NULL, 'dfdfd', 1, 2);
+INSERT INTO system_users VALUES (22, 'Виталий', 'Ушаков', 'vinty@i.ua', NULL, '1', 1, 2);
 
 
 --
 -- Name: task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('task_id_seq', 22, true);
+SELECT pg_catalog.setval('task_id_seq', 32, true);
 
 
 --
 -- Data for Name: tasks; Type: TABLE DATA; Schema: public; Owner: root
 --
 
+INSERT INTO tasks VALUES (25, 'Cenderel', 2, 'нако использование', 23, 22, 23);
+INSERT INTO tasks VALUES (24, 'Levit', 1, 'какой то сложный текст', 23, 22, 23);
+INSERT INTO tasks VALUES (26, 'Gorton', 1, 'аблица Orders', 22, 23, 23);
 
 
 --
@@ -378,6 +387,8 @@ SELECT pg_catalog.setval('task_id_seq', 22, true);
 --
 
 INSERT INTO users_privileges VALUES (22, 1);
+INSERT INTO users_privileges VALUES (23, 3);
+INSERT INTO users_privileges VALUES (23, 4);
 
 
 --
@@ -386,6 +397,14 @@ INSERT INTO users_privileges VALUES (22, 1);
 
 ALTER TABLE ONLY branches
     ADD CONSTRAINT branch_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listeners listeners_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY listeners
+    ADD CONSTRAINT listeners_pkey PRIMARY KEY (id);
 
 
 --
@@ -413,14 +432,6 @@ ALTER TABLE ONLY system_users
 
 
 --
--- Name: targets_of_jobs targets_of_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY targets_of_jobs
-    ADD CONSTRAINT targets_of_jobs_pkey PRIMARY KEY (id);
-
-
---
 -- Name: tasks task_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -434,6 +445,13 @@ ALTER TABLE ONLY tasks
 
 ALTER TABLE ONLY users_privileges
     ADD CONSTRAINT users_privileges_user_id_privilege_id_pk PRIMARY KEY (user_id, privilege_id);
+
+
+--
+-- Name: system_users_e_mail_uindex; Type: INDEX; Schema: public; Owner: root
+--
+
+CREATE UNIQUE INDEX system_users_e_mail_uindex ON system_users USING btree (e_mail);
 
 
 --
@@ -485,11 +503,11 @@ ALTER TABLE ONLY tasks
 
 
 --
--- Name: tasks task_type_of_job_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+-- Name: tasks tasks_listeners_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
 --
 
 ALTER TABLE ONLY tasks
-    ADD CONSTRAINT task_type_of_job_id_fk FOREIGN KEY (type_of_job_id) REFERENCES privileges(id);
+    ADD CONSTRAINT tasks_listeners_id_fk FOREIGN KEY (listener_id) REFERENCES listeners(id);
 
 
 --

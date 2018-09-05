@@ -12,14 +12,18 @@ import lombok.ToString;
 public class Branch {
     private Long id;
     private String name;
-    private String adress;
-
-    public Branch(String name, String adress) {
-        this.name = name;
-        this.adress = adress;
-    }
+    private String address;
 
     public Branch(String name) {
         this.name = name;
+    }
+
+    public Branch(Long id) {
+        this.id = id;
+    }
+
+    public Branch(String name, String address) {
+        this.name = name;
+        this.address = address;
     }
 }

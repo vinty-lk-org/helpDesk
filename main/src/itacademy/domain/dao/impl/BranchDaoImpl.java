@@ -3,16 +3,19 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.BranchDao;
 import itacademy.domain.entity.Branch;
-import lombok.NoArgsConstructor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@NoArgsConstructor
+
 public class BranchDaoImpl implements BranchDao {
     private static final Object LOCK = new Object();
+    private static final String SQL_SELECT_BY_ID = "SELECT b.id, b.name, b.address FROM branches b WHERE b.id = ?;";
+    private static final String SQL_DELETE_BY_ID = "DELETE FROM branches WHERE (id = ?)";
+    private static final String SQL_INSERT = "INSERT INTO branches (name, address) VALUES (?, ?)";
+    private static final String SQL_FIND_ALL = "SELECT b.id, b.name, b.address FROM branches b ORDER BY name;;";
     private static BranchDaoImpl INSTANCE = null;
 
     public static BranchDaoImpl getInstance() {
@@ -30,14 +33,30 @@ public class BranchDaoImpl implements BranchDao {
         return new Branch(
                 resultSet.getLong("id"),
                 resultSet.getString("name"),
-                resultSet.getString("adress"));
+                resultSet.getString("address"));
+    }
+
+    @Override
+    public List<Branch> findAll() {
+        List<Branch> branches = new ArrayList<>();
+        try (Connection connection = ConnectionManager.getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL)) {
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        branches.add(createBranchFromResultSet(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return branches;
     }
 
     @Override
     public Optional<Branch> findById(Long id) {
-        String sql = "SELECT * FROM branches br WHERE br.id = ?";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)) {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
@@ -54,10 +73,10 @@ public class BranchDaoImpl implements BranchDao {
     @Override
     public Long save(Branch branch) {
         Long id = 0L;
-        String sql = "INSERT INTO branches (name) VALUES (?)";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, branch.getName());
+                preparedStatement.setString(2, branch.getAddress());
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
@@ -70,36 +89,15 @@ public class BranchDaoImpl implements BranchDao {
         return id;
     }
 
-
-    @Override
-    public List<Branch> findAll() {
-        String sql = "SELECT * FROM branches ORDER BY name;";
-        List<Branch> branches = new ArrayList<>();
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    while (resultSet.next()) {
-                        branches.add(createBranchFromResultSet(resultSet));
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return branches;
-    }
-
     @Override
     public void delete(Long id) {
-        String sql = "DELETE FROM branches WHERE (id = ?)";
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
                 preparedStatement.setLong(1, id);
-                preparedStatement.executeUpdate();
+                preparedStatement.execute();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }

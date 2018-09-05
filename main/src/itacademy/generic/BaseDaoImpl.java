@@ -2,6 +2,7 @@ package itacademy.generic;
 
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.common.BaseDao;
+import itacademy.domain.entity.SystemUser;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
