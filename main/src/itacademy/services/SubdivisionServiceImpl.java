@@ -10,15 +10,16 @@ import java.util.stream.Collectors;
 public class SubdivisionServiceImpl implements SubdivisionService {
   private static final Object LOCK = new Object();
   private static SubdivisionServiceImpl INSTANCE = null;
+
   public static SubdivisionServiceImpl getInstance() {
-      if (INSTANCE == null) {
-          synchronized (LOCK) {
-              if (INSTANCE == null) {
-                  INSTANCE = new SubdivisionServiceImpl();
-              }
-          }
+    if (INSTANCE == null) {
+      synchronized (LOCK) {
+        if (INSTANCE == null) {
+          INSTANCE = new SubdivisionServiceImpl();
+        }
       }
-      return INSTANCE;
+    }
+    return INSTANCE;
   }
 
   @Override

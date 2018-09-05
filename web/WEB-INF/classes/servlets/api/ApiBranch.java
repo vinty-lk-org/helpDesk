@@ -1,5 +1,6 @@
 package servlets.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.entity.Branch;
@@ -23,21 +24,30 @@ public class ApiBranch extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     resp.setContentType("application/json");
-    resp.setCharacterEncoding("UTF-8");
+//    resp.setCharacterEncoding("UTF-8");
     BranchDto branchDto = null;
     ObjectMapper objectMapper = new ObjectMapper();
-    Optional<Branch> optionalBranch = BranchDaoImpl.getInstance().findById(3L);
     File file = new File("branch.json");
     file.createNewFile();
+    Optional<Branch> optionalBranch = BranchDaoImpl.getInstance().findById(3L);
+    branchDto = BranchServiceImpl.getInstance().mapperBranch(optionalBranch.get());
     if (optionalBranch.isPresent()) {
-      branchDto = BranchServiceImpl.getInstance().mapperBranch(optionalBranch.get());
       objectMapper.writeValue(file, branchDto);
     }
-    String branchAsString = objectMapper.writeValueAsString(branchDto);
-    System.out.println(branchAsString);
+    String json = getJSON(branchDto);
     ServletOutputStream out = resp.getOutputStream();
-    out.write(branchAsString.getBytes(StandardCharsets.UTF_8));
+    out.write(json.getBytes(StandardCharsets.UTF_8));
     out.flush();
     out.close();
+  }
+
+  public String getJSON(Object object) {
+    ObjectMapper objectMapper = new ObjectMapper();
+    try {
+      return objectMapper.writeValueAsString(object);
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }
