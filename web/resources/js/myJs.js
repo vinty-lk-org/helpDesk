@@ -58,13 +58,14 @@ async function checkInput1() {
     document.getElementById("input1Error").innerHTML = "";
     mustHaveCheck++;
 
-    await fetch(getUrl() + "/api/email",
+    // await fetch(getUrl() + "/api/email",
+    await fetch("http://localhost:8080/api/email",
         {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            method: "GET",
+            method: "POST",
             body: JSON.stringify({email: elemInput1.value})
         });
     return true;

@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class TargetOfJobDto {
-  private static final String TABLE_NAME = "targets_of_jobs";
+  private static final String TABLE_NAME = "listeners";
   private Long id;
   private String name;
 }

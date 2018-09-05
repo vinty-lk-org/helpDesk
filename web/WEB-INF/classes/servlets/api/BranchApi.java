@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 @WebServlet("/api/branch")
-public class ApiBranch extends HttpServlet {
+public class BranchApi extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
