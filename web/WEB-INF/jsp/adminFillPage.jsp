@@ -100,25 +100,26 @@
         </div>
     </form>
     <br>
-    <form name="textform5" id="textform5" action="${pageContext.request.contextPath}/user" method="post">
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-                <div class="medium-3 cell">
-                </div>
-                <div class="medium-6 cell">
-                    <div class="expanded button-group">
-                        <button type="submit" class="button success"><b>Вернутся на главную страницу адмиинки</b></button>
-                    </div>
+
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="medium-3 cell">
+            </div>
+            <div class="medium-6 cell">
+                <div class="expanded button-group">
+                    <A href="${pageContext.request.contextPath}/admin"
+                    <button type="submit" class="button success"><b>Вернутся на главную страницу админки</b></button>
+                    </A>
                 </div>
                 <div class="medium-3 cell">
 
                 </div>
             </div>
         </div>
-    </form>
-    <script>
-        $(document).foundation();
-    </script>
+
+        <script>
+            $(document).foundation();
+        </script>
 </body>
 
 </html>
