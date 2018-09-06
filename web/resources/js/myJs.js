@@ -2,17 +2,30 @@
 
 function divHover(element) {
     element.className = "callout primary border-none";
-    console.log(element.className)
+    // console.log(element.className)
 }
 
 function divNorm(element) {
     element.className = "callout secondary border-none";
-    console.log(element.className)
+    // console.log(element.className)
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const frm1 = document.forms.form1;
-    frm1.onsubmit = () => mySubmit();
+    frm1.onsubmit = (event) => {
+        event.preventDefault();
+        if (mustHaveCheck >= 3) {
+            swal("Пользователь успешно зарегестрирован!", "А теперь входите под ним в систему...", "success")
+            // https://sweetalert.js.org/guides/
+                .then(() => frm1.submit())
+            ;
+        }
+        if (mustHaveCheck < 3) {
+            swal("Не все поля заполнены!", "Обязательно ввести E-Mail, и пароль. Не забудьте его подтвердить.", "error");
+        } return null;
+    };
+
+
     let mustHaveCheck = 0;
     console.log(frm1.elements.email);
     const elemInput1 = frm1.elements.email;
@@ -35,16 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
         checkInput1();
         checkInput2();
         checkInput3();
-
-        if (mustHaveCheck >= 3) {
-            swal("Пользователь успешно зарегестрирован!", "А теперь входите под ним в систему...", "success")
-            // https://sweetalert.js.org/guides/
-                .then(() => frm1.submit())
-            ;
-        }
-        if (mustHaveCheck < 3) {
-            swal("Не все поля заполнены!", "Обязательно ввести E-Mail, и пароль. Не забудьте его подтвердить.", "error");
-        }
     }
 
 
@@ -61,10 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
         }
         document.getElementById("input1Error").innerHTML = "";
-        mustHaveCheck++;
+
 
         const isEmail = await fetch(getUrl() + "/api/email",
-        //     await fetch("http://localhost:8081/api/email",
             {
                 headers: {
                     'Accept': 'application/json',
@@ -72,11 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 method: "POST",
                 body: JSON.stringify({email: elemInput1.value})
-            });
+            }).then(res => res.json());
+        console.log(isEmail);
         if (isEmail) {
+            document.getElementById("input11Error").innerHTML = "";
             document.getElementById("input1Error").innerHTML = "Такой пользователь уже зарегестрирован!";
             return false;
         }
+        document.getElementById("input1Error").innerHTML = "";
+        document.getElementById("input11Error").innerHTML = "Этот логин свободен!";
+        mustHaveCheck++;
         return true;
     }
 
@@ -114,3 +121,5 @@ document.addEventListener("DOMContentLoaded", () => {
         return true;
     }
 });
+
+
