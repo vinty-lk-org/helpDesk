@@ -1,8 +1,6 @@
-package servlets;
+package servlets.handbookservlet;
 
-import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.dao.impl.SubdivisionDaoImpl;
-import itacademy.domain.entity.Branch;
 import itacademy.domain.entity.Subdivision;
 
 import javax.servlet.ServletException;
@@ -22,11 +20,5 @@ public class SubdivisionController extends HttpServlet {
 
     private Subdivision getReqForCreateSubdivision(HttpServletRequest request) {
         return new Subdivision(request.getParameter("nameSubdivision"));
-
-//                Branch(Branch.builder()
-//                .name(request.getParameter("nameBranch"))
-//                .address(request.getParameter("addressBranch"))
-//                .build());
     }
 }
-

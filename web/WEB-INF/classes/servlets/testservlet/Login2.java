@@ -1,4 +1,4 @@
-package servlets;
+package servlets.testservlet;
 
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.entity.Branch;
