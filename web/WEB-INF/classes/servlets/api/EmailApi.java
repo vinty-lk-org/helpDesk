@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.entity.Branch;
-import itacademy.domain.entity.SystemUser;
 import itacademy.dto.BranchDto;
 import itacademy.services.BranchServiceImpl;
 import itacademy.services.SystemUserServiceImpl;
@@ -34,12 +33,11 @@ public class EmailApi extends HttpServlet {
     String body = null;
 
     try (BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()))) {
-          body = br.readLine();
-          System.out.println(body);
-      } catch (Exception ex) {
-          ex.printStackTrace();
-      }
-
+      body = br.readLine();
+      System.out.println(body);
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
     Optional<Branch> optionalBranch = BranchDaoImpl.getInstance().findById(3L);
     branchDto = BranchServiceImpl.getInstance().mapperBranch(optionalBranch.get());
     saveJSONInFile(branchDto);
@@ -48,6 +46,27 @@ public class EmailApi extends HttpServlet {
     out.write(json.getBytes(StandardCharsets.UTF_8));
     out.flush();
     out.close();
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    resp.setContentType("application/json");
+    String body = null;
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()))) {
+      body = br.readLine();
+      ObjectMapper objectMapper = new ObjectMapper();
+      Map<String, String> map = objectMapper.readValue(body, new TypeReference<Map<String, String>>() {
+      });
+      boolean email = SystemUserServiceImpl.getInstance().isEmail(map.get("email"));
+      ServletOutputStream out = resp.getOutputStream();
+      out.write(objectMapper.writeValueAsString(email).getBytes("UTF-8"));
+      System.out.println(objectMapper.writeValueAsString(email));
+      System.out.println("Со страницы JSP пришло: " + body + " " + email);
+      out.flush();
+      out.close();
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
   }
 
   private String getStringJSON(Object object) {
@@ -71,17 +90,5 @@ public class EmailApi extends HttpServlet {
     }
   }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("application/json");
-        String body = null;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()))) {
-            body = br.readLine();
-            Map<String, String> map = new ObjectMapper().readValue(body, new TypeReference<Map<String, String>>(){ });
-            boolean email = SystemUserServiceImpl.getInstance().isEmail(map.get("email"));
-            System.out.println("Со страницы JSP пришло: " + body + " " + email);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+
 }
