@@ -3,9 +3,7 @@
 <link rel="stylesheet" href="../../../resources/css/foundation.min.css">
 <link rel="stylesheet" href="../../../resources/css/style.css">
 <title>Title</title>
-<script type="text/javascript">
-    <%@include file="../../../resources/js/myJs.js" %>
-</script>
+
 <script type="text/javascript">
     <%@include file="../../../resources/js/vendor/jquery-3.3.1.min.js" %>
 </script>

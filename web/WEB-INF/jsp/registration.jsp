@@ -5,6 +5,9 @@
 <head>
     <title>registration</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/myJs.js" %>
+    </script>
 </head>
 <body>
 <form name="form1" id="form1" action="${pageContext.request.contextPath}/registration" method="post">
@@ -19,8 +22,9 @@
                     <div id="divInput1" class="callout secondary border-none" onmouseover="divHover(this)"
                          onmouseout="divNorm(this)">
                         <label>Введите ваш e-mail
-                            <input name="email" type="text" id="middle-label"><span style="color:red"
-                                                                                    id="input1Error"></span>
+                            <input name="email" type="text" id="middle-label">
+                            <span style="color:red" id="input1Error"></span>
+                            <span style="color:darkgreen" id="input11Error"></span>
                         </label>
                     </div>
                     <div id="divInput2" class="callout secondary border-none" onmouseover="divHover(this)"
