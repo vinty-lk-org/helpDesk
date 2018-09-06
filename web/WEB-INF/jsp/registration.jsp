@@ -7,6 +7,7 @@
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
+${login}
 <form name="form1" id="form1" action="${pageContext.request.contextPath}/registration" method="post">
     <div class="grid-container">
         <jsp:include page="../jsp/fragments/nav.jsp"/>
@@ -51,8 +52,8 @@
                     <label for="branches">Выберите из списка ваше местоположение (филиал)
                         <select name="branch_id" id="branches">
                             <c:forEach items="${requestScope.branches}" var="branch">
-                                <option value="${branch.id}">${branch.name} ( ${branch.address})</option>
-                            </c:forEach>
+                        <option value="${branch.id}">${branch.name} ( ${branch.address})</option>
+                        </c:forEach>
                         </select>
                     </label>
                     <label for="subdivisions">Выберете из списка ваш отдел (подразделение)

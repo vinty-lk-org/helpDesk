@@ -5,6 +5,7 @@ import itacademy.services.BranchServiceImpl;
 import itacademy.services.SubdivisionServiceImpl;
 import itacademy.services.SystemUserServiceImpl;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +20,7 @@ public class RegistrationController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("branches", BranchServiceImpl.getInstance().getAllBranchesDto());
         req.setAttribute("subdivisions", SubdivisionServiceImpl.getInstance().getAllSubdivisionDto());
+        req.setAttribute("login", req.getSession().getAttribute("name"));
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req, resp);
     }
 

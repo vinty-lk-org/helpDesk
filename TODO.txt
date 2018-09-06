@@ -1,3 +1,0 @@
-1. Скопировать библиотеку коннекта postgresql-42.2.4.jar в  D:\Dropbox\Files\apache-tomcat-8.5.28\lib
-2. Скопировать из D:\Dropbox\Files\apache-tomcat-8.5.28\lib библиотеку tomcat-jdbc.jar в папку libs и
-   пометить ее как библиотеку.

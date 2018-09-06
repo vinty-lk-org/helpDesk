@@ -5,7 +5,6 @@
     <title>login</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
-
 <body>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
