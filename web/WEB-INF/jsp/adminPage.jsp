@@ -11,6 +11,21 @@
     <title>adminPage</title>
 </head>
 <body>
-adminPage
+<form name="textform" id="textform" action="${pageContext.request.contextPath}/redirectLogin" method="post">
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="medium-3 cell">
+            </div>
+            <div class="medium-6 cell">
+                <div class="expanded button-group">
+                    <button type="submit" class="button success"><b>Заполнить справочники</b></button>
+                </div>
+            </div>
+            <div class="medium-3 cell">
+
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 </html>
