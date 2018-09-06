@@ -2,16 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="hover-underline-menu" data-menu-underline-from-center>
     <ul class="dropdown menu" data-dropdown-menu>
-        <li><a href="/HelpDesk" text="Главная"></a></li>
+        <li><a href="/user" text="Главная"></a></li>
         <li>
-            <a href="/HelpDesk">Test</a>
+            <a href="/user">Test</a>
             <ul class="menu vertical">
-                <li><a href="/HelpDesk">Test - базовая информация</a></li>
-                <li><a href="/HelpDesk">Test - общее описание</a></li>
+                <li><a href="/user">Test - базовая информация</a></li>
+                <li><a href="/user">Test - общее описание</a></li>
             </ul>
         </li>
-        <a href="/Admin">Администратор</a>
-        <a href="/Operator">Оператор</a>
-        <li><a href="/logout">Выход</a></li>
+        <a href="/admin">Администратор</a>
+        <a href="/user">Оператор</a>
+        <li><a href="/login">Выход</a></li>
     </ul>
 </nav>

@@ -32,7 +32,7 @@
             <div class="medium-3 cell">
                 <label> <br>
                     <div class="expanded button-group">
-                        <button type="submit" class="button success"><b>Заполнить</b></button>
+                        <button type="submit" class="button success hollow"><b>Заполнить</b></button>
                     </div>
                 </label>
             </div>
@@ -52,7 +52,7 @@
                 <div class="medium-3 cell">
                     <label> <br>
                         <div class="expanded button-group">
-                            <button type="submit" class="button success"><b>Заполнить</b></button>
+                            <button type="submit" class="button success hollow"><b>Заполнить</b></button>
                         </div>
                     </label>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="medium-3 cell">
                     <label> <br>
                         <div class="expanded button-group">
-                            <button type="submit" class="button success"><b>Заполнить</b></button>
+                            <button type="submit" class="button success hollow"><b>Заполнить</b></button>
                         </div>
                     </label>
                 </div>
@@ -93,7 +93,7 @@
                 <div class="medium-3 cell">
                     <label> <br>
                         <div class="expanded button-group">
-                            <button type="submit" class="button success"><b>Заполнить</b></button>
+                            <button type="submit" class="button success hollow"><b>Заполнить</b></button>
                         </div>
                     </label>
                 </div>
@@ -108,10 +108,8 @@
             </div>
             <div class="medium-6 cell">
                 <div class="expanded button-group">
-                    <A href="${pageContext.request.contextPath}/admin"
-                    <button type="submit" class="button success"><b>Вернутся на главную страницу админки</b></button>
-                    </A>
-                </div>
+                    <A class="button success" href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную страницу админки</b> </A>
+                    </div>
                 <div class="medium-3 cell">
 
                 </div>
