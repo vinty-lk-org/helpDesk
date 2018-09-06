@@ -100,7 +100,7 @@
                     <td name="taskName">Не работает интернет</td>
                     <td name="data">22.05.2018</td>
                     <td name="executor">Зыскунов Ярослав</td>
-                    <td name="status">на рассмотрении</td>
+                    <td name="status_id">на рассмотрении</td>
                 </tr>
 
 

@@ -15,7 +15,7 @@ public class TaskDaoImpl implements TaskDao {
     private static final Object LOCK = new Object();
     private static final String SQL_FIND_ALL = "{ ? = call tasks_find_all()}";
     private static final String SQL_FIND_ID = "{ ? = call tasks_findbyid(?)}";
-    private static final String SQL_SAVE = "INSERT INTO tasks (name, listener_id, text, system_user_id, executor_id, operator_id)" + "VALUES (?, ?, ?, ?, ?, ?);";
+    private static final String SQL_SAVE = "INSERT INTO tasks (name, listener_id, text, system_user_id, executor_id, operator_id, status_id)" + "VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String SQL_DELETE = "DELETE FROM tasks WHERE (id = ?)";
     private static TaskDaoImpl INSTANCE = null;
 
@@ -39,7 +39,8 @@ public class TaskDaoImpl implements TaskDao {
                         resultSet.getLong("l_id"),
                         resultSet.getString("l_name")),
                 new SystemUser(
-                        resultSet.getLong("s_id")));
+                        resultSet.getLong("s_id")),
+                resultSet.getLong("status_id"));
     }
 
     @Override
@@ -91,6 +92,7 @@ public class TaskDaoImpl implements TaskDao {
                 preparedStatement.setLong(4, task.getSystemUserId().getId());
                 preparedStatement.setLong(5, task.getExecutorId().getId());
                 preparedStatement.setLong(6, task.getOperatorId().getId());
+                preparedStatement.setLong(7, task.getStatus_id());
                 preparedStatement.executeUpdate();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {

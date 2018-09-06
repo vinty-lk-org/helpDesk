@@ -37,6 +37,7 @@ public class TaskDaoImplTest {
                 .systemUserId(new SystemUser(22L))
                 .executorId(new SystemUser(22L))
                 .operatorId(new SystemUser(23L))
+                .status_id(1L)
                 .build();
         Long id = dao.save(task);
         Assert.assertNotNull(id);
