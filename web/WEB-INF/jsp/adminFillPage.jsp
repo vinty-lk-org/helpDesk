@@ -39,14 +39,14 @@
         </div>
     </div>
 </form>
-    <form name="textform2" id="textform2" action="${pageContext.request.contextPath}/user" method="post">
+    <form name="textform2" id="textform2" action="${pageContext.request.contextPath}/subdivisionSave" method="post">
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
                 <div class="medium-3 cell">
                 </div>
                 <div class="medium-3 cell">
                     <label> Введите подразделение
-                        <input type="text" name="nameTask" placeholder="например отдел маркетинга">
+                        <input type="text" name="nameSubdivision" placeholder="например отдел маркетинга">
                     </label>
                 </div>
                 <div class="medium-3 cell">

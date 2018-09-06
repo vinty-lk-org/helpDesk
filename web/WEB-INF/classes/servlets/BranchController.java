@@ -2,8 +2,6 @@ package servlets;
 
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.entity.Branch;
-import itacademy.dto.TaskDto;
-import itacademy.services.TaskServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,12 +26,4 @@ public class BranchController extends HttpServlet {
                 .address(request.getParameter("addressBranch"))
                 .build());
     }
-
-
-//    private TaskDto getReqForCreateTaskDto(HttpServletRequest request) {
-//        return new TaskDto(TaskDto.builder()
-//                .name(request.getParameter("nameTask"))
-//                .text(request.getParameter("textUser"))
-//                .build());
-//    }
 }
