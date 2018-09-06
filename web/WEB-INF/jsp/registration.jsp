@@ -67,7 +67,7 @@ ${login}
             </div>
         </div>
         <div class="expanded button-group">
-            <button name="but1" type="button" onclick="mySubmit()" class="button success color-bar"><b>Зарегистритовать
+            <button name="but1" type="submit" class="button success color-bar"><b>Зарегистритовать
                 пользователя</b></button>
             <A class="hollow button primary" href="${pageContext.request.contextPath}/login"
                title="На страницу Логина">
@@ -79,8 +79,10 @@ ${login}
 </div>
 <script>
     function getUrl() {
-        return `${pageContext.request.contextPath}/registration`
+        return `${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}`;
+
     }
+    console.log(getUrl());
 </script>
 <%--<script type="text/javascript">--%>
     <%--function natIP() {--%>

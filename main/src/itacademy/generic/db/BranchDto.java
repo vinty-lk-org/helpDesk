@@ -13,5 +13,5 @@ public class BranchDto {
   private static final String TABLE_NAME = "branches";
   private Long id;
   private String name;
-  private String adress;
+  private String address;
 }

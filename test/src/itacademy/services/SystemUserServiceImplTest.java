@@ -33,4 +33,22 @@ public class SystemUserServiceImplTest {
     Assert.assertNotNull(SystemUserDaoImpl.getInstance().findById(id));
     SystemUserDaoImpl.getInstance().delete(id);
   }
+
+  @Test
+  public void isEmail() {
+    String randomEmail = TestDaoHelper.getRandomEmail();
+    Long id = SystemUserServiceImpl.getInstance().saveUser(new SystemUserDto(
+            SystemUserDto.builder()
+                    .name(TestDaoHelper.getRandomWord(4, 10, true))
+                    .family(TestDaoHelper.getRandomWord(4, 10, true))
+                    .email(randomEmail)
+                    .password(TestDaoHelper.getRandomWord(6, 10, false))
+                    .branchId(TestDaoHelper.getRandomIdFromList(BranchDaoImpl.getInstance().findAll()))
+                    .subdivisionId((Long) TestDaoHelper.getRandomIdFromList(SubdivisionDaoImpl.getInstance().findAll()))
+                    .build()));
+    Assert.assertNotNull(id);
+    boolean email = SystemUserServiceImpl.getInstance().isEmail(randomEmail);
+    Assert.assertTrue(email);
+    SystemUserDaoImpl.getInstance().delete(id);
+  }
 }
