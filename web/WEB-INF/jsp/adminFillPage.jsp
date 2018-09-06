@@ -80,14 +80,14 @@
         </div>
     </form>
 
-    <form name="textform4" id="textform4" action="${pageContext.request.contextPath}/user" method="post">
+    <form name="textform4" id="textform4" action="${pageContext.request.contextPath}/listenerSave" method="post">
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
                 <div class="medium-3 cell">
                 </div>
                 <div class="medium-3 cell">
                     <label> Введите получателя заявок
-                        <input type="text" name="nameTask" placeholder="например Отдел программистов">
+                        <input type="text" name="listenerName" placeholder="например Отдел программистов">
                     </label>
                 </div>
                 <div class="medium-3 cell">
