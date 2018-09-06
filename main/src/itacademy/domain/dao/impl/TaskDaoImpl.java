@@ -40,7 +40,7 @@ public class TaskDaoImpl implements TaskDao {
                         resultSet.getString("l_name")),
                 new SystemUser(
                         resultSet.getLong("s_id")),
-                resultSet.getLong("status_id"));
+                resultSet.getLong("st_status_id"));
     }
 
     @Override
