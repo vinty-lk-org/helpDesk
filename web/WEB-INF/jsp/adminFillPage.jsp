@@ -15,18 +15,18 @@
 <br>
 <br>
 <p align="center"><b>Справочники</b></p>
-<form name="textform" id="textform" action="${pageContext.request.contextPath}/user" method="post">
+
+<form name="textform" id="textform" action="${pageContext.request.contextPath}/branchSave" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
                 <label>Заполните название филиала
-                    <input type="text" name="nameTask" placeholder="Название филиала">
+                    <input type="text" name="nameBranch" placeholder="Название филиала">
                 </label>
             </div>
             <div class="medium-3 cell">
                 <label>Заполните адрес филиала
-                    <input type="text" name="nameTask" placeholder="Адрес филиала">
-
+                    <input type="text" name="addressBranch" placeholder="Адрес филиала">
                 </label>
             </div>
             <div class="medium-3 cell">
@@ -38,6 +38,7 @@
             </div>
         </div>
     </div>
+</form>
     <form name="textform2" id="textform2" action="${pageContext.request.contextPath}/user" method="post">
         <div class="grid-container">
             <div class="grid-x grid-padding-x">

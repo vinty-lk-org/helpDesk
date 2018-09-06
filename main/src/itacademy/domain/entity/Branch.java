@@ -1,14 +1,15 @@
 package itacademy.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import java.util.prefs.Preferences;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
+@Builder
 public class Branch {
     private Long id;
     private String name;
@@ -25,5 +26,10 @@ public class Branch {
     public Branch(String name, String address) {
         this.name = name;
         this.address = address;
+    }
+
+    public Branch(Branch build) {
+        this.name = build.name;
+        this.address = build.address;
     }
 }
