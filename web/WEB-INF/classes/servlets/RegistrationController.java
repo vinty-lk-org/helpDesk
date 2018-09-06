@@ -19,7 +19,6 @@ public class RegistrationController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("branches", BranchServiceImpl.getInstance().getAllBranchesDto());
         req.setAttribute("subdivisions", SubdivisionServiceImpl.getInstance().getAllSubdivisionDto());
-      System.out.println("---------------");
       getServletContext().getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req, resp);
     }
 

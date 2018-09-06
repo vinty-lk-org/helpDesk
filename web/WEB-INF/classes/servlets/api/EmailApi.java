@@ -60,8 +60,6 @@ public class EmailApi extends HttpServlet {
       boolean email = SystemUserServiceImpl.getInstance().isEmail(map.get("email"));
       ServletOutputStream out = resp.getOutputStream();
       out.write(objectMapper.writeValueAsString(email).getBytes("UTF-8"));
-      System.out.println(objectMapper.writeValueAsString(email));
-      System.out.println("Со страницы JSP пришло: " + body + " " + email);
       out.flush();
       out.close();
     } catch (Exception ex) {

@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("input1Error").innerHTML = "";
         mustHaveCheck++;
 
-        await fetch(getUrl() + "/api/email",
+        const isEmail = await fetch(getUrl() + "/api/email",
         //     await fetch("http://localhost:8081/api/email",
             {
                 headers: {
@@ -73,6 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 body: JSON.stringify({email: elemInput1.value})
             });
+        if (isEmail) {
+            document.getElementById("input1Error").innerHTML = "Такой пользователь уже зарегестрирован!";
+            return false;
+        }
         return true;
     }
 
