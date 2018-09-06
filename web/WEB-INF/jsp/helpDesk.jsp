@@ -79,6 +79,7 @@
                     <th width="50">Номер заявки</th>
                     <th>Краткое содержание</th>
                     <th width="150">Дата заявки</th>
+                    <th width="250">Исполнитель</th>
                     <th width="250">Статус</th>
                 </tr>
                 </thead>
@@ -97,8 +98,9 @@
                 <tr name="taskTableName">
                     <td name="taskId">33</td>
                     <td name="taskName">Не работает интернет</td>
-                    <td name="taskType">Интернет</td>
-                    <td name="taskDate">03/04/2018</td>
+                    <td name="data">22.05.2018</td>
+                    <td name="executor">Зыскунов Ярослав</td>
+                    <td name="status">на рассмотрении</td>
                 </tr>
 
 
