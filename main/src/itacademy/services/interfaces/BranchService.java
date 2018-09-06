@@ -1,8 +1,7 @@
-package itacademy.services;
+package itacademy.services.interfaces;
 
 import itacademy.domain.entity.Branch;
-import itacademy.dto.BranchDto;
-import itacademy.dto.SystemUserDto;
+import itacademy.dto.models.BranchDto;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.entity.Branch;
-import itacademy.dto.BranchDto;
+import itacademy.dto.models.BranchDto;
 import itacademy.services.BranchServiceImpl;
 
 import javax.servlet.ServletException;

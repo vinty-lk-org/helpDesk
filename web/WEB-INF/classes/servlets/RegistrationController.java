@@ -1,6 +1,6 @@
 package servlets;
 
-import itacademy.dto.SystemUserDto;
+import itacademy.dto.models.SystemUserDto;
 import itacademy.services.BranchServiceImpl;
 import itacademy.services.SubdivisionServiceImpl;
 import itacademy.services.SystemUserServiceImpl;

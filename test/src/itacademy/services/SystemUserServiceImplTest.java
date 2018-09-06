@@ -4,7 +4,7 @@ import itacademy.domain.dao.TestDaoHelper;
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.dao.impl.SubdivisionDaoImpl;
 import itacademy.domain.dao.impl.SystemUserDaoImpl;
-import itacademy.dto.SystemUserDto;
+import itacademy.dto.models.SystemUserDto;
 import org.junit.Assert;
 import org.junit.Test;
 

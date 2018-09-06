@@ -1,7 +1,8 @@
 package itacademy.services;
 
 import itacademy.connection.ConnectionManager;
-import itacademy.dto.TaskDto;
+import itacademy.dto.models.TaskDto;
+import itacademy.services.interfaces.TaskService;
 
 import java.sql.*;
 

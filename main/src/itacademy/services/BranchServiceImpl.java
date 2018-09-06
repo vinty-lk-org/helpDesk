@@ -2,7 +2,8 @@ package itacademy.services;
 
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.entity.Branch;
-import itacademy.dto.BranchDto;
+import itacademy.dto.models.BranchDto;
+import itacademy.services.interfaces.BranchService;
 
 import java.util.List;
 import java.util.stream.Collectors;

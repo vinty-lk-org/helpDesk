@@ -1,6 +1,6 @@
 package itacademy.services;
 
-import itacademy.dto.BranchDto;
+import itacademy.dto.models.BranchDto;
 import org.junit.Assert;
 import org.junit.Test;
 

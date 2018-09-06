@@ -1,5 +1,9 @@
 package servlets;
 
+import itacademy.domain.dao.impl.ProblemDaoImpl;
+import itacademy.dto.models.TaskDto;
+import itacademy.services.TaskServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,17 +16,25 @@ public class HelpDeskController extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    getServletContext().getRequestDispatcher("/WEB-INF/jsp/helpDeskPage.jsp").forward(req, resp);
+    req.setAttribute("problems", ProblemDaoImpl.getInstance().findAll());
+    req.setAttribute("myName", "Выберите категорию");
+    showPage(req, resp);
   }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String nameUser = req.getParameter("nameUser");
-    String password = req.getParameter("password");
-    System.out.println(nameUser);
-    System.out.println(password);
-    req.getSession().setAttribute("isUserLogin", true);
+    TaskServiceImpl.getInstance().saveTask(getReqForCreateTaskDto(req));
+    resp.sendRedirect("/helpDesk");
+  }
 
-    getServletContext().getRequestDispatcher("/WEB-INF/jsp/helpDeskPage.jsp").forward(req, resp);
+  private TaskDto getReqForCreateTaskDto(HttpServletRequest request) {
+    return new TaskDto(TaskDto.builder()
+            .name(request.getParameter("nameTask"))
+            .text(request.getParameter("textUser"))
+            .build());
+  }
+
+  private void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    getServletContext().getRequestDispatcher("/WEB-INF/jsp/helpDesk.jsp").forward(req, resp);
   }
 }

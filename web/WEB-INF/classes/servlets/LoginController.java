@@ -26,6 +26,6 @@ public class LoginController extends HttpServlet {
 //    System.out.println(nameUser);
 //    System.out.println(password);
 //    req.getSession().setAttribute("isUserLogin", true);
-    getServletContext().getRequestDispatcher("/WEB-INF/jsp/helpDeskPage.jsp").forward(req, resp);
+    getServletContext().getRequestDispatcher("/WEB-INF/jsp/helpDesk.jsp").forward(req, resp);
   }
 }

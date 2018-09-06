@@ -4,7 +4,8 @@ import itacademy.domain.dao.impl.SystemUserDaoImpl;
 import itacademy.domain.entity.Branch;
 import itacademy.domain.entity.Subdivision;
 import itacademy.domain.entity.SystemUser;
-import itacademy.dto.SystemUserDto;
+import itacademy.dto.models.SystemUserDto;
+import itacademy.services.interfaces.SystemUserService;
 
 import java.util.List;
 import java.util.Optional;

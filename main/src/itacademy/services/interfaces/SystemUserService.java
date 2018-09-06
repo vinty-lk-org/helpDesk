@@ -1,7 +1,7 @@
-package itacademy.services;
+package itacademy.services.interfaces;
 
 import itacademy.domain.entity.SystemUser;
-import itacademy.dto.SystemUserDto;
+import itacademy.dto.models.SystemUserDto;
 
 import java.util.List;
 

@@ -2,7 +2,8 @@ package itacademy.services;
 
 import itacademy.domain.dao.impl.SubdivisionDaoImpl;
 import itacademy.domain.entity.Subdivision;
-import itacademy.dto.SubdivisionDto;
+import itacademy.dto.models.SubdivisionDto;
+import itacademy.services.interfaces.SubdivisionService;
 
 import java.util.List;
 import java.util.stream.Collectors;

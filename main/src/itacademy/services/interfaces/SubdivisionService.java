@@ -1,7 +1,7 @@
-package itacademy.services;
+package itacademy.services.interfaces;
 
 import itacademy.domain.entity.Subdivision;
-import itacademy.dto.SubdivisionDto;
+import itacademy.dto.models.SubdivisionDto;
 
 import java.util.List;
 

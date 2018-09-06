@@ -1,4 +1,4 @@
-package itacademy.dto;
+package itacademy.dto.models;
 
 import lombok.*;
 
