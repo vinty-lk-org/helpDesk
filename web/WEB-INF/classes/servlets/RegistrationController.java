@@ -29,15 +29,15 @@ public class RegistrationController extends HttpServlet {
     }
 
     private SystemUserDto getReqForCreateSystemUserDto(HttpServletRequest request) {
-        return new SystemUserDto(
-                SystemUserDto.builder()
-                        .name(request.getParameter("nameUser"))
-                        .family(request.getParameter("family"))
-                        .email(request.getParameter("email"))
-                        .password(request.getParameter("password"))
-                        .branchId(Long.valueOf(request.getParameter("branch_id")))
-                        .subdivisionId(Long.valueOf(request.getParameter("subdivision_id")))
-                        .build()
-        );
+        SystemUserDto userDto = SystemUserDto.builder()
+                .name(request.getParameter("nameUser"))
+                .family(request.getParameter("family"))
+                .email(request.getParameter("email"))
+                .password(request.getParameter("password"))
+                .branchId(Long.valueOf(request.getParameter("branch_id")))
+                .subdivisionId(Long.valueOf(request.getParameter("subdivision_id")))
+                .build();
+        System.out.println(userDto);
+        return new SystemUserDto(userDto);
     }
 }

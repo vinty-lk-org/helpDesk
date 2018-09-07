@@ -17,7 +17,7 @@
             </div>
             <div class="medium-6 cell">
                 <div class="expanded button-group">
-                    <A href="${pageContext.request.contextPath}/adminFillPage"
+                    <A href="${pageContext.request.contextPath}/adminFillPage">
                     <button type="submit" class="button success"><b>Заполнить справочники</b></button>
                     </A>
                 </div>
