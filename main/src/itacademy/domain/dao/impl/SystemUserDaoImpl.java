@@ -102,14 +102,17 @@ public class SystemUserDaoImpl implements SystemUserDao {
                 preparedStatement.setLong(5, entity.getBranch().getId());
                 preparedStatement.setLong(6, entity.getSubdivision().getId());
                 preparedStatement.executeUpdate();
+                connection.setAutoCommit(false);
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
                     id = resultSet.getLong("id");
+                    connection.commit();
                 }
                 try (PreparedStatement preparedStatement2 = connection.prepareStatement(SQL_SAVE_USERS_PRIVILEGES)) {
                     preparedStatement2.setLong(1, id);
                     preparedStatement2.setLong(2, 2);
                     preparedStatement2.executeUpdate();
+                    connection.commit();
                 }
             }
         } catch (SQLException e) {
@@ -124,12 +127,15 @@ public class SystemUserDaoImpl implements SystemUserDao {
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_USERS_PRIVILEGES)) {
                 preparedStatement.setLong(1, id);
+                connection.setAutoCommit(false);
                 preparedStatement.executeUpdate();
                 try (PreparedStatement preparedStatement2 = connection.prepareStatement(SQL_DELETE_SYSTEM_USER)) {
                     preparedStatement2.setLong(1, id);
                     preparedStatement2.executeUpdate();
+                    connection.commit();
                 }
             }
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
