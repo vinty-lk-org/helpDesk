@@ -14,7 +14,7 @@ public final class ConnectionManager {
 //    private static final String URL = "jdbc:postgresql://localhost:5432/Help_desk";
 //    private static final String USERNAME = "root";
 //    private static final String PASSWORD = "root";
-
+//
 //    static {
 //        try {
 //            Class.forName("org.postgresql.Driver");
@@ -22,7 +22,7 @@ public final class ConnectionManager {
 //            e.printStackTrace();
 //        }
 //    }
-
+//
 //    public static Connection getConnection() throws SQLException {
 //        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
 //    }
@@ -30,7 +30,8 @@ public final class ConnectionManager {
 
 //  Через пул.
     private static final String DB_URL =
-            "jdbc:postgresql://localhost:5432/Help_desk?autoReconnect=true&useSSL=false&characterEncoding=UTF-8";
+//            "jdbc:postgresql://localhost:5432/Help_desk?autoReconnect=true&useSSL=false&characterEncoding=UTF-8";
+        "jdbc:postgresql://localhost:5432/Help_desk";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
     private static DataSource dataSource;
