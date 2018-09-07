@@ -28,14 +28,14 @@ public class RegistrationController extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
     }
 
-    private SystemUserDto getReqForCreateSystemUserDto(HttpServletRequest request) {
+    private SystemUserDto getReqForCreateSystemUserDto(HttpServletRequest req) {
         SystemUserDto userDto = SystemUserDto.builder()
-                .name(request.getParameter("nameUser"))
-                .family(request.getParameter("family"))
-                .email(request.getParameter("email"))
-                .password(request.getParameter("password"))
-                .branchId(Long.valueOf(request.getParameter("branch_id")))
-                .subdivisionId(Long.valueOf(request.getParameter("subdivision_id")))
+                .name(req.getParameter("nameUser"))
+                .family(req.getParameter("family"))
+                .email(req.getParameter("email"))
+                .password(req.getParameter("password"))
+                .branchId(Long.valueOf(req.getParameter("branch_id")))
+                .subdivisionId(Long.valueOf(req.getParameter("subdivision_id")))
                 .build();
         System.out.println(userDto);
         return new SystemUserDto(userDto);
