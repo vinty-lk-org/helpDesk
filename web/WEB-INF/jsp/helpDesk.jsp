@@ -8,28 +8,6 @@
 </head>
 
 <body>
-
-<%--<c:if test="${not empty pageContext.request.userPrincipal}">--%>
-    <%--User: <c:out value="${pageContext.request.userPrincipal.name}"/>--%>
-<%--</c:if>--%>
-
-<%--<div class="grid-container">--%>
-<%--<div class="grid-x grid-padding-x">--%>
-<%--<div class="medium-3 cell">--%>
-<%--</div>--%>
-<%--<div class="medium-6 cell">--%>
-<%--${requestScope.myName}--%>
-<%--<select name="problems" id="problems">--%>
-<%--<c:forEach items="${requestScope.problems}" var="problems">--%>
-<%--<option value="${problems.id}">${problems.name} </option>--%>
-<%--</c:forEach>--%>
-<%--</select>--%>
-<%--</div>--%>
-<%--<div class="medium-3 cell">--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/user" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">

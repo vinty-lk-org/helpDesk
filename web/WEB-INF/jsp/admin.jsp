@@ -8,28 +8,39 @@
 </head>
 
 <body>
-<jsp:include page="../jsp/fragments/nav.jsp"/>
-    <br>
 
-    <div class="grid-container">
-        <div class="grid-x grid-padding-x">
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+        <div class="medium-3 cell">
+        </div>
+        <div class="medium-6 cell">
+            <jsp:include page="../jsp/fragments/navadmin.jsp"/>
+        </div>
+        <div class="medium-3 cell">
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+        <div class="medium-3 cell">
+        </div>
+        <div class="medium-6 cell">
+            <div class="expanded button-group">
+                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Заполнить
+                    справочники</b> </A>
+            </div>
             <div class="medium-3 cell">
             </div>
-            <div class="medium-6 cell">
-                <div class="expanded button-group">
-                    <A href="${pageContext.request.contextPath}/adminFillPage">
-                    <button type="submit" class="button success"><b>Заполнить справочники</b></button>
-                    </A>
-                </div>
-                <div class="medium-3 cell">
-
-                </div>
-            </div>
         </div>
+    </div>
+</div>
 
-        <script>
-            $(document).foundation();
-        </script>
+
+<script>
+    $(document).foundation();
+</script>
 </body>
 
 </html>

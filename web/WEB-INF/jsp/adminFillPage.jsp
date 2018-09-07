@@ -8,18 +8,22 @@
 </head>
 
 <body>
-<jsp:include page="../jsp/fragments/nav.jsp"/>
-<c:if test="${not empty pageContext.request.userPrincipal}">
-    User: <c:out value="${pageContext.request.userPrincipal.name}"/>
-</c:if>
-<br>
-<br>
-<p align="center"><b>Справочники</b></p>
 
+<%--<c:if test="${not empty pageContext.request.userPrincipal}">--%>
+    <%--User: <c:out value="${pageContext.request.userPrincipal.name}"/>--%>
+<%--</c:if>--%>
+
+<%--<p align="center"><b>Справочники</b></p>--%>
+<div class="medium-6 cell">
+    <jsp:include page="../jsp/fragments/navadmin.jsp"/>
+</div>
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/branchSave" method="post">
+
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
+
             <div class="medium-3 cell">
+
                 <label>Заполните название филиала
                     <input type="text" name="nameBranch" placeholder="Название филиала">
                 </label>
