@@ -41,6 +41,7 @@
         <td name="data">${user.email}</td>
         <td name="executor">${user.subdivisionName}</td>
         <td name="status_id">${user.branchName}</td>
+        <td><a href="${pageContext.request.contextPath}/?id=${user.id}&lang=ru"></a></td>
     </tr>
     </c:forEach>
     </tbody>

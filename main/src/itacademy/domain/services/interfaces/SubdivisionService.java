@@ -1,4 +1,4 @@
-package itacademy.services.interfaces;
+package itacademy.domain.services.interfaces;
 
 import itacademy.domain.entity.Subdivision;
 import itacademy.dto.models.SubdivisionDto;

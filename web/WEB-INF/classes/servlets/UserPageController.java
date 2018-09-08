@@ -1,8 +1,7 @@
 package servlets;
 
-import itacademy.domain.dao.impl.ProblemDaoImpl;
-import itacademy.dto.models.TaskDto;
-import itacademy.services.TaskServiceImpl;
+import itacademy.domain.dao.impl.SystemUserDaoImpl;
+import itacademy.domain.services.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,25 +15,15 @@ public class UserPageController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("problems", ProblemDaoImpl.getInstance().findAll());
-        req.setAttribute("myName", "Выберите категорию");
-        showPage(req, resp);
+        req.setAttribute("branches", BranchServiceImpl.getInstance().getAllBranchesDto());
+        req.setAttribute("subdivisions", SubdivisionServiceImpl.getInstance().getAllSubdivisionDto());
+        req.setAttribute("privileges", PrivilegeServiceImpl.getInstance().getAllPrivilege());
+        req.setAttribute("user", SystemUserServiceImpl.getInstance().findByEmail("lk@belint.by"));
+        getServletContext().getRequestDispatcher("/WEB-INF/jsp/user.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        TaskServiceImpl.getInstance().save(getReqForCreateTaskDto(req));
-        resp.sendRedirect("/user");
-    }
-
-    private TaskDto getReqForCreateTaskDto(HttpServletRequest request) {
-        return new TaskDto(TaskDto.builder()
-                .name(request.getParameter("nameTask"))
-                .text(request.getParameter("textUser"))
-                .build());
-    }
-
-    private void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/user.jsp").forward(req, resp);
     }
 }

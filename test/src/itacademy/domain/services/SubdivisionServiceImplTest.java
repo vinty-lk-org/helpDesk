@@ -1,4 +1,4 @@
-package itacademy.services;
+package itacademy.domain.services;
 
 import itacademy.dto.models.SubdivisionDto;
 import org.junit.Assert;

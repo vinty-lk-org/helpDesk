@@ -1,138 +1,113 @@
-<%--<%@ page contentType="text/html; charset=UTF-8" language="java" %>--%>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
-<%--<html>--%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%--<head>--%>
-    <%--<title>user</title>--%>
-    <%--<jsp:include page="../jsp/fragments/header.jsp"/>--%>
-<%--</head>--%>
+<html>
+<head>
+    <title>User</title>
+    <jsp:include page="../jsp/fragments/header.jsp"/>
+    <script type="text/javascript">
+        <%@include file="../../resources/js/myJs.js" %>
+    </script>
+</head>
+<body>
+${login}
+<form name="form1" id="form1" action="${pageContext.request.contextPath}/registration" method="post">
+    <div class="grid-container">
+        <jsp:include page="../jsp/fragments/nav.jsp"/>
+        <h2>Пользователь</h2>
+        <br>
+        <div class="grid-x grid-padding-x">
+            <div class="medium-6 cell">
+                <div class="row">
+                    <div id="divInput1" class="callout secondary border-none" onmouseover="divHover(this)"
+                         onmouseout="divNorm(this)">
+                        <label>e-mail
+                            <input value="${requestScope.user.email}" name="email" type="text" id="middle-label">
+                            <span style="color:red" id="input1Error"></span>
+                            <span style="color:darkgreen" id="input11Error"></span>
+                        </label>
+                    </div>
+                    <div id="divInput2" class="callout secondary border-none" onmouseover="divHover(this)"
+                         onmouseout="divNorm(this)">
+                        <label>Придумайте пароль ддлинной не менее 4 символа
+                            <input value="${requestScope.user.password}" name="password" type="text" id="middle-labe2">
+                            <span style="color:red" id="input2Error"></span>
+                        </label>
+                    </div>
+                    <div id="divInput3" class="callout secondary border-none" onmouseover="divHover(this)"
+                         onmouseout="divNorm(this)">
+                        <label>Введите ваш пароль еще раз, что бы убедится в правильности ввода
+                            <input name="passwordTwo" type="text" id="middle-labe3">
+                            <span style="color:red" id="input3Error"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="medium-6 cell">
+                <br>
+                <div class="row">
+                    <label>Введите ваше имя
+                        <input value="${requestScope.user.name}" type="text" name="nameUser" placeholder="Иван">
+                    </label>
+                    <label>Введите вашу фамилию
+                        <input value="${requestScope.user.family}" type="text" name="family" placeholder="Иванов">
+                    </label>
+                    <label for="branches">Выберите из списка ваше местоположение (филиал)
+                        <p>Предыдущее значение было ${requestScope.user.branchId}</p>
+                        <select name="branch_id" id="branches">
+                            <c:forEach items="${requestScope.branches}" var="branches">
+                                <option value="${branches.id}">${branches.name} ( ${branches.address})</option>
+                            </c:forEach>
+                        </select>
+                    </label>
+                    <label for="subdivisions">Выберете из списка ваш отдел (подразделение)
+                        <p>Предыдущее значение было ${requestScope.user.subdivisionId}</p>
+                        <select name="subdivision_id" id="subdivisions">
+                            <c:forEach items="${requestScope.subdivisions}" var="subdivision">
+                                <option value="${subdivision.id}">${subdivision.name}</option>
+                            </c:forEach>
+                        </select>
+                    </label>
+                    <label for="privileges">Привилегии
+                        <p>Предыдущее значение было ${requestScope.user.usersIdPrivilegesId}</p>
+                        <select name="subdivision_id" id="privileges">
+                            <c:forEach items="${requestScope.subdivisions}" var="subdivision">
+                                <option value="${subdivision.id}">${subdivision.name}</option>
+                            </c:forEach>
+                        </select>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="expanded button-group">
+            <button name="but1" type="submit" class="button success color-bar"><b>Зарегистритовать
+                пользователя</b></button>
+            <A class="hollow button primary" href="${pageContext.request.contextPath}/login"
+               title="На страницу Логина">
+                На страницу Логина </A>
+            </button>
+        </div>
+    </div>
+</form>
+</div>
+<script>
+    function getUrl() {
+        return `${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}`;
 
-<%--<body>--%>
-<%--<jsp:include page="../jsp/fragments/nav.jsp"/>--%>
-<%--<c:if test="${not empty pageContext.request.userPrincipal}">--%>
-    <%--User: <c:out value="${pageContext.request.userPrincipal.name}"/>--%>
-<%--</c:if>--%>
-<%--<br>--%>
-<%--<br>--%>
-<%--<div class="grid-container">--%>
-    <%--<div class="grid-x grid-padding-x">--%>
-        <%--<div class="medium-3 cell">--%>
-        <%--</div>--%>
-        <%--<div class="medium-6 cell">--%>
-            <%--${requestScope.myName}--%>
-            <%--<select name="problems" id="problems">--%>
-                <%--<c:forEach items="${requestScope.problems}" var="problems">--%>
-                    <%--<option value="${problems.id}">${problems.name} </option>--%>
-                <%--</c:forEach>--%>
-            <%--</select>--%>
-        <%--</div>--%>
-        <%--<div class="medium-3 cell">--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
-
-<%--<form name="textform" id="textform" action="${pageContext.request.contextPath}/user" method="post">--%>
-
-    <%--<div class="grid-container">--%>
-        <%--<div class="grid-x grid-padding-x">--%>
-            <%--<div class="medium-3 cell">--%>
-            <%--</div>--%>
-            <%--<div class="medium-6 cell">--%>
-                <%--<label>Краткое наименование заявки--%>
-                    <%--<input type="text" name="nameTask" placeholder="Введите краткое описание проблемы">--%>
-                <%--</label>--%>
-            <%--</div>--%>
-            <%--<div class="medium-3 cell">--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-
-    <%--<div class="grid-container">--%>
-        <%--<div class="grid-x grid-padding-x">--%>
-            <%--<div class="medium-3 cell">--%>
-            <%--</div>--%>
-            <%--<div class="medium-6 cell">--%>
-
-                <%--<label> Опишите возникшую проблему--%>
-                    <%--<textarea name="textUser" placeholder="Подробно опишите возникшую проблему" cols="40"--%>
-                              <%--rows="3"></textarea>--%>
-                    <%--<div class="expanded button-group">--%>
-                        <%--<button type="submit" class="button success"><b>Отправить заявку</b></button>--%>
-                    <%--</div>--%>
-                <%--</label>--%>
-
-            <%--</div>--%>
-            <%--<div class="medium-1 cell">--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</form>--%>
-
-<%--<p align="center"><b>Ваши заявки</b></p>--%>
-<%--<div class="grid-container">--%>
-    <%--<div class="grid-x grid-padding-x">--%>
-        <%--<div class="medium-1 cell">--%>
-        <%--</div>--%>
-        <%--<div class="medium-10 cell">--%>
-            <%--<table>--%>
-                <%--<thead>--%>
-                <%--<tr>--%>
-                    <%--<th width="50">Номер заявки</th>--%>
-                    <%--<th>Название заявки</th>--%>
-                    <%--<th width="250">Тип заявки</th>--%>
-                    <%--<th width="150">Дата заявки</th>--%>
-                <%--</tr>--%>
-                <%--</thead>--%>
-                <%--<tbody>--%>
-                <%--&lt;%&ndash;<c:if test="${not empty pageContext.request.userPrincipal}">&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;User: <c:out value="${pageContext.request.userPrincipal.name}"/>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;</c:if>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<c:if test="${not empty pageContext.request.taskTableName}">&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<tr name="taskTableName">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<td name="taskTableName">taskTableName.taskId</td>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<td name="taskTableName.taskName">taskTableName.taskName</td>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<td name="taskTableName.taskType">taskTableName.taskType</td>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<td name="taskTableName.taskDate">taskTableName.taskDate</td>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;</c:if>&ndash;%&gt;--%>
-                <%--<tr name="taskTableName">--%>
-                    <%--<td name="taskId">33</td>--%>
-                    <%--<td name="taskName">Не работает интернет</td>--%>
-                    <%--<td name="taskType">Интернет</td>--%>
-                    <%--<td name="taskDate">03/04/2018</td>--%>
-                <%--</tr>--%>
-
-
-                <%--<tr>--%>
-                    <%--<td>34</td>--%>
-                    <%--<td>Не работает монитор</td>--%>
-                    <%--<td>Компьютер</td>--%>
-                    <%--<td>01/07/2018</td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                    <%--<td>35</td>--%>
-                    <%--<td>Не работает программа Электронные счет фактуры</td>--%>
-                    <%--<td>Электронные счет факутры</td>--%>
-                    <%--<td>03/03/2018</td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                    <%--<td>36</td>--%>
-                    <%--<td>Не работает МФУ в холле приемной</td>--%>
-                    <%--<td>принтеры</td>--%>
-                    <%--<td>03/09/2018</td>--%>
-                <%--</tr>--%>
-                <%--</tbody>--%>
-            <%--</table>--%>
-        <%--</div>--%>
-        <%--<div class="medium-1 cell">--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
-
-<%--<script>--%>
-
-    <%--$(document).foundation();--%>
+    }
+    console.log(getUrl());
+</script>
+<%--<script type="text/javascript">--%>
+<%--function natIP() {--%>
+<%--var w = window.location;--%>
+<%--var host = w.host;--%>
+<%--var port = w.port || 80;--%>
+<%--var Socket = (new java.net.Socket(host,port)).getLocalAddress().getHostAddress();--%>
+<%--return Socket;--%>
+<%--}--%>
 <%--</script>--%>
-<%--</body>--%>
 
-<%--</html>--%>
+<script src="../../resources/js/app.js"></script>
+<script src="../../resources/js/myJsUserChange.js"></script>
+</body>
+</html>

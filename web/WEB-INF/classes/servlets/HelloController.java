@@ -2,9 +2,8 @@ package servlets;
 
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.entity.Branch;
-import itacademy.services.SystemUserServiceImpl;
+import itacademy.domain.services.SystemUserServiceImpl;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -1,9 +1,9 @@
-package itacademy.services;
+package itacademy.domain.services;
 
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.entity.Task;
 import itacademy.dto.models.TaskDto;
-import itacademy.services.interfaces.TaskService;
+import itacademy.domain.services.interfaces.TaskService;
 
 import java.sql.*;
 import java.util.List;

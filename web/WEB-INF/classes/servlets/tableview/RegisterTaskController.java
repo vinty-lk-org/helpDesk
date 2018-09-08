@@ -1,7 +1,7 @@
 package servlets.tableview;
 
 import itacademy.domain.dao.impl.TaskDaoImpl;
-import itacademy.services.SystemUserServiceImpl;
+import itacademy.domain.services.SystemUserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

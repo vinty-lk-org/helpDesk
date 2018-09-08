@@ -2,7 +2,7 @@ package servlets;
 
 import itacademy.domain.dao.impl.ProblemDaoImpl;
 import itacademy.dto.models.TaskDto;
-import itacademy.services.TaskServiceImpl;
+import itacademy.domain.services.TaskServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

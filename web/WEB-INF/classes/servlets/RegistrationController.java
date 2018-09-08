@@ -1,9 +1,9 @@
 package servlets;
 
 import itacademy.dto.models.SystemUserDto;
-import itacademy.services.BranchServiceImpl;
-import itacademy.services.SubdivisionServiceImpl;
-import itacademy.services.SystemUserServiceImpl;
+import itacademy.domain.services.BranchServiceImpl;
+import itacademy.domain.services.SubdivisionServiceImpl;
+import itacademy.domain.services.SystemUserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

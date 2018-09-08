@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.entity.Branch;
 import itacademy.dto.models.BranchDto;
-import itacademy.services.BranchServiceImpl;
+import itacademy.domain.services.BranchServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;

@@ -1,11 +1,11 @@
-package itacademy.services;
+package itacademy.domain.services;
 
 import itacademy.domain.dao.impl.SystemUserDaoImpl;
 import itacademy.domain.entity.Branch;
 import itacademy.domain.entity.Subdivision;
 import itacademy.domain.entity.SystemUser;
 import itacademy.dto.models.SystemUserDto;
-import itacademy.services.interfaces.SystemUserService;
+import itacademy.domain.services.interfaces.SystemUserService;
 
 import java.util.List;
 import java.util.Optional;

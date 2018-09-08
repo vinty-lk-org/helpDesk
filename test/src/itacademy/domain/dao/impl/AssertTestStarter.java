@@ -1,9 +1,9 @@
 package itacademy.domain.dao.impl;
 
 import itacademy.domain.dao.TestDaoHelperTest;
-import itacademy.services.BranchServiceImplTest;
-import itacademy.services.SubdivisionServiceImplTest;
-import itacademy.services.SystemUserServiceImplTest;
+import itacademy.domain.services.BranchServiceImplTest;
+import itacademy.domain.services.SubdivisionServiceImplTest;
+import itacademy.domain.services.SystemUserServiceImplTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 

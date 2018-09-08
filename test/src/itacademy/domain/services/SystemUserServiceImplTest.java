@@ -1,4 +1,4 @@
-package itacademy.services;
+package itacademy.domain.services;
 
 import itacademy.domain.dao.TestDaoHelper;
 import itacademy.domain.dao.impl.BranchDaoImpl;

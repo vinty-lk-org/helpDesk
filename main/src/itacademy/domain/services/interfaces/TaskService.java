@@ -1,4 +1,4 @@
-package itacademy.services.interfaces;
+package itacademy.domain.services.interfaces;
 
 import itacademy.domain.entity.Task;
 import itacademy.dto.models.TaskDto;
