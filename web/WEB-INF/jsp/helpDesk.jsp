@@ -10,7 +10,7 @@
 <body>
 
 <%--<c:if test="${not empty pageContext.request.userPrincipal}">--%>
-    <%--User: <c:out value="${pageContext.request.userPrincipal.name}"/>--%>
+<%--User: <c:out value="${pageContext.request.userPrincipal.name}"/>--%>
 <%--</c:if>--%>
 
 <%--<div class="grid-container">--%>
@@ -84,23 +84,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%--<c:if test="${not empty pageContext.request.userPrincipal}">--%>
-                <%--User: <c:out value="${pageContext.request.userPrincipal.name}"/>--%>
-                <%--</c:if>--%>
-                <%--<c:if test="${not empty pageContext.request.taskTableName}">--%>
-                <%--<tr name="taskTableName">--%>
-                <%--<td name="taskTableName">taskTableName.taskId</td>--%>
-                <%--<td name="taskTableName.taskName">taskTableName.taskName</td>--%>
-                <%--<td name="taskTableName.taskType">taskTableName.taskType</td>--%>
-                <%--<td name="taskTableName.taskDate">taskTableName.taskDate</td>--%>
-                <%--</tr>--%>
-                <%--</c:if>--%>
+                <tr name="taskTableName">
+                    <td name="taskId">33</td>
+                    <td name="taskName">Не работает сапод</td>
+                    <td name="data">22.05.2018</td>
+                    <td name="executor">Тит Пула</td>
+                    <td name="status_id" bgcolor="aqua">на рассмотрении</td>
+                </tr>
+                <tr name="taskTableName">
+                    <td name="taskId">33</td>
+                    <td name="taskName">Не работает монитор</td>
+                    <td name="data">22.05.2018</td>
+                    <td name="executor">Зыскунов Ярослав</td>
+                    <td name="status_id" bgcolor="#dc143c">закрыто</td>
+                </tr>
                 <tr name="taskTableName">
                     <td name="taskId">33</td>
                     <td name="taskName">Не работает интернет</td>
                     <td name="data">22.05.2018</td>
-                    <td name="executor">Зыскунов Ярослав</td>
-                    <td name="status_id">на рассмотрении</td>
+                    <td name="executor">Юлий Цезарь</td>
+                    <td name="status_id" bgcolor="#7fffd4">выполнено</td>
                 </tr>
 
                 </tbody>

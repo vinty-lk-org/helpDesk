@@ -2,6 +2,7 @@ package itacademy.domain.dao.impl;
 
 import itacademy.domain.dao.TestDaoHelperTest;
 import itacademy.domain.services.BranchServiceImplTest;
+import itacademy.domain.services.PrivilegeServiceImplTest;
 import itacademy.domain.services.SubdivisionServiceImplTest;
 import itacademy.domain.services.SystemUserServiceImplTest;
 import org.junit.runner.RunWith;
@@ -18,6 +19,10 @@ import org.junit.runners.Suite;
         PrivilegeDaoImplTest.class,
         SystemUserServiceImplTest.class,
         SubdivisionServiceImplTest.class,
+        BranchServiceImplTest.class,
+        SystemUserServiceImplTest.class,
+        SubdivisionServiceImplTest.class,
+        PrivilegeServiceImplTest.class,
         BranchServiceImplTest.class
 })
 public class AssertTestStarter {
