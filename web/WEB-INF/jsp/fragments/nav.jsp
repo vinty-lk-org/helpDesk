@@ -4,10 +4,10 @@
     <ul class="dropdown menu" data-dropdown-menu>
         <li><a href="/helpDesk" text="Главная"></a></li>
         <li>
-            <a href="/helpDesk">Меню пользователя</a>
+            <a href="">Меню пользователя</a>
             <ul class="menu vertical">
-                <li><a href="/helpDesk">статистика заявок - базовая информация</a></li>
-                <li><a href="/admin">завершенные заявки</a></li>
+                <li><a href="/admin">на страницу админа</a></li>
+                <li><a href="/helpDesk">на страницу пользователя</a></li>
             </ul>
         </li>
         <a href="/helpDesk">Пользователь</a>
