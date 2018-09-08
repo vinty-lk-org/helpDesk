@@ -18,7 +18,7 @@ public class UserPageController extends HttpServlet {
         req.setAttribute("branches", BranchServiceImpl.getInstance().getAllBranchesDto());
         req.setAttribute("subdivisions", SubdivisionServiceImpl.getInstance().getAllSubdivisionDto());
         req.setAttribute("privileges", PrivilegeServiceImpl.getInstance().getAllPrivilege());
-        req.setAttribute("user", SystemUserServiceImpl.getInstance().findByEmail("lk@belint.by"));
+        req.setAttribute("user", SystemUserServiceImpl.getInstance().getSystemUserById(23L));
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/user.jsp").forward(req, resp);
     }
 

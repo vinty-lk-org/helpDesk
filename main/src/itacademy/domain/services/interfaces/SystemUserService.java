@@ -15,4 +15,6 @@ public interface SystemUserService {
 
   boolean isEmail(String email);
 
+  SystemUserDto getSystemUserById(Long id);
+
 }

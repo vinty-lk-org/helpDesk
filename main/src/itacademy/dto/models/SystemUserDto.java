@@ -8,11 +8,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @ToString
 @Builder
+@AllArgsConstructor
 public class SystemUserDto {
   private Long id;
   private String name;
@@ -24,6 +24,18 @@ public class SystemUserDto {
   private Long subdivisionId;
   private String subdivisionName;
   private Long usersIdPrivilegesId;
+
+  public SystemUserDto(Long id, String name, String family, String email, String password, Long branchId, String branchName, Long subdivisionId, String subdivisionName) {
+    this.id = id;
+    this.name = name;
+    this.family = family;
+    this.email = email;
+    this.password = password;
+    this.branchId = branchId;
+    this.branchName = branchName;
+    this.subdivisionId = subdivisionId;
+    this.subdivisionName = subdivisionName;
+  }
 
   public SystemUserDto(Long id,
                        String name,

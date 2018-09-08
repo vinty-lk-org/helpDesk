@@ -35,8 +35,27 @@ public class SystemUserServiceImpl implements SystemUserService {
   }
 
   @Override
+  public SystemUserDto getSystemUserById(Long id) {
+    Optional<SystemUser> userOptional = SystemUserDaoImpl.getInstance().findById(id);
+    return userOptional.map(this::mapperSystemUserToDto).orElse(null);
+  }
+
+  @Override
   public Long saveUser(SystemUserDto systemUserDto) {
     return SystemUserDaoImpl.getInstance().save(mapperSystemUserDtoToSystemUser(systemUserDto));
+  }
+
+  private SystemUserDto mapperSystemUserToDto(SystemUser systemUser) {
+    return new SystemUserDto(
+                    systemUser.getId(),
+                    systemUser.getName(),
+                    systemUser.getFamily(),
+                    systemUser.getEmail(),
+                    systemUser.getPassword(),
+                    systemUser.getBranch().getId(),
+                    systemUser.getBranch().getName(),
+                    systemUser.getSubdivision().getId(),
+                    systemUser.getSubdivision().getName());
   }
 
   private List<SystemUserDto> mapperListSystemUserToDto(List<SystemUser> systemUsersList) {
@@ -47,7 +66,9 @@ public class SystemUserServiceImpl implements SystemUserService {
                     systemUser.getFamily(),
                     systemUser.getEmail(),
                     systemUser.getPassword(),
+                    systemUser.getBranch().getId(),
                     systemUser.getBranch().getName(),
+                    systemUser.getSubdivision().getId(),
                     systemUser.getSubdivision().getName()
             ))
             .collect(Collectors.toList());

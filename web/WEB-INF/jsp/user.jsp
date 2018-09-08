@@ -37,7 +37,7 @@ ${login}
                     <div id="divInput3" class="callout secondary border-none" onmouseover="divHover(this)"
                          onmouseout="divNorm(this)">
                         <label>Введите ваш пароль еще раз, что бы убедится в правильности ввода
-                            <input name="passwordTwo" type="text" id="middle-labe3">
+                            <input value="${requestScope.user.password}" name="passwordTwo" type="text" id="middle-labe3">
                             <span style="color:red" id="input3Error"></span>
                         </label>
                     </div>
@@ -53,7 +53,7 @@ ${login}
                         <input value="${requestScope.user.family}" type="text" name="family" placeholder="Иванов">
                     </label>
                     <label for="branches">Выберите из списка ваше местоположение (филиал)
-                        <p>Предыдущее значение было ${requestScope.user.branchId}</p>
+                        <p>Предыдущее значение было ${requestScope.user.branchName}</p>
                         <select name="branch_id" id="branches">
                             <c:forEach items="${requestScope.branches}" var="branches">
                                 <option value="${branches.id}">${branches.name} ( ${branches.address})</option>
@@ -61,7 +61,7 @@ ${login}
                         </select>
                     </label>
                     <label for="subdivisions">Выберете из списка ваш отдел (подразделение)
-                        <p>Предыдущее значение было ${requestScope.user.subdivisionId}</p>
+                        <p>Предыдущее значение было ${requestScope.user.subdivisionName}</p>
                         <select name="subdivision_id" id="subdivisions">
                             <c:forEach items="${requestScope.subdivisions}" var="subdivision">
                                 <option value="${subdivision.id}">${subdivision.name}</option>
