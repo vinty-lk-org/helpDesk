@@ -5,10 +5,10 @@
 <title>Title</title>
 
 <script type="text/javascript">
-    <%@include file="../../../resources/js/vendor/jquery-3.3.1.min.js" %>
+<%@include file="../../../resources/js/vendor/jquery-3.3.1.min.js" %>
 </script>
 <script type="text/javascript">
-    <%@include file="../../../resources/js/vendor/foundation.min.js" %>
+<%@include file="../../../resources/js/vendor/foundation.min.js" %>
 </script>
 <script type="text/javascript">
     <%@include file="../../../resources/js/sweetalert.min.js" %>
