@@ -20,22 +20,14 @@
         </div>
     </div>
 </div>
-
-<div>
-    <select name="registerUser" id="registerUser">
-        <c:forEach items="${requestScope.users}" var="reg">
-            <option value="${reg.id}" ${reg.name} ${reg.family} ${reg.subdivisionName} ${reg.branchName}</option>
-        </c:forEach>
-    </select>
-</div>
-
-
+<br>
 <table>
     <thead>
     <tr>
         <th width="100">ID</th>
         <th width="250">Имя</th>
         <th width="250">Фамилия</th>
+        <th width="250">Почта</th>
         <th width="250">Исполнитель</th>
         <th>Адрес</th>
     </tr>
@@ -46,6 +38,7 @@
         <td name="taskId">${reg.id}</td>
         <td name="taskName">${reg.name}</td>
         <td name="data">${reg.family}</td>
+        <td name="data">${reg.email}</td>
         <td name="executor">${reg.subdivisionName}</td>
         <td name="status_id">${reg.branchName}</td>
     </tr>
@@ -58,10 +51,3 @@
 </script>
 </body>
 </html>
-
-
-<%--<td name="taskId">33</td>--%>
-<%--<td name="taskName">Не работает интернет</td>--%>
-<%--<td name="data">22.05.2018</td>--%>
-<%--<td name="executor">Зыскунов Ярослав</td>--%>
-<%--<td name="status_id">на рассмотрении</td>--%>
