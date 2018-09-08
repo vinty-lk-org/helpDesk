@@ -96,7 +96,7 @@
                     <td name="taskName">Не работает монитор</td>
                     <td name="data">22.05.2018</td>
                     <td name="executor">Зыскунов Ярослав</td>
-                    <td name="status_id" bgcolor="#dc143c">закрыто</td>
+                    <td name="status_id" bgcolor="#f08080">закрыто</td>
                 </tr>
                 <tr name="taskTableName">
                     <td name="taskId">33</td>

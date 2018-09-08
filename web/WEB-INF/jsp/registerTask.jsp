@@ -43,12 +43,19 @@
             <%--<td name="status_id">${task.branchName}</td>--%>
         </tr>
     </c:forEach>
-
-
-
-
     </tbody>
 </table>
+
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+        <div class="medium-3 cell">
+        </div>
+        <div class="medium-6 cell">
+            <div class="expanded button-group">
+                <A class="button success" href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную страницу админки</b> </A>
+            </div>
+            <div class="medium-3 cell">
+
 
 <script>
     $(document).foundation();
