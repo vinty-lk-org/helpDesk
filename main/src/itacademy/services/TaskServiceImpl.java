@@ -1,10 +1,12 @@
 package itacademy.services;
 
 import itacademy.connection.ConnectionManager;
+import itacademy.domain.entity.Task;
 import itacademy.dto.models.TaskDto;
 import itacademy.services.interfaces.TaskService;
 
 import java.sql.*;
+import java.util.List;
 
 public class TaskServiceImpl implements TaskService {
     private static final String SQL_SAVE = "INSERT INTO tasks (name,  text)" + "VALUES (?, ?);";
@@ -26,7 +28,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Long saveTask(TaskDto task) {
+    public Long save(TaskDto task) {
         Long id = 0L;
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
@@ -43,4 +45,11 @@ public class TaskServiceImpl implements TaskService {
         }
         return id;
     }
+
+    @Override
+    public List<Task> findAllSelf(Long id) {
+        return null;
+    }
+
+
 }

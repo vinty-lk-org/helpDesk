@@ -25,7 +25,7 @@ public class AdminFillPageController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        TaskServiceImpl.getInstance().saveTask(getReqForCreateTaskDto(req));
+        TaskServiceImpl.getInstance().save(getReqForCreateTaskDto(req));
         resp.sendRedirect("/user");
     }
 

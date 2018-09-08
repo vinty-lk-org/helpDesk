@@ -18,12 +18,13 @@ public class HelpDeskController extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     req.setAttribute("problems", ProblemDaoImpl.getInstance().findAll());
     req.setAttribute("myName", "Выберите категорию");
+    req.setAttribute("tasks", TaskServiceImpl.getInstance());
     showPage(req, resp);
   }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    TaskServiceImpl.getInstance().saveTask(getReqForCreateTaskDto(req));
+    TaskServiceImpl.getInstance().save(getReqForCreateTaskDto(req));
     resp.sendRedirect("/helpDesk");
   }
 

@@ -17,6 +17,7 @@ public class TaskDaoImpl implements TaskDao {
     private static final String SQL_FIND_ID = "{ ? = call tasks_findbyid(?)}";
     private static final String SQL_SAVE = "INSERT INTO tasks (name, listener_id, text, system_user_id, executor_id, operator_id, status_id)" + "VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String SQL_DELETE = "DELETE FROM tasks WHERE (id = ?)";
+    private static final String SQL_FIND_SELF_TASKS = "select * from tasks where system_user_id = ?;";
     private static TaskDaoImpl INSTANCE = null;
 
     public static TaskDaoImpl getInstance() {
@@ -63,57 +64,78 @@ public class TaskDaoImpl implements TaskDao {
     }
 
     @Override
-    public Optional<Task> findById(Long id) {
-        try (Connection connection = ConnectionManager.getConnection();
-             CallableStatement proc = connection.prepareCall(SQL_FIND_ID)) {
-            connection.setAutoCommit(false);
-            proc.registerOutParameter(1, Types.OTHER);
-            proc.setInt(2, Math.toIntExact(id));
-            proc.execute();
-            ResultSet resultSet = (ResultSet) proc.getObject(1);
-            while (resultSet.next()) {
-                return Optional.of(createTaskDaoFromResultSet(resultSet));
-            }
-            resultSet.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return Optional.empty();
-    }
-
-    @Override
-    public Long save(Task task) {
-        Long id = 0L;
+    public List<Task> findSelfTasks(Long id) {
+        List<Task> taskList = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setString(1, task.getName());
-                preparedStatement.setLong(2, task.getListener().getId());
-                preparedStatement.setString(3, task.getText());
-                preparedStatement.setLong(4, task.getSystemUserId().getId());
-                preparedStatement.setLong(5, task.getExecutorId().getId());
-                preparedStatement.setLong(6, task.getOperatorId().getId());
-                preparedStatement.setLong(7, task.getStatus_id());
-                preparedStatement.executeUpdate();
-                ResultSet resultSet = preparedStatement.getGeneratedKeys();
-                if (resultSet.next()) {
-                    id = resultSet.getLong("id");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return id;
-    }
-
-    @Override
-    public void delete(Long id) {
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
+            try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_FIND_SELF_TASKS))) {
                 preparedStatement.setLong(1, id);
-                preparedStatement.executeUpdate();
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    taskList.add(createTaskDaoFromResultSet(resultSet));
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
+            return taskList;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return taskList;
     }
-}
+
+        @Override
+        public Optional<Task> findById (Long id){
+            try (Connection connection = ConnectionManager.getConnection();
+                 CallableStatement proc = connection.prepareCall(SQL_FIND_ID)) {
+                connection.setAutoCommit(false);
+                proc.registerOutParameter(1, Types.OTHER);
+                proc.setInt(2, Math.toIntExact(id));
+                proc.execute();
+                ResultSet resultSet = (ResultSet) proc.getObject(1);
+                while (resultSet.next()) {
+                    return Optional.of(createTaskDaoFromResultSet(resultSet));
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return Optional.empty();
+        }
+
+        @Override
+        public Long save (Task task){
+            Long id = 0L;
+            try (Connection connection = ConnectionManager.getConnection()) {
+                try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
+                    preparedStatement.setString(1, task.getName());
+                    preparedStatement.setLong(2, task.getListener().getId());
+                    preparedStatement.setString(3, task.getText());
+                    preparedStatement.setLong(4, task.getSystemUserId().getId());
+                    preparedStatement.setLong(5, task.getExecutorId().getId());
+                    preparedStatement.setLong(6, task.getOperatorId().getId());
+                    preparedStatement.setLong(7, task.getStatus_id());
+                    preparedStatement.executeUpdate();
+                    ResultSet resultSet = preparedStatement.getGeneratedKeys();
+                    if (resultSet.next()) {
+                        id = resultSet.getLong("id");
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return id;
+        }
+
+        @Override
+        public void delete (Long id){
+            try (Connection connection = ConnectionManager.getConnection()) {
+                try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
+                    preparedStatement.setLong(1, id);
+                    preparedStatement.executeUpdate();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
