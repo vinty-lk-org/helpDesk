@@ -8,10 +8,19 @@
 </head>
 
 <body>
-
-<div class="medium-6 cell">
-    <jsp:include page="../jsp/fragments/navadmin.jsp"/>
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+        <div class="medium-3 cell">
+        </div>
+        <div class="medium-6 cell">
+            <jsp:include page="../jsp/fragments/navadmin.jsp"/>
+        </div>
+        <div class="medium-3 cell">
+        </div>
+    </div>
 </div>
+<br>
+<p align="center"><b>Справочники</b></p>
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/branchSave" method="post">
 
     <div class="grid-container">
