@@ -53,7 +53,7 @@ public class SystemUserDaoImpl implements SystemUserDao {
     }
 
     @Override
-    public List<SystemUser> findAll() {
+    public List<SystemUser>findAll() {
         List<SystemUser> SystemUserList = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection();
              CallableStatement proc = connection.prepareCall(SQL_FIND_ALL)) {

@@ -1,7 +1,6 @@
 package servlets.tableview;
 
-import itacademy.domain.dao.impl.BranchDaoImpl;
-import itacademy.domain.entity.Branch;
+import itacademy.domain.dao.impl.TaskDaoImpl;
 import itacademy.services.SystemUserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -11,19 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/registerUser")
-public class RegisterUserController extends HttpServlet {
-
+@WebServlet("/registerTask")
+public class RegisterTaskController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users", SystemUserServiceImpl.getInstance().getAllSystemUsersDto());
+        req.setAttribute("tasks", TaskDaoImpl.getInstance().findAll());
         showPage(req, resp);
     }
 
     private void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/jsp/registerUser.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/jsp/registerTask.jsp").forward(req, resp);
     }
 }
-
-
-

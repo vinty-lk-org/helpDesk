@@ -25,8 +25,8 @@
 
         <div class="medium-6 cell">
             <select name="users" id="users">
-                <c:forEach items="${requestScope.users}" var="reg">
-                    <option value="${reg.id}">${reg.name} ${reg.family} ${reg.subdivisionName} ${reg.branchName}</option>
+                <c:forEach items="${requestScope.users}" var="user">
+                    <option value="${user.id}">${user.name} ${user.family} ${user.subdivisionName} ${user.branchName}</option>
                 </c:forEach>
             </select>
         </div>
