@@ -8,9 +8,9 @@
 
 <body>
 <jsp:include page="../jsp/fragments/nav.jsp"/>
-<c:if test="${not empty pageContext.request.userPrincipal}">
-    User: <c:out value="${pageContext.request.userPrincipal.name}" />
-</c:if>
+<%--<c:if test="${not empty pageContext.request.userPrincipal}">--%>
+    <%--User: <c:out value="${pageContext.request.userPrincipal.name}" />--%>
+<%--</c:if>--%>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <h2>Привет из сервлета "hello.jsp"</h2>
@@ -25,8 +25,8 @@
 
         <div class="medium-6 cell">
             <select name="users" id="users">
-                <c:forEach items="${requestScope.users}" var="u">
-                    <option value="${u.id}">${u.name} ${u.family} ${u.subdivisionName} ${u.branchName}</option>
+                <c:forEach items="${requestScope.users}" var="reg">
+                    <option value="${reg.id}">${reg.name} ${reg.family} ${reg.subdivisionName} ${reg.branchName}</option>
                 </c:forEach>
             </select>
         </div>

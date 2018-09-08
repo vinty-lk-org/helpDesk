@@ -9,11 +9,6 @@
 
 <body>
 
-<%--<c:if test="${not empty pageContext.request.userPrincipal}">--%>
-    <%--User: <c:out value="${pageContext.request.userPrincipal.name}"/>--%>
-<%--</c:if>--%>
-
-<%--<p align="center"><b>Справочники</b></p>--%>
 <div class="medium-6 cell">
     <jsp:include page="../jsp/fragments/navadmin.jsp"/>
 </div>

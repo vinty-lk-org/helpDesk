@@ -80,8 +80,6 @@
                     <td name="executor">Зыскунов Ярослав</td>
                     <td name="status_id">на рассмотрении</td>
                 </tr>
-
-
                 <tr>
                     <td>34</td>
                     <td>Не работает монитор</td>
