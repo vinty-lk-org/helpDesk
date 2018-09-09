@@ -35,6 +35,7 @@ public class LoginController extends HttpServlet {
         String nameUser = user.getName();
         String password = user.getPassword();
         List<UserPrivilege> userPrivilegeList = UserPrivilegeServiceImpl.getInstance().findAllUsersPrivilegesByUserId(user.getId());
+        System.out.println(userPrivilegeList);
 
         Long privilege = userPrivilegeList.get(0).getPrivilegeId().getId();
         System.out.println(privilege);
@@ -43,6 +44,7 @@ public class LoginController extends HttpServlet {
             req.getSession().setAttribute("userLoggedIn", true);
             req.getSession().setAttribute("user", nameUser);
             req.getSession().setAttribute("privilege", privilege);
+            System.out.println("Привилегия данного пользователя = " + privilege);
             req.setAttribute("message", "Все ОК!");
             resp.sendRedirect("/helpDesk");
         } else {

@@ -8,7 +8,13 @@
 </head>
 
 <body>
-
+<c:if test="${sessionScope.privilege eq '1'}">
+    <h3>Я админ</h3>
+</c:if>
+<c:if test="${sessionScope.privilege eq '2'}">
+    <h3>Я Юзер</h3>
+</c:if>
+<li><a href="/helpDesk">на страницу пользователя</a></li>
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
