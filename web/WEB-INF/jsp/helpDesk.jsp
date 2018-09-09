@@ -25,6 +25,7 @@
             </div>
         </div>
     </div>
+
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
@@ -32,7 +33,7 @@
             <div class="medium-6 cell">
 
                 <label> Опишите возникшую проблему
-                    <textarea name="textUser" placeholder="Подробно опишите возникшую проблему" cols="40"
+                    <textarea name="textTask" placeholder="Подробно опишите возникшую проблему" cols="40"
                               rows="3"></textarea>
                     <div class="expanded button-group">
                         <button type="submit" class="button success"><b>Отправить заявку</b></button>
