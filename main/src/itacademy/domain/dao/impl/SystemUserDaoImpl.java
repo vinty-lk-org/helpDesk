@@ -94,6 +94,7 @@ public class SystemUserDaoImpl implements SystemUserDao {
     public Long save(SystemUser entity) {
         Long id = 0L;
         try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, entity.getName());
                 preparedStatement.setString(2, entity.getFamily());
@@ -102,7 +103,6 @@ public class SystemUserDaoImpl implements SystemUserDao {
                 preparedStatement.setLong(5, entity.getBranch().getId());
                 preparedStatement.setLong(6, entity.getSubdivision().getId());
                 preparedStatement.executeUpdate();
-                connection.setAutoCommit(false);
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
                     id = resultSet.getLong("id");

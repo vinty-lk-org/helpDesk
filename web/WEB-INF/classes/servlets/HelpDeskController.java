@@ -16,9 +16,7 @@ public class HelpDeskController extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    req.setAttribute("problems", ProblemDaoImpl.getInstance().findAll());
-    req.setAttribute("myName", "Выберите категорию");
-    req.setAttribute("tasks", TaskServiceImpl.getInstance());
+    req.setAttribute("tasks", TaskServiceImpl.getInstance().findAllSelf(23L));
     showPage(req, resp);
   }
 

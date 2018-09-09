@@ -26,34 +26,6 @@
 <%--</div>--%>
 <%--</div>--%>
 
-<form name="textform" id="textform" action="${pageContext.request.contextPath}/branchSave" method="post">
-
-    <div class="grid-container">
-        <div class="grid-x grid-padding-x">
-
-            <div class="medium-3 cell">
-
-                <label>Заполните название филиала
-                    <input type="text" name="nameBranch" placeholder="Название филиала">
-                </label>
-            </div>
-            <div class="medium-3 cell">
-                <label>Заполните адрес филиала
-                    <input type="text" name="addressBranch" placeholder="Адрес филиала">
-                </label>
-            </div>
-            <div class="medium-3 cell">
-                <label> <br>
-                    <div class="expanded button-group">
-                        <button type="submit" class="button success hollow"><b>Заполнить</b></button>
-                    </div>
-                </label>
-            </div>
-        </div>
-    </div>
-</form>
-
-
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
@@ -105,30 +77,30 @@
                     <th width="150">Дата заявки</th>
                     <th width="250">Исполнитель</th>
                     <th width="250">Статус</th>
+                    <th width="250">удалить</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr name="taskTableName">
+<c:forEach items="${requestScope.tasks}">
                     <td name="taskId">33</td>
                     <td name="taskName">Не работает сапод</td>
                     <td name="data">22.05.2018</td>
                     <td name="executor">Тит Пула</td>
                     <td name="status_id" bgcolor="aqua">на рассмотрении</td>
                 </tr>
-                <tr name="taskTableName">
-                    <td name="taskId">33</td>
-                    <td name="taskName">Не работает монитор</td>
-                    <td name="data">22.05.2018</td>
-                    <td name="executor">Зыскунов Ярослав</td>
-                    <td name="status_id" bgcolor="#f08080">закрыто</td>
-                </tr>
-                <tr name="taskTableName">
-                    <td name="taskId">33</td>
-                    <td name="taskName">Не работает интернет</td>
-                    <td name="data">22.05.2018</td>
-                    <td name="executor">Юлий Цезарь</td>
-                    <td name="status_id" bgcolor="#7fffd4">выполнено</td>
-                </tr>
+
+                <c:forEach items="${requestScope.branches}" var="branch">
+                    <tr name="taskTableName">
+                        <td name="taskId">${branch.id}</td>
+                        <td name="taskName">${branch.name}</td>
+                        <td name="data">${branch.address}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}&lang=ru"> ${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}  </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+
 
                 </tbody>
             </table>

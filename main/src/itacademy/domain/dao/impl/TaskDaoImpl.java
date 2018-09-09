@@ -3,6 +3,7 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.TaskDao;
 import itacademy.domain.entity.Listener;
+import itacademy.domain.entity.Status;
 import itacademy.domain.entity.SystemUser;
 import itacademy.domain.entity.Task;
 
@@ -17,7 +18,13 @@ public class TaskDaoImpl implements TaskDao {
     private static final String SQL_FIND_ID = "{ ? = call tasks_findbyid(?)}";
     private static final String SQL_SAVE = "INSERT INTO tasks (name, listener_id, text, system_user_id, executor_id, operator_id, status_id)" + "VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String SQL_DELETE = "DELETE FROM tasks WHERE (id = ?)";
-    private static final String SQL_FIND_SELF_TASKS = "select * from tasks where system_user_id = ?;";
+    private static final String SQL_FIND_SELF_TASKS = "select t.id as t_id, t.name as t_name, t.system_user_id as t_system_user_id, l.name as l_name,\n" +
+            "  s.name as s_name\n" +
+            "from tasks t, listeners l, status s\n" +
+            "where\n" +
+            "  t.listener_id = l.id\n" +
+            "  and t.status_id = s.id\n" +
+            "  and t.system_user_id = ?;\n";
     private static TaskDaoImpl INSTANCE = null;
 
     public static TaskDaoImpl getInstance() {
@@ -31,6 +38,15 @@ public class TaskDaoImpl implements TaskDao {
         return INSTANCE;
     }
 
+    private Task createFindSelfFromResultSet(ResultSet resultSet) throws SQLException {
+        return new Task(
+                resultSet.getLong("t_id"),
+                resultSet.getString("t_name"),
+                new SystemUser(resultSet.getLong("t_system_user_id")),
+                new Listener(resultSet.getString("l_name")),
+                new Status(resultSet.getString("s_name")));
+    }
+
     private Task createTaskDaoFromResultSet(ResultSet resultSet) throws SQLException {
         return new Task(
                 resultSet.getLong("id"),
@@ -41,7 +57,7 @@ public class TaskDaoImpl implements TaskDao {
                         resultSet.getString("l_name")),
                 new SystemUser(
                         resultSet.getLong("s_id")),
-                resultSet.getLong("st_status_id"));
+                new Status(resultSet.getLong("st_status_id")));
     }
 
     @Override
@@ -71,7 +87,7 @@ public class TaskDaoImpl implements TaskDao {
                 preparedStatement.setLong(1, id);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    taskList.add(createTaskDaoFromResultSet(resultSet));
+                    taskList.add(createFindSelfFromResultSet(resultSet));
                 }
                 resultSet.close();
             } catch (SQLException e) {
@@ -84,62 +100,62 @@ public class TaskDaoImpl implements TaskDao {
         return taskList;
     }
 
-        @Override
-        public Optional<Task> findById (Long id){
-            try (Connection connection = ConnectionManager.getConnection();
-                 CallableStatement proc = connection.prepareCall(SQL_FIND_ID)) {
-                connection.setAutoCommit(false);
-                proc.registerOutParameter(1, Types.OTHER);
-                proc.setInt(2, Math.toIntExact(id));
-                proc.execute();
-                ResultSet resultSet = (ResultSet) proc.getObject(1);
-                while (resultSet.next()) {
-                    return Optional.of(createTaskDaoFromResultSet(resultSet));
-                }
-                resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+    @Override
+    public Optional<Task> findById(Long id) {
+        try (Connection connection = ConnectionManager.getConnection();
+             CallableStatement proc = connection.prepareCall(SQL_FIND_ID)) {
+            connection.setAutoCommit(false);
+            proc.registerOutParameter(1, Types.OTHER);
+            proc.setInt(2, Math.toIntExact(id));
+            proc.execute();
+            ResultSet resultSet = (ResultSet) proc.getObject(1);
+            while (resultSet.next()) {
+                return Optional.of(createTaskDaoFromResultSet(resultSet));
             }
-            return Optional.empty();
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return Optional.empty();
+    }
 
-        @Override
-        public Long save (Task task){
-            Long id = 0L;
-            try (Connection connection = ConnectionManager.getConnection()) {
-                connection.setAutoCommit(false);
-                try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
-                    preparedStatement.setString(1, task.getName());
-                    preparedStatement.setLong(2, task.getListener().getId());
-                    preparedStatement.setString(3, task.getText());
-                    preparedStatement.setLong(4, task.getSystemUserId().getId());
-                    preparedStatement.setLong(5, task.getExecutorId().getId());
-                    preparedStatement.setLong(6, task.getOperatorId().getId());
-                    preparedStatement.setLong(7, task.getStatus_id());
-                    preparedStatement.executeUpdate();
-                    connection.commit();
-                    ResultSet resultSet = preparedStatement.getGeneratedKeys();
-                    if (resultSet.next()) {
-                        id = resultSet.getLong("id");
-                    }
+    @Override
+    public Long save(Task task) {
+        Long id = 0L;
+        try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
+                preparedStatement.setString(1, task.getName());
+                preparedStatement.setLong(2, task.getListener().getId());
+                preparedStatement.setString(3, task.getText());
+                preparedStatement.setLong(4, task.getSystemUserId().getId());
+                preparedStatement.setLong(5, task.getExecutorId().getId());
+                preparedStatement.setLong(6, task.getOperatorId().getId());
+                preparedStatement.setLong(7, task.getStatus().getId());
+                preparedStatement.executeUpdate();
+                connection.commit();
+                ResultSet resultSet = preparedStatement.getGeneratedKeys();
+                if (resultSet.next()) {
+                    id = resultSet.getLong("id");
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-            return id;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return id;
+    }
 
-        @Override
-        public void delete (Long id){
-            try (Connection connection = ConnectionManager.getConnection()) {
-                connection.setAutoCommit(false);
-                try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
-                    preparedStatement.setLong(1, id);
-                    preparedStatement.executeUpdate();
-                    connection.commit();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+    @Override
+    public void delete(Long id) {
+        try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
+            try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
+                preparedStatement.setLong(1, id);
+                preparedStatement.executeUpdate();
+                connection.commit();
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+}

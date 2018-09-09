@@ -1,6 +1,7 @@
 package itacademy.domain.dao.impl;
 
 import itacademy.domain.entity.Listener;
+import itacademy.domain.entity.Status;
 import itacademy.domain.entity.SystemUser;
 import itacademy.domain.entity.Task;
 import org.junit.Assert;
@@ -37,7 +38,7 @@ public class TaskDaoImplTest {
                 .systemUserId(new SystemUser(22L))
                 .executorId(new SystemUser(22L))
                 .operatorId(new SystemUser(23L))
-                .status_id(1L)
+                .status(new Status(1L))
                 .build();
         Long id = dao.save(task);
         Assert.assertNotNull(id);
@@ -62,21 +63,9 @@ public class TaskDaoImplTest {
         Assert.assertEquals(taskUser.getName(), task.getName());
     }
 
-
+    @Test
+    public void findSelfTasks() {
+        List<Task> tasks = TaskDaoImpl.getInstance().findSelfTasks(23L);
+        Assert.assertNotNull(tasks);
+    }
 }
-
-
-//    @Test
-//    public void saving() {
-//        TaskDaoImpl dao = TaskDaoImpl.getInstance();
-//        Task task = Task.builder()
-//                .name("Заявка №1")
-//                .listener(new Listener(1L))
-//                .text("текст заявки")
-//                .systemUserId(new SystemUser(22L))
-//                .executorId(new SystemUser(22L))
-//                .operatorId(new SystemUser(23L))
-//                .build();
-//        dao.save(task);
-//        assertNotNull(task.getId());
-//    }

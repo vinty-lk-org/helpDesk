@@ -1,20 +1,16 @@
 package itacademy.domain.services;
 
-import itacademy.connection.ConnectionManager;
+import itacademy.domain.dao.impl.TaskDaoImpl;
 import itacademy.domain.entity.Task;
 import itacademy.domain.services.interfaces.TaskService;
-import itacademy.dto.models.TaskDto;
+import itacademy.dto.views.TaskViewUserDto;
 
-import java.sql.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskServiceImpl implements TaskService {
-    private static final String SQL_SAVE = "INSERT INTO tasks (name,  text)" + "VALUES (?, ?);";
     private static final Object LOCK = new Object();
     private static TaskServiceImpl INSTANCE = null;
-
-    private TaskServiceImpl() {
-    }
 
     public static TaskServiceImpl getInstance() {
         if (INSTANCE == null) {
@@ -26,29 +22,22 @@ public class TaskServiceImpl implements TaskService {
         }
         return INSTANCE;
     }
-
     @Override
-    public Long save(TaskDto task) {
-        Long id = 0L;
-        try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setString(1, task.getName());
-                preparedStatement.setString(2, task.getText());
-                preparedStatement.executeUpdate();
-                connection.commit();
-                ResultSet resultSet = preparedStatement.getGeneratedKeys();
-                if (resultSet.next()) {
-                    id = resultSet.getLong("id");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return id;
+    public List<TaskViewUserDto> findAllSelf(Long id) {
+        return mapperListTaskViewUserDto(TaskDaoImpl.getInstance().findSelfTasks(id));
     }
 
-    @Override
-    public List<Task> findAllSelf(Long id) {
-        return null;
+    private List<TaskViewUserDto> mapperListTaskViewUserDto(List<Task> taskList) {
+        return taskList.stream()
+                .map(task -> new TaskViewUserDto(
+                        task.getId(),
+                        task.getName(),
+                        task.getSystemUserId().getId(),
+                        task.getListener().getName(),
+                        task.getStatus().getName()
+                ))
+                .collect(Collectors.toList());
     }
+
+
 }
