@@ -81,25 +81,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr name="taskTableName">
-<c:forEach items="${requestScope.tasks}">
-                    <td name="taskId">33</td>
-                    <td name="taskName">Не работает сапод</td>
-                    <td name="data">22.05.2018</td>
-                    <td name="executor">Тит Пула</td>
-                    <td name="status_id" bgcolor="aqua">на рассмотрении</td>
-                </tr>
+                <%--<tr name="taskTableName">--%>
+                    <%--<c:forEach items="${requestScope.tasks}">--%>
+                    <%--<td name="taskId">33</td>--%>
+                    <%--<td name="taskName">Не работает сапод</td>--%>
+                    <%--<td name="data">22.05.2018</td>--%>
+                    <%--<td name="executor">Тит Пула</td>--%>
+                    <%--<td name="status_id" bgcolor="aqua">на рассмотрении</td>--%>
+                <%--</tr>--%>
 
-                <c:forEach items="${requestScope.branches}" var="branch">
-                    <tr name="taskTableName">
-                        <td name="taskId">${branch.id}</td>
-                        <td name="taskName">${branch.name}</td>
-                        <td name="data">${branch.address}</td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}&lang=ru"> ${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}  </a>
-                        </td>
-                    </tr>
-                </c:forEach>
+                <%--<c:forEach items="${requestScope.branches}" var="branch">--%>
+                    <%--<tr name="taskTableName">--%>
+                        <%--<td name="taskId">${branch.id}</td>--%>
+                        <%--<td name="taskName">${branch.name}</td>--%>
+                        <%--<td name="data">${branch.address}</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}&lang=ru"> ${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}  </a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                <%--</c:forEach>--%>
 
 
                 </tbody>
@@ -111,7 +111,6 @@
 </div>
 
 <script>
-
     $(document).foundation();
 </script>
 </body>

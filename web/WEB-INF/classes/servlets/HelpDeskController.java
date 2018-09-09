@@ -20,11 +20,11 @@ public class HelpDeskController extends HttpServlet {
     showPage(req, resp);
   }
 
-//  @Override
-//  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //    TaskServiceImpl.getInstance().save(getReqForCreateTaskDto(req));
-//    resp.sendRedirect("/helpDesk");
-//  }
+    resp.sendRedirect("/helpDesk");
+  }
 
   private TaskDto getReqForCreateTaskDto(HttpServletRequest request) {
     return new TaskDto(TaskDto.builder()
