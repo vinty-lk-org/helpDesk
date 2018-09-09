@@ -25,17 +25,16 @@
     <thead>
     <tr>
         <th width="100">ID</th>
-        <th width="250">Наименование заявки</th>
-        <th>Текст заявки</th>
-
+        <th width="250">Название филиала</th>
+        <th>Адрес филиала</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.tasks}" var="user">
+    <c:forEach items="${requestScope.branch}" var="branch">
         <tr name="taskTableName">
-            <td name="taskId">${user.id}</td>
-            <td name="taskName">${user.name}</td>
-            <td name="data">${user.text}</td>
+            <td name="taskId">${branch.id}</td>
+            <td name="taskName">${branch.name}</td>
+            <td name="data">${branch.address}</td>
                 <%--<td name="data">${task.email}</td>--%>
                 <%--<td name="executor">${task.subdivisionName}</td>--%>
                 <%--<td name="status_id">${task.branchName}</td>--%>
@@ -58,9 +57,9 @@
         </div>
     </div>
 </div>
-
 <script>
     $(document).foundation();
 </script>
 </body>
 </html>
+

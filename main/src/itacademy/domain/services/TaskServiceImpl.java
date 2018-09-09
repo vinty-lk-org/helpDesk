@@ -2,8 +2,8 @@ package itacademy.domain.services;
 
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.entity.Task;
-import itacademy.dto.models.TaskDto;
 import itacademy.domain.services.interfaces.TaskService;
+import itacademy.dto.models.TaskDto;
 
 import java.sql.*;
 import java.util.List;
@@ -51,6 +51,4 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> findAllSelf(Long id) {
         return null;
     }
-
-
 }

@@ -34,15 +34,15 @@
     </thead>
     <tbody>
     <c:forEach items="${requestScope.users}" var="user">
-    <tr name="taskTableName">
-        <td name="taskId">${user.id}</td>
-        <td name="taskName">${user.name}</td>
-        <td name="data">${user.family}</td>
-        <td name="data">${user.email}</td>
-        <td name="executor">${user.subdivisionName}</td>
-        <td name="status_id">${user.branchName}</td>
-        <td><a href="${pageContext.request.contextPath}/?id=${user.id}&lang=ru"></a></td>
-    </tr>
+        <tr name="taskTableName">
+            <td name="taskId">${user.id}</td>
+            <td name="taskName">${user.name}</td>
+            <td name="data">${user.family}</td>
+            <td name="data">${user.email}</td>
+            <td name="executor">${user.subdivisionName}</td>
+            <td name="status_id">${user.branchName}</td>
+            <td><a href="${pageContext.request.contextPath}/?id=${user.id}&lang=ru"></a></td>
+        </tr>
     </c:forEach>
     </tbody>
 </table>
@@ -53,10 +53,14 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную страницу админки</b> </A>
+                <A class="button success" href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
+                    страницу админки</b> </A>
             </div>
             <div class="medium-3 cell">
-
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).foundation();
 </script>

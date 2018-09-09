@@ -73,7 +73,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Зарегистрированные филиалы
+                <A class="button success" href="${pageContext.request.contextPath}/registerBranch"> <b> Зарегистрированные филиалы
                 </b> </A>
             </div>
             <div class="medium-3 cell">

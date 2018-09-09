@@ -9,10 +9,6 @@
 
 <body>
 
-<%--<c:if test="${not empty pageContext.request.userPrincipal}">--%>
-<%--User: <c:out value="${pageContext.request.userPrincipal.name}"/>--%>
-<%--</c:if>--%>
-
 <%--<div class="grid-container">--%>
 <%--<div class="grid-x grid-padding-x">--%>
 <%--<div class="medium-3 cell">--%>
@@ -30,7 +26,35 @@
 <%--</div>--%>
 <%--</div>--%>
 
-<form name="textform" id="textform" action="${pageContext.request.contextPath}/user" method="post">
+<form name="textform" id="textform" action="${pageContext.request.contextPath}/branchSave" method="post">
+
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+
+            <div class="medium-3 cell">
+
+                <label>Заполните название филиала
+                    <input type="text" name="nameBranch" placeholder="Название филиала">
+                </label>
+            </div>
+            <div class="medium-3 cell">
+                <label>Заполните адрес филиала
+                    <input type="text" name="addressBranch" placeholder="Адрес филиала">
+                </label>
+            </div>
+            <div class="medium-3 cell">
+                <label> <br>
+                    <div class="expanded button-group">
+                        <button type="submit" class="button success hollow"><b>Заполнить</b></button>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">

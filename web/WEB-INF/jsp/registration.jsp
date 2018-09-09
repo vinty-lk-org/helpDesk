@@ -56,8 +56,8 @@ ${login}
                     <label for="branches">Выберите из списка ваше местоположение (филиал)
                         <select name="branch_id" id="branches">
                             <c:forEach items="${requestScope.branches}" var="branch">
-                        <option value="${branch.id}">${branch.name} ( ${branch.address})</option>
-                        </c:forEach>
+                                <option value="${branch.id}">${branch.name} ( ${branch.address})</option>
+                            </c:forEach>
                         </select>
                     </label>
                     <label for="subdivisions">Выберете из списка ваш отдел (подразделение)
@@ -86,16 +86,17 @@ ${login}
         return `${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}`;
 
     }
+
     console.log(getUrl());
 </script>
 <%--<script type="text/javascript">--%>
-    <%--function natIP() {--%>
-        <%--var w = window.location;--%>
-        <%--var host = w.host;--%>
-        <%--var port = w.port || 80;--%>
-        <%--var Socket = (new java.net.Socket(host,port)).getLocalAddress().getHostAddress();--%>
-        <%--return Socket;--%>
-    <%--}--%>
+<%--function natIP() {--%>
+<%--var w = window.location;--%>
+<%--var host = w.host;--%>
+<%--var port = w.port || 80;--%>
+<%--var Socket = (new java.net.Socket(host,port)).getLocalAddress().getHostAddress();--%>
+<%--return Socket;--%>
+<%--}--%>
 <%--</script>--%>
 
 <script src="../../resources/js/app.js"></script>
