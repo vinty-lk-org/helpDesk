@@ -23,11 +23,11 @@ public class AdminFillPageController extends HttpServlet {
         showPage(req, resp);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        TaskServiceImpl.getInstance().save(getReqForCreateTaskDto(req));
-        resp.sendRedirect("/user");
-    }
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        TaskServiceImpl.getInstance().save(getReqForCreateTaskDto(req));
+//        resp.sendRedirect("/user");
+//    }
 
     private TaskDto getReqForCreateTaskDto(HttpServletRequest request) {
         return new TaskDto(TaskDto.builder()
