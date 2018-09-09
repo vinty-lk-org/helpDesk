@@ -1,5 +1,6 @@
 package itacademy.domain.services;
 
+import itacademy.dto.models.TaskDto;
 import itacademy.dto.views.TaskViewUserDto;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,8 +23,6 @@ public class TaskServiceImplTest {
     }
 
     @Test
-    public void saveTask() {
-
     public void findAllSelfTest() {
         List<TaskViewUserDto> viewUserDto = TaskServiceImpl.getInstance().findAllSelf(23L);
         Assert.assertNotNull(viewUserDto);

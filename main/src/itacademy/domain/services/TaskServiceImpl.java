@@ -26,6 +26,7 @@ public class TaskServiceImpl implements TaskService {
         }
         return INSTANCE;
     }
+
     @Override
     public List<TaskViewUserDto> findAllSelf(Long id) {
         return mapperListTaskViewUserDto(TaskDaoImpl.getInstance().findSelfTasks(id));
@@ -45,12 +46,6 @@ public class TaskServiceImpl implements TaskService {
                 new Status(taskDto.getStatusId())
         );
     }
-
-    private String name;
-    private Long listenerId;
-    private String text;
-    private Long systemUserId;
-    private Long statusId;
 
     private List<TaskViewUserDto> mapperListTaskViewUserDto(List<Task> taskList) {
         return taskList.stream()
