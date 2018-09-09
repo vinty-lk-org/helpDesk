@@ -31,13 +31,13 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.branches}" var="branch">
+    <c:forEach items="${requestScope.branches}" var="problem">
         <tr name="taskTableName">
-            <td name="taskId">${branch.id}</td>
-            <td name="taskName">${branch.name}</td>
-            <td name="data">${branch.address}</td>
+            <td name="taskId">${problem.id}</td>
+            <td name="taskName">${problem.name}</td>
+            <td name="data">${problem.address}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}&lang=ru">Удалить </a>
+                <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${problem.id}&lang=ru">Удалить </a>
             </td>
         </tr>
     </c:forEach>

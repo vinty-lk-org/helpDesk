@@ -1,4 +1,4 @@
-package servlets.tableview;
+package servlets.delete;
 
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.dao.impl.TaskDaoImpl;

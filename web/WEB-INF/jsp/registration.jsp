@@ -55,8 +55,8 @@ ${login}
                     </label>
                     <label for="branches">Выберите из списка ваше местоположение (филиал)
                         <select name="branch_id" id="branches">
-                            <c:forEach items="${requestScope.branches}" var="branch">
-                                <option value="${branch.id}">${branch.name} ( ${branch.address})</option>
+                            <c:forEach items="${requestScope.branches}" var="problem">
+                                <option value="${problem.id}">${problem.name} ( ${problem.address})</option>
                             </c:forEach>
                         </select>
                     </label>

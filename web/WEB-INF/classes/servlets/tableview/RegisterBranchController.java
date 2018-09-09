@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/registerBranch")
-public class RegisterBranch extends HttpServlet {
+public class RegisterBranchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("branches", BranchDaoImpl.getInstance().findAll());
