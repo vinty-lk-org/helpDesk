@@ -27,10 +27,10 @@
             <br>
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <label><fmt:message key="EnterUser"/>
-                    <input type="text" name="email" placeholder="vinty@i.ua" required="required">
+                    <input type="text" name="inputEmail" placeholder="vinty@i.ua" required="required">
                 </label>
                 <label><fmt:message key="EnterPass"/>
-                    <input type="password" name="password" placeholder="qwerty12" required="required">
+                    <input type="password" name="inputPassword" placeholder="qwerty12" required="required">
                 </label>
                 <div class="expanded button-group">
                     <button type="submit" class="hollow button success">Войти в систему</button>

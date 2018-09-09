@@ -1,6 +1,8 @@
 package itacademy.domain.dao.impl;
 
 import itacademy.domain.entity.Privilege;
+import itacademy.domain.entity.SystemUser;
+import itacademy.domain.services.PrivilegeServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,4 +47,6 @@ public class PrivilegeDaoImplTest {
         Assert.assertEquals(privilege.getName(), nameSubdivision);
         dao.delete(id);
     }
+
+
 }
