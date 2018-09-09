@@ -37,7 +37,7 @@
             <td name="taskName">${branch.name}</td>
             <td name="data">${branch.address}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}&lang=ru"> ${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}  </a>
+                <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}&lang=ru">Удалить </a>
             </td>
         </tr>
     </c:forEach>
