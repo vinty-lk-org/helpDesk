@@ -9,6 +9,10 @@
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
+            <select onchange="submit()" name="lang">
+                <option value="ru_RU" ${sessionScope.localLang eq 'ru_RU' ? 'selected':''}>Русский</option>
+                <option value="en_US" ${sessionScope.localLang eq 'en_US' ? 'selected':''}>English</option>
+            </select>
         </div>
         <div class="medium-6 cell">
             <%--<jsp:include page="../jsp/fragments/nav.jsp"/>--%>
@@ -16,16 +20,16 @@
             <br>
             <br>
             <form action="${pageContext.request.contextPath}/login" method="post">
-                <label>Введите адрес вашей почты. Это ваш логин.
-                    <input type="text" name="nameUser" placeholder="vinty@i.ua">
+                <label><fmt:message key="EnterUser"/>
+                    <input type="text" name="email" placeholder="vinty@i.ua" required="required">
                 </label>
                 <label>Введите ваш пароль, полученный при регистрации.
-                    <input type="password" name="password" placeholder="mypassword">
+                    <input type="password" name="password" placeholder="qwerty12" required="required">
                 </label>
                 <div class="expanded button-group">
-                    <button type="submit" class="button success">Войти в систему</button>
+                    <button type="submit" class="hollow button success">Войти в систему</button>
                     <A class="hollow button primary" href="${pageContext.request.contextPath}/registration"
-                       title="Отзывы"> Регистрация </A>
+                       title="Регистрация"> Регистрация </A>
                 </div>
             </form>
 

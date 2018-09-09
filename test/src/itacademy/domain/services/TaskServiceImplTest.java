@@ -12,9 +12,15 @@ public class TaskServiceImplTest {
         TaskDto taskDto = new TaskDto();
         taskDto.setName("name save test");
         taskDto.setText("text save test");
-        Long id = taskService.save(taskDto);
+        taskDto.setListenerId(1L);
+        taskDto.setSystemUserId(23L);
+        taskDto.setStatusId(2L);
+        Long id = taskService.saveTask(taskDto);
         Assert.assertNotNull(id);
-//        taskService.delete(id);
+    }
+
+    @Test
+    public void saveTask() {
 
     }
 }

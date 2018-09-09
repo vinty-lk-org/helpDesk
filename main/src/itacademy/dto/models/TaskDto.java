@@ -9,9 +9,11 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class TaskDto {
-    private Long id;
     private String name;
+    private Long listenerId;
     private String text;
+    private Long systemUserId;
+    private Long statusId;
 
     public TaskDto(TaskDto build) {
         this.name = build.getName();

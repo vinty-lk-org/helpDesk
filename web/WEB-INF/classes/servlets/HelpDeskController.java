@@ -22,7 +22,7 @@ public class HelpDeskController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    TaskServiceImpl.getInstance().save(getReqForCreateTaskDto(req));
+//    TaskServiceImpl.getInstance().save(getReqForCreateTaskDto(req));
     resp.sendRedirect("/helpDesk");
   }
 

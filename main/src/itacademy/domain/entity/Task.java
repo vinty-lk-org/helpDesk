@@ -35,4 +35,12 @@ public class Task {
         this.listener = l_name;
         this.status = s_name;
     }
+
+    public Task(String name, Listener listener, String text,  SystemUser systemUserId, Status status) {
+        this.name = name;
+        this.listener = listener;
+        this.text = text;
+        this.systemUserId = systemUserId;
+        this.status = status;
+    }
 }

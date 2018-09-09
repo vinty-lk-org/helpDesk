@@ -19,11 +19,11 @@ public class LoginController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//    String nameUser = req.getParameter("nameUser");
-//    String password = req.getParameter("password");
-//    System.out.println(nameUser);
-//    System.out.println(password);
-//    req.getSession().setAttribute("isUserLogin", true);
+    String email = req.getParameter("email");
+    String password = req.getParameter("password");
+    System.out.println(email);
+    System.out.println(password);
+    req.getSession().setAttribute("isUserLogin", true);
     getServletContext().getRequestDispatcher("/WEB-INF/jsp/helpDesk.jsp").forward(req, resp);
   }
 }

@@ -11,7 +11,7 @@ import lombok.*;
 public class TaskViewUserDto {
     private Long id;
     private String name;
-   private Long systemUserId;
-   private String listinerName;
-   private String statusName;
+    private Long systemUserId;
+    private String listinerName;
+    private String statusName;
 }

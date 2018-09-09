@@ -14,17 +14,6 @@ import java.util.Optional;
 
 public class TaskDaoImpl implements TaskDao {
     private static final Object LOCK = new Object();
-    private static final String SQL_FIND_ALL = "{ ? = call tasks_find_all()}";
-    private static final String SQL_FIND_ID = "{ ? = call tasks_findbyid(?)}";
-    private static final String SQL_SAVE = "INSERT INTO tasks (name, listener_id, text, system_user_id, executor_id, operator_id, status_id)" + "VALUES (?, ?, ?, ?, ?, ?, ?);";
-    private static final String SQL_DELETE = "DELETE FROM tasks WHERE (id = ?)";
-    private static final String SQL_FIND_SELF_TASKS = "select t.id as t_id, t.name as t_name, t.system_user_id as t_system_user_id, l.name as l_name,\n" +
-            "  s.name as s_name\n" +
-            "from tasks t, listeners l, status s\n" +
-            "where\n" +
-            "  t.listener_id = l.id\n" +
-            "  and t.status_id = s.id\n" +
-            "  and t.system_user_id = ?;\n";
     private static TaskDaoImpl INSTANCE = null;
 
     public static TaskDaoImpl getInstance() {
@@ -60,6 +49,9 @@ public class TaskDaoImpl implements TaskDao {
                 new Status(resultSet.getLong("st_status_id")));
     }
 
+
+    private static final String SQL_FIND_ALL = "{ ? = call tasks_find_all()}";
+
     @Override
     public List<Task> findAll() {
         List<Task> taskList = new ArrayList<>();
@@ -78,6 +70,14 @@ public class TaskDaoImpl implements TaskDao {
         }
         return taskList;
     }
+
+    private static final String SQL_FIND_SELF_TASKS = "select t.id as t_id, t.name as t_name, t.system_user_id as t_system_user_id, l.name as l_name,\n" +
+            "  s.name as s_name\n" +
+            "from tasks t, listeners l, status s\n" +
+            "where\n" +
+            "  t.listener_id = l.id\n" +
+            "  and t.status_id = s.id\n" +
+            "  and t.system_user_id = ?;\n";
 
     @Override
     public List<Task> findSelfTasks(Long id) {
@@ -100,6 +100,8 @@ public class TaskDaoImpl implements TaskDao {
         return taskList;
     }
 
+    private static final String SQL_FIND_ID = "{ ? = call tasks_findbyid(?)}";
+
     @Override
     public Optional<Task> findById(Long id) {
         try (Connection connection = ConnectionManager.getConnection();
@@ -119,6 +121,9 @@ public class TaskDaoImpl implements TaskDao {
         return Optional.empty();
     }
 
+    private static final String SQL_SAVE =
+            "INSERT INTO tasks (name, listener_id, text, system_user_id, status_id)" + "VALUES (?, ?, ?, ?, ?);";
+
     @Override
     public Long save(Task task) {
         Long id = 0L;
@@ -129,9 +134,7 @@ public class TaskDaoImpl implements TaskDao {
                 preparedStatement.setLong(2, task.getListener().getId());
                 preparedStatement.setString(3, task.getText());
                 preparedStatement.setLong(4, task.getSystemUserId().getId());
-                preparedStatement.setLong(5, task.getExecutorId().getId());
-                preparedStatement.setLong(6, task.getOperatorId().getId());
-                preparedStatement.setLong(7, task.getStatus().getId());
+                preparedStatement.setLong(5, task.getStatus().getId());
                 preparedStatement.executeUpdate();
                 connection.commit();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -144,6 +147,8 @@ public class TaskDaoImpl implements TaskDao {
         }
         return id;
     }
+
+    private static final String SQL_DELETE = "DELETE FROM tasks WHERE (id = ?)";
 
     @Override
     public void delete(Long id) {
