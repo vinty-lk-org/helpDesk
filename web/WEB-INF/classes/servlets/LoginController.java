@@ -45,6 +45,9 @@ public class LoginController extends HttpServlet {
             req.getSession().setAttribute("privilege", privilege);
             req.setAttribute("message", "Все ОК!");
             resp.sendRedirect("/helpDesk");
+        } else {
+            req.setAttribute("message", "errorPass");
+            doGet(req, resp);
         }
     }
 }
