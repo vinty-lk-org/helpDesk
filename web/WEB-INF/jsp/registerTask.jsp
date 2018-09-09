@@ -27,16 +27,23 @@
         <th width="100">ID</th>
         <th width="250">Наименование заявки</th>
         <th>Текст заявки</th>
-
+        <th width="250">Удалить</th>
+        <th width="250">Изменить</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.tasks}" var="user">
+    <c:forEach items="${requestScope.tasks}" var="task">
         <tr name="taskTableName">
-            <td name="taskId">${user.id}</td>
-            <td name="taskName">${user.name}</td>
-            <td name="data">${user.text}</td>
-                <%--<td name="data">${task.email}</td>--%>
+            <td name="taskId">${task.id}</td>
+            <td name="taskName">${task.name}</td>
+            <td name="data">${task.text}</td>
+            <td>
+                <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru">Удалить</a>
+            </td>
+            <td>
+                <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru">Изменить</a>
+            </td>
+            <%--<td name="data">${user.email}</td>--%>
                 <%--<td name="executor">${task.subdivisionName}</td>--%>
                 <%--<td name="status_id">${task.branchName}</td>--%>
         </tr>
