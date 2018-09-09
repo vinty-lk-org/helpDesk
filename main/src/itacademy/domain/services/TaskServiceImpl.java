@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class TaskServiceImpl implements TaskService {
     private static final Object LOCK = new Object();
-    private static final String SQL_SAVE = "INSERT INTO tasks (name,  text)" + "VALUES (?, ?);";
     private static TaskServiceImpl INSTANCE = null;
 
     public static TaskServiceImpl getInstance() {
@@ -39,5 +38,9 @@ public class TaskServiceImpl implements TaskService {
                         task.getStatus().getName()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    public void deleteTask(Long id) {
+        TaskDaoImpl.getInstance().delete(id);
     }
 }

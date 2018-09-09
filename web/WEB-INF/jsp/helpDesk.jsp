@@ -85,10 +85,10 @@
                         <td name="taskId">${task.id}</td>
                         <td name="taskName">${task.name}</td>
                         <td name="executor">${task.listinerName}</td>
-                        <td name="executor">${task.statusName}</td>
+                        <td name="status">${task.statusName}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}&lang=ru">
-                                    ${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}  </a>
+                            <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru">
+                                    ${pageContext.request.contextPath}/registerBranch/Delete?id=${task.id} </a>
                         </td>
                     </tr>
                 </c:forEach>
