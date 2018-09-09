@@ -78,6 +78,7 @@ public class BranchDaoImpl implements BranchDao {
                 preparedStatement.setString(1, branch.getName());
                 preparedStatement.setString(2, branch.getAddress());
                 preparedStatement.executeUpdate();
+                connection.commit();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
                     id = resultSet.getLong("id");
@@ -95,6 +96,7 @@ public class BranchDaoImpl implements BranchDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.execute();
+                connection.commit();
             }
         } catch (SQLException e) {
             e.printStackTrace();

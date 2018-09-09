@@ -35,6 +35,7 @@ public class TaskServiceImpl implements TaskService {
                 preparedStatement.setString(1, task.getName());
                 preparedStatement.setString(2, task.getText());
                 preparedStatement.executeUpdate();
+                connection.commit();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
                     id = resultSet.getLong("id");

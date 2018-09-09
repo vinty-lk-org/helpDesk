@@ -116,6 +116,7 @@ public class TaskDaoImpl implements TaskDao {
                     preparedStatement.setLong(6, task.getOperatorId().getId());
                     preparedStatement.setLong(7, task.getStatus_id());
                     preparedStatement.executeUpdate();
+                    connection.commit();
                     ResultSet resultSet = preparedStatement.getGeneratedKeys();
                     if (resultSet.next()) {
                         id = resultSet.getLong("id");
@@ -133,6 +134,7 @@ public class TaskDaoImpl implements TaskDao {
                 try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
                     preparedStatement.setLong(1, id);
                     preparedStatement.executeUpdate();
+                    connection.commit();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

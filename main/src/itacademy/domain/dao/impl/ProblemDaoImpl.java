@@ -4,6 +4,7 @@ package itacademy.domain.dao.impl;
 import itacademy.connection.ConnectionManager;
 import itacademy.domain.dao.interfaces.ProblemDao;
 import itacademy.domain.entity.Problem;
+import itacademy.domain.entity.SystemUser;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -36,13 +37,14 @@ public class ProblemDaoImpl implements ProblemDao {
                 resultSet.getString("name"));
     }
 
-
     public Long saveDao(Problem Problem) {
         Long id = 0L;
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, Problem.getName());
                 preparedStatement.executeUpdate();
+                connection.commit();
+
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
                     id = resultSet.getLong("id");
@@ -60,6 +62,7 @@ public class ProblemDaoImpl implements ProblemDao {
             try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.executeUpdate();
+                connection.commit();
             }
         } catch (SQLException e) {
             e.printStackTrace();

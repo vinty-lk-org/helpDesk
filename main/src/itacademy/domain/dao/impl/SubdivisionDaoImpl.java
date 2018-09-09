@@ -75,6 +75,7 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, subdivision.getName());
                 preparedStatement.executeUpdate();
+                connection.commit();
                 ResultSet rs = preparedStatement.getGeneratedKeys();
                 if (rs.next()) {
                     id = rs.getLong(1);
@@ -92,6 +93,7 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE)) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.executeUpdate();
+                connection.commit();
             }
         } catch (SQLException e) {
             e.printStackTrace();

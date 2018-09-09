@@ -76,6 +76,7 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, privilege.getName());
                 preparedStatement.executeUpdate();
+                connection.commit();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
                     id = resultSet.getLong("id");
@@ -93,6 +94,7 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
             try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.executeUpdate();
+                connection.commit();
             }
         } catch (SQLException e) {
             e.printStackTrace();
