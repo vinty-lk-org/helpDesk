@@ -107,6 +107,7 @@ public class TaskDaoImpl implements TaskDao {
         public Long save (Task task){
             Long id = 0L;
             try (Connection connection = ConnectionManager.getConnection()) {
+                connection.setAutoCommit(false);
                 try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                     preparedStatement.setString(1, task.getName());
                     preparedStatement.setLong(2, task.getListener().getId());
@@ -131,6 +132,7 @@ public class TaskDaoImpl implements TaskDao {
         @Override
         public void delete (Long id){
             try (Connection connection = ConnectionManager.getConnection()) {
+                connection.setAutoCommit(false);
                 try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
                     preparedStatement.setLong(1, id);
                     preparedStatement.executeUpdate();

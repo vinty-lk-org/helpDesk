@@ -40,11 +40,11 @@ public class ProblemDaoImpl implements ProblemDao {
     public Long saveDao(Problem Problem) {
         Long id = 0L;
         try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, Problem.getName());
                 preparedStatement.executeUpdate();
                 connection.commit();
-
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
                     id = resultSet.getLong("id");
@@ -59,6 +59,7 @@ public class ProblemDaoImpl implements ProblemDao {
     @Override
     public void delete(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.executeUpdate();

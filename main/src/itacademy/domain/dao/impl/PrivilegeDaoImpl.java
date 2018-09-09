@@ -73,6 +73,7 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
     public Long save(Privilege privilege) {
         Long id = 0L;
         try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, privilege.getName());
                 preparedStatement.executeUpdate();
@@ -91,6 +92,7 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
     @Override
     public void delete(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_DELETE))) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.executeUpdate();

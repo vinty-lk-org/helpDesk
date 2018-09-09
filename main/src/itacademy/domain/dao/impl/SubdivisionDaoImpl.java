@@ -72,6 +72,7 @@ public class SubdivisionDaoImpl implements SubdivisionDao {
     public Long save(Subdivision subdivision) {
         Long id = 0L;
         try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, subdivision.getName());
                 preparedStatement.executeUpdate();

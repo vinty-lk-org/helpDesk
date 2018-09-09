@@ -73,6 +73,7 @@ public class ListenerDaoImpl implements ListenerDao {
     public Long save(Listener Listener) {
         Long id = 0L;
         try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, Listener.getName());
                 preparedStatement.executeUpdate();

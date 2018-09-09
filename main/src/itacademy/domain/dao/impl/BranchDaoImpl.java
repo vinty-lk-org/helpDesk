@@ -73,7 +73,9 @@ public class BranchDaoImpl implements BranchDao {
     @Override
     public Long save(Branch branch) {
         Long id = 0L;
+
         try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, branch.getName());
                 preparedStatement.setString(2, branch.getAddress());
@@ -93,6 +95,7 @@ public class BranchDaoImpl implements BranchDao {
     @Override
     public void delete(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
                 preparedStatement.setLong(1, id);
                 preparedStatement.execute();
