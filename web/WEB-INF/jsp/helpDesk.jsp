@@ -9,23 +9,6 @@
 
 <body>
 
-<%--<div class="grid-container">--%>
-<%--<div class="grid-x grid-padding-x">--%>
-<%--<div class="medium-3 cell">--%>
-<%--</div>--%>
-<%--<div class="medium-6 cell">--%>
-<%--${requestScope.myName}--%>
-<%--<select name="problems" id="problems">--%>
-<%--<c:forEach items="${requestScope.problems}" var="problems">--%>
-<%--<option value="${problems.id}">${problems.name} </option>--%>
-<%--</c:forEach>--%>
-<%--</select>--%>
-<%--</div>--%>
-<%--<div class="medium-3 cell">--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
@@ -74,7 +57,7 @@
                 <tr>
                     <th width="50">Номер заявки</th>
                     <th>Краткое содержание</th>
-                    <th width="150">Исполнитель</th>
+                    <th width="250">Исполнитель</th>
                     <th width="250">Статус</th>
                     <th width="250">удалить</th>
                 </tr>
@@ -87,8 +70,7 @@
                         <td name="executor">${task.listinerName}</td>
                         <td name="status">${task.statusName}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru">
-                                    ${pageContext.request.contextPath}/registerBranch/Delete?id=${task.id} </a>
+                            <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru">Удалить</a>
                         </td>
                     </tr>
                 </c:forEach>
