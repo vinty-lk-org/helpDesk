@@ -9,6 +9,10 @@
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
+            <br>
+            <br>
+            <strong><em><fmt:message key="${message}"/></em></strong>
+            <br>
             <select onchange="submit()" name="lang">
                 <option value="ru_RU" ${sessionScope.localLang eq 'ru_RU' ? 'selected':''}>Русский</option>
                 <option value="en_US" ${sessionScope.localLang eq 'en_US' ? 'selected':''}>English</option>
@@ -23,7 +27,7 @@
                 <label><fmt:message key="EnterUser"/>
                     <input type="text" name="email" placeholder="vinty@i.ua" required="required">
                 </label>
-                <label>Введите ваш пароль, полученный при регистрации.
+                <label><fmt:message key="EnterPass"/>
                     <input type="password" name="password" placeholder="qwerty12" required="required">
                 </label>
                 <div class="expanded button-group">
