@@ -23,14 +23,20 @@ public class HelpDeskController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//    TaskServiceImpl.getInstance().save(getReqForCreateTaskDto(req));
+    TaskServiceImpl.getInstance().saveTask(getReqForCreateTaskDto(req));
     resp.sendRedirect("/helpDesk");
   }
 
   private TaskDto getReqForCreateTaskDto(HttpServletRequest request) {
     return new TaskDto(TaskDto.builder()
             .name(request.getParameter("nameTask"))
-            .text(request.getParameter("textUser"))
+            .listenerId(1L)
+//            .listenerId(Long.valueOf(request.getParameter("listenerId")))
+            .text(request.getParameter("textTask"))
+            .systemUserId(23L)
+//            .systemUserId(Long.valueOf(request.getParameter("userId")))
+            .statusId(1L)
+//            .statusId(Long.valueOf(request.getParameter("statusId")))
             .build());
   }
 

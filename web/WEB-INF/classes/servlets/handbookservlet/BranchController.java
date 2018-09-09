@@ -15,10 +15,10 @@ import java.io.IOException;
 public class BranchController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        BranchDaoImpl.getInstance().save(getReqForCreateBranch(req));
-        resp.sendRedirect("/adminFillPage");
-    }
+protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    BranchDaoImpl.getInstance().save(getReqForCreateBranch(req));
+    resp.sendRedirect("/adminFillPage");
+}
 
     private Branch getReqForCreateBranch(HttpServletRequest request) {
         return new Branch(Branch.builder()

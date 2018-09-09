@@ -17,6 +17,9 @@ public class TaskDto {
 
     public TaskDto(TaskDto build) {
         this.name = build.getName();
+        this.listenerId = build.getListenerId();
         this.text = build.getText();
+        this.systemUserId = build.getSystemUserId();
+        this.statusId = build.getStatusId();
     }
 }
