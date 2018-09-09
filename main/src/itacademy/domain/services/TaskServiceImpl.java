@@ -48,12 +48,6 @@ public class TaskServiceImpl implements TaskService {
         );
     }
 
-    private String name;
-    private Long listenerId;
-    private String text;
-    private Long systemUserId;
-    private Long statusId;
-
     private List<TaskViewUserDto> mapperListTaskViewUserDto(List<Task> taskList) {
         return taskList.stream()
                 .map(task -> new TaskViewUserDto(
