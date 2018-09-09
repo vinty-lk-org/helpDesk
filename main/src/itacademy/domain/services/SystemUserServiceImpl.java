@@ -45,6 +45,16 @@ public class SystemUserServiceImpl implements SystemUserService {
     return SystemUserDaoImpl.getInstance().save(mapperSystemUserDtoToSystemUser(systemUserDto));
   }
 
+  private SystemUser mapperSystemUserDtoToSystemUser(SystemUserDto userDto) {
+    return new SystemUser(
+            userDto.getName(),
+            userDto.getFamily(),
+            userDto.getEmail(),
+            userDto.getPassword(),
+            new Branch(userDto.getBranchId()),
+            new Subdivision(userDto.getSubdivisionId()));
+  }
+
   private SystemUserDto mapperSystemUserToDto(SystemUser systemUser) {
     return new SystemUserDto(
                     systemUser.getId(),
@@ -72,16 +82,6 @@ public class SystemUserServiceImpl implements SystemUserService {
                     systemUser.getSubdivision().getName()
             ))
             .collect(Collectors.toList());
-  }
-
-  private SystemUser mapperSystemUserDtoToSystemUser(SystemUserDto userDto) {
-    return new SystemUser(
-            userDto.getName(),
-            userDto.getFamily(),
-            userDto.getEmail(),
-            userDto.getPassword(),
-            new Branch(userDto.getBranchId()),
-            new Subdivision(userDto.getSubdivisionId()));
   }
 
   public SystemUser findByEmail(String email) {
