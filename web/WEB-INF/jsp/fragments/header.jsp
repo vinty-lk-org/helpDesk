@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmt:setLocale value="${sessionScope.localLang}"/>
+<fmt:setBundle basename="translation"/>
 <link rel="stylesheet" href="../../../resources/css/foundation.min.css">
 <link rel="stylesheet" href="../../../resources/css/style.css">
 <title>Title</title>
