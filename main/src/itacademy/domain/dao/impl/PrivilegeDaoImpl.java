@@ -13,6 +13,7 @@ import java.util.Optional;
 public class PrivilegeDaoImpl implements PrivilegeDao {
     public static final Object LOCK = new Object();
     private static final String SQL_FIND_ALL = "SELECT * FROM privileges ORDER BY name;";
+    private static final String SQL_FIND_ALL_BY_USER_ID = "SELECT * FROM users_privileges where user_id = ?;";
     private static final String SQL_FIND_ID = "SELECT * FROM privileges p WHERE p.id = ?";
     private static final String SQL_SAVE = "INSERT INTO privileges (name) VALUES (?)";
     private static final String SQL_DELETE = "DELETE FROM privileges WHERE (id = ?)";
@@ -102,4 +103,6 @@ public class PrivilegeDaoImpl implements PrivilegeDao {
             e.printStackTrace();
         }
     }
+
+
 }
