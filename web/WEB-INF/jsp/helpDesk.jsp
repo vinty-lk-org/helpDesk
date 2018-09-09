@@ -74,35 +74,25 @@
                 <tr>
                     <th width="50">Номер заявки</th>
                     <th>Краткое содержание</th>
-                    <th width="150">Дата заявки</th>
-                    <th width="250">Исполнитель</th>
+                    <th width="150">Исполнитель</th>
                     <th width="250">Статус</th>
                     <th width="250">удалить</th>
                 </tr>
                 </thead>
                 <tbody>
-                <%--<tr name="taskTableName">--%>
-                    <%--<c:forEach items="${requestScope.tasks}">--%>
-                    <%--<td name="taskId">33</td>--%>
-                    <%--<td name="taskName">Не работает сапод</td>--%>
-                    <%--<td name="data">22.05.2018</td>--%>
-                    <%--<td name="executor">Тит Пула</td>--%>
-                    <%--<td name="status_id" bgcolor="aqua">на рассмотрении</td>--%>
-                <%--</tr>--%>
-
-                <%--<c:forEach items="${requestScope.branches}" var="branch">--%>
-                    <%--<tr name="taskTableName">--%>
-                        <%--<td name="taskId">${branch.id}</td>--%>
-                        <%--<td name="taskName">${branch.name}</td>--%>
-                        <%--<td name="data">${branch.address}</td>--%>
-                        <%--<td>--%>
-                            <%--<a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}&lang=ru"> ${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}  </a>--%>
-                        <%--</td>--%>
-                    <%--</tr>--%>
-                <%--</c:forEach>--%>
-
-
-                </tbody>
+                <c:forEach items="${requestScope.tasks}" var="task">
+                    <tr name="taskTableName">
+                        <td name="taskId">${task.id}</td>
+                        <td name="taskName">${task.name}</td>
+                        <td name="executor">${task.listinerName}</td>
+                        <td name="executor">${task.statusName}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}&lang=ru">
+                                    ${pageContext.request.contextPath}/registerBranch/Delete?id=${branch.id}  </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+              </tbody>
             </table>
         </div>
         <div class="medium-1 cell">
