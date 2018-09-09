@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>registerBranch</title>
+    <title>registerProblem</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
@@ -25,17 +25,16 @@
     <thead>
     <tr>
         <th width="100">ID</th>
-        <th width="250">Название филиала</th>
-        <th>Адрес филиала</th>
-        <th>Удалить</th>
+        <th>Название филиала</th>
+        <th width="250">Удалить</th>
+        <th width="250">Изменить</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.branches}" var="problem">
+    <c:forEach items="${requestScope.problems}" var="problem">
         <tr name="taskTableName">
             <td name="taskId">${problem.id}</td>
             <td name="taskName">${problem.name}</td>
-            <td name="data">${problem.address}</td>
             <td>
                 <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${problem.id}&lang=ru">Удалить </a>
             </td>
