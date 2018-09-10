@@ -13,7 +13,7 @@
         <div class="medium-3 cell">
         </div>
         <div class="medium-6 cell">
-            <jsp:include page="../jsp/fragments/navadmin.jsp"/>
+            <jsp:include page="../jsp/fragments/nav.jsp"/>
         </div>
         <div class="medium-3 cell">
         </div>
