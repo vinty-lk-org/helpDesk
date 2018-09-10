@@ -25,18 +25,18 @@
     <thead>
     <tr>
         <th width="100">ID</th>
-        <th>Название филиала</th>
+        <th>Категория проблем</th>
         <th width="250">Удалить</th>
         <th width="250">Изменить</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.problems}" var="problem">
+    <c:forEach items="${requestScope.category}" var="category">
         <tr name="taskTableName">
-            <td name="taskId">${problem.id}</td>
-            <td name="taskName">${problem.name}</td>
+            <td name="taskId">${category.id}</td>
+            <td name="taskName">${category.name}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${problem.id}&lang=ru">Удалить </a>
+                <a href="${pageContext.request.contextPath}/category/Delete?id=${category.id}&lang=ru">Удалить </a>
             </td>
         </tr>
     </c:forEach>

@@ -2,9 +2,8 @@ package itacademy.domain.dao.impl;
 
 
 import itacademy.connection.ConnectionManager;
-import itacademy.domain.dao.interfaces.ProblemDao;
-import itacademy.domain.entity.Problem;
-import itacademy.domain.entity.SystemUser;
+import itacademy.domain.dao.interfaces.CategoryDao;
+import itacademy.domain.entity.Category;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,37 +11,38 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class ProblemDaoImpl implements ProblemDao {
+public class CategoryDaoImpl implements CategoryDao {
     public static final Object LOCK = new Object();
-    private static final String SQL_FIND_ALL = "SELECT * FROM problems ORDER BY name;";
-    private static final String SQLFIND_ID = "SELECT * FROM problems p WHERE p.id = ?";
-    private static final String SQL_SAVE = "INSERT INTO problems (name) VALUES (?)";
-    private static final String SQL_DELETE = "DELETE FROM problems WHERE (id = ?)";
-    private static ProblemDaoImpl INSTANCE = null;
+    private static final String SQL_FIND_ALL = "SELECT * FROM category ORDER BY name;";
+    private static final String SQLFIND_ID = "SELECT * FROM category p WHERE p.id = ?";
+    private static final String SQL_SAVE = "INSERT INTO category (name) VALUES (?)";
+    private static final String SQL_UPDATE = "UPDATE category SET name = (?) WHERE id =(?)";
+    private static final String SQL_DELETE = "DELETE FROM category WHERE (id = ?)";
+    private static CategoryDaoImpl INSTANCE = null;
 
-    public static ProblemDaoImpl getInstance() {
+     public static CategoryDaoImpl getInstance() {
         if (INSTANCE == null) {
             synchronized (LOCK) {
                 if (INSTANCE == null) {
-                    INSTANCE = new ProblemDaoImpl();
+                    INSTANCE = new CategoryDaoImpl();
                 }
             }
         }
         return INSTANCE;
     }
 
-    private Problem createProblemFromResultSet(ResultSet resultSet) throws SQLException {
-        return new Problem(
+    private Category createCategoryFromResultSet(ResultSet resultSet) throws SQLException {
+        return new Category(
                 resultSet.getLong("id"),
                 resultSet.getString("name"));
     }
 
-    public Long saveDao(Problem Problem) {
+    public Long saveDao(Category Category) {
         Long id = 0L;
         try (Connection connection = ConnectionManager.getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setString(1, Problem.getName());
+                preparedStatement.setString(1, Category.getName());
                 preparedStatement.executeUpdate();
                 connection.commit();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -54,6 +54,20 @@ public class ProblemDaoImpl implements ProblemDao {
             e.printStackTrace();
         }
         return id;
+    }
+
+    public void update(Category Category) {
+        try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)) {
+                preparedStatement.setString(1, Category.getName());
+                preparedStatement.setLong(2, Category.getId());
+                preparedStatement.executeUpdate();
+                connection.commit();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -72,30 +86,30 @@ public class ProblemDaoImpl implements ProblemDao {
 
 
     @Override
-    public List<Problem> findAll() {
-        List<Problem> Problem = new ArrayList<>();
+    public List<Category> findAll() {
+        List<Category> Category = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        Problem.add(createProblemFromResultSet(resultSet));
+                        Category.add(createCategoryFromResultSet(resultSet));
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Problem;
+        return Category;
     }
 
     @Override
-    public Optional<Problem> findById(Long id) {
+    public Optional<Category> findById(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(ProblemDaoImpl.SQLFIND_ID)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(CategoryDaoImpl.SQLFIND_ID)) {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                        return Optional.of(createProblemFromResultSet(resultSet));
+                        return Optional.of(createCategoryFromResultSet(resultSet));
                     }
                 }
             }
@@ -109,5 +123,4 @@ public class ProblemDaoImpl implements ProblemDao {
     public Long save(Object entity) {
         return null;
     }
-
 }

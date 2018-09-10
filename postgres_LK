@@ -388,7 +388,7 @@ CREATE TABLE public.problems (
 );
 
 
-ALTER TABLE public.problems OWNER TO root;
+ALTER TABLE public.Category OWNER TO root;
 
 --
 -- Name: problems_id_seq; Type: SEQUENCE; Schema: public; Owner: root
@@ -684,19 +684,19 @@ SELECT pg_catalog.setval('public.privileges_id_seq', 131, true);
 -- Data for Name: problems; Type: TABLE DATA; Schema: public; Owner: root
 --
 
-INSERT INTO public.problems (id, name) VALUES (2, 'Принтеры');
-INSERT INTO public.problems (id, name) VALUES (4, 'Картриджи');
-INSERT INTO public.problems (id, name) VALUES (5, 'Интернет');
-INSERT INTO public.problems (id, name) VALUES (6, 'Сапод');
-INSERT INTO public.problems (id, name) VALUES (7, 'Товарная касса');
-INSERT INTO public.problems (id, name) VALUES (8, 'Электронная перевозка');
-INSERT INTO public.problems (id, name) VALUES (9, 'Счетфактуры');
-INSERT INTO public.problems (id, name) VALUES (10, 'Пример');
-INSERT INTO public.problems (id, name) VALUES (11, 'СТУ');
-INSERT INTO public.problems (id, name) VALUES (12, 'test1');
-INSERT INTO public.problems (id, name) VALUES (13, 'test44');
-INSERT INTO public.problems (id, name) VALUES (14, 'test55');
-INSERT INTO public.problems (id, name) VALUES (15, 'test66');
+INSERT INTO public.Category (id, name) VALUES (2, 'Принтеры');
+INSERT INTO public.Category (id, name) VALUES (4, 'Картриджи');
+INSERT INTO public.Category (id, name) VALUES (5, 'Интернет');
+INSERT INTO public.Category (id, name) VALUES (6, 'Сапод');
+INSERT INTO public.Category (id, name) VALUES (7, 'Товарная касса');
+INSERT INTO public.Category (id, name) VALUES (8, 'Электронная перевозка');
+INSERT INTO public.Category (id, name) VALUES (9, 'Счетфактуры');
+INSERT INTO public.Category (id, name) VALUES (10, 'Пример');
+INSERT INTO public.Category (id, name) VALUES (11, 'СТУ');
+INSERT INTO public.Category (id, name) VALUES (12, 'test1');
+INSERT INTO public.Category (id, name) VALUES (13, 'test44');
+INSERT INTO public.Category (id, name) VALUES (14, 'test55');
+INSERT INTO public.Category (id, name) VALUES (15, 'test66');
 
 
 --
@@ -869,7 +869,7 @@ ALTER TABLE ONLY public.users_privileges
 -- Name: problems_name_uindex; Type: INDEX; Schema: public; Owner: root
 --
 
-CREATE UNIQUE INDEX problems_name_uindex ON public.problems USING btree (name);
+CREATE UNIQUE INDEX problems_name_uindex ON public.Category USING btree (name);
 
 
 --

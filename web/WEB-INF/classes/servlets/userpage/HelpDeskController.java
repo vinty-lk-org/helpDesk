@@ -1,7 +1,5 @@
 package servlets.userpage;
 
-import itacademy.domain.dao.impl.BranchDaoImpl;
-import itacademy.domain.dao.impl.ProblemDaoImpl;
 import itacademy.dto.models.TaskDto;
 import itacademy.domain.services.TaskServiceImpl;
 
@@ -33,7 +31,8 @@ public class HelpDeskController extends HttpServlet {
             .listenerId(1L)
 //            .listenerId(Long.valueOf(request.getParameter("listenerId")))
             .text(request.getParameter("textTask"))
-            .systemUserId(23L)
+//            .systemUserId(23L)
+            .systemUserId((Long)request.getSession().getAttribute("userId"))
 //            .systemUserId(Long.valueOf(request.getParameter("userId")))
             .statusId(1L)
 //            .statusId(Long.valueOf(request.getParameter("statusId")))

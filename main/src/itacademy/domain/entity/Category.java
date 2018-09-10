@@ -7,11 +7,11 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Problem {
+public class Category {
     private Long id;
     private String name;
 
-    public Problem(String name) {
+    public Category(String name) {
         this.name = name;
     }
 }

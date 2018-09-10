@@ -1,8 +1,7 @@
 package servlets.adminpage;
 
-import itacademy.domain.dao.impl.ProblemDaoImpl;
+import itacademy.domain.dao.impl.CategoryDaoImpl;
 import itacademy.dto.models.TaskDto;
-import itacademy.domain.services.TaskServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +17,7 @@ public class AdminFillPageController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("problems", ProblemDaoImpl.getInstance().findAll());
+        req.setAttribute("category", CategoryDaoImpl.getInstance().findAll());
         req.setAttribute("myName", "Выберите категорию");
         showPage(req, resp);
     }

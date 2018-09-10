@@ -103,7 +103,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Типовые категории проблем
+                <A class="button success" href="${pageContext.request.contextPath}/registerCategory"> <b> Типовые категории проблем
                 </b> </A>
             </div>
             <div class="medium-3 cell">

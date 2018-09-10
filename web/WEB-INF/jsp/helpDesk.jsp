@@ -25,7 +25,9 @@
         </div>
     </div>
 
-    <div class="grid-container">
+    <%--<input type="hidden" name="userId" value="${sessionScope.userId}">--%>
+
+       <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
             </div>

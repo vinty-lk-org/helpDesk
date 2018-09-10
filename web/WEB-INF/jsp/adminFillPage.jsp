@@ -67,14 +67,14 @@
             </div>
         </div>
     </form>
-    <form name="textform3" id="textform3" action="${pageContext.request.contextPath}/problemTypeSave" method="post">
+    <form name="textform3" id="textform3" action="${pageContext.request.contextPath}/categoryTypeSave" method="post">
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
                 <div class="medium-3 cell">
                 </div>
                 <div class="medium-3 cell">
                     <label> Введите тип пролемы
-                        <input type="text" name="problemName" placeholder="например картриджи">
+                        <input type="text" name="categoryName" placeholder="например картриджи">
                     </label>
                 </div>
                 <div class="medium-3 cell">
