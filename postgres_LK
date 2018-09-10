@@ -313,6 +313,18 @@ ALTER SEQUENCE public.branch_id_seq OWNED BY public.branches.id;
 
 
 --
+-- Name: category; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.category (
+    id integer NOT NULL,
+    name character varying NOT NULL
+);
+
+
+ALTER TABLE public.category OWNER TO root;
+
+--
 -- Name: listeners; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -379,18 +391,6 @@ ALTER SEQUENCE public.privileges_id_seq OWNED BY public.privileges.id;
 
 
 --
--- Name: problems; Type: TABLE; Schema: public; Owner: root
---
-
-CREATE TABLE public.problems (
-    id integer NOT NULL,
-    name character varying NOT NULL
-);
-
-
-ALTER TABLE public.Category OWNER TO root;
-
---
 -- Name: problems_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -408,7 +408,7 @@ ALTER TABLE public.problems_id_seq OWNER TO root;
 -- Name: problems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
-ALTER SEQUENCE public.problems_id_seq OWNED BY public.problems.id;
+ALTER SEQUENCE public.problems_id_seq OWNED BY public.category.id;
 
 
 --
@@ -577,6 +577,13 @@ ALTER TABLE ONLY public.branches ALTER COLUMN id SET DEFAULT nextval('public.bra
 -- Name: id; Type: DEFAULT; Schema: public; Owner: root
 --
 
+ALTER TABLE ONLY public.category ALTER COLUMN id SET DEFAULT nextval('public.problems_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
 ALTER TABLE ONLY public.listeners ALTER COLUMN id SET DEFAULT nextval('public.listeners_id_seq'::regclass);
 
 
@@ -585,13 +592,6 @@ ALTER TABLE ONLY public.listeners ALTER COLUMN id SET DEFAULT nextval('public.li
 --
 
 ALTER TABLE ONLY public.privileges ALTER COLUMN id SET DEFAULT nextval('public.privileges_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY public.problems ALTER COLUMN id SET DEFAULT nextval('public.problems_id_seq'::regclass);
 
 
 --
@@ -626,13 +626,14 @@ ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.task_i
 -- Name: branch_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.branch_id_seq', 529, true);
+SELECT pg_catalog.setval('public.branch_id_seq', 533, true);
 
 
 --
 -- Data for Name: branches; Type: TABLE DATA; Schema: public; Owner: root
 --
 
+INSERT INTO public.branches (id, name, address) VALUES (530, 'Брест-литовская4', 'Борисов4');
 INSERT INTO public.branches (id, name, address) VALUES (1, 'Колядичи', 'Минск');
 INSERT INTO public.branches (id, name, address) VALUES (404, 'Степянка', 'Минск');
 INSERT INTO public.branches (id, name, address) VALUES (3, 'Воронянского', 'Минск');
@@ -641,6 +642,21 @@ INSERT INTO public.branches (id, name, address) VALUES (440, 'Брест-лит�
 INSERT INTO public.branches (id, name, address) VALUES (503, 'Сортировочный2', 'Брест-литовская 15');
 INSERT INTO public.branches (id, name, address) VALUES (504, 'Брест-литовская3', 'Борисов3');
 INSERT INTO public.branches (id, name, address) VALUES (506, 'ABC', NULL);
+
+
+--
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.category (id, name) VALUES (4, 'Картриджи');
+INSERT INTO public.category (id, name) VALUES (5, 'Интернет');
+INSERT INTO public.category (id, name) VALUES (6, 'Сапод');
+INSERT INTO public.category (id, name) VALUES (7, 'Товарная касса');
+INSERT INTO public.category (id, name) VALUES (8, 'Электронная перевозка');
+INSERT INTO public.category (id, name) VALUES (9, 'Счетфактуры');
+INSERT INTO public.category (id, name) VALUES (10, 'Пример');
+INSERT INTO public.category (id, name) VALUES (11, 'СТУ');
+INSERT INTO public.category (id, name) VALUES (2, 'Принтеры3');
 
 
 --
@@ -660,7 +676,7 @@ INSERT INTO public.listeners (id, name) VALUES (92, 'Бухгалтерия');
 -- Name: listeners_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.listeners_id_seq', 181, true);
+SELECT pg_catalog.setval('public.listeners_id_seq', 184, true);
 
 
 --
@@ -677,33 +693,14 @@ INSERT INTO public.privileges (id, name) VALUES (4, 'Executor');
 -- Name: privileges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.privileges_id_seq', 131, true);
-
-
---
--- Data for Name: problems; Type: TABLE DATA; Schema: public; Owner: root
---
-
-INSERT INTO public.Category (id, name) VALUES (2, 'Принтеры');
-INSERT INTO public.Category (id, name) VALUES (4, 'Картриджи');
-INSERT INTO public.Category (id, name) VALUES (5, 'Интернет');
-INSERT INTO public.Category (id, name) VALUES (6, 'Сапод');
-INSERT INTO public.Category (id, name) VALUES (7, 'Товарная касса');
-INSERT INTO public.Category (id, name) VALUES (8, 'Электронная перевозка');
-INSERT INTO public.Category (id, name) VALUES (9, 'Счетфактуры');
-INSERT INTO public.Category (id, name) VALUES (10, 'Пример');
-INSERT INTO public.Category (id, name) VALUES (11, 'СТУ');
-INSERT INTO public.Category (id, name) VALUES (12, 'test1');
-INSERT INTO public.Category (id, name) VALUES (13, 'test44');
-INSERT INTO public.Category (id, name) VALUES (14, 'test55');
-INSERT INTO public.Category (id, name) VALUES (15, 'test66');
+SELECT pg_catalog.setval('public.privileges_id_seq', 134, true);
 
 
 --
 -- Name: problems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.problems_id_seq', 15, true);
+SELECT pg_catalog.setval('public.problems_id_seq', 16, true);
 
 
 --
@@ -727,7 +724,7 @@ SELECT pg_catalog.setval('public.status_id_seq', 4, true);
 -- Name: subdivision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.subdivision_id_seq', 313, true);
+SELECT pg_catalog.setval('public.subdivision_id_seq', 316, true);
 
 
 --
@@ -751,7 +748,7 @@ INSERT INTO public.subdivisions (id, name) VALUES (229, 'Жэс №32');
 -- Name: system_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.system_user_id_seq', 275, true);
+SELECT pg_catalog.setval('public.system_user_id_seq', 283, true);
 
 
 --
@@ -761,6 +758,8 @@ SELECT pg_catalog.setval('public.system_user_id_seq', 275, true);
 INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (23, 'Ярослав', 'Зыскунов', 'lkghost7@gmail.com', '1', 3, 1);
 INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (274, 'киллер', 'Джошуа', 'll@22.by', '1234567', 404, 1);
 INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (275, 'Иван', 'Драго', 'lk@tut.by', '1234567', 1, 2);
+INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (276, 'Василий', 'Петров', 'lk@belint.by', '1234567', 404, 2);
+INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (277, 'Михаил', 'Жиглов', 'lk2@tut.by', '1234567', 1, 292);
 INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (22, 'Виталий', 'Ушаков', 'vinty@i.ua', '1', 1, 2);
 
 
@@ -768,19 +767,31 @@ INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, 
 -- Name: task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.task_id_seq', 141, true);
+SELECT pg_catalog.setval('public.task_id_seq', 174, true);
 
 
 --
 -- Data for Name: tasks; Type: TABLE DATA; Schema: public; Owner: root
 --
 
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (125, 'name save test', 1, 'text save test', 23, NULL, NULL, 2);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (127, 'name save test', 1, 'text save test', 23, NULL, NULL, 2);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (131, 'name save test', 1, 'text save test', 23, NULL, NULL, 2);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (139, 'фывафыв', 1, 'фывафыва', 23, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (140, 'фываыфва', 1, 'ыфвафыва', 23, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (122, 'картриджи', 2, 'ываоолопропро', 23, NULL, NULL, 4);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (152, '777', 1, '777', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (153, '777', 1, '777', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (154, 'апропь', 1, 'вапаропро', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (155, 'вкен456апрап', 1, 'провапрвапр', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (156, 'sdf', 1, 'sdf', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (157, '', 1, '', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (159, 'sdf', 1, 'sdf', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (160, 'sdf', 1, 'cv', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (162, 'zdf', 1, 'sdf', 22, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (163, 'sdfsdf', 1, 'gsdfs', 22, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (164, 'gdfgdf', 1, 'sdfsdf', 22, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (167, 'hdfghdsfg', 1, 'sdfgsdfg', 275, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (168, 'dfgdfg', 1, 'sdfgdsfg', 275, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (169, '676', 1, 'cgbcfgh', 277, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (170, '45345634563456', 1, 'fghdfghdfgh', 277, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (171, 'fghfdgh', 1, 'dfghdfgh', 277, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (172, 'sdf', 1, 'sdf', 277, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (174, 'name save test', 1, 'text save test', 23, NULL, NULL, 2);
 
 
 --
@@ -791,6 +802,8 @@ INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (274, 2);
 INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (275, 2);
 INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (23, 1);
 INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (22, 2);
+INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (276, 2);
+INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (277, 2);
 
 
 --
@@ -821,7 +834,7 @@ ALTER TABLE ONLY public.privileges
 -- Name: problems_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
-ALTER TABLE ONLY public.problems
+ALTER TABLE ONLY public.category
     ADD CONSTRAINT problems_pkey PRIMARY KEY (id);
 
 
@@ -869,7 +882,7 @@ ALTER TABLE ONLY public.users_privileges
 -- Name: problems_name_uindex; Type: INDEX; Schema: public; Owner: root
 --
 
-CREATE UNIQUE INDEX problems_name_uindex ON public.Category USING btree (name);
+CREATE UNIQUE INDEX problems_name_uindex ON public.category USING btree (name);
 
 
 --
