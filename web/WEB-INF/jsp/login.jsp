@@ -4,7 +4,7 @@
 <fmt:setBundle basename="translation"/>
 <html>
 <head>
-    <title>login</title>
+    <title>HelpDesk</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>

@@ -3,12 +3,11 @@
 <html>
 
 <head>
-    <title>user</title>
+    <title>HelpDesk</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 
 <body>
-
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">

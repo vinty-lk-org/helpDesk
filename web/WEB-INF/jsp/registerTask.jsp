@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>registerTask</title>
+    <title>HelpDesk</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>

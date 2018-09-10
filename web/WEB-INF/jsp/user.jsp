@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>User</title>
+    <title>HelpDesk</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
     <script type="text/javascript">
         <%@include file="../../resources/js/myJs.js" %>

@@ -12,20 +12,21 @@
                 <c:if test="${sessionScope.privilege eq '2'}">
                     <li><a href="/helpDesk" text="Я админ">на страницу пользователя</a></li>
                 </c:if>
-                <%--<li><a href="/admin">на страницу админа</a></li>--%>
-                <%--<li><a href="/helpDesk">на страницу пользователя</a></li>--%>
-            </ul>
+                <li><a href="/login">Статистика</a></li>
+                <li><a href="/login">Отчет</a></li>
+                <li><a href="/login">Выход</a></li>
+                </ul>
 
 <c:if test="${sessionScope.privilege eq '1'}">
         </li>
-        <a href="/admin">Администратор</a>
+        <a href="/admin">Администратор <br> ${sessionScope.user}</a>
         <a href="/helpDesk">Написать заявку</a>
         <li><a href="/login">Выход</a></li>
 </c:if>
 
         <c:if test="${sessionScope.privilege eq '2'}">
             </li>
-            <a href="/helpDesk">Пользователь</a>
+            <a href="/helpDesk">Пользователь <br> ${sessionScope.user}</a>
             <li><a href="/login">Выход</a></li>
         </c:if>
     </ul>
