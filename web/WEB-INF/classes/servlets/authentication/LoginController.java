@@ -1,4 +1,4 @@
-package servlets;
+package servlets.authentication;
 
 import itacademy.domain.entity.SystemUser;
 import itacademy.domain.entity.UserPrivilege;

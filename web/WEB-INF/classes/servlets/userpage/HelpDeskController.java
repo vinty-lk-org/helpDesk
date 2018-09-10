@@ -1,4 +1,4 @@
-package servlets;
+package servlets.userpage;
 
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.dao.impl.ProblemDaoImpl;

@@ -1,4 +1,4 @@
-package servlets.tableview;
+package servlets.adminpage.tableview;
 
 import itacademy.domain.services.SystemUserServiceImpl;
 

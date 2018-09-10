@@ -1,4 +1,4 @@
-package servlets;
+package servlets.authentication;
 
 import itacademy.dto.models.SystemUserDto;
 import itacademy.domain.services.BranchServiceImpl;

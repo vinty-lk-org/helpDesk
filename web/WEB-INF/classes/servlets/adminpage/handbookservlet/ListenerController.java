@@ -1,9 +1,7 @@
-package servlets.handbookservlet;
+package servlets.adminpage.handbookservlet;
 
 import itacademy.domain.dao.impl.ListenerDaoImpl;
-import itacademy.domain.dao.impl.ProblemDaoImpl;
 import itacademy.domain.entity.Listener;
-import itacademy.domain.entity.Problem;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

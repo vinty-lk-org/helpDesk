@@ -1,4 +1,4 @@
-package servlets;
+package servlets.adminpage;
 
 import itacademy.domain.dao.impl.ProblemDaoImpl;
 import itacademy.dto.models.TaskDto;

@@ -1,4 +1,4 @@
-package servlets.handbookservlet;
+package servlets.adminpage.handbookservlet;
 
 import itacademy.domain.dao.impl.BranchDaoImpl;
 import itacademy.domain.entity.Branch;
