@@ -6,7 +6,9 @@
         <c:if test="${sessionScope.privilege eq '1'}">
             <li><a href="/helpDesk" text="Я админ">АДМИН</a></li>
         </c:if>
-
+        <c:if test="${sessionScope.privilege eq '2'}">
+            <li><a href="/helpDesk" text="Я админ">Пользователь</a></li>
+        </c:if>
         <li>
             <a href="">Меню пользователя</a>
 
