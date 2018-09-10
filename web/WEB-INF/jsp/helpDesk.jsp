@@ -1,3 +1,6 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
+
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -8,10 +11,15 @@
 </head>
 
 <body>
+<%
+    Date dateNow  = new Date();
+    SimpleDateFormat formatForDateNow = new SimpleDateFormat("hh:mm    E dd.MM.yyyy");
+%>
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
+
             </div>
             <div class="medium-6 cell">
                 <jsp:include page="../jsp/fragments/nav.jsp"/>
@@ -21,13 +29,14 @@
                 </label>
             </div>
             <div class="medium-3 cell">
+                <%= formatForDateNow.format(dateNow) %>
             </div>
         </div>
     </div>
 
     <%--<input type="hidden" name="userId" value="${sessionScope.userId}">--%>
 
-       <div class="grid-container">
+    <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
             </div>
@@ -76,7 +85,7 @@
                         </td>
                     </tr>
                 </c:forEach>
-              </tbody>
+                </tbody>
             </table>
         </div>
         <div class="medium-1 cell">
