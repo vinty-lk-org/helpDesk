@@ -1,4 +1,4 @@
-package servlets.adminpage.handbookservlet;
+package servlets.save.handbookservlet;
 
 import itacademy.domain.dao.impl.ListenerDaoImpl;
 import itacademy.domain.entity.Listener;

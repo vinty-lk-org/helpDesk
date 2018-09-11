@@ -38,6 +38,9 @@
             <td>
                 <a href="${pageContext.request.contextPath}/category/Delete?id=${category.id}&lang=ru">Удалить </a>
             </td>
+            <td>
+                <a href="${pageContext.request.contextPath}/category/Delete?id=${category.id}&lang=ru">Изменить</a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
