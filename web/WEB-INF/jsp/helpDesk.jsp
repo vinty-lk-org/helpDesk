@@ -1,35 +1,27 @@
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
-
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-
 <head>
     <title>HelpDesk</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
-
 <body>
-<%
-    Date dateNow  = new Date();
-    SimpleDateFormat formatForDateNow = new SimpleDateFormat("E dd.MM.yyyy");
-%>
+
+<jsp:include page="../jsp/fragments/nav.jsp"/>
+
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
-
             </div>
             <div class="medium-6 cell">
-                <jsp:include page="../jsp/fragments/nav.jsp"/>
                 <br>
                 <label>Краткое наименование заявки
                     <input type="text" name="nameTask" placeholder="Введите краткое описание проблемы">
                 </label>
             </div>
             <div class="medium-3 cell">
-                <%= formatForDateNow.format(dateNow) %>
+
             </div>
         </div>
     </div>
