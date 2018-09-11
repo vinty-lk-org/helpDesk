@@ -10,10 +10,11 @@
     </script>
 </head>
 <body>
+<jsp:include page="../jsp/fragments/nav.jsp"/>
 ${login}
 <form name="form1" id="form1" action="${pageContext.request.contextPath}/registration" method="post">
     <div class="grid-container">
-        <jsp:include page="../jsp/fragments/nav.jsp"/>
+
         <h2>Пользователь</h2>
         <br>
         <div class="grid-x grid-padding-x">

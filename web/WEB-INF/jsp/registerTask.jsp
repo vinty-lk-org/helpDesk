@@ -1,20 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <html>
 <head>
     <title>HelpDesk</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
-
+<jsp:include page="../jsp/fragments/nav.jsp"/>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
         </div>
         <div class="medium-6 cell">
-            <jsp:include page="../jsp/fragments/nav.jsp"/>
         </div>
         <div class="medium-3 cell">
         </div>
@@ -43,14 +40,10 @@
             <td>
                 <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru">Изменить</a>
             </td>
-            <%--<td name="data">${user.email}</td>--%>
-                <%--<td name="executor">${task.subdivisionName}</td>--%>
-                <%--<td name="status_id">${task.branchName}</td>--%>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
@@ -65,7 +58,6 @@
         </div>
     </div>
 </div>
-
 <script>
     $(document).foundation();
 </script>

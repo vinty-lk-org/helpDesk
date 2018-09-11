@@ -6,9 +6,7 @@
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
-
 <jsp:include page="../jsp/fragments/nav.jsp"/>
-
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
@@ -25,15 +23,12 @@
             </div>
         </div>
     </div>
-
     <%--<input type="hidden" name="userId" value="${sessionScope.userId}">--%>
-
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
             </div>
             <div class="medium-6 cell">
-
                 <label> Опишите возникшую проблему
                     <textarea name="textTask" placeholder="Подробно опишите возникшую проблему" cols="40"
                               rows="3"></textarea>
@@ -41,14 +36,12 @@
                         <button type="submit" class="button success"><b>Отправить заявку</b></button>
                     </div>
                 </label>
-
             </div>
             <div class="medium-1 cell">
             </div>
         </div>
     </div>
 </form>
-
 <p align="center"><b>Ваши заявки</b></p>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
@@ -84,10 +77,8 @@
         </div>
     </div>
 </div>
-
 <script>
     $(document).foundation();
 </script>
 </body>
-
 </html>
