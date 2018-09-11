@@ -1,9 +1,10 @@
 package servlets.authentication;
 
-import itacademy.dto.models.SystemUserDto;
 import itacademy.domain.services.BranchServiceImpl;
 import itacademy.domain.services.SubdivisionServiceImpl;
 import itacademy.domain.services.SystemUserServiceImpl;
+import itacademy.dto.models.SubdivisionDto;
+import itacademy.dto.models.SystemUserDto;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/registration")
 public class RegistrationController extends HttpServlet {
@@ -19,7 +21,7 @@ public class RegistrationController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("branches", BranchServiceImpl.getInstance().getAllBranchesDto());
         req.setAttribute("subdivisions", SubdivisionServiceImpl.getInstance().getAllSubdivisionDto());
-      getServletContext().getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req, resp);
     }
 
     @Override

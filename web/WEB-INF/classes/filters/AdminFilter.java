@@ -8,7 +8,7 @@ import java.io.IOException;
 
 @WebFilter(servletNames = {"admin"})
 public class AdminFilter implements Filter {
-
+        //TODO: реализовать защиту страниц НЕ ПОЛЬЗОВАТЕЛЯ
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         Long userIdSession = (Long) ((HttpServletRequest) servletRequest).getSession().getAttribute("privilege");
