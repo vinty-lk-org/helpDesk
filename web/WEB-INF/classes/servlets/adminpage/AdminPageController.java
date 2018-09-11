@@ -10,8 +10,6 @@ import java.io.IOException;
 @WebServlet(value = "/admin", name = "admin")
 public class AdminPageController extends HttpServlet {
 
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/admin.jsp").forward(req, resp);

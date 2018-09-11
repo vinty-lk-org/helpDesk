@@ -5,23 +5,19 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
 
 @WebFilter(servletNames = {"admin"})
-public class AuthorizationFilter implements Filter {
+public class AdminFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        if (isUserAdmin(servletRequest)) {
+        Long userIdSession = (Long) ((HttpServletRequest) servletRequest).getSession().getAttribute("userId");
+
+        if (userIdSession == 1) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             ((HttpServletResponse) servletResponse).sendRedirect("/login");
         }
-    }
-
-    public boolean isUserAdmin(ServletRequest servletRequest) {
-        User user = (User) ((HttpServletRequest) servletRequest).getSession().getAttribute("user");
-        return Objects.nonNull(user) && user.getRole() == Role.ADMIN;
     }
 
     @Override
