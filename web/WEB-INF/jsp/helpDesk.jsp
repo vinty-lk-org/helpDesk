@@ -13,7 +13,7 @@
 <body>
 <%
     Date dateNow  = new Date();
-    SimpleDateFormat formatForDateNow = new SimpleDateFormat("hh:mm    E dd.MM.yyyy");
+    SimpleDateFormat formatForDateNow = new SimpleDateFormat("E dd.MM.yyyy");
 %>
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
