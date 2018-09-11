@@ -12,7 +12,6 @@ public class AdminFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         Long userIdSession = (Long) ((HttpServletRequest) servletRequest).getSession().getAttribute("userId");
-
         if (userIdSession == 1) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
