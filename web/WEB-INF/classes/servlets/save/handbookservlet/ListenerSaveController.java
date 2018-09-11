@@ -1,7 +1,7 @@
 package servlets.save.handbookservlet;
 
-import itacademy.domain.dao.impl.CategoryDaoImpl;
-import itacademy.domain.entity.Category;
+import itacademy.domain.dao.impl.ListenerDaoImpl;
+import itacademy.domain.entity.Listener;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/categoryTypeSave")
-public class CategoryConntoller extends HttpServlet {
+@WebServlet("/listenerSave")
+public class ListenerSaveController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CategoryDaoImpl.getInstance().saveDao(new Category(req.getParameter("categoryName")));
+        ListenerDaoImpl.getInstance().save(new Listener(req.getParameter("listenerName")));
         resp.sendRedirect("/adminFillPage");
     }
 }

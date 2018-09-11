@@ -39,13 +39,25 @@
                 <a href="${pageContext.request.contextPath}/category/Delete?id=${category.id}&lang=ru">Удалить </a>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/category/Delete?id=${category.id}&lang=ru">Изменить</a>
+                <a href="${pageContext.request.contextPath}/viewCategory/Update?id=${category.id}&lang=ru">Изменить</a>
             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+        <div class="medium-3 cell">
+        </div>
+        <div class="medium-6 cell">
+            <div class="expanded button-group">
+                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новую категорию</b> </A>
+            </div>
+            <div class="medium-3 cell">
+            </div>
+        </div>
+    </div>
+</div>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">

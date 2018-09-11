@@ -27,7 +27,7 @@
         <th width="100">ID</th>
         <th width="250">Название филиала</th>
         <th>Адрес филиала</th>
-        <th>Удалить</th>
+        <%--<th>Удалить</th>--%>
     </tr>
     </thead>
     <tbody>
@@ -36,14 +36,26 @@
             <td name="taskId">${category.id}</td>
             <td name="taskName">${category.name}</td>
             <td name="data">${category.address}</td>
-            <td>
-                <a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${category.id}&lang=ru">Удалить </a>
-            </td>
+            <%--<td>--%>
+                <%--<a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${category.id}&lang=ru">Удалить </a>--%>
+            <%--</td>--%>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+        <div class="medium-3 cell">
+        </div>
+        <div class="medium-6 cell">
+            <div class="expanded button-group">
+                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новый филиал</b> </A>
+            </div>
+            <div class="medium-3 cell">
+            </div>
+        </div>
+    </div>
+</div>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">

@@ -17,4 +17,10 @@ public class CategoryDaoImplTest {
         Category category = new Category(4L,"77777");
         dao.update(category);
     }
+
+    @Test
+    public void findById() {
+        Optional<Category> categoryId = CategoryDaoImpl.getInstance().findById(8L);
+        System.out.println(categoryId);
+    }
 }

@@ -14,9 +14,9 @@ import java.util.Optional;
 public class CategoryDaoImpl implements CategoryDao {
     public static final Object LOCK = new Object();
     private static final String SQL_FIND_ALL = "SELECT * FROM category ORDER BY name;";
-    private static final String SQLFIND_ID = "SELECT * FROM category p WHERE p.id = ?";
+
     private static final String SQL_SAVE = "INSERT INTO category (name) VALUES (?)";
-    private static final String SQL_UPDATE = "UPDATE category SET name = (?) WHERE id =(?)";
+
     private static final String SQL_DELETE = "DELETE FROM category WHERE (id = ?)";
     private static CategoryDaoImpl INSTANCE = null;
 
@@ -56,12 +56,13 @@ public class CategoryDaoImpl implements CategoryDao {
         return id;
     }
 
-    public void update(Category Category) {
+    private static final String SQL_UPDATE = "UPDATE category SET name = (?) WHERE id =(?)";
+    public void update(Category category) {
         try (Connection connection = ConnectionManager.getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)) {
-                preparedStatement.setString(1, Category.getName());
-                preparedStatement.setLong(2, Category.getId());
+                preparedStatement.setString(1, category.getName());
+                preparedStatement.setLong(2, category.getId());
                 preparedStatement.executeUpdate();
                 connection.commit();
             }
@@ -102,10 +103,11 @@ public class CategoryDaoImpl implements CategoryDao {
         return Category;
     }
 
+    private static final String SQL_FIND_ID = "SELECT * FROM category p WHERE p.id = ?";
     @Override
     public Optional<Category> findById(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(CategoryDaoImpl.SQLFIND_ID)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(CategoryDaoImpl.SQL_FIND_ID)) {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {

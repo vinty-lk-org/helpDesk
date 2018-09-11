@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/branchSave")
 
-public class BranchController extends HttpServlet {
+public class BranchSaveController extends HttpServlet {
 
     @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
