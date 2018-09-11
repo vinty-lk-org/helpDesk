@@ -1,0 +1,979 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.14
+-- Dumped by pg_dump version 9.5.14
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE IF EXISTS "Help_desk";
+--
+-- Name: Help_desk; Type: DATABASE; Schema: -; Owner: root
+--
+
+CREATE DATABASE "Help_desk" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Russian_Russia.1251' LC_CTYPE = 'Russian_Russia.1251';
+
+
+ALTER DATABASE "Help_desk" OWNER TO root;
+
+\connect "Help_desk"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- Name: adminpack; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
+
+
+--
+-- Name: branch_find_all(); Type: FUNCTION; Schema: public; Owner: root
+--
+
+CREATE FUNCTION public.branch_find_all() RETURNS refcursor
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  ref refcursor;
+BEGIN
+  OPEN ref FOR
+  select su.id,
+    su.name,
+    su.family,
+    su.e_mail,
+    su.password,
+    b.id     as b_id,
+    b.name   as b_name,
+    b.adress as b_adress,
+    s.id     as s_id,
+    s.name   as s_name
+  from system_users su,
+    branches b,
+    subdivisions s
+  where su.branch_id = b.id
+        and su.subdivision_id = s.id;
+  RETURN ref;
+END;
+$$;
+
+
+ALTER FUNCTION public.branch_find_all() OWNER TO root;
+
+--
+-- Name: system_user_find_all(); Type: FUNCTION; Schema: public; Owner: root
+--
+
+CREATE FUNCTION public.system_user_find_all() RETURNS refcursor
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  ref refcursor;
+BEGIN
+  OPEN ref FOR
+  select su.id,
+    su.name,
+    su.family,
+    su.e_mail,
+    su.password,
+    b.id      as b_id,
+    b.name    as b_name,
+    b.address as b_address,
+    s.id      as s_id,
+    s.name    as s_name
+  from system_users su,
+    branches b,
+    subdivisions s
+  where su.branch_id = b.id
+        and su.subdivision_id = s.id;
+  RETURN ref;
+END;
+$$;
+
+
+ALTER FUNCTION public.system_user_find_all() OWNER TO root;
+
+--
+-- Name: system_user_findby_email(character varying); Type: FUNCTION; Schema: public; Owner: root
+--
+
+CREATE FUNCTION public.system_user_findby_email(s_email character varying) RETURNS refcursor
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  ref refcursor;
+BEGIN
+  OPEN ref FOR
+  select su.id,
+    su.name,
+    su.family,
+    su.e_mail,
+    su.password,
+    b.id      as b_id,
+    b.name    as b_name,
+    b.address as b_address,
+    s.id      as s_id,
+    s.name    as s_name
+  from system_users su,
+    branches b,
+    subdivisions s
+  where su.branch_id = b.id
+        and su.subdivision_id = s.id
+        and su.e_mail = s_email;
+  RETURN ref;
+END;
+$$;
+
+
+ALTER FUNCTION public.system_user_findby_email(s_email character varying) OWNER TO root;
+
+--
+-- Name: system_user_findbyid(integer); Type: FUNCTION; Schema: public; Owner: root
+--
+
+CREATE FUNCTION public.system_user_findbyid(p_id integer) RETURNS refcursor
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  ref refcursor;
+BEGIN
+  OPEN ref FOR
+  select su.id,
+    su.name,
+    su.family,
+    su.e_mail,
+    su.password,
+    b.id      as b_id,
+    b.name    as b_name,
+    b.address as b_address,
+    s.id      as s_id,
+    s.name    as s_name
+  from system_users su,
+    branches b,
+    subdivisions s
+  where su.branch_id = b.id
+        and su.subdivision_id = s.id
+        and su.id = p_id;
+  RETURN ref;
+END;
+$$;
+
+
+ALTER FUNCTION public.system_user_findbyid(p_id integer) OWNER TO root;
+
+--
+-- Name: tasks_find_all(); Type: FUNCTION; Schema: public; Owner: root
+--
+
+CREATE FUNCTION public.tasks_find_all() RETURNS refcursor
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  ref refcursor;
+BEGIN
+  OPEN ref FOR
+  select t.id,
+    t.name,
+    t.text,
+    l.id     as l_id,
+    l.name   as l_name,
+    s.id     as s_id,
+    s.name   as s_name,
+    s.family as s_family,
+    s.e_mail as s_email,
+    s.branch_id,
+    s.subdivision_id,
+    st.id    as st_status_id,
+    st.name as st_name
+  from tasks t,
+    listeners l,
+    system_users s,
+    status st
+  where t.listener_id = l.id
+        and t.system_user_id = s.id
+        and t.status_id = st.id;
+  RETURN ref;
+END;
+$$;
+
+
+ALTER FUNCTION public.tasks_find_all() OWNER TO root;
+
+--
+-- Name: tasks_findbyid(integer); Type: FUNCTION; Schema: public; Owner: root
+--
+
+CREATE FUNCTION public.tasks_findbyid(p_id integer) RETURNS refcursor
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  ref refcursor;
+BEGIN
+  OPEN ref FOR
+  select t.id,
+    t.name,
+    t.text,
+    l.id     as l_id,
+    l.name   as l_name,
+    s.id     as s_id,
+    s.name   as s_name,
+    s.family as s_family,
+    s.e_mail as s_email,
+    s.branch_id,
+    s.subdivision_id,
+    st.id    as st_status_id,
+    st.name as st_name
+  from tasks t,
+    listeners l,
+    system_users s,
+    status st
+  where t.listener_id = l.id
+        and t.system_user_id = s.id
+        and t.id = p_id
+        and t.status_id = st.id;
+  RETURN ref;
+END;
+$$;
+
+
+ALTER FUNCTION public.tasks_findbyid(p_id integer) OWNER TO root;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: branches; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.branches (
+    id integer NOT NULL,
+    name character varying(255),
+    address character varying(255)
+);
+
+
+ALTER TABLE public.branches OWNER TO root;
+
+--
+-- Name: branch_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE public.branch_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.branch_id_seq OWNER TO root;
+
+--
+-- Name: branch_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE public.branch_id_seq OWNED BY public.branches.id;
+
+
+--
+-- Name: category; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.category (
+    id integer NOT NULL,
+    name character varying NOT NULL
+);
+
+
+ALTER TABLE public.category OWNER TO root;
+
+--
+-- Name: listeners; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.listeners (
+    id integer NOT NULL,
+    name character varying(100)
+);
+
+
+ALTER TABLE public.listeners OWNER TO root;
+
+--
+-- Name: listeners_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE public.listeners_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.listeners_id_seq OWNER TO root;
+
+--
+-- Name: listeners_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE public.listeners_id_seq OWNED BY public.listeners.id;
+
+
+--
+-- Name: privileges; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.privileges (
+    id integer NOT NULL,
+    name character varying(100) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public.privileges OWNER TO root;
+
+--
+-- Name: privileges_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE public.privileges_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.privileges_id_seq OWNER TO root;
+
+--
+-- Name: privileges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE public.privileges_id_seq OWNED BY public.privileges.id;
+
+
+--
+-- Name: problems_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE public.problems_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.problems_id_seq OWNER TO root;
+
+--
+-- Name: problems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE public.problems_id_seq OWNED BY public.category.id;
+
+
+--
+-- Name: status; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.status (
+    id integer NOT NULL,
+    name character varying(10) NOT NULL
+);
+
+
+ALTER TABLE public.status OWNER TO root;
+
+--
+-- Name: status_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE public.status_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.status_id_seq OWNER TO root;
+
+--
+-- Name: status_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE public.status_id_seq OWNED BY public.status.id;
+
+
+--
+-- Name: subdivisions; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.subdivisions (
+    id integer NOT NULL,
+    name character varying(255) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public.subdivisions OWNER TO root;
+
+--
+-- Name: subdivision_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE public.subdivision_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.subdivision_id_seq OWNER TO root;
+
+--
+-- Name: subdivision_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE public.subdivision_id_seq OWNED BY public.subdivisions.id;
+
+
+--
+-- Name: system_users; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.system_users (
+    id integer NOT NULL,
+    name character varying(50) DEFAULT NULL::character varying,
+    family character varying(50) DEFAULT NULL::character varying,
+    e_mail character varying(50),
+    password character varying(100) NOT NULL,
+    branch_id integer,
+    subdivision_id integer
+);
+
+
+ALTER TABLE public.system_users OWNER TO root;
+
+--
+-- Name: system_user_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE public.system_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.system_user_id_seq OWNER TO root;
+
+--
+-- Name: system_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE public.system_user_id_seq OWNED BY public.system_users.id;
+
+
+--
+-- Name: tasks; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.tasks (
+    id integer NOT NULL,
+    name character varying(50) DEFAULT NULL::character varying,
+    listener_id integer,
+    text text,
+    system_user_id integer,
+    executor_id integer,
+    operator_id integer,
+    status_id integer NOT NULL
+);
+
+
+ALTER TABLE public.tasks OWNER TO root;
+
+--
+-- Name: task_id_seq; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE public.task_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.task_id_seq OWNER TO root;
+
+--
+-- Name: task_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
+--
+
+ALTER SEQUENCE public.task_id_seq OWNED BY public.tasks.id;
+
+
+--
+-- Name: users_privileges; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.users_privileges (
+    user_id integer NOT NULL,
+    privilege_id integer NOT NULL
+);
+
+
+ALTER TABLE public.users_privileges OWNER TO root;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.branches ALTER COLUMN id SET DEFAULT nextval('public.branch_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.category ALTER COLUMN id SET DEFAULT nextval('public.problems_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.listeners ALTER COLUMN id SET DEFAULT nextval('public.listeners_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.privileges ALTER COLUMN id SET DEFAULT nextval('public.privileges_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.status ALTER COLUMN id SET DEFAULT nextval('public.status_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.subdivisions ALTER COLUMN id SET DEFAULT nextval('public.subdivision_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.system_users ALTER COLUMN id SET DEFAULT nextval('public.system_user_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.task_id_seq'::regclass);
+
+
+--
+-- Name: branch_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('public.branch_id_seq', 537, true);
+
+
+--
+-- Data for Name: branches; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.branches (id, name, address) VALUES (530, 'Брест-литовская4', 'Борисов4');
+INSERT INTO public.branches (id, name, address) VALUES (1, 'Колядичи', 'Минск');
+INSERT INTO public.branches (id, name, address) VALUES (404, 'Степянка', 'Минск');
+INSERT INTO public.branches (id, name, address) VALUES (3, 'Воронянского', 'Минск');
+INSERT INTO public.branches (id, name, address) VALUES (537, '', '23434');
+INSERT INTO public.branches (id, name, address) VALUES (494, 'Сортировочный', 'Борисов');
+INSERT INTO public.branches (id, name, address) VALUES (440, 'Брест-литовская', 'Брест-литовская 13а');
+INSERT INTO public.branches (id, name, address) VALUES (503, 'Сортировочный2', 'Брест-литовская 15');
+INSERT INTO public.branches (id, name, address) VALUES (504, 'Брест-литовская3', 'Борисов3');
+INSERT INTO public.branches (id, name, address) VALUES (506, 'ABC', NULL);
+
+
+--
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.category (id, name) VALUES (8, 'Электронная перевозка');
+INSERT INTO public.category (id, name) VALUES (5, 'Интернет');
+INSERT INTO public.category (id, name) VALUES (18, 'новая');
+INSERT INTO public.category (id, name) VALUES (2, 'Принтер');
+INSERT INTO public.category (id, name) VALUES (6, 'Сапод');
+INSERT INTO public.category (id, name) VALUES (7, 'Товарная касса');
+INSERT INTO public.category (id, name) VALUES (11, 'СТУ');
+
+
+--
+-- Data for Name: listeners; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.listeners (id, name) VALUES (2, 'Хозяйственный отдел');
+INSERT INTO public.listeners (id, name) VALUES (1, 'Программисты');
+INSERT INTO public.listeners (id, name) VALUES (157, 'test66');
+INSERT INTO public.listeners (id, name) VALUES (158, 'testData1');
+INSERT INTO public.listeners (id, name) VALUES (159, 'testData2');
+INSERT INTO public.listeners (id, name) VALUES (160, 'Работа №1');
+INSERT INTO public.listeners (id, name) VALUES (188, '343434');
+INSERT INTO public.listeners (id, name) VALUES (92, 'Бухгалтерия');
+
+
+--
+-- Name: listeners_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('public.listeners_id_seq', 188, true);
+
+
+--
+-- Data for Name: privileges; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.privileges (id, name) VALUES (1, 'Admin');
+INSERT INTO public.privileges (id, name) VALUES (2, 'User');
+INSERT INTO public.privileges (id, name) VALUES (3, 'Operator');
+INSERT INTO public.privileges (id, name) VALUES (4, 'Executor');
+
+
+--
+-- Name: privileges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('public.privileges_id_seq', 137, true);
+
+
+--
+-- Name: problems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('public.problems_id_seq', 19, true);
+
+
+--
+-- Data for Name: status; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.status (id, name) VALUES (1, 'SUBMITTED');
+INSERT INTO public.status (id, name) VALUES (2, 'PENDING');
+INSERT INTO public.status (id, name) VALUES (3, 'COMPLETED');
+INSERT INTO public.status (id, name) VALUES (4, 'CLOSED');
+
+
+--
+-- Name: status_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('public.status_id_seq', 4, true);
+
+
+--
+-- Name: subdivision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('public.subdivision_id_seq', 320, true);
+
+
+--
+-- Data for Name: subdivisions; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.subdivisions (id, name) VALUES (1, 'Админы');
+INSERT INTO public.subdivisions (id, name) VALUES (2, 'Бухгалтерия
+');
+INSERT INTO public.subdivisions (id, name) VALUES (288, 'СТУ');
+INSERT INTO public.subdivisions (id, name) VALUES (289, 'ДЭУ№377');
+INSERT INTO public.subdivisions (id, name) VALUES (290, 'ABC');
+INSERT INTO public.subdivisions (id, name) VALUES (291, 'DEF');
+INSERT INTO public.subdivisions (id, name) VALUES (292, 'Маркетинг');
+INSERT INTO public.subdivisions (id, name) VALUES (142, 'Маркетинг');
+INSERT INTO public.subdivisions (id, name) VALUES (320, '34434');
+INSERT INTO public.subdivisions (id, name) VALUES (281, 'ДЭУ№33');
+INSERT INTO public.subdivisions (id, name) VALUES (229, 'Жэс №32');
+
+
+--
+-- Name: system_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('public.system_user_id_seq', 289, true);
+
+
+--
+-- Data for Name: system_users; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (23, 'Ярослав', 'Зыскунов', 'lkghost7@gmail.com', '1', 3, 1);
+INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (274, 'киллер', 'Джошуа', 'll@22.by', '1234567', 404, 1);
+INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (275, 'Иван', 'Драго', 'lk@tut.by', '1234567', 1, 2);
+INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (276, 'Василий', 'Петров', 'lk@belint.by', '1234567', 404, 2);
+INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (277, 'Михаил', 'Жиглов', 'lk2@tut.by', '1234567', 1, 292);
+INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, subdivision_id) VALUES (22, 'Виталий', 'Ушаков', 'vinty@i.ua', '1', 1, 2);
+
+
+--
+-- Name: task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('public.task_id_seq', 183, true);
+
+
+--
+-- Data for Name: tasks; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (155, 'вкен456апрап', 1, 'провапрвапр', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (162, 'zdf', 1, 'sdf', 22, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (163, 'sdfsdf', 1, 'gsdfs', 22, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (164, 'gdfgdf', 1, 'sdfsdf', 22, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (168, 'dfgdfg', 1, 'sdfgdsfg', 275, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (169, '676', 1, 'cgbcfgh', 277, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (171, 'fghfdgh', 1, 'dfghdfgh', 277, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (182, 'fghfgh', 1, 'fgh', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (183, 'ыва', 1, 'ываыва', 23, NULL, NULL, 1);
+
+
+--
+-- Data for Name: users_privileges; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (274, 2);
+INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (275, 2);
+INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (23, 1);
+INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (22, 2);
+INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (276, 2);
+INSERT INTO public.users_privileges (user_id, privilege_id) VALUES (277, 2);
+
+
+--
+-- Name: branch_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.branches
+    ADD CONSTRAINT branch_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: listeners_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.listeners
+    ADD CONSTRAINT listeners_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: privileges_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.privileges
+    ADD CONSTRAINT privileges_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: problems_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.category
+    ADD CONSTRAINT problems_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: status_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.status
+    ADD CONSTRAINT status_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: subdivision_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.subdivisions
+    ADD CONSTRAINT subdivision_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: system_user_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.system_users
+    ADD CONSTRAINT system_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: task_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT task_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_privileges_user_id_privilege_id_pk; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.users_privileges
+    ADD CONSTRAINT users_privileges_user_id_privilege_id_pk PRIMARY KEY (user_id, privilege_id);
+
+
+--
+-- Name: problems_name_uindex; Type: INDEX; Schema: public; Owner: root
+--
+
+CREATE UNIQUE INDEX problems_name_uindex ON public.category USING btree (name);
+
+
+--
+-- Name: status_name_uindex; Type: INDEX; Schema: public; Owner: root
+--
+
+CREATE UNIQUE INDEX status_name_uindex ON public.status USING btree (name);
+
+
+--
+-- Name: system_users_e_mail_uindex; Type: INDEX; Schema: public; Owner: root
+--
+
+CREATE UNIQUE INDEX system_users_e_mail_uindex ON public.system_users USING btree (e_mail);
+
+
+--
+-- Name: system_user_branch_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.system_users
+    ADD CONSTRAINT system_user_branch_id_fk FOREIGN KEY (branch_id) REFERENCES public.branches(id);
+
+
+--
+-- Name: system_user_subdivision_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.system_users
+    ADD CONSTRAINT system_user_subdivision_id_fk FOREIGN KEY (subdivision_id) REFERENCES public.subdivisions(id);
+
+
+--
+-- Name: task_executor_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT task_executor_id_fk FOREIGN KEY (executor_id) REFERENCES public.system_users(id);
+
+
+--
+-- Name: task_operator_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT task_operator_id_fk FOREIGN KEY (operator_id) REFERENCES public.system_users(id);
+
+
+--
+-- Name: task_system_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT task_system_user_id_fk FOREIGN KEY (system_user_id) REFERENCES public.system_users(id);
+
+
+--
+-- Name: tasks_listeners_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT tasks_listeners_id_fk FOREIGN KEY (listener_id) REFERENCES public.listeners(id);
+
+
+--
+-- Name: tasks_status_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT tasks_status_id_fk FOREIGN KEY (status_id) REFERENCES public.status(id);
+
+
+--
+-- Name: users_privileges_privileges_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.users_privileges
+    ADD CONSTRAINT users_privileges_privileges_id_fk FOREIGN KEY (privilege_id) REFERENCES public.privileges(id);
+
+
+--
+-- Name: users_privileges_system_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.users_privileges
+    ADD CONSTRAINT users_privileges_system_user_id_fk FOREIGN KEY (user_id) REFERENCES public.system_users(id);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
