@@ -50,7 +50,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
+                <A class="button primary " href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
                     страницу админки</b> </A>
             </div>
             <div class="medium-3 cell">

@@ -8,23 +8,13 @@
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
+<jsp:include page="../jsp/fragments/nav.jsp"/>
 
-<div class="grid-container">
-    <div class="grid-x grid-padding-x">
-        <div class="medium-3 cell">
-        </div>
-        <div class="medium-6 cell">
-            <jsp:include page="../jsp/fragments/nav.jsp"/>
-        </div>
-        <div class="medium-3 cell">
-        </div>
-    </div>
-</div>
 <br>
 <table>
     <thead>
     <tr>
-        <th width="100">ID</th>
+        <th width="50">ID</th>
         <th width="250">Название подразделения</th>
         <%--<th>Адрес филиала</th>--%>
         <%--<th>Удалить</th>--%>
@@ -50,7 +40,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новое подразделение</b> </A>
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новое подразделение</b> </A>
             </div>
             <div class="medium-3 cell">
             </div>
@@ -63,7 +53,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
+                <A class="button primary " href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
                     страницу админки</b> </A>
             </div>
             <div class="medium-3 cell">

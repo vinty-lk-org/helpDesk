@@ -48,7 +48,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новую
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новую
                     категорию</b> </A>
             </div>
             <div class="medium-3 cell">
@@ -62,7 +62,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
+                <A class="button primary " href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
                     страницу админки</b> </A>
             </div>
             <div class="medium-3 cell">

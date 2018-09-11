@@ -43,7 +43,7 @@
             <div class="medium-3 cell">
                 <label> <br>
                     <div class="expanded button-group">
-                        <button type="submit" class="button success hollow"><b>изменить</b></button>
+                        <button type="submit" class="button primary hollow "><b>изменить</b></button>
                     </div>
                 </label>
             </div>
@@ -60,7 +60,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/registerCategory"> <b> Вернутся на предыдущую страницу</b> </A>
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerCategory"> <b> Вернутся на предыдущую страницу</b> </A>
             </div>
             <div class="medium-3 cell">
 
@@ -74,7 +74,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
+                <A class="button primary " href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
                     страницу админки</b> </A>
             </div>
             <div class="medium-3 cell">

@@ -13,20 +13,20 @@
 <div class="top-bar" id="my-nav-menu">
     <div class="top-bar-left">
         <ul class="menu">
-            <li class="menu-text"><a href="/helpDesk">ТЕХПОДДЕРЖКА</a></li>
+            <li class="menu-text"><a href="/helpDesk">Написать заявку</a></li>
 
             <c:if test="${sessionScope.privilege eq '2'}">
-                <li class="menu-text"><a href="/helpDesk">на страницу Пользователя</a></li>
+                <li class="menu-text"><a href="/helpDesk">Пользователь</a></li>
             </c:if>
-            <li class="menu-text"><a href="/login">Статистика</a></li>
-            <li class="menu-text"><a href="/login">Отчет</a></li>
+            <%--<li class="menu-text"><a href="/login">Статистика</a></li>--%>
+            <%--<li class="menu-text"><a href="/login">Отчет</a></li>--%>
             <c:if test="${sessionScope.privilege eq '1'}">
                 <ul class="dropdown-menu" data-dropdown-menu>
                     <li class="menu-text"><a href="">Администратор</a>
                         <ul class="menu">
-                            <li><a href="/admin">Список 1</a></li>
-                            <li><a href="">Список 2</a></li>
-                            <li><a href="">Список 3</a></li>
+                            <li><a href="/admin">В меню администратора</a></li>
+                            <li><a href="admin">Все пользователи</a></li>
+                            <li><a href="admin">Все заявки</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -25,7 +25,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Заполнить
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/adminFillPage"> <b> Заполнить
                     справочники</b> </A>
             </div>
             <div class="medium-3 cell">
@@ -39,7 +39,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/registerUser"> <b> Посмотреть
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerUser"> <b> Посмотреть
                     зарегестрированных
                     пользователей</b> </A>
             </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/registerTask"> <b> Посмотреть все
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerTask"> <b> Посмотреть все
                     заявки
                 </b> </A>
             </div>
@@ -70,7 +70,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/registerBranch"> <b>
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerBranch"> <b>
                     Зарегистрированные филиалы
                 </b> </A>
             </div>
@@ -85,7 +85,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b>
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerSubdivision"> <b>
                     Зарегистрированные подразделения
                 </b> </A>
             </div>
@@ -101,7 +101,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/registerCategory"> <b> Типовые
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerCategory"> <b> Типовые
                     категории проблем
                 </b> </A>
             </div>
