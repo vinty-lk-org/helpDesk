@@ -26,8 +26,6 @@
                     </li>
                 </ul>
             </c:if>
-            <%--<li class="menu-text"><a href="/login">Статистика</a></li>--%>
-            <%--<li class="menu-text"><a href="/login">Отчет</a></li>--%>
             <c:if test="${sessionScope.privilege eq '1'}">
                 <ul class="dropdown-menu" data-dropdown-menu>
                     <li class="menu-text"><a href="">Администратор</a>
@@ -35,6 +33,28 @@
                             <li><a href="/admin">В меню администратора</a></li>
                             <li><a href="admin">Все пользователи</a></li>
                             <li><a href="admin">Все заявки</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </c:if>
+            <c:if test="${sessionScope.privilege eq '3'}">
+                <ul class="dropdown-menu" data-dropdown-menu>
+                    <li class="menu-text"><a href="">Оператор</a>
+                        <ul class="menu">
+                            <li><a href="/helpDesk">Назначить заявку</a></li>
+                            <li><a href="helpDesk">Статистика</a></li>
+                            <li><a href="helpDesk">Отчет</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </c:if>
+            <c:if test="${sessionScope.privilege eq '4'}">
+                <ul class="dropdown-menu" data-dropdown-menu>
+                    <li class="menu-text"><a href="">Исполнитель</a>
+                        <ul class="menu">
+                            <li><a href="/helpDesk">Перенаправить заявку</a></li>
+                            <li><a href="helpDesk">Открытые заявки</a></li>
+                            <li><a href="helpDesk">Заявки</a></li>
                         </ul>
                     </li>
                 </ul>
