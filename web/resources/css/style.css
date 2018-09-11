@@ -2,6 +2,14 @@ body {
     background-color: #F2F8F8;
 }
 
+ .top-bar ul{
+    background-color: #e8f5f4;
+}
+.top-bar {
+    background-color: #dbf3f1;
+}
+
+
 /*.container {*/
     /*position: relative;*/
     /*margin-left: auto;*/
