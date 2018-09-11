@@ -16,7 +16,15 @@
             <li class="menu-text"><a href="/helpDesk">Написать заявку</a></li>
 
             <c:if test="${sessionScope.privilege eq '2'}">
-                <li class="menu-text"><a href="/helpDesk">Пользователь</a></li>
+                <ul class="dropdown-menu" data-dropdown-menu>
+                    <li class="menu-text"><a href="">Пользователь</a>
+                        <ul class="menu">
+                            <li><a href="/helpDesk">Посмотреть история заявок</a></li>
+                            <li><a href="/helpDesk">Посмотреть выполненые</a></li>
+                            <li><a href="/helpDesk">Посмотреть отклоненные</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </c:if>
             <%--<li class="menu-text"><a href="/login">Статистика</a></li>--%>
             <%--<li class="menu-text"><a href="/login">Отчет</a></li>--%>
@@ -35,7 +43,7 @@
     </div>
     <div class="top-bar-right">
         <ul class="menu">
-            <li class="menu-text"><a href="/login">Выход: ${sessionScope.user}</a>
+            <li class="menu-text"><a href="/logout">Выход: ${sessionScope.user}</a>
             </li>
             <li class="menu-text"><a href="/helpDesk"><%= formatForDateNow.format(dateNow) %>
             </a>

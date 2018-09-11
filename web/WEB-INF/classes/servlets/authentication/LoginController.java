@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -29,27 +31,32 @@ public class LoginController extends HttpServlet {
         String userLang = req.getParameter("lang");
         req.getSession().setAttribute("localLang", userLang);
 
-        SystemUser user = SystemUserServiceImpl.getInstance().findByEmail(userInputEmail);
-        Long userId = user.getId();
-        String eMail = user.getEmail();
-        String nameUser = user.getName();
-        String password = user.getPassword();
-        List<UserPrivilege> userPrivilegeList = UserPrivilegeServiceImpl.getInstance().findAllUsersPrivilegesByUserId(user.getId());
-        System.out.println(userPrivilegeList);
+        Optional<SystemUser> userOptional = Optional.ofNullable(SystemUserServiceImpl.getInstance().findByEmail(userInputEmail));
+        SystemUser user = null;
+        if (userOptional.isPresent()) {
+            if (userOptional.get().getId() != null) {
+                user = userOptional.get();
+                String eMail = user.getEmail();
+                String nameUser = user.getName();
+                String password = user.getPassword();
+                List<UserPrivilege> userPrivilegeList = UserPrivilegeServiceImpl.getInstance().findAllUsersPrivilegesByUserId(user.getId());
+                System.out.println(userPrivilegeList);
+                Long privilege = userPrivilegeList.get(0).getPrivilegeId().getId();
+                System.out.println(privilege);
+                if ((eMail != null) && (password.equals(userInputPassword))) {
+                    req.getSession().setAttribute("userId", user.getId());
+                    req.getSession().setAttribute("userLoggedIn", true);
+                    req.getSession().setAttribute("user", nameUser);
+                    req.getSession().setAttribute("privilege", privilege);
+                    System.out.println("Привилегия данного пользователя = " + privilege);
+                    req.setAttribute("message", "Все ОК!");
+                    resp.sendRedirect("/helpDesk");
+                } else {
+                    req.setAttribute("message", "errorPass");
+                    doGet(req, resp);
+                }
 
-        Long privilege = userPrivilegeList.get(0).getPrivilegeId().getId();
-        System.out.println(privilege);
-        if ((eMail != null) && (password.equals(userInputPassword))) {
-            req.getSession().setAttribute("userId", userId);
-            req.getSession().setAttribute("userLoggedIn", true);
-            req.getSession().setAttribute("user", nameUser);
-            req.getSession().setAttribute("privilege", privilege);
-            System.out.println("Привилегия данного пользователя = " + privilege);
-            req.setAttribute("message", "Все ОК!");
-            resp.sendRedirect("/helpDesk");
-        } else {
-            req.setAttribute("message", "errorPass");
-            doGet(req, resp);
+            } else resp.sendRedirect("/helpDesk");
         }
     }
 }
