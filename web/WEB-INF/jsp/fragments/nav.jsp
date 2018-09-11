@@ -1,33 +1,45 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<nav class="align-center hover-underline-menu" data-menu-underline-from-center>
-    <ul class="dropdown menu" data-dropdown-menu>
-        <li><a href="/helpDesk" text="Главная"></a></li>
-        <li>
-            <a href="">Меню</a>
-            <ul class="menu vertical">
-                <c:if test="${sessionScope.privilege eq '1'}">
-                    <li><a href="/admin" text="Я админ">на страницу админа</a></li>
-                </c:if>
-                <c:if test="${sessionScope.privilege eq '2'}">
-                    <li><a href="/helpDesk" text="Я админ">на страницу пользователя</a></li>
-                </c:if>
-                <li><a href="/login">Статистика</a></li>
-                <li><a href="/login">Отчет</a></li>
-                <li><a href="/login">Выход</a></li>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
+<%
+    Date dateNow = new Date();
+    SimpleDateFormat formatForDateNow = new SimpleDateFormat("E dd.MM.yyyy");
+%>
+<div class="title-bar" data-responsive-toggle="my-nav-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle></button>
+    <div class="title-bar-title">Адаптивное меню</div>
+</div>
+<div class="top-bar" id="my-nav-menu">
+    <div class="top-bar-left">
+        <ul class="menu">
+            <li class="menu-text"><a href="/helpDesk">ТЕХПОДДЕРЖКА</a></li>
+
+            <c:if test="${sessionScope.privilege eq '2'}">
+                <li class="menu-text"><a href="/helpDesk">на страницу Пользователя</a></li>
+            </c:if>
+            <li class="menu-text"><a href="/login">Статистика</a></li>
+            <li class="menu-text"><a href="/login">Отчет</a></li>
+            <c:if test="${sessionScope.privilege eq '1'}">
+                <ul class="dropdown-menu" data-dropdown-menu>
+                    <li class="menu-text"><a href="">Администратор</a>
+                        <ul class="menu">
+                            <li><a href="/admin">Список 1</a></li>
+                            <li><a href="">Список 2</a></li>
+                            <li><a href="">Список 3</a></li>
+                        </ul>
+                    </li>
                 </ul>
-
-<c:if test="${sessionScope.privilege eq '1'}">
-        </li>
-        <a href="/admin">Администратор <br> ${sessionScope.user}</a>
-        <a href="/helpDesk">Написать заявку</a>
-        <li><a href="/login">Выход</a></li>
-</c:if>
-
-        <c:if test="${sessionScope.privilege eq '2'}">
+            </c:if>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li class="menu-text"><a href="/login">Выход: ${sessionScope.user}</a>
             </li>
-            <a href="/helpDesk">Пользователь <br> ${sessionScope.user}</a>
-            <li><a href="/login">Выход</a></li>
-        </c:if>
-    </ul>
-</nav>
+            <li class="menu-text"><a href="/helpDesk"><%= formatForDateNow.format(dateNow) %>
+            </a>
+            </li>
+        </ul>
+    </div>
+</div>
