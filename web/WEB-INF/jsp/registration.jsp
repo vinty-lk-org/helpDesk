@@ -84,21 +84,9 @@ ${login}
 <script>
     function getUrl() {
         return `${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}`;
-
     }
-
     console.log(getUrl());
 </script>
-<%--<script type="text/javascript">--%>
-<%--function natIP() {--%>
-<%--var w = window.location;--%>
-<%--var host = w.host;--%>
-<%--var port = w.port || 80;--%>
-<%--var Socket = (new java.net.Socket(host,port)).getLocalAddress().getHostAddress();--%>
-<%--return Socket;--%>
-<%--}--%>
-<%--</script>--%>
-
 <script src="../../resources/js/app.js"></script>
 <script src="../../resources/js/myJs.js"></script>
 </body>

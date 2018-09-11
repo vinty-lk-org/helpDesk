@@ -15,13 +15,13 @@
         <title>изменить</title>
     </head>
 <body>
-
+<jsp:include page="../jsp/fragments/nav.jsp"/>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
         </div>
         <div class="medium-6 cell">
-            <jsp:include page="../jsp/fragments/nav.jsp"/>
+
         </div>
         <div class="medium-3 cell">
         </div>

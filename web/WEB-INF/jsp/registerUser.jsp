@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <html>
 <head>
     <title>HelpDesk</title>
@@ -46,7 +44,6 @@
     </c:forEach>
     </tbody>
 </table>
-
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
