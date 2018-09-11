@@ -626,7 +626,7 @@ ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.task_i
 -- Name: branch_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.branch_id_seq', 533, true);
+SELECT pg_catalog.setval('public.branch_id_seq', 537, true);
 
 
 --
@@ -637,6 +637,7 @@ INSERT INTO public.branches (id, name, address) VALUES (530, 'Брест-лит�
 INSERT INTO public.branches (id, name, address) VALUES (1, 'Колядичи', 'Минск');
 INSERT INTO public.branches (id, name, address) VALUES (404, 'Степянка', 'Минск');
 INSERT INTO public.branches (id, name, address) VALUES (3, 'Воронянского', 'Минск');
+INSERT INTO public.branches (id, name, address) VALUES (537, '', '23434');
 INSERT INTO public.branches (id, name, address) VALUES (494, 'Сортировочный', 'Борисов');
 INSERT INTO public.branches (id, name, address) VALUES (440, 'Брест-литовская', 'Брест-литовская 13а');
 INSERT INTO public.branches (id, name, address) VALUES (503, 'Сортировочный2', 'Брест-литовская 15');
@@ -648,15 +649,13 @@ INSERT INTO public.branches (id, name, address) VALUES (506, 'ABC', NULL);
 -- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: root
 --
 
-INSERT INTO public.category (id, name) VALUES (4, 'Картриджи');
+INSERT INTO public.category (id, name) VALUES (8, 'Электронная перевозка');
 INSERT INTO public.category (id, name) VALUES (5, 'Интернет');
+INSERT INTO public.category (id, name) VALUES (18, 'новая');
+INSERT INTO public.category (id, name) VALUES (2, 'Принтер');
 INSERT INTO public.category (id, name) VALUES (6, 'Сапод');
 INSERT INTO public.category (id, name) VALUES (7, 'Товарная касса');
-INSERT INTO public.category (id, name) VALUES (8, 'Электронная перевозка');
-INSERT INTO public.category (id, name) VALUES (9, 'Счетфактуры');
-INSERT INTO public.category (id, name) VALUES (10, 'Пример');
 INSERT INTO public.category (id, name) VALUES (11, 'СТУ');
-INSERT INTO public.category (id, name) VALUES (2, 'Принтеры3');
 
 
 --
@@ -669,6 +668,7 @@ INSERT INTO public.listeners (id, name) VALUES (157, 'test66');
 INSERT INTO public.listeners (id, name) VALUES (158, 'testData1');
 INSERT INTO public.listeners (id, name) VALUES (159, 'testData2');
 INSERT INTO public.listeners (id, name) VALUES (160, 'Работа №1');
+INSERT INTO public.listeners (id, name) VALUES (188, '343434');
 INSERT INTO public.listeners (id, name) VALUES (92, 'Бухгалтерия');
 
 
@@ -676,7 +676,7 @@ INSERT INTO public.listeners (id, name) VALUES (92, 'Бухгалтерия');
 -- Name: listeners_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.listeners_id_seq', 184, true);
+SELECT pg_catalog.setval('public.listeners_id_seq', 188, true);
 
 
 --
@@ -693,14 +693,14 @@ INSERT INTO public.privileges (id, name) VALUES (4, 'Executor');
 -- Name: privileges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.privileges_id_seq', 134, true);
+SELECT pg_catalog.setval('public.privileges_id_seq', 137, true);
 
 
 --
 -- Name: problems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.problems_id_seq', 16, true);
+SELECT pg_catalog.setval('public.problems_id_seq', 19, true);
 
 
 --
@@ -724,7 +724,7 @@ SELECT pg_catalog.setval('public.status_id_seq', 4, true);
 -- Name: subdivision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.subdivision_id_seq', 316, true);
+SELECT pg_catalog.setval('public.subdivision_id_seq', 320, true);
 
 
 --
@@ -740,6 +740,7 @@ INSERT INTO public.subdivisions (id, name) VALUES (290, 'ABC');
 INSERT INTO public.subdivisions (id, name) VALUES (291, 'DEF');
 INSERT INTO public.subdivisions (id, name) VALUES (292, 'Маркетинг');
 INSERT INTO public.subdivisions (id, name) VALUES (142, 'Маркетинг');
+INSERT INTO public.subdivisions (id, name) VALUES (320, '34434');
 INSERT INTO public.subdivisions (id, name) VALUES (281, 'ДЭУ№33');
 INSERT INTO public.subdivisions (id, name) VALUES (229, 'Жэс №32');
 
@@ -748,7 +749,7 @@ INSERT INTO public.subdivisions (id, name) VALUES (229, 'Жэс №32');
 -- Name: system_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.system_user_id_seq', 283, true);
+SELECT pg_catalog.setval('public.system_user_id_seq', 289, true);
 
 
 --
@@ -767,31 +768,22 @@ INSERT INTO public.system_users (id, name, family, e_mail, password, branch_id, 
 -- Name: task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.task_id_seq', 174, true);
+SELECT pg_catalog.setval('public.task_id_seq', 183, true);
 
 
 --
 -- Data for Name: tasks; Type: TABLE DATA; Schema: public; Owner: root
 --
 
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (152, '777', 1, '777', 23, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (153, '777', 1, '777', 23, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (154, 'апропь', 1, 'вапаропро', 23, NULL, NULL, 1);
 INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (155, 'вкен456апрап', 1, 'провапрвапр', 23, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (156, 'sdf', 1, 'sdf', 23, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (157, '', 1, '', 23, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (159, 'sdf', 1, 'sdf', 23, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (160, 'sdf', 1, 'cv', 23, NULL, NULL, 1);
 INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (162, 'zdf', 1, 'sdf', 22, NULL, NULL, 1);
 INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (163, 'sdfsdf', 1, 'gsdfs', 22, NULL, NULL, 1);
 INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (164, 'gdfgdf', 1, 'sdfsdf', 22, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (167, 'hdfghdsfg', 1, 'sdfgsdfg', 275, NULL, NULL, 1);
 INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (168, 'dfgdfg', 1, 'sdfgdsfg', 275, NULL, NULL, 1);
 INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (169, '676', 1, 'cgbcfgh', 277, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (170, '45345634563456', 1, 'fghdfghdfgh', 277, NULL, NULL, 1);
 INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (171, 'fghfdgh', 1, 'dfghdfgh', 277, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (172, 'sdf', 1, 'sdf', 277, NULL, NULL, 1);
-INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (174, 'name save test', 1, 'text save test', 23, NULL, NULL, 2);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (182, 'fghfgh', 1, 'fgh', 23, NULL, NULL, 1);
+INSERT INTO public.tasks (id, name, listener_id, text, system_user_id, executor_id, operator_id, status_id) VALUES (183, 'ыва', 1, 'ываыва', 23, NULL, NULL, 1);
 
 
 --
