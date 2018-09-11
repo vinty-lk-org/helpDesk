@@ -28,11 +28,11 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.branches}" var="category">
+    <c:forEach items="${requestScope.branches}" var="subdivision">
         <tr name="taskTableName">
-            <td name="taskId">${category.id}</td>
-            <td name="taskName">${category.name}</td>
-            <td name="data">${category.address}</td>
+            <td name="taskId">${subdivision.id}</td>
+            <td name="taskName">${subdivision.name}</td>
+            <td name="data">${subdivision.address}</td>
             <%--<td>--%>
                 <%--<a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${category.id}&lang=ru">Удалить </a>--%>
             <%--</td>--%>

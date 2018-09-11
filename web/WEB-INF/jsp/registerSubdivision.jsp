@@ -1,17 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <html>
 <head>
     <title>HelpDesk</title>
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
-<jsp:include page="../jsp/fragments/nav.jsp"/>
+
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
         </div>
         <div class="medium-6 cell">
+            <jsp:include page="../jsp/fragments/nav.jsp"/>
         </div>
         <div class="medium-3 cell">
         </div>
@@ -22,24 +25,23 @@
     <thead>
     <tr>
         <th width="100">ID</th>
-        <th>Категория проблем</th>
-        <th width="250">Удалить</th>
-        <th width="250">Изменить</th>
+        <th width="250">Название подразделения</th>
+        <%--<th>Адрес филиала</th>--%>
+        <%--<th>Удалить</th>--%>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.category}" var="subdivision">
+    <c:forEach items="${requestScope.subdivision}" var="subdivision">
         <tr name="taskTableName">
             <td name="taskId">${subdivision.id}</td>
             <td name="taskName">${subdivision.name}</td>
-            <td>
-                <a href="${pageContext.request.contextPath}/category/Delete?id=${subdivision.id}&lang=ru">Удалить </a>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/viewCategory/Update?id=${subdivision.id}&lang=ru">Изменить</a>
-            </td>
+            <%--<td name="data">${subdivision.address}</td>--%>
+                <%--<td>--%>
+                <%--<a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${category.id}&lang=ru">Удалить </a>--%>
+                <%--</td>--%>
         </tr>
     </c:forEach>
+
     </tbody>
 </table>
 <div class="grid-container">
@@ -48,8 +50,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новую
-                    категорию</b> </A>
+                <A class="button success" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новое подразделение</b> </A>
             </div>
             <div class="medium-3 cell">
             </div>

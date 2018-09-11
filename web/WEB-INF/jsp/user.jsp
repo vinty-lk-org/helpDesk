@@ -56,8 +56,8 @@ ${login}
                     <label for="branches">Выберите из списка ваше местоположение (филиал)
                         <p>Предыдущее значение было ${requestScope.user.branchName}</p>
                         <select name="branch_id" id="branches">
-                            <c:forEach items="${requestScope.branches}" var="branches">
-                                <option value="${branches.id}">${branches.name} ( ${branches.address})</option>
+                            <c:forEach items="${requestScope.branches}" var="subdivision">
+                                <option value="${subdivision.id}">${subdivision.name} ( ${subdivision.address})</option>
                             </c:forEach>
                         </select>
                     </label>
