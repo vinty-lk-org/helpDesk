@@ -31,15 +31,15 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.category}" var="category">
+    <c:forEach items="${requestScope.category}" var="subdivision">
         <tr name="taskTableName">
-            <td name="taskId">${category.id}</td>
-            <td name="taskName">${category.name}</td>
+            <td name="taskId">${subdivision.id}</td>
+            <td name="taskName">${subdivision.name}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/category/Delete?id=${category.id}&lang=ru">Удалить </a>
+                <a href="${pageContext.request.contextPath}/category/Delete?id=${subdivision.id}&lang=ru">Удалить </a>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/viewCategory/Update?id=${category.id}&lang=ru">Изменить</a>
+                <a href="${pageContext.request.contextPath}/viewCategory/Update?id=${subdivision.id}&lang=ru">Изменить</a>
             </td>
         </tr>
     </c:forEach>
