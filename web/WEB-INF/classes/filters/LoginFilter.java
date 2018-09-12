@@ -13,6 +13,7 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         if (servletRequest instanceof HttpServletRequest) {
             HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+            boolean isStaticResource = httpServletRequest.getRequestURI().startsWith("/resources/");
             Object userLoggedIn = httpServletRequest.getSession().getAttribute("userLoggedIn");
             if (userLoggedIn == null
                     && !httpServletRequest.getRequestURI().contains("/login")
