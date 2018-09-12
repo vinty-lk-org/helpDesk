@@ -6,7 +6,10 @@
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
+<%--<p align="center"><img src="../../resources/png/logo.png"></p>--%>
 <jsp:include page="../jsp/fragments/nav.jsp"/>
+
+
 <form name="textform" id="textform" action="${pageContext.request.contextPath}/helpDesk" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">

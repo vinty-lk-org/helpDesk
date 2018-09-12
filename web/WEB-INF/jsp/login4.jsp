@@ -43,9 +43,8 @@
         <div class="medium-3 cell">
         </div>
     </div>
-</div>
-<script>
-    $(document).foundation();
-</script>
+    <script>
+        $(document).foundation();
+    </script>
 </body>
 </html>

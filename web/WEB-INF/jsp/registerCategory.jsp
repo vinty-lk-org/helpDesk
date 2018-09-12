@@ -48,7 +48,8 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button primary hollow" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новую
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить
+                    новую
                     категорию</b> </A>
             </div>
             <div class="medium-3 cell">

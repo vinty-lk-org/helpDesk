@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<fmt:setLocale value="${sessionScope.localLang}"/>
-<fmt:setBundle basename="translation"/>
 <html>
 <head>
     <title>HelpDesk</title>
@@ -13,11 +11,11 @@
         <div class="medium-3 cell">
             <br>
             <br>
-            <strong><em><fmt:message key="${message}"/></em></strong>
+
             <br>
             <select onchange="submit()" name="lang">
-                <option value="ru_RU" ${sessionScope.localLang eq 'ru_RU' ? 'selected':''}>Русский</option>
-                <option value="en_US" ${sessionScope.localLang eq 'en_US' ? 'selected':''}>English</option>
+            <option value="ru_RU" ${sessionScope.localLang eq 'ru_RU' ? 'selected':''}>Русский</option>
+            <option value="en_US" ${sessionScope.localLang eq 'en_US' ? 'selected':''}>English</option>
             </select>
         </div>
         <div class="medium-6 cell">

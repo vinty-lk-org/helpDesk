@@ -1,6 +1,3 @@
-<%@ page import="itacademy.domain.dao.impl.CategoryDaoImpl" %>
-<%@ page import="itacademy.domain.entity.Category" %>
-<%@ page import="java.util.Optional" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -36,8 +33,10 @@
             </div>
             <div class="medium-3 cell">
                 <label> Новая категория
-                    <input type="hidden" name="categoryId" value="${requestScope.cat.id}" placeholder="введите категорию">
-                    <input type="text" name="categoryName" value="${requestScope.cat.name}" placeholder="введите категорию">
+                    <input type="hidden" name="categoryId" value="${requestScope.cat.id}"
+                           placeholder="введите категорию">
+                    <input type="text" name="categoryName" value="${requestScope.cat.name}"
+                           placeholder="введите категорию">
                 </label>
             </div>
             <div class="medium-3 cell">
@@ -60,7 +59,8 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerCategory"> <b> Вернутся на предыдущую страницу</b> </A>
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerCategory"> <b>
+                    Вернутся на предыдущую страницу</b> </A>
             </div>
             <div class="medium-3 cell">
 

@@ -38,7 +38,8 @@ ${login}
                     <div id="divInput3" class="callout secondary border-none" onmouseover="divHover(this)"
                          onmouseout="divNorm(this)">
                         <label>Введите ваш пароль еще раз, что бы убедится в правильности ввода
-                            <input value="${requestScope.user.password}" name="passwordTwo" type="text" id="middle-labe3">
+                            <input value="${requestScope.user.password}" name="passwordTwo" type="text"
+                                   id="middle-labe3">
                             <span style="color:red" id="input3Error"></span>
                         </label>
                     </div>
@@ -96,6 +97,7 @@ ${login}
         return `${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}`;
 
     }
+
     console.log(getUrl());
 </script>
 <%--<script type="text/javascript">--%>

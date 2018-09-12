@@ -54,7 +54,8 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerTask"> <b> Посмотреть все
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/registerTask"> <b> Посмотреть
+                    все
                     заявки
                 </b> </A>
             </div>

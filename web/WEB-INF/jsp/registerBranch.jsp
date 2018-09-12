@@ -33,9 +33,9 @@
             <td name="taskId">${subdivision.id}</td>
             <td name="taskName">${subdivision.name}</td>
             <td name="data">${subdivision.address}</td>
-            <%--<td>--%>
+                <%--<td>--%>
                 <%--<a href="${pageContext.request.contextPath}/registerBranch/Delete?id=${category.id}&lang=ru">Удалить </a>--%>
-            <%--</td>--%>
+                <%--</td>--%>
         </tr>
     </c:forEach>
     </tbody>
@@ -46,7 +46,8 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button primary hollow" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить новый филиал</b> </A>
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/adminFillPage"> <b> Добавить
+                    новый филиал</b> </A>
             </div>
             <div class="medium-3 cell">
             </div>
