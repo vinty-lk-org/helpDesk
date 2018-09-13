@@ -33,6 +33,7 @@ public class LoginFilter implements Filter {
       if (userLoggedIn == null
               && !httpServletRequest.getRequestURI().contains("/login")
               && !httpServletRequest.getRequestURI().contains("/api/email")
+              && !httpServletRequest.getRequestURI().contains("/change-locale")
               && !httpServletRequest.getRequestURI().contains("/registration")) {
         ((HttpServletResponse) servletResponse).sendRedirect("/login");
       } else {
