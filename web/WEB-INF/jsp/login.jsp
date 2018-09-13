@@ -4,7 +4,6 @@
 <fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language : 'ru_RU'}"/>
 <fmt:setBundle basename="translations"/>
 
-
 <html>
 <head>
     <title>HelpDesk</title>
@@ -36,15 +35,15 @@
             <br>
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <label><fmt:message key="button.login"/>
-                    <input type="text" name="inputEmail" placeholder="vinty@i.ua" required="required">
+                    <input type="text" name="inputEmail" placeholder="mail@belint.by" required="required">
                 </label>
                 <label><fmt:message key="label.password"/>
-                    <input type="password" name="inputPassword" placeholder="qwerty12" required="required">
+                    <input type="password" name="inputPassword" placeholder="password" required="required">
                 </label>
                 <div class="expanded button-group">
-                    <button type="submit" class="hollow button success">Войти в систему</button>
+                    <button type="submit" class="hollow button success"> <fmt:message key="label.systementer"/></button>
                     <A class="hollow button primary" href="${pageContext.request.contextPath}/registration"
-                       title="Регистрация"> Регистрация </A>
+                       title="Регистрация"> <fmt:message key="label.register"/> </A>
                 </div>
             </form>
 
