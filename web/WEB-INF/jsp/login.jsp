@@ -5,7 +5,6 @@
 <fmt:setBundle basename="translations"/>
 
 
-
 <html>
 <head>
     <title>HelpDesk</title>
@@ -13,9 +12,16 @@
 </head>
 <body>
 
+<p align="right">
+    <a href="${pageContext.request.contextPath}
+            /change-locale?language=ru_RU" class="btn btn-secondary btn-lg active"><img
+            src="../../resources/png/ru.png"></a>
+    <a href="${pageContext.request.contextPath}
+            /change-locale?language=en_US" class="btn btn-secondary btn-lg active"><img
+            src="../../resources/png/eng.png"></a>
+</p>
 <p align="center"><a href="/helpDesk"><img src="../../resources/png/logo.png"
-                             width="1500"></a></p>
-
+                                           width="1500"></a></p>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
@@ -44,12 +50,11 @@
 
         </div>
         <div class="medium-3 cell">
+
+
         </div>
     </div>
 </div>
-
-<a href="${pageContext.request.contextPath}/change-locale?language=ru_RU" class="btn btn-secondary btn-lg active" role="button">Русский</a>
-<a href="${pageContext.request.contextPath}/change-locale?language=en_US" class="btn btn-secondary btn-lg active" role="button">English</a>
 
 <script> $(document).foundation();</script>
 </body>

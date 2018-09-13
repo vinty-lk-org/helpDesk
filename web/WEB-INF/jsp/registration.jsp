@@ -14,7 +14,7 @@ ${login}
 <form name="form1" id="form1" action="${pageContext.request.contextPath}/registration" method="post">
     <div class="grid-container">
         <%--<jsp:include page="../jsp/fragments/nav.jsp"/>--%>
-        <h2>Страница регистрации</h2>
+        <h2 align="center">Страница регистрации</h2>
         <br>
         <div class="grid-x grid-padding-x">
             <div class="medium-6 cell">
