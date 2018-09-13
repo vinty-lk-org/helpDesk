@@ -12,8 +12,12 @@ function divNorm(element) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const frm1 = document.forms.form1;
-    frm1.onsubmit = (event) => {
-        event.preventDefault();
+    frm1.onsubmit = (e) => {
+        e.preventDefault();
+        mustHaveCheck = 0;
+        checkInput1();
+        checkInput2();
+        checkInput3();
         if (mustHaveCheck >= 3) {
             swal("Пользователь успешно зарегестрирован!", "А теперь входите под ним в систему...", "success")
             // https://sweetalert.js.org/guides/
@@ -22,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (mustHaveCheck < 3) {
             swal("Не все поля заполнены!", "Обязательно ввести E-Mail, и пароль. Не забудьте его подтвердить.", "error");
-        } return null;
+        }
+        return null;
     };
 
 
@@ -49,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
         checkInput2();
         checkInput3();
     }
-
 
     async function checkInput1() {
         const elemInput1 = frm1.elements.email;
@@ -84,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("input1Error").innerHTML = "";
         document.getElementById("input11Error").innerHTML = "Этот логин свободен!";
         mustHaveCheck++;
+        console.log(mustHaveCheck);
         return true;
     }
 
@@ -100,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         document.getElementById("input2Error").innerHTML = "";
         mustHaveCheck++;
+        console.log(mustHaveCheck);
         return true;
     }
 
@@ -118,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         document.getElementById("input3Error").innerHTML = "";
         mustHaveCheck++;
+        console.log(mustHaveCheck);
         return true;
     }
 });
