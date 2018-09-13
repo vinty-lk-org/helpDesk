@@ -30,16 +30,9 @@ public class LoginFilter implements Filter {
         filterChain.doFilter(servletRequest, servletResponse);
         return;
       }
-//      if (path.endsWith(".css")) {
-//        filterChain.doFilter(servletRequest, servletResponse);
-//        return;
-//      }
-//      if (path.endsWith(".js")) {
-//        filterChain.doFilter(servletRequest, servletResponse);
-//        return;
-//      }
       if (userLoggedIn == null
               && !httpServletRequest.getRequestURI().contains("/login")
+              && !httpServletRequest.getRequestURI().contains("/api/email")
               && !httpServletRequest.getRequestURI().contains("/registration")) {
         ((HttpServletResponse) servletResponse).sendRedirect("/login");
       } else {

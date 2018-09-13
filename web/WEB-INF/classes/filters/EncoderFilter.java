@@ -24,8 +24,8 @@ public class EncoderFilter implements Filter {
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
     servletRequest.setCharacterEncoding(DEFAULT_CHARACTER_ENCODING);
     servletResponse.setCharacterEncoding(DEFAULT_CHARACTER_ENCODING);
-    servletResponse.setContentType("text/html; charset=UTF-8");
-    servletResponse.setContentType("application/json; charset=UTF-8");
+//    servletResponse.setContentType("text/html; charset=UTF-8");
+//    servletResponse.setContentType("application/json; charset=UTF-8");
     filterChain.doFilter(servletRequest, servletResponse);
   }
 
