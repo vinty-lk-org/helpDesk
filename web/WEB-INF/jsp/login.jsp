@@ -44,6 +44,7 @@
         </div>
     </div>
 </div>
+<script src="../../resources/js/myJs.js"></script>
 <script>
     $(document).foundation();
 </script>

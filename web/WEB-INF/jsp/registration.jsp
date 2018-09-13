@@ -90,5 +90,6 @@ ${login}
 </script>
 <script src="../../resources/js/app.js"></script>
 <script src="../../resources/js/myJs.js"></script>
+<script> $(document).foundation();</script>
 </body>
 </html>
