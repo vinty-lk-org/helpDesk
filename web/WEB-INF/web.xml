@@ -11,4 +11,8 @@
         <error-code>500</error-code>
         <location>/WEB-INF/jsp/error/500.jsp</location>
     </error-page>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -14,8 +14,10 @@ public class EncoderFilter implements Filter {
 
   private static final String DEFAULT_CHARACTER_ENCODING = "UTF-8";
 
+
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
+
   }
 
   @Override
