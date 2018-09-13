@@ -13,6 +13,9 @@
         <div class="medium-3 cell">
             <br>
             <br>
+            <a href="${pageContext.request.contextPath}/change-locale?language=ru_RU" class="btn btn-secondary btn-lg active" role="button">Русский</a>
+            <a href="${pageContext.request.contextPath}/change-locale?language=en_US" class="btn btn-secondary btn-lg active" role="button">English</a>
+
             <strong><em><fmt:message key="${message}"/></em></strong>
             <br>
             <select onchange="submit()" name="lang">
