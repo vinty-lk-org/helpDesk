@@ -11,8 +11,12 @@
         <error-code>500</error-code>
         <location>/WEB-INF/jsp/error/500.jsp</location>
     </error-page>
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>filters.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
         <url-pattern>/resources/*</url-pattern>
-    </servlet-mapping>
+    </filter-mapping>
 </web-app>
