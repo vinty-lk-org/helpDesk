@@ -85,9 +85,9 @@ ${login}
     function getUrl() {
         return `${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}`;
     }
-
     console.log(getUrl());
 </script>
+
 <script src="../../resources/js/app.js"></script>
 <script src="../../resources/js/myJs.js"></script>
 </body>
