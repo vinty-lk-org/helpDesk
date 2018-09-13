@@ -59,6 +59,5 @@
     </div>
 </div>
 <script> $(document).foundation();</script>
-<script src="../../resources/js/myJs.js"></script>
 </body>
 </html>
