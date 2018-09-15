@@ -44,4 +44,10 @@ public class SystemUser {
     this.branch = branch;
     this.subdivision = subdivision;
   }
+
+  public SystemUser(String name, String family) {
+    this.name = name;
+    this.family = family;
+  }
+
 }

@@ -43,7 +43,8 @@ public class TaskServiceImpl implements TaskService {
                 new Listener(taskDto.getListenerId()),
                 taskDto.getText(),
                 new SystemUser(taskDto.getSystemUserId()),
-                new Status(taskDto.getStatusId())
+                new Status(taskDto.getStatusId()),
+                new SystemUser( 294L)
         );
     }
 

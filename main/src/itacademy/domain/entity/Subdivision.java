@@ -1,5 +1,6 @@
 package itacademy.domain.entity;
 
+
 import lombok.*;
 
 @Getter
@@ -7,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 
 public class Subdivision {
     private Long id;

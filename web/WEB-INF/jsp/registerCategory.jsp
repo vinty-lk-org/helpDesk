@@ -28,6 +28,7 @@
     </tr>
     </thead>
     <tbody>
+
     <c:forEach items="${requestScope.category}" var="subdivision">
         <tr name="taskTableName">
             <td name="taskId">${subdivision.id}</td>
@@ -40,6 +41,7 @@
             </td>
         </tr>
     </c:forEach>
+
     </tbody>
 </table>
 <div class="grid-container">

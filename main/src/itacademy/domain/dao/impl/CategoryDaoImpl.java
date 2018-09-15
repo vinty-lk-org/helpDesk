@@ -107,7 +107,7 @@ public class CategoryDaoImpl implements CategoryDao {
     @Override
     public Optional<Category> findById(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(CategoryDaoImpl.SQL_FIND_ID)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ID)) {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {

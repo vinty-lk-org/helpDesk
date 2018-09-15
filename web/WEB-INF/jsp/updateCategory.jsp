@@ -8,9 +8,8 @@
     <script type="text/javascript">
         <%@include file="../../resources/js/myJs.js" %>
     </script>
-    <head>
-        <title>изменить</title>
-    </head>
+</head>
+
 <body>
 <jsp:include page="../jsp/fragments/nav.jsp"/>
 <div class="grid-container">

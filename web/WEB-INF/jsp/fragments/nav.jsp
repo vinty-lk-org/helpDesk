@@ -41,7 +41,7 @@
                 <ul class="dropdown-menu" data-dropdown-menu>
                     <li class="menu-text"><a href="">Оператор</a>
                         <ul class="menu">
-                            <li><a href="/helpDesk">Назначить заявку</a></li>
+                            <li><a href="/operatorTaskView">Назначить заявку</a></li>
                             <li><a href="helpDesk">Статистика</a></li>
                             <li><a href="helpDesk">Отчет</a></li>
                         </ul>
@@ -52,7 +52,7 @@
                 <ul class="dropdown-menu" data-dropdown-menu>
                     <li class="menu-text"><a href="">Исполнитель</a>
                         <ul class="menu">
-                            <li><a href="/helpDesk">Перенаправить заявку</a></li>
+                            <li><a href="/helpDesk">посмотреть заявки</a></li>
                             <li><a href="helpDesk">Открытые заявки</a></li>
                             <li><a href="helpDesk">Заявки</a></li>
                         </ul>

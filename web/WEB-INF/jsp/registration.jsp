@@ -9,6 +9,7 @@
         <%@include file="../../resources/js/myJs.js" %>
     </script>
 </head>
+
 <body>
 ${login}
 <form name="form1" id="form1" action="${pageContext.request.contextPath}/registration" method="post">
