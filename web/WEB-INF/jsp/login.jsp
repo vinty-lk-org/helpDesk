@@ -38,7 +38,7 @@
                     <input type="text" name="inputEmail" placeholder="mail@belint.by" required="required">
                 </label>
                 <label><fmt:message key="label.password"/>
-                    <input type="password" name="inputPassword" placeholder="password" required="required">
+                    <input type="password" name="inputPassword" placeholder="123456" required="required">
                 </label>
                 <div class="expanded button-group">
                     <button type="submit" class="hollow button success"> <fmt:message key="label.systementer"/></button>

@@ -15,10 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
     frm1.onsubmit = (e) => {
         e.preventDefault();
         mustHaveCheck = 0;
-        checkInput1();
-        checkInput2();
-        checkInput3();
-        if (mustHaveCheck >= 3) {
+        Promise.all([checkInput1(), checkInput2(), checkInput3()]).then(values => {
+            console.log("Примис отработал");
+        });
+
+        console.log("checkInput3 = "+mustHaveCheck);
+        console.log("количество заполненных полей перез условием = " + mustHaveCheck);
+        if (mustHaveCheck >= 2) {
             swal("Пользователь успешно зарегестрирован!", "А теперь входите под ним в систему...", "success")
             // https://sweetalert.js.org/guides/
                 .then(() => frm1.submit())
@@ -48,12 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     divNorm(document.getElementById('divInput1'));
 
-    function mySubmit() {
-        mustHaveCheck = 0;
-        checkInput1();
-        checkInput2();
-        checkInput3();
-    }
+    // function mySubmit() {
+    //     mustHaveCheck = 0;
+        // checkInput1();
+        // checkInput2();
+        // checkInput3();
+  //  }
 
     async function checkInput1() {
         const elemInput1 = frm1.elements.email;
