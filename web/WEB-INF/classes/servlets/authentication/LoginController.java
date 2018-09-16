@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @WebServlet("/login")
@@ -50,7 +49,24 @@ public class LoginController extends HttpServlet {
                     req.getSession().setAttribute("privilege", privilege);
                     System.out.println("Привилегия данного пользователя = " + privilege);
                     req.setAttribute("message", "Все ОК!");
-                    resp.sendRedirect("/helpDesk");
+                    String path = "";
+                    switch (Math.toIntExact(privilege)) {
+                        case 1:
+                            path = "/admin";
+                            break;
+                        case 3:
+                            path = "/operatorTaskView";
+                            break;
+                            // TODO: Вставить страницу на которую попадет исполнитель
+//                        case 4:
+//                            path = "/helpDesk";
+//                            break;
+                        default:
+                            path = "/helpDesk";
+                            break;
+                    }
+                    resp.sendRedirect(path);
+
                 } else {
                     req.setAttribute("message", "errorPass");
                     doGet(req, resp);
