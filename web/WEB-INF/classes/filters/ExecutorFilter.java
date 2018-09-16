@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(servletNames = {"executorPrimaryPage"})
+@WebFilter(servletNames = {"executorTaskView"})
 public class ExecutorFilter implements Filter {
 
         private static final int ADMIN = 1;

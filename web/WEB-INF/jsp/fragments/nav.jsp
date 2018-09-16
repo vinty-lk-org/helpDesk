@@ -22,6 +22,7 @@
                             <li><a href=${pageContext.request.contextPath}"/helpDesk">Посмотреть история заявок</a></li>
                             <li><a href=${pageContext.request.contextPath}"/helpDesk">Посмотреть выполненые</a></li>
                             <li><a href=${pageContext.request.contextPath}"/helpDesk">Посмотреть отклоненные</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/saveReport">Сформировать отчет</a>
                         </ul>
                     </li>
                 </ul>
@@ -31,8 +32,9 @@
                     <li class="menu-text"><a href="">Администратор</a>
                         <ul class="menu">
                             <li><a href=${pageContext.request.contextPath}"/admin">В меню администратора</a></li>
-                            <li><a href=${pageContext.request.contextPath}"admin">Все пользователи</a></li>
-                            <li><a href=${pageContext.request.contextPath}"admin">Все заявки</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/registerUser">Все пользователи</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/registerTask">Все заявки</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/saveReport">Сформировать отчет</a>
                         </ul>
                     </li>
                 </ul>
@@ -42,7 +44,7 @@
                     <li class="menu-text"><a href="">Оператор</a>
                         <ul class="menu">
                             <li><a href=${pageContext.request.contextPath}"/operatorTaskView">Текущие заявки</a></li>
-                            <li><a href=${pageContext.request.contextPath}"/operatorTasPrimary">Посмотреть все заявки</a>
+                            <li><a href=${pageContext.request.contextPath}"/operatorTaskPrimary">Посмотреть все заявки</a>
                             <li><a href=${pageContext.request.contextPath}"/saveReport">Сформировать отчет</a>
                             </li>
                         </ul>
@@ -57,6 +59,7 @@
                             <li><a href=${pageContext.request.contextPath}"/helpDesk">посмотреть заявки</a></li>
                             <li><a href=${pageContext.request.contextPath}"helpDesk">Открытые заявки</a></li>
                             <li><a href=${pageContext.request.contextPath}"helpDesk">Заявки</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/saveReport">Сформировать отчет</a>
                         </ul>
                     </li>
                 </ul>
