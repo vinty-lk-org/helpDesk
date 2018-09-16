@@ -9,6 +9,7 @@
 <jsp:include page="../jsp/fragments/nav.jsp"/>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
+        <h1>Назначение исполнителя заявки</h1>
         <div class="medium-3 cell">
         </div>
         <div class="medium-6 cell">
@@ -100,7 +101,7 @@
             <div class="medium-3 cell">
                 <select name="subdivision_id" id="subdivisions">
                     <c:forEach items="${requestScope.executor}" var="status">
-                        <option value="${status.id}"> ${status.name}   ${status.family}</option>
+                        <option value="${status.id}"> ${status.name} ${status.family}</option>
                     </c:forEach>
                 </select>
             </div>

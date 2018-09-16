@@ -69,7 +69,7 @@
                         <td name="executor">${task.listinerName}</td>
                         <td name="status">${task.statusName}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru">Удалить</a>
+                            <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru" ><span class="alert label">Удалить</span></a>
                         </td>
                     </tr>
                 </c:forEach>
