@@ -29,7 +29,6 @@ public class LoginController extends HttpServlet {
         String userInputPassword = req.getParameter("inputPassword");
         String userLang = req.getParameter("lang");
         req.getSession().setAttribute("localLang", userLang);
-
         Optional<SystemUser> userOptional = Optional.ofNullable(SystemUserServiceImpl.getInstance().findByEmail(userInputEmail));
         SystemUser user = null;
         if (userOptional.isPresent()) {
@@ -57,7 +56,7 @@ public class LoginController extends HttpServlet {
                         case 3:
                             path = "/operatorTaskView";
                             break;
-                            // TODO: Вставить страницу на которую попадет исполнитель
+                        // TODO: Вставить страницу на которую попадет исполнитель
 //                        case 4:
 //                            path = "/helpDesk";
 //                            break;
@@ -66,12 +65,10 @@ public class LoginController extends HttpServlet {
                             break;
                     }
                     resp.sendRedirect(path);
-
                 } else {
                     req.setAttribute("message", "errorPass");
                     doGet(req, resp);
                 }
-
             } else resp.sendRedirect("/helpDesk");
         }
     }
