@@ -23,7 +23,7 @@ public class DeleteTaskController extends HttpServlet {
     }
 
     private void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/helpDesk");
+        resp.sendRedirect("/userDesk");
 //        getServletContext().getRequestDispatcher("/WEB-INF/jsp/helpDesk.jsp").forward(req, resp);
     }
 }

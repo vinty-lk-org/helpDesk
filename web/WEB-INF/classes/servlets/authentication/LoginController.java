@@ -68,12 +68,12 @@ public class LoginController extends HttpServlet {
 //                            path = "/helpDesk";
 //                            break;
                         default:
-                            path = "/helpDesk";
+                            path = "/userDesk";
                             break;
                     }
                     resp.sendRedirect(path);
                 }
-            } else resp.sendRedirect("/helpDesk");
+            } else resp.sendRedirect("/userDesk");
         }
     }
 }

@@ -13,15 +13,15 @@
 <div class="top-bar" id="my-nav-menu">
     <div class="top-bar-left">
         <ul class="menu">
-            <li class="menu-text"><a href=${pageContext.request.contextPath}"/helpDesk">Написать заявку</a></li>
+            <li class="menu-text"><a href=${pageContext.request.contextPath}"/userDesk">Написать заявку</a></li>
 
             <c:if test="${sessionScope.privilege eq '2'}">
                 <ul class="dropdown-menu" data-dropdown-menu>
                     <li class="menu-text"><a href="">Пользователь</a>
                         <ul class="menu">
-                            <li><a href=${pageContext.request.contextPath}"/helpDesk">Посмотреть история заявок</a></li>
-                            <li><a href=${pageContext.request.contextPath}"/helpDesk">Посмотреть выполненые</a></li>
-                            <li><a href=${pageContext.request.contextPath}"/helpDesk">Посмотреть отклоненные</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/userDesk">Посмотреть история заявок</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/userDesk">Посмотреть выполненые</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/userDesk">Посмотреть отклоненные</a></li>
                             <li><a href=${pageContext.request.contextPath}"/saveReport">Сформировать отчет</a>
                         </ul>
                     </li>
@@ -56,9 +56,9 @@
                 <ul class="dropdown-menu" data-dropdown-menu>
                     <li class="menu-text"><a href="">Исполнитель</a>
                         <ul class="menu">
-                            <li><a href=${pageContext.request.contextPath}"/helpDesk">посмотреть заявки</a></li>
-                            <li><a href=${pageContext.request.contextPath}"helpDesk">Открытые заявки</a></li>
-                            <li><a href=${pageContext.request.contextPath}"helpDesk">Заявки</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/userDesk">посмотреть заявки</a></li>
+                            <li><a href=${pageContext.request.contextPath}"userDesk">Открытые заявки</a></li>
+                            <li><a href=${pageContext.request.contextPath}"userDesk">Заявки</a></li>
                             <li><a href=${pageContext.request.contextPath}"/saveReport">Сформировать отчет</a>
                         </ul>
                     </li>
@@ -71,7 +71,7 @@
             <li class="menu-text"><a href=${pageContext.request.contextPath}"/logout">Выход: ${sessionScope.user}</a>
             </li>
             <li class="menu-text"><a
-                    href=${pageContext.request.contextPath}"/helpDesk"><%= formatForDateNow.format(dateNow) %>
+                    href=${pageContext.request.contextPath}"/userDesk"><%= formatForDateNow.format(dateNow) %>
             </a>
             </li>
         </ul>

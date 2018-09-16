@@ -44,7 +44,7 @@
             <td name="data">${operator.userName}</td>
             <td name="data">${operator.userFamily}</td>
             <td name="executor">${operator.subdivision}</td>
-            <td name="status_id">${operator.status}</td>
+            <td name="status_id"><span class="Warning Label">${operator.status}</span></td>
              <td>
                  <a href="${pageContext.request.contextPath}/operatorChangeStatus?id=${operator.idTask}&lang=ru"><span class="primary label">Работа с заявкой</span></a>
             </td>
@@ -61,7 +61,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button primary hollow" href="${pageContext.request.contextPath}/helpDesk"> <b> Вернутся на главную
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/userDesk"> <b> Вернутся на главную
                     страницу оператора</b> </A>
             </div>
             <div class="medium-3 cell">

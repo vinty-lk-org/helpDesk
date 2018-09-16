@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/helpDesk")
+@WebServlet("/userDesk")
 public class HelpDeskController extends HttpServlet {
 
   @Override
@@ -22,7 +22,7 @@ public class HelpDeskController extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     TaskServiceImpl.getInstance().saveTask(getReqForCreateTaskDto(req));
-    resp.sendRedirect("/helpDesk");
+    resp.sendRedirect("/userDesk");
   }
 
   private TaskDto getReqForCreateTaskDto(HttpServletRequest request) {
@@ -40,6 +40,6 @@ public class HelpDeskController extends HttpServlet {
   }
 
   private void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    getServletContext().getRequestDispatcher("/WEB-INF/jsp/helpDesk.jsp").forward(req, resp);
+    getServletContext().getRequestDispatcher("/WEB-INF/jsp/userDesk.jsp").forward(req, resp);
   }
 }

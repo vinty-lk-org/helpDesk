@@ -61,7 +61,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button primary hollow" href="${pageContext.request.contextPath}/helpDesk"> <b> Вернутся на главную
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/userDesk"> <b> Вернутся на главную
                     страницу оператора</b> </A>
             </div>
             <div class="medium-3 cell">
