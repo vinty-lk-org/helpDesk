@@ -32,6 +32,7 @@ public class TaskOperatorDaoImpl implements TaskOperatorDao {
             "\n" +
             "from tasks t, system_users su, subdivisions sd, status st\n" +
             "where t.system_user_id = su.id and t.status_id = st.id and su.subdivision_id = sd.id  and t.id = ?;";
+
     private static final String SQL_FIND_ALL_SHORT_OPERATOR = "  select\n" +
             "    t.id      as id_task,\n" +
             "    t.name    as t_name,\n" +
@@ -41,6 +42,21 @@ public class TaskOperatorDaoImpl implements TaskOperatorDao {
             "    st.name as status\n" +
             "  from tasks t, system_users su, subdivisions sd, status st\n" +
             "  where t.system_user_id = su.id and t.status_id = st.id and   su.subdivision_id = sd.id  and operator_id = ?;";
+
+
+    private static final String SQL_FIND_ALL_STATUS_OPERATOR= "select\n" +
+            "  t.id      as id_task,\n" +
+            "  t.name    as t_name,\n" +
+            "  su.name   as user_name,\n" +
+            "  su.family as user_family,\n" +
+            "  sd.name   as subdivision,\n" +
+            "  st.name   as status\n" +
+            "from tasks t, system_users su, subdivisions sd, status st\n" +
+            "where t.system_user_id = su.id" +
+            " and t.status_id = st.id and " +
+            "su.subdivision_id = sd.id  and" +
+            " operator_id = ? and status_id = 1;";
+
     private static final String SQL_UPDATE_STATUS = "UPDATE tasks SET status_id = (?) WHERE id =(?)";
     private static final String SQL_UPDATE_EXECOTOR = "UPDATE tasks SET executor_id = (?) WHERE id =(?)";
     private static TaskOperatorDaoImpl INSTANCE = null;
@@ -132,6 +148,23 @@ public class TaskOperatorDaoImpl implements TaskOperatorDao {
         List<TaskOperatorShortDto> operatorDto = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL_SHORT_OPERATOR)) {
+                preparedStatement.setLong(1, operatorId);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        operatorDto.add(createFindAllFromOperatorShortTask(resultSet));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return operatorDto;
+    }
+
+        public List<TaskOperatorShortDto> findAllShortOperatorStatus(Long operatorId) {
+        List<TaskOperatorShortDto> operatorDto = new ArrayList<>();
+        try (Connection connection = ConnectionManager.getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL_STATUS_OPERATOR)) {
                 preparedStatement.setLong(1, operatorId);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {

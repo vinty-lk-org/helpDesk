@@ -58,7 +58,7 @@
                     <th>Краткое содержание</th>
                     <th width="250">Отдел</th>
                     <th width="250">Статус</th>
-                    <th width="250">удалить</th>
+                    <th width="250">Удалить</th>
                 </tr>
                 </thead>
                 <tbody>

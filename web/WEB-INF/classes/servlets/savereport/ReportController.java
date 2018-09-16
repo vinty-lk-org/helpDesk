@@ -1,4 +1,4 @@
-package servlets.save;
+package servlets.savereport;
 
 import itacademy.domain.dao.impl.TaskOperatorDaoImpl;
 import itacademy.dto.models.TaskOperatorShortDto;
@@ -26,24 +26,24 @@ public class ReportController extends HttpServlet {
         resp.getWriter().write("<body>");
 
         resp.getWriter().write("<table border=\"1\">");
-        resp.getWriter().write("<caption><h3>" + "Пользователи системы" + "</h3></caption>");
+        resp.getWriter().write("<caption><h2>" + "Все заявки оператора" + "</h2></caption>");
         resp.getWriter().write("<tr>");
-        resp.getWriter().write("<th>Фамилия</th>");
-        resp.getWriter().write("<th>Имя</th>");
-        resp.getWriter().write("<th>Отчество</th>");
-        resp.getWriter().write("<th>Почта</th>");
-        resp.getWriter().write("<th>Пароль</th>");
-        resp.getWriter().write("<th>Id Привилегий</th>");
+        resp.getWriter().write("<th>_№ заявки_</th>");
+        resp.getWriter().write("<th>__краткое содержание__</th>");
+        resp.getWriter().write("<th>_____Имя_____</th>");
+        resp.getWriter().write("<th>____фамилия___</th>");
+        resp.getWriter().write("<th>____Подразделение____</th>");
+        resp.getWriter().write("<th>_____Статус_____</th>");
         resp.getWriter().write("</tr>");
         dtos.forEach(e -> {
             try {
                 resp.getWriter().write("<tr>");
-                resp.getWriter().write("<td>" + e.getUserFamily() + "Фамилия" + "</th>");
-                resp.getWriter().write("<td>" + e.getUserName() + "Имя" + "</th>");
-                resp.getWriter().write("<td>" + e.getUserFamily() + "family" + "</th>");
-                resp.getWriter().write("<td>" + e.getUserFamily() + "family" + "</th>");
-                resp.getWriter().write("<td>" + e.getUserFamily() + "family" + "</th>");
-                resp.getWriter().write("<td>" + e.getUserFamily() + "family" + "</th>");
+                resp.getWriter().write("<td>" + e.getIdTask() + "</th>");
+                resp.getWriter().write("<td>" + e.getTaskName() + "</th>");
+                resp.getWriter().write("<td>" + e.getUserName() + "</th>");
+                resp.getWriter().write("<td>" + e.getUserFamily() + "</th>");
+                resp.getWriter().write("<td>" + e.getSubdivision() + "</th>");
+                resp.getWriter().write("<td>" + e.getStatus() + "</th>");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -66,5 +66,4 @@ public class ReportController extends HttpServlet {
         String formatedTime = localTime.format(DateTimeFormatter.ofPattern("hh-mm-ss"));
         return String.valueOf(localDate + "_" + formatedTime);
     }
-
 }

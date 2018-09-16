@@ -41,8 +41,8 @@
                 <ul class="dropdown-menu" data-dropdown-menu>
                     <li class="menu-text"><a href="">Оператор</a>
                         <ul class="menu">
-                            <li><a href=${pageContext.request.contextPath}"/operatorTaskView">Назначить заявку</a></li>
-                            <li><a href=${pageContext.request.contextPath}"/operatorTaskView">Посмотреть все заявки</a>
+                            <li><a href=${pageContext.request.contextPath}"/operatorTaskView">Текущие заявки</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/operatorTasPrimary">Посмотреть все заявки</a>
                             <li><a href=${pageContext.request.contextPath}"/saveReport">Сформировать отчет</a>
                             </li>
                         </ul>
