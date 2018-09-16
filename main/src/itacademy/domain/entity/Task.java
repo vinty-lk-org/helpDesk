@@ -44,4 +44,9 @@ public class Task {
         this.status = status;
         this.operatorId = operatorId;
     }
+
+    public Task(Long id, Status status) {
+        this.id = id;
+        this.status = status;
+    }
 }

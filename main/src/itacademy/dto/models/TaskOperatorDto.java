@@ -36,4 +36,11 @@ public class TaskOperatorDto {
         this.executorId = executorId;
         this.operatorId = operatorId;
     }
+
+    public TaskOperatorDto(Long taskId, Long statusId) {
+        this.taskId = taskId;
+        this.statusId = statusId;
+    }
+
+
 }

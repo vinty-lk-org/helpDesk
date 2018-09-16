@@ -42,8 +42,9 @@ public class TaskOperatorDaoImpl implements TaskOperatorDao {
             "    st.name as status\n" +
             "  from tasks t, system_users su, subdivisions sd, status st\n" +
             "  where t.system_user_id = su.id and t.status_id = st.id and   su.subdivision_id = sd.id  and operator_id = ?;";
+    private static final String SQL_UPDATE_STATUS = "UPDATE tasks SET status_id = (?) WHERE id =(?)";
+    private static final String SQL_UPDATE_EXECOTOR = "UPDATE tasks SET executor_id = (?) WHERE id =(?)";
     private static TaskOperatorDaoImpl INSTANCE = null;
-
 
     public static TaskOperatorDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -72,7 +73,6 @@ public class TaskOperatorDaoImpl implements TaskOperatorDao {
                 resultSet.getLong("operator_id"));
     }
 
-
     private TaskOperatorShortDto createFindAllFromOperatorShortTask(ResultSet resultSet) throws SQLException {
         return new TaskOperatorShortDto(
                 resultSet.getLong("id_task"),
@@ -82,6 +82,35 @@ public class TaskOperatorDaoImpl implements TaskOperatorDao {
                 resultSet.getString("subdivision"),
                 resultSet.getString("status"));
     }
+
+    public void updateStatus(TaskOperatorDto task) {
+        try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_STATUS)) {
+                preparedStatement.setLong(1, task.getStatusId());
+                preparedStatement.setLong(2, task.getTaskId());
+                preparedStatement.executeUpdate();
+                connection.commit();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateExecutor(TaskOperatorDto task) {
+        try (Connection connection = ConnectionManager.getConnection()) {
+            connection.setAutoCommit(false);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_EXECOTOR)) {
+                preparedStatement.setLong(1, task.getExecutorId());
+                preparedStatement.setLong(2, task.getTaskId());
+                preparedStatement.executeUpdate();
+                connection.commit();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public Optional<TaskOperatorDto> findByIdOperatorTask(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
@@ -137,22 +166,4 @@ public class TaskOperatorDaoImpl implements TaskOperatorDao {
         return Optional.empty();
     }
 
-
-    //    }
-    //        return operatorList;
-    //        }
-    //            e.printStackTrace();
-    //        } catch (SQLException e) {
-    //            resultSet.close();
-    //            }
-    //                operatorList.add(createFindAllFromOperatorShortTask(resultSet));
-    //            while (resultSet.next()) {
-    //            ResultSet resultSet = (ResultSet) proc.getObject(1);
-    //            proc.executeQuery();
-    //            proc.registerOutParameter(1, Types.OTHER);
-    //            connection.setAutoCommit(false);
-    //             CallableStatement proc = connection.prepareCall(SQL_FIND_ALL_SHORT_OPERATOR)) {
-    //        try (Connection connection = ConnectionManager.getConnection();
-    //        List<TaskOperatorShortDto> operatorList = new ArrayList<>();
-    //    public List<TaskOperatorShortDto> findAllShortOperator() {
 }
