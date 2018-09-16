@@ -34,10 +34,10 @@
             <td name="taskId">${subdivision.id}</td>
             <td name="taskName">${subdivision.name}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/category/Delete?id=${subdivision.id}&lang=ru">Удалить </a>
+                <a href="${pageContext.request.contextPath}/category/Delete?id=${subdivision.id}&lang=ru"><span class="alert label">Удалить</span></a>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/viewCategory/Update?id=${subdivision.id}&lang=ru">Изменить</a>
+                <a href="${pageContext.request.contextPath}/viewCategory/Update?id=${subdivision.id}&lang=ru"><span class="secondary label">Изменить</span></a>
             </td>
         </tr>
     </c:forEach>
@@ -66,7 +66,7 @@
         <div class="medium-6 cell">
             <div class="expanded button-group">
                 <A class="button primary " href="${pageContext.request.contextPath}/admin"> <b> Вернутся на главную
-                    страницу админки</b> </A>
+                    страницу администратора</b> </A>
             </div>
             <div class="medium-3 cell">
             </div>
