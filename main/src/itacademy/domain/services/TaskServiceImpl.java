@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class TaskServiceImpl implements TaskService {
     private static final Object LOCK = new Object();
+    public static final long ID_OPERATOR = 294L;
     private static TaskServiceImpl INSTANCE = null;
 
     public static TaskServiceImpl getInstance() {
@@ -44,7 +45,7 @@ public class TaskServiceImpl implements TaskService {
                 taskDto.getText(),
                 new SystemUser(taskDto.getSystemUserId()),
                 new Status(taskDto.getStatusId()),
-                new SystemUser( 294L)
+                new SystemUser(ID_OPERATOR)
         );
     }
 
