@@ -39,15 +39,22 @@ public class LoginController extends HttpServlet {
                 String password = user.getPassword();
                 List<UserPrivilege> userPrivilegeList = UserPrivilegeServiceImpl.getInstance().findAllUsersPrivilegesByUserId(user.getId());
                 System.out.println(userPrivilegeList);
-                Long privilege = userPrivilegeList.get(0).getPrivilegeId().getId();
-                System.out.println(privilege);
-                if ((eMail != null) && (password.equals(userInputPassword))) {
-                    req.getSession().setAttribute("userId", user.getId());
-                    req.getSession().setAttribute("userLoggedIn", true);
-                    req.getSession().setAttribute("user", nameUser);
-                    req.getSession().setAttribute("privilege", privilege);
-                    System.out.println("Привилегия данного пользователя = " + privilege);
-                    req.setAttribute("message", "Все ОК!");
+
+                Long privilege = 0L;
+                for (int i = 0; i < userPrivilegeList.size(); i++) {
+                    privilege = userPrivilegeList.get(i).getPrivilegeId().getId();
+                    System.out.println(privilege);
+                    if ((eMail != null) && (password.equals(userInputPassword))) {
+                        req.getSession().setAttribute("userId", user.getId());
+                        req.getSession().setAttribute("userLoggedIn", true);
+                        req.getSession().setAttribute("user", nameUser);
+                        req.getSession().setAttribute("privilege", privilege);
+                        System.out.println("Привилегия данного пользователя = " + privilege);
+                        req.setAttribute("message", "Все ОК!");
+                    } else {
+                        req.setAttribute("message", "errorPass");
+                        doGet(req, resp);
+                    }
                     String path = "";
                     switch (Math.toIntExact(privilege)) {
                         case 1:
@@ -65,9 +72,6 @@ public class LoginController extends HttpServlet {
                             break;
                     }
                     resp.sendRedirect(path);
-                } else {
-                    req.setAttribute("message", "errorPass");
-                    doGet(req, resp);
                 }
             } else resp.sendRedirect("/helpDesk");
         }
