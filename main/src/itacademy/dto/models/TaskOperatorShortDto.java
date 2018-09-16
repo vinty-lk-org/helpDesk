@@ -5,7 +5,7 @@ import lombok.*;
 @Setter
 @Getter
 @NoArgsConstructor
-@ToString
+
 @Builder
 public class TaskOperatorShortDto {
 
@@ -23,5 +23,17 @@ public class TaskOperatorShortDto {
         this.userFamily = userFamily;
         this.subdivision = subdivision;
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Страница{" +
+                "Номер=" + idTask +
+                ", Имя='" + taskName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userFamily='" + userFamily + '\'' +
+                ", subdivision='" + subdivision + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

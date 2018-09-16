@@ -6,6 +6,7 @@
     <jsp:include page="../jsp/fragments/header.jsp"/>
 </head>
 <body>
+
 <jsp:include page="../jsp/fragments/nav.jsp"/>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
@@ -45,7 +46,7 @@
             <td name="executor">${operator.subdivision}</td>
             <td name="status_id">${operator.status}</td>
              <td>
-                 <a href="${pageContext.request.contextPath}/operatorChangeStatus?id=${operator.idTask}&lang=ru"><span class="primary label">Назначить исполнителя</span></a>
+                 <a href="${pageContext.request.contextPath}/operatorChangeStatus?id=${operator.idTask}&lang=ru"><span class="primary label">Работа с заявкой</span></a>
             </td>
         </tr>
     </c:forEach>

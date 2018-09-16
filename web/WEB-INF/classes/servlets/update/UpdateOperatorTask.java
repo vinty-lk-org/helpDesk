@@ -13,7 +13,6 @@ import java.io.IOException;
 @WebServlet("/operatorTask/Update")
 public class UpdateOperatorTask extends HttpServlet {
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long executorNameId = Long.valueOf(req.getParameter("executorNameId"));
@@ -22,6 +21,6 @@ public class UpdateOperatorTask extends HttpServlet {
         task.setTaskId(taskId);
         task.setExecutorId(executorNameId);
         TaskOperatorDaoImpl.getInstance().updateExecutor(task);
-        resp.sendRedirect("/operatorChangeStatus");
+        resp.sendRedirect("/operatorTaskView");
     }
 }

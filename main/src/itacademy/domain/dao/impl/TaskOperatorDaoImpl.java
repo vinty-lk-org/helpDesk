@@ -32,7 +32,6 @@ public class TaskOperatorDaoImpl implements TaskOperatorDao {
             "\n" +
             "from tasks t, system_users su, subdivisions sd, status st\n" +
             "where t.system_user_id = su.id and t.status_id = st.id and su.subdivision_id = sd.id  and t.id = ?;";
-
     private static final String SQL_FIND_ALL_SHORT_OPERATOR = "  select\n" +
             "    t.id      as id_task,\n" +
             "    t.name    as t_name,\n" +

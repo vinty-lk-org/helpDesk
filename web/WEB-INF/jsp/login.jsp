@@ -19,7 +19,7 @@
             /change-locale?language=en_US" class="btn btn-secondary btn-lg active"><img
             src="../../resources/png/eng.png"></a>
 </p>
-<p align="center"><a href="/helpDesk"><img src="../../resources/png/logo.png"
+<p align="center"><a href="${pageContext.request.contextPath}/helpDesk"><img src="../../resources/png/logo.png"
                                            width="1500"></a></p>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">

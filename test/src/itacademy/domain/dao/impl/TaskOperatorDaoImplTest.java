@@ -46,12 +46,5 @@ public class TaskOperatorDaoImplTest {
         dao.updateExecutor(taskOperatorDto);
     }
 
-    @Test
-    public void update() {
-        CategoryDaoImpl dao = CategoryDaoImpl.getInstance();
-        Category category = new Category(4L,"77777");
-        dao.update(category);
-    }
-
 }
 

@@ -34,6 +34,7 @@
     </thead>
     <tbody>
 
+
     <tr name="taskTableName">
         <td name="taskId">${requestScope.operatorId.taskId}</td>
         <td name="taskName">${requestScope.operatorId.taskName}</td>
@@ -70,20 +71,21 @@
     </div>
 </div>
 
-<form name="textform" id="textform" action="${pageContext.request.contextPath}/category/Update" method="post">
+
+<form name="status" id="status" action="${pageContext.request.contextPath}/operatorStatus/Update" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
             </div>
             <div class="medium-3 cell">
-                <select name="subdivision_id" id="executor">
+                <select name="statusNameId" id="statusNameId">
                     <c:forEach items="${requestScope.status}" var="status">
                         <option value="${status.id}"> ${status.name} </option>
                     </c:forEach>
                 </select>
+                <input type="hidden" name="taskId" value="${requestScope.operatorId.taskId}">
             </div>
             <div class="medium-3 cell">
-
                 <div class="expanded button-group">
                     <button type="submit" class="button primary hollow "><b>Изменить статус</b></button>
                 </div>
@@ -93,17 +95,18 @@
     </div>
 </form>
 
-<form name="textform" id="textform" action="${pageContext.request.contextPath}/category/Update" method="post">
+<form name="operator" id="operator" action="${pageContext.request.contextPath}/operatorTask/Update" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
             </div>
             <div class="medium-3 cell">
-                <select name="subdivision_id" id="subdivisions">
-                    <c:forEach items="${requestScope.executor}" var="status">
-                        <option value="${status.id}"> ${status.name} ${status.family}</option>
+                <select name="executorNameId" id="executorNameId">
+                    <c:forEach items="${requestScope.executor}" var="operator">
+                        <option value="${operator.id}"> ${operator.name} ${operator.family}</option>
                     </c:forEach>
                 </select>
+                <input type="hidden" name="taskId" value="${requestScope.operatorId.taskId}">
             </div>
             <div class="medium-3 cell">
 
@@ -135,17 +138,3 @@
 <script> $(document).foundation();</script>
 </body>
 </html>
-
-
-<%--private Long taskId;--%>
-<%--private String taskName;--%>
-<%--private String text;--%>
-<%--private Long systemUserId;--%>
-<%--private String systemUserName;--%>
-<%--private String systemUserFamily;--%>
-<%--private Long subdivisionId;--%>
-<%--private String subdivisionName;--%>
-<%--private Long statusId;--%>
-<%--private String statusName;--%>
-<%--private Long executorId;--%>
-<%--private Long operatorId;--%>
