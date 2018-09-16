@@ -9,41 +9,42 @@
 <jsp:include page="../jsp/fragments/nav.jsp"/>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
-        <div class="medium-3 cell">
+        <div class="medium-1 cell">
         </div>
-        <div class="medium-6 cell">
+        <div class="medium-10 cell">
+            <br>
+            <table>
+                <thead>
+                <tr>
+                    <th width="100">ID</th>
+                    <th>Категория проблем</th>
+                    <th width="250">Удалить</th>
+                    <th width="250">Изменить</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <c:forEach items="${requestScope.category}" var="subdivision">
+                    <tr name="taskTableName">
+                        <td name="taskId">${subdivision.id}</td>
+                        <td name="taskName">${subdivision.name}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/category/Delete?id=${subdivision.id}&lang=ru"><span class="alert label">Удалить</span></a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/viewCategory/Update?id=${subdivision.id}&lang=ru"><span class="secondary label">Изменить</span></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+
+                </tbody>
+            </table>
+
         </div>
-        <div class="medium-3 cell">
+        <div class="medium-1 cell">
         </div>
     </div>
 </div>
-<br>
-<table>
-    <thead>
-    <tr>
-        <th width="100">ID</th>
-        <th>Категория проблем</th>
-        <th width="250">Удалить</th>
-        <th width="250">Изменить</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    <c:forEach items="${requestScope.category}" var="subdivision">
-        <tr name="taskTableName">
-            <td name="taskId">${subdivision.id}</td>
-            <td name="taskName">${subdivision.name}</td>
-            <td>
-                <a href="${pageContext.request.contextPath}/category/Delete?id=${subdivision.id}&lang=ru"><span class="alert label">Удалить</span></a>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/viewCategory/Update?id=${subdivision.id}&lang=ru"><span class="secondary label">Изменить</span></a>
-            </td>
-        </tr>
-    </c:forEach>
-
-    </tbody>
-</table>
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
         <div class="medium-3 cell">
