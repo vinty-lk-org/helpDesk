@@ -17,22 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
         mustHaveCheck = 0;
         Promise.all([checkInput1(), checkInput2(), checkInput3()]).then(values => {
             console.log("Примис отработал");
+            console.log("checkInput3 = "+mustHaveCheck);
+            console.log("количество заполненных полей перез условием = " + mustHaveCheck);
+            if (mustHaveCheck >= 2) {
+                swal("Пользователь успешно зарегестрирован!", "А теперь входите под ним в систему...", "success")
+                // https://sweetalert.js.org/guides/
+                    .then(() => frm1.submit())
+                ;
+            }
+            if (mustHaveCheck < 3) {
+                swal("Не все поля заполнены!", "Обязательно ввести E-Mail, и пароль. Не забудьте его подтвердить.", "error");
+            }
+            return null;
         });
-
-        console.log("checkInput3 = "+mustHaveCheck);
-        console.log("количество заполненных полей перез условием = " + mustHaveCheck);
-        if (mustHaveCheck >= 2) {
-            swal("Пользователь успешно зарегестрирован!", "А теперь входите под ним в систему...", "success")
-            // https://sweetalert.js.org/guides/
-                .then(() => frm1.submit())
-            ;
-        }
-        if (mustHaveCheck < 3) {
-            swal("Не все поля заполнены!", "Обязательно ввести E-Mail, и пароль. Не забудьте его подтвердить.", "error");
-        }
-        return null;
     };
-
 
     let mustHaveCheck = 0;
     console.log(frm1.elements.email);
@@ -47,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     elemInput2.onblur = checkInput2;
     elemInput3.onmouseup = checkInput3;
     elemInput3.onblur = checkInput3;
-
 
     divNorm(document.getElementById('divInput1'));
 
@@ -71,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
         }
         document.getElementById("input1Error").innerHTML = "";
-
 
         const isEmail = await fetch(getUrl() + "/api/email",
             {
