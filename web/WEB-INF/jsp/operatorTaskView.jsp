@@ -45,7 +45,7 @@
             <td name="executor">${operator.subdivision}</td>
             <td name="status_id">${operator.status}</td>
              <td>
-                 <a href="${pageContext.request.contextPath}/operatorChangeStatus?id=${operator.idTask}&lang=ru">Назначить исполнителя</a>
+                 <a href="${pageContext.request.contextPath}/operatorChangeStatus?id=${operator.idTask}&lang=ru"><span class="primary label">Назначить исполнителя</span></a>
             </td>
         </tr>
     </c:forEach>
@@ -60,7 +60,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button primary " href="${pageContext.request.contextPath}/helpDesk"> <b> Вернутся на главную
+                <A class="button primary hollow" href="${pageContext.request.contextPath}/helpDesk"> <b> Вернутся на главную
                     страницу оператора</b> </A>
             </div>
             <div class="medium-3 cell">
