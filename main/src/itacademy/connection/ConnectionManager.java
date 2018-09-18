@@ -3,6 +3,7 @@ package itacademy.connection;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
+import javax.activation.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 
