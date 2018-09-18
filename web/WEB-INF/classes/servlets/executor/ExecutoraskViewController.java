@@ -14,7 +14,7 @@ public class ExecutoraskViewController extends HttpServlet {
 
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            req.setAttribute("executorTaskView", TaskExecutorDaoImpl.getInstance().findAllShortExecutorStatus(293L));
+            req.setAttribute("executorTaskView", TaskExecutorDaoImpl.getInstance().findAllShortExecutorStatus(295L));
             showPage(req, resp);
         }
 

@@ -109,7 +109,7 @@ public class TaskExecutorDaoImpl implements TaskExecutorDao {
     }
 
 
-    public Optional<TaskOperatorDto> findByIdOperatorTask(Long id) {
+    public Optional<TaskOperatorDto> findByIdExecutorTask(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_EXECUTOR_TASK_BY_ID)) {
                 preparedStatement.setLong(1, id);

@@ -12,14 +12,15 @@ import java.io.*;
 public class UpdateExecutorStatus extends HttpServlet {
 
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long taskId = Long.valueOf(req.getParameter("taskId"));
-        Long statusNameId = Long.valueOf(req.getParameter("statusNameId"));
-        TaskExecutorDto task = new TaskExecutorDto(taskId, statusNameId);
-        TaskExecutorDaoImpl.getInstance().updateStatus(task);
+
+        @Override
+        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            Long taskId = Long.valueOf(req.getParameter("taskId"));
+            Long statusNameId = Long.valueOf(req.getParameter("statusNameId"));
+            TaskOperatorDto task = new TaskOperatorDto(taskId, statusNameId);
+            TaskOperatorDaoImpl.getInstance().updateStatus(task);
 //        task.setTaskId(taskId);
 //        task.setStatusId(statusNameId);
-        resp.sendRedirect("/executorTaskView");
+            resp.sendRedirect("/executorTaskView");
+        }
     }
-}

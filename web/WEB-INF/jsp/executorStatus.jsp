@@ -78,7 +78,7 @@
             <div class="medium-3 cell">
             </div>
             <div class="medium-3 cell">
-                <select name="statusNameId" id="statusNameId">
+                <select name="statusNameId" id="statusNameId2">
                     <c:forEach items="${requestScope.status}" var="status">
                         <option value="${status.id}"> ${status.name} </option>
                     </c:forEach>
@@ -95,29 +95,6 @@
     </div>
 </form>
 
-<form name="executor" id="executor" action="${pageContext.request.contextPath}/executorTask/Update" method="post">
-    <div class="grid-container">
-        <div class="grid-x grid-padding-x">
-            <div class="medium-3 cell">
-            </div>
-            <div class="medium-3 cell">
-                <select name="executorNameId" id="executorNameId">
-                    <c:forEach items="${requestScope.executor}" var="executor">
-                        <option value="${executor.id}"> ${executor.name} ${executor.family}</option>
-                    </c:forEach>
-                </select>
-                <input type="hidden" name="taskId" value="${requestScope.executorId.taskId}">
-            </div>
-            <div class="medium-3 cell">
-
-                <div class="expanded button-group">
-                    <button type="submit" class="button primary hollow "><b>Назначить исполнителя</b></button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</form>
 
 <div class="grid-container">
     <div class="grid-x grid-padding-x">
