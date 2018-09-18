@@ -25,15 +25,5 @@ public class TaskExecutorShortDto {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Страница{" +
-                "Номер=" + idTask +
-                ", Имя='" + taskName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userFamily='" + userFamily + '\'' +
-                ", subdivision='" + subdivision + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
+
 }

@@ -64,9 +64,9 @@ public class LoginController extends HttpServlet {
                             path = "/operatorTaskView";
                             break;
                         // TODO: Вставить страницу на которую попадет исполнитель
-//                        case 4:
-//                            path = "/helpDesk";
-//                            break;
+                        case 4:
+                            path = "/executorTaskView";
+                            break;
                         default:
                             path = "/userDesk";
                             break;

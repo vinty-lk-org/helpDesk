@@ -35,18 +35,17 @@
     <tbody>
 
 
-    <%--<a href="${pageContext.request.contextPath}/viewCategory/Update?id=${operator.id}&lang=ru">Изменить</a>--%>
 
-    <c:forEach items="${requestScope.operatorTaskView}" var="operator">
+    <c:forEach items="${requestScope.executorTaskView}" var="executor">
         <tr name="taskTableName">
-            <td name="taskId">${operator.idTask}</td>
-            <td name="taskName">${operator.taskName}</td>
-            <td name="data">${operator.userName}</td>
-            <td name="data">${operator.userFamily}</td>
-            <td name="executor">${operator.subdivision}</td>
-            <td name="status_id">${operator.status}</td>
+            <td name="taskId">${executor.idTask}</td>
+            <td name="taskName">${executor.taskName}</td>
+            <td name="data">${executor.userName}</td>
+            <td name="data">${executor.userFamily}</td>
+            <td name="executor">${executor.subdivision}</td>
+            <td name="status_id">${executor.status}</td>
              <td>
-                 <a href="${pageContext.request.contextPath}/operatorChangeStatus?id=${operator.idTask}&lang=ru"><span class="primary label">Работа с заявкой</span></a>
+                 <a href="${pageContext.request.contextPath}/executorChangeStatus?id=${executor.idTask}&lang=ru"><span class="primary label">Работа с заявкой</span></a>
             </td>
         </tr>
     </c:forEach>

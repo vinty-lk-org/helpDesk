@@ -9,7 +9,7 @@ import java.util.*;
 
 public class TaskExecutorDaoImpl implements TaskExecutorDao {
     private static final Object LOCK = new Object();
-    //    private static final String SQL_FIND_ALL_SHORT_OPERATOR = "{ ? = call  task_find_all_for_short_operator()}";
+
     private static final String SQL_FIND_EXECUTOR_TASK_BY_ID = "select\n" +
             "  t.id      as t_id,\n" +
             "  t.name    as t_name,\n" +
@@ -68,8 +68,8 @@ public class TaskExecutorDaoImpl implements TaskExecutorDao {
         return INSTANCE;
     }
 
-    private TaskOperatorDto createFindAllFromOperatorTask(ResultSet resultSet) throws SQLException {
-        return new TaskOperatorDto(
+    private TaskExecutorDto createFindAllFromExecutorTask(ResultSet resultSet) throws SQLException {
+        return new TaskExecutorDto(
                 resultSet.getLong("t_id"),
                 resultSet.getString("t_name"),
                 resultSet.getString("text"),
@@ -84,8 +84,8 @@ public class TaskExecutorDaoImpl implements TaskExecutorDao {
                 resultSet.getLong("operator_id"));
     }
 
-    private TaskOperatorShortDto createFindAllFromOperatorShortTask(ResultSet resultSet) throws SQLException {
-        return new TaskOperatorShortDto(
+    private TaskExecutorShortDto createFindAllFromExecutorShortTask(ResultSet resultSet) throws SQLException {
+        return new TaskExecutorShortDto(
                 resultSet.getLong("id_task"),
                 resultSet.getString("t_name"),
                 resultSet.getString("user_name"),
@@ -94,7 +94,7 @@ public class TaskExecutorDaoImpl implements TaskExecutorDao {
                 resultSet.getString("status"));
     }
 
-    public void updateStatus(TaskOperatorDto task) {
+    public void updateStatus(TaskExecutorDto task) {
         try (Connection connection = ConnectionManager.getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_STATUS)) {
@@ -109,13 +109,13 @@ public class TaskExecutorDaoImpl implements TaskExecutorDao {
     }
 
 
-    public Optional<TaskOperatorDto> findByIdOperatorTask(Long id) {
+    public Optional<TaskExecutorDto> findByIdExecutorTask(Long id) {
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_EXECUTOR_TASK_BY_ID)) {
                 preparedStatement.setLong(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                        return Optional.of(createFindAllFromOperatorTask(resultSet));
+                        return Optional.of(createFindAllFromExecutorTask(resultSet));
                     }
                 }
             }
@@ -126,38 +126,38 @@ public class TaskExecutorDaoImpl implements TaskExecutorDao {
     }
 
     @Override
-    public List<TaskOperatorShortDto> findAllShortExecutor(Long executorId) {
-        List<TaskOperatorShortDto> operatorDto = new ArrayList<>();
+    public List<TaskExecutorShortDto> findAllShortExecutor(Long executorId) {
+        List<TaskExecutorShortDto> executorDto = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL_SHORT_EXECUTOR)) {
                 preparedStatement.setLong(1, executorId);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        operatorDto.add(createFindAllFromOperatorShortTask(resultSet));
+                        executorDto.add(createFindAllFromExecutorShortTask(resultSet));
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return operatorDto;
+        return executorDto;
     }
 
-        public List<TaskOperatorShortDto> findAllShortExecutorStatus(Long executorId) {
-        List<TaskOperatorShortDto> operatorDto = new ArrayList<>();
+        public List<TaskExecutorShortDto> findAllShortExecutorStatus(Long executorId) {
+        List<TaskExecutorShortDto> executorDto = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_ALL_STATUS_SUBMITET_EXECUTOR)) {
                 preparedStatement.setLong(1, executorId);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        operatorDto.add(createFindAllFromOperatorShortTask(resultSet));
+                        executorDto.add(createFindAllFromExecutorShortTask(resultSet));
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return operatorDto;
+        return executorDto;
     }
 
     @Override

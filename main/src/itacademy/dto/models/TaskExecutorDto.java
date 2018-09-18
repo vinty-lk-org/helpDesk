@@ -41,6 +41,4 @@ public class   TaskExecutorDto {
         this.taskId = taskId;
         this.statusId = statusId;
     }
-
-
 }
