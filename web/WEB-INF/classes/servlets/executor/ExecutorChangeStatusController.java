@@ -19,10 +19,10 @@ public class ExecutorChangeStatusController extends HttpServlet {
             String id = req.getParameter("id");
             TaskOperatorDaoImpl dao = TaskOperatorDaoImpl.getInstance();
             StatusDaoImpl statusDao = StatusDaoImpl.getInstance();
-            ExecutorDaoImpl executorDao = ExecutorDaoImpl.getInstance();
+//            ExecutorDaoImpl executorDao = ExecutorDaoImpl.getInstance();
 
             req.setAttribute("executorId", dao.findByIdOperatorTask(Long.valueOf(id)).get());
-            req.setAttribute("executorStatus", statusDao.findAllStatus());
+//            req.setAttribute("executorStatus", statusDao.findAllStatus());
 //            req.setAttribute("executor",executorDao.findAllExecutorDto());
            getServletContext().getRequestDispatcher("/WEB-INF/jsp/executorStatus.jsp").forward(req, resp);
         }

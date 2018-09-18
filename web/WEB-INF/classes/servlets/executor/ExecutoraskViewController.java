@@ -1,6 +1,6 @@
 package servlets.executor;
 
-import itacademy.domain.dao.impl.TaskOperatorDaoImpl;
+import itacademy.domain.dao.impl.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ public class ExecutoraskViewController extends HttpServlet {
 
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            req.setAttribute("executorTaskView", TaskOperatorDaoImpl.getInstance().findAllShortOperatorStatus(294L));
+            req.setAttribute("executorTaskView", TaskExecutorDaoImpl.getInstance().findAllShortExecutorStatus(293L));
             showPage(req, resp);
         }
 
