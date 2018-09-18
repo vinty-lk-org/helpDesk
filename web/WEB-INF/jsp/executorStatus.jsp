@@ -36,12 +36,12 @@
 
 
     <tr name="taskTableName">
-        <td name="taskId">${requestScope.operatorId.taskId}</td>
-        <td name="taskName">${requestScope.operatorId.taskName}</td>
-        <td name="userName">${requestScope.operatorId.systemUserName}</td>
-        <td name="userFamily">${requestScope.operatorId.systemUserFamily}</td>
-        <td name="subdivision">${requestScope.operatorId.subdivisionName}</td>
-        <td name="status_name">${requestScope.operatorId.statusName}</td>
+        <td name="taskId">${requestScope.executorId.taskId}</td>
+        <td name="taskName">${requestScope.executorId.taskName}</td>
+        <td name="userName">${requestScope.executorId.systemUserName}</td>
+        <td name="userFamily">${requestScope.executorId.systemUserFamily}</td>
+        <td name="subdivision">${requestScope.executorId.subdivisionName}</td>
+        <td name="status_name">${requestScope.executorId.statusName}</td>
     </tr>
     </tbody>
 </table>
@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                     <tr name="taskTableName">
-                        <td name="taskId">${requestScope.operatorId.text}</td>
+                        <td name="taskId">${requestScope.executorId.text}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -72,7 +72,7 @@
 </div>
 
 
-<form name="status" id="status" action="${pageContext.request.contextPath}/operatorStatus/Update" method="post">
+<form name="status" id="status" action="${pageContext.request.contextPath}/executorStatus/Update" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
@@ -83,7 +83,7 @@
                         <option value="${status.id}"> ${status.name} </option>
                     </c:forEach>
                 </select>
-                <input type="hidden" name="taskId" value="${requestScope.operatorId.taskId}">
+                <input type="hidden" name="taskId" value="${requestScope.executorId.taskId}">
             </div>
             <div class="medium-3 cell">
                 <div class="expanded button-group">
@@ -95,18 +95,18 @@
     </div>
 </form>
 
-<form name="operator" id="operator" action="${pageContext.request.contextPath}/operatorTask/Update" method="post">
+<form name="executor" id="executor" action="${pageContext.request.contextPath}/executorTask/Update" method="post">
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="medium-3 cell">
             </div>
             <div class="medium-3 cell">
                 <select name="executorNameId" id="executorNameId">
-                    <c:forEach items="${requestScope.executor}" var="operator">
-                        <option value="${operator.id}"> ${operator.name} ${operator.family}</option>
+                    <c:forEach items="${requestScope.executor}" var="executor">
+                        <option value="${executor.id}"> ${executor.name} ${executor.family}</option>
                     </c:forEach>
                 </select>
-                <input type="hidden" name="taskId" value="${requestScope.operatorId.taskId}">
+                <input type="hidden" name="taskId" value="${requestScope.executorId.taskId}">
             </div>
             <div class="medium-3 cell">
 
@@ -125,7 +125,7 @@
         </div>
         <div class="medium-6 cell">
             <div class="expanded button-group">
-                <A class="button primary " href="${pageContext.request.contextPath}/operatorTaskView"> <b> Вернутся на
+                <A class="button primary " href="${pageContext.request.contextPath}/executorTaskView"> <b> Вернутся на
                     главную
                     страницу оператора</b> </A>
             </div>

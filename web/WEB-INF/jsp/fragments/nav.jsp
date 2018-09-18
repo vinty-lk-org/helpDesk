@@ -56,9 +56,8 @@
                 <ul class="dropdown-menu" data-dropdown-menu>
                     <li class="menu-text"><a href="">Исполнитель</a>
                         <ul class="menu">
-                            <li><a href=${pageContext.request.contextPath}"/userDesk">посмотреть заявки</a></li>
-                            <li><a href=${pageContext.request.contextPath}"userDesk">Открытые заявки</a></li>
-                            <li><a href=${pageContext.request.contextPath}"userDesk">Заявки</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/executorTaskView">текущие заявки</a></li>
+                            <li><a href=${pageContext.request.contextPath}"executorTaskPrimary">обработанные заявки</a></li>
                             <li><a href=${pageContext.request.contextPath}"/saveReport">Сформировать отчет</a>
                         </ul>
                     </li>
