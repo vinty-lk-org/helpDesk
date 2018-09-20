@@ -58,7 +58,7 @@
                     <th>Краткое содержание</th>
                     <th width="250">Отдел</th>
                     <th width="250">Статус</th>
-                    <th width="250">Удалить</th>
+                    <th width="250">Архив</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -87,7 +87,7 @@
 
 
                         <td>
-                            <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru" ><span class="alert label">Удалить</span></a>
+                            <a href=""><span class="primary label">Архив</span></a>
                         </td>
                     </tr>
                 </c:forEach>

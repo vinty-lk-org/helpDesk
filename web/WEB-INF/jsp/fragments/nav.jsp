@@ -19,7 +19,7 @@
                 <ul class="dropdown-menu" data-dropdown-menu>
                     <li class="menu-text"><a href="">Пользователь</a>
                         <ul class="menu">
-                            <li><a href=${pageContext.request.contextPath}"/userDesk">Посмотреть история заявок</a></li>
+                            <li><a href=${pageContext.request.contextPath}"/userDesk">Текущие заявки</a></li>
                             <li><a href=${pageContext.request.contextPath}"/userHistoryDesk">Посмотреть все заявки</a></li>
                             <li><a href=${pageContext.request.contextPath}"/saveReport">Сформировать отчет</a>
                         </ul>

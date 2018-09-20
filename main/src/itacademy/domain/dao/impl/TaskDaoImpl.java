@@ -14,6 +14,18 @@ public class TaskDaoImpl implements TaskDao {
     private static final Object LOCK = new Object();
     private static final String SQL_FIND_ALL = "{ ? = call tasks_find_all()}";
 
+private static final String SQL_FIND_STATUS_TASK = "select t.id as t_id, \n" +
+        " t.name as t_name, \n" +
+        " t.system_user_id as t_system_user_id, \n" +
+        " l.name as l_name, \n" +
+        "  s.name as s_name \n" +
+        "from tasks t, listeners l, status s \n" +
+        "where\n" +
+        "  t.listener_id = l.id\n" +
+        "  and t.status_id = s.id\n" +
+        "  and t.system_user_id = ?";
+
+
     private static final String SQL_FIND_SELF_TASKS = "select t.id as t_id," +
             " t.name as t_name," +
             " t.system_user_id as t_system_user_id," +
@@ -23,7 +35,8 @@ public class TaskDaoImpl implements TaskDao {
             "where\n" +
             "  t.listener_id = l.id\n" +
             "  and t.status_id = s.id\n" +
-            "  and t.system_user_id = ?;\n";
+            "  and t.system_user_id = ? and t.status_id not in (3,4);";
+
     private static final String SQL_FIND_ID = "{ ? = call tasks_findbyid(?)}";
     private static final String SQL_SAVE =
             "INSERT INTO tasks (name, listener_id, text, system_user_id, status_id, operator_id)" + "VALUES (?, ?, ?, ?, ?, ?);";
@@ -82,6 +95,29 @@ public class TaskDaoImpl implements TaskDao {
         }
         return taskList;
     }
+
+
+    public List<Task> findTasksAndFindStatus (Long id) {
+        List<Task> taskList = new ArrayList<>();
+        try (Connection connection = ConnectionManager.getConnection()) {
+            try (PreparedStatement preparedStatement = (connection.prepareStatement(SQL_FIND_STATUS_TASK))) {
+                preparedStatement.setLong(1, id);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    taskList.add(createFindSelfFromResultSet(resultSet));
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return taskList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return taskList;
+    }
+
+
 
     @Override
     public List<Task> findSelfTasks(Long id) {

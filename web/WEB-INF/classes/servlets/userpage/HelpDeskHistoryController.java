@@ -13,7 +13,7 @@ public class HelpDeskHistoryController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      req.setAttribute("tasks", TaskServiceImpl.getInstance().findAllSelf((Long) req.getSession().getAttribute("userId")));
+      req.setAttribute("tasks", TaskServiceImpl.getInstance().findAllSelfStatus((Long) req.getSession().getAttribute("userId")));
       showPage(req, resp);
     }
 

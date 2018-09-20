@@ -36,7 +36,7 @@
                     <textarea name="textTask" placeholder="Подробно опишите возникшую проблему" cols="40"
                               rows="3"></textarea>
                     <div class="expanded button-group">
-                        <button type="submit" class="button success"><b>Отправить заявку</b></button>
+                        <button type="submit box-shadow" class="button success"><b>Отправить заявку</b></button>
                     </div>
                 </label>
             </div>
@@ -70,16 +70,16 @@
 
 
                         <c:if test="${task.statusName eq 'Принята'}">
-                            <td name="status_id"><span class="primary Label">${task.statusName}</span></td>
+                            <td name="status_id"><span class="primary Label lk">${task.statusName}</span></td>
                         </c:if>
                         <c:if test="${task.statusName eq 'В ожидании'}">
-                            <td name="status_id"><span class="warning Label">${task.statusName}</span></td>
+                            <td name="status_id"><span class="warning Label lk">${task.statusName}</span></td>
                         </c:if>
                         <c:if test="${task.statusName eq 'Выполнена'}">
-                            <td name="status_id"><span class="success Label">${task.statusName}</span></td>
+                            <td name="status_id"><span class="success Label lk">${task.statusName}</span></td>
                         </c:if>
                         <c:if test="${task.statusName eq 'Закрыта'}">
-                            <td name="status_id"><span class="alert Label">${task.statusName}</span></td>
+                            <td name="status_id"><span class="alert Label lk">${task.statusName}</span></td>
                         </c:if>
 
 

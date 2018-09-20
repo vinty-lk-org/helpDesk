@@ -33,6 +33,12 @@ public class TaskServiceImpl implements TaskService {
         return mapperListTaskViewUserDto(TaskDaoImpl.getInstance().findSelfTasks(id));
     }
 
+
+    public List<TaskViewUserDto> findAllSelfStatus(Long id) {
+        return mapperListTaskViewUserDto(TaskDaoImpl.getInstance().findTasksAndFindStatus(id));
+    }
+
+
     @Override
     public Long saveTask(TaskDto taskDto) {
         return TaskDaoImpl.getInstance().save(mapperTaskDtoToTask(taskDto));
