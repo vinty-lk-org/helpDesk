@@ -1,6 +1,7 @@
 package servlets.executor;
 
 import itacademy.domain.dao.impl.*;
+import itacademy.domain.services.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +13,10 @@ import java.io.IOException;
 @WebServlet("/executorTaskPrimary")
 public class ExecutorTaskPrimaryPage extends HttpServlet {
 
+
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            req.setAttribute("executorTaskView", TaskExecutorDaoImpl.getInstance().findAllShortExecutor(295L));
+            req.setAttribute("executorTaskView", TaskExecutorDaoImpl.getInstance().findAllShortExecutor((Long) req.getSession().getAttribute("userId")));
             showPage(req, resp);
         }
 
