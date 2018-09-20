@@ -67,7 +67,25 @@
                         <td name="taskId">${task.id}</td>
                         <td name="taskName">${task.name}</td>
                         <td name="executor">${task.listinerName}</td>
-                        <td name="status">${task.statusName}</td>
+
+
+                        <c:if test="${task.statusName eq 'Принята'}">
+                            <td name="status_id"><span class="primary Label">${task.statusName}</span></td>
+                        </c:if>
+                        <c:if test="${task.statusName eq 'В ожидании'}">
+                            <td name="status_id"><span class="warning Label">${task.statusName}</span></td>
+                        </c:if>
+                        <c:if test="${task.statusName eq 'Выполнена'}">
+                            <td name="status_id"><span class="success Label">${task.statusName}</span></td>
+                        </c:if>
+                        <c:if test="${task.statusName eq 'Закрыта'}">
+                            <td name="status_id"><span class="alert Label">${task.statusName}</span></td>
+                        </c:if>
+
+
+                        <%--<td name="status">${task.statusName}</td>--%>
+
+
                         <td>
                             <a href="${pageContext.request.contextPath}/task/Delete?id=${task.id}&lang=ru" ><span class="alert label">Удалить</span></a>
                         </td>

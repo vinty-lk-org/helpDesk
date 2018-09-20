@@ -58,7 +58,7 @@ public class TaskOperatorDaoImpl implements TaskOperatorDao {
             " operator_id = ? and status_id = 1;";
 
     private static final String SQL_UPDATE_STATUS = "UPDATE tasks SET status_id = (?) WHERE id =(?)";
-    private static final String SQL_UPDATE_EXECOTOR = "UPDATE tasks SET executor_id = (?) WHERE id =(?)";
+    private static final String SQL_UPDATE_EXECOTOR = "UPDATE tasks SET status_id =2, executor_id = (?) WHERE id =(?)";
     private static TaskOperatorDaoImpl INSTANCE = null;
 
     public static TaskOperatorDaoImpl getInstance() {

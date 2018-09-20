@@ -41,7 +41,22 @@
         <td name="userName">${requestScope.executorId.systemUserName}</td>
         <td name="userFamily">${requestScope.executorId.systemUserFamily}</td>
         <td name="subdivision">${requestScope.executorId.subdivisionName}</td>
-        <td name="status_name">${requestScope.executorId.statusName}</td>
+
+
+
+        <c:if test="${requestScope.executorId.statusName eq 'Принята'}">
+            <td name="status_id"><span class="primary Label">${requestScope.executorId.statusName}</span></td>
+        </c:if>
+        <c:if test="${requestScope.executorId.statusName eq 'В ожидании'}">
+            <td name="status_id"><span class="warning Label">${requestScope.executorId.statusName}</span></td>
+        </c:if>
+        <c:if test="${requestScope.executorId.statusName eq 'Выполнена'}">
+            <td name="status_id"><span class="success Label">${requestScope.executorId.statusName}</span></td>
+        </c:if>
+        <c:if test="${requestScope.executorId.statusName eq 'Закрыта'}">
+            <td name="status_id"><span class="alert Label">${requestScope.executorId.statusName}</span></td>
+        </c:if>
+        <%--<td name="status_name">${requestScope.executorId.statusName}</td>--%>
     </tr>
     </tbody>
 </table>

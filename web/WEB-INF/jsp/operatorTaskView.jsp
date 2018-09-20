@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+
+
 <html>
 <head>
     <title>HelpDesk</title>
@@ -35,6 +39,11 @@
     <tbody>
 
 
+    <%--<c:if test="${requestScope.operatorTaskView.status eq 'Принята'}">--%>
+    <%--</c:if>--%>
+    <%--<c:if test="${requestScope.operatorTaskView.status eq 'В ожидании'}">--%>
+    <%--</c:if>--%>
+
     <%--<a href="${pageContext.request.contextPath}/viewCategory/Update?id=${operator.id}&lang=ru">Изменить</a>--%>
 
     <c:forEach items="${requestScope.operatorTaskView}" var="operator">
@@ -44,9 +53,23 @@
             <td name="data">${operator.userName}</td>
             <td name="data">${operator.userFamily}</td>
             <td name="executor">${operator.subdivision}</td>
-            <td name="status_id"><span class="Warning Label">${operator.status}</span></td>
+
+            <c:if test="${operator.status eq 'Принята'}">
+                <td name="status_id"><span class="primary Label">${operator.status}</span></td>
+            </c:if>
+            <c:if test="${operator.status eq 'В ожидании'}">
+                <td name="status_id"><span class="warning Label">${operator.status}</span></td>
+            </c:if>
+            <c:if test="${operator.status eq 'Выполнена'}">
+                <td name="status_id"><span class="success Label">${operator.status}</span></td>
+            </c:if>
+            <c:if test="${operator.status eq 'Закрыта'}">
+                <td name="status_id"><span class="alert Label">${operator.status}</span></td>
+            </c:if>
+            <%--<td name="status_id"><span class="alert Label">${operator.status}</span></td>--%>
+
              <td>
-                 <a href="${pageContext.request.contextPath}/operatorChangeStatus?id=${operator.idTask}&lang=ru"><span class="primary label">Работа с заявкой</span></a>
+                 <a href="${pageContext.request.contextPath}/operatorChangeStatus?id=${operator.idTask}&lang=ru"><span class="secondary label">Работа с заявкой</span></a>
             </td>
         </tr>
     </c:forEach>

@@ -43,9 +43,27 @@
             <td name="data">${executor.userName}</td>
             <td name="data">${executor.userFamily}</td>
             <td name="executor">${executor.subdivision}</td>
-            <td name="status_id">${executor.status}</td>
+
+            <c:if test="${executor.status eq 'Принята'}">
+                <td name="status_id"><span class="primary Label">${executor.status}</span></td>
+            </c:if>
+            <c:if test="${executor.status eq 'В ожидании'}">
+                <td name="status_id"><span class="warning Label">${executor.status}</span></td>
+            </c:if>
+            <c:if test="${executor.status eq 'Выполнена'}">
+                <td name="status_id"><span class="success Label">${executor.status}</span></td>
+            </c:if>
+            <c:if test="${executor.status eq 'Закрыта'}">
+                <td name="status_id"><span class="alert Label">${executor.status}</span></td>
+            </c:if>
+
+
+            <%--<td name="status_id">${executor.status}</td>--%>
+
+
+
              <td>
-                 <a href="${pageContext.request.contextPath}/executorChangeStatus?id=${executor.idTask}&lang=ru"><span class="primary label">Работа с заявкой</span></a>
+                 <a href="${pageContext.request.contextPath}/executorChangeStatus?id=${executor.idTask}&lang=ru"><span class="secondary label">Работа с заявкой</span></a>
             </td>
         </tr>
     </c:forEach>
