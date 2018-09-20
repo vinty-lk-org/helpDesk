@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(value = "/executorTaskView", name = "executorTaskView")
-public class ExecutoraskViewController extends HttpServlet {
+public class ExecutorTaskViewController extends HttpServlet {
 
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
