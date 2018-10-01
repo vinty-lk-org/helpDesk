@@ -70,6 +70,9 @@
             visibility: visible !important;
         }
     </style>
+
+    <%--<jsp:include page="../jsp/fragments/header.jsp"/>--%>
+
 </head>
 <body>
 <div id="documenter_sidebar">
@@ -451,12 +454,30 @@
 
             </tbody>
         </table>
-
-
     </section>
+
+<br>
+
+    <input type="submit">
+
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="medium-3 cell">
+            </div>
+            <div class="medium-6 cell">
+                <div class="expanded button-group">
+                    <A class="button primary " href="${pageContext.request.contextPath}/operatorTaskView"> <b> Вернутся на
+                        главную
+                        страницу оператора</b> </A>
+                </div>
+                <div class="medium-3 cell">
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
-
+<script> $(document).foundation();</script>
 </body>
 </html>
