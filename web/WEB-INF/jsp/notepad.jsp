@@ -20,6 +20,10 @@
             easing = 'swing';
     </script>
     <style>
+
+
+
+
         html {
             background-color: #fff;
             color: #333;
@@ -30,6 +34,7 @@
             font-size: 14px;
             font-weight: 400;
         }
+        #documenter_sidebar #documenter_logo {background-image: url("../../resources/assets/images/logoB4.png");}
 
         a {
             color: #9CCC65;
@@ -40,29 +45,50 @@
             border-top: 1px solid #eee;
         }
 
+        /*#documenter_sidebar, #documenter_sidebar ul a {*/
+            /*background-color: #333;*/
+            /*color: #fff;*/
+        /*}*/
+
         #documenter_sidebar, #documenter_sidebar ul a {
             background-color: #333;
             color: #fff;
         }
 
+        /*#documenter_sidebar ul a {*/
+            /*border-bottom: 1px solid #555;*/
+            /*color: #fff;*/
+            /*font-weight: 400;*/
+        /*}*/
+/*сам текст в меню*/
         #documenter_sidebar ul a {
             border-bottom: 1px solid #555;
-            color: #fff;
-            font-weight: 400;
+            color: #ffffff;
+            font-weight: 600;
         }
 
         #documenter_sidebar ul li:first-child a {
             border-top: 1px solid #555;
         }
 
+        /*#documenter_sidebar ul a:hover {*/
+            /*background: #393939;*/
+            /*color: #fff;*/
+        /*}*/
+
         #documenter_sidebar ul a:hover {
+            background: #393939;
+            color: aqua;
+        }
+
+        #documenter_sidebar ul a.current {
             background: #393939;
             color: #fff;
         }
 
         #documenter_sidebar ul a.current {
             background: #393939;
-            color: #fff;
+            color: aqua;
         }
 
         #documenter_copyright {
@@ -460,21 +486,6 @@
 
     <input type="submit">
 
-    <div class="grid-container">
-        <div class="grid-x grid-padding-x">
-            <div class="medium-3 cell">
-            </div>
-            <div class="medium-6 cell">
-                <div class="expanded button-group">
-                    <A class="button primary " href="${pageContext.request.contextPath}/operatorTaskView"> <b> Вернутся на
-                        главную
-                        страницу оператора</b> </A>
-                </div>
-                <div class="medium-3 cell">
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 
