@@ -88,7 +88,7 @@
 
         #documenter_sidebar ul a.current {
             background: #393939;
-            color: aqua;
+            color: white;
         }
 
         #documenter_copyright {
@@ -99,21 +99,29 @@
 
     <%--<jsp:include page="../jsp/fragments/header.jsp"/>--%>
 
+
+
 </head>
 <body>
 <div id="documenter_sidebar">
     <a href="#documenter_cover" id="documenter_logo"></a>
     <ul id="documenter_nav">
-        <li><a class="current" href="#documenter_cover">Наличие локомотивов БЧ</a></li>
-        <li><a href="#customization" title="Выгрузка вагонов">Выгрузка вагонов</a></li>
-        <li><a href="#source_and_credits" title="Анализ грузовой работы">Анализ грузовой работы</a></li>
+        <li><a class="current" href="#documenter_cover"> Оперативные сведения по грузовой работе</a></li>
+        <li><a class="current" href="#documenter_cover2">Суточный план погрузки</a></li>
+        <li><a href="#customization" title="Выгрузка вагонов">Анализ грузовой работы</a></li>
+        <li><a href="#source_and_credits" title="Анализ грузовой работы в разрезе НОДов">Анализ грузовой работы в разрезе НОДов</a></li>
+        <li><a href="#source_and_credits2" title="Погрузка вагонов на себя и на выход">Погрузка вагонов на себя и на выход</a></li>
+        <li><a href="#source_and_credits3" title="Отчеты по грузовой работе">Отчеты по грузовой работе</a></li>
+        <li><a href="#source_and_credits4" title="Анализ выполнения графика погрузки грузов">Анализ выполнения графика погрузки грузов</a></li>
+        <li><a href="#source_and_credits5" title="Анализ погрузки и наличия налива на БЧ">Анализ погрузки и наличия налива на БЧ</a></li>
+        <li><a href="#source_and_credits6" title="Анализ грузовой работы">Анализ погрузки лесных грузов на ПКП</a></li>
     </ul>
     <div id="documenter_copyright"><a href="https://mail.google.com/mail">Разрабочик lkghost7@gmail.com</a></div>
 </div>
 
 <div id="documenter_content">
     <section id="documenter_cover">
-        <h1>Наличие локомотивных составов для ЖД</h1>
+        <h1 align="center">Наличие локомотивных составов для ЖД</h1>
 
 
         <table border="3" bgcolor="#f0f8ff">
@@ -278,8 +286,174 @@
     </table>
     </section>
 
+    <section id="documenter_cover2">
+        <h1 align="center">Суточный план погрузки</h1>
+
+
+        <table border="3" bgcolor="#f0f8ff">
+            <tbody>
+            <tr>
+                <td class="s6">Дорога дислокации</td>
+                <td class="s7">Дислокация</td>
+                <td class="s8">Депо приписки</td>
+                <td class="s9">Вид тяги</td>
+                <td class="s10">Серия локомотива</td>
+                <td class="s11">Заводской номер локомотива</td>
+                <td class="s12">Дата\время посл. операции</td>
+                <td class="s13">Номер поезда</td>
+                <td class="s14">Индекс поезда</td>
+                <td class="s15">Операция</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </section>
+
     <section id="customization">
-       <h3>Выгрузка вагонов</h3>
+       <h3 align="center">Анализ грузовой работы</h3>
 
         <table border="3" bgcolor="#f0f8ff">
             <tbody>
@@ -381,7 +555,7 @@
     </section>
 
     <section id="source_and_credits">
-      <h3>Анализ грузовой работы</h3>
+      <h3 align="center">Анализ грузовой работы в разрезе НОДов</h3>
 
 
 
@@ -482,9 +656,525 @@
         </table>
     </section>
 
-<br>
 
-    <input type="submit">
+    <section id="source_and_credits2">
+        <h3 align="center">Погрузка вагонов на себя и на выход</h3>
+
+
+
+        <table border="3" bgcolor="#f0f8ff">
+            <tbody>
+            <tr>
+                <td class="s6">Дорога дислокации</td>
+                <td class="s7">Дислокация</td>
+                <td class="s8">Депо приписки</td>
+                <td class="s9">Вид тяги</td>
+                <td class="s10">Серия локомотива</td>
+                <td class="s11">Заводской номер локомотива</td>
+                <td class="s12">Дата\время посл. операции</td>
+                <td class="s13">Номер поезда</td>
+                <td class="s14">Индекс поезда</td>
+                <td class="s15">Операция</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </section>
+
+
+
+    <section id="source_and_credits3">
+        <h3 align="center">    Отчеты по грузовой работе</h3>
+
+
+
+        <table border="3" bgcolor="#f0f8ff">
+            <tbody>
+            <tr>
+                <td class="s6">Дорога дислокации</td>
+                <td class="s7">Дислокация</td>
+                <td class="s8">Депо приписки</td>
+                <td class="s9">Вид тяги</td>
+                <td class="s10">Серия локомотива</td>
+                <td class="s11">Заводской номер локомотива</td>
+                <td class="s12">Дата\время посл. операции</td>
+                <td class="s13">Номер поезда</td>
+                <td class="s14">Индекс поезда</td>
+                <td class="s15">Операция</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </section>
+
+
+    <section id="source_and_credits4">
+        <h3 align="center">Анализ выполнения графика погрузки грузов</h3>
+
+
+
+        <table border="3" bgcolor="#f0f8ff">
+            <tbody>
+            <tr>
+                <td class="s6">Дорога дислокации</td>
+                <td class="s7">Дислокация</td>
+                <td class="s8">Депо приписки</td>
+                <td class="s9">Вид тяги</td>
+                <td class="s10">Серия локомотива</td>
+                <td class="s11">Заводской номер локомотива</td>
+                <td class="s12">Дата\время посл. операции</td>
+                <td class="s13">Номер поезда</td>
+                <td class="s14">Индекс поезда</td>
+                <td class="s15">Операция</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </section>
+
+
+
+    <section id="source_and_credits5">
+        <h3 align="center">Анализ погрузки и наличия на БЧ</h3>
+
+
+
+        <table border="3" bgcolor="#f0f8ff">
+            <tbody>
+            <tr>
+                <td class="s6">Дорога дислокации</td>
+                <td class="s7">Дислокация</td>
+                <td class="s8">Депо приписки</td>
+                <td class="s9">Вид тяги</td>
+                <td class="s10">Серия локомотива</td>
+                <td class="s11">Заводской номер локомотива</td>
+                <td class="s12">Дата\время посл. операции</td>
+                <td class="s13">Номер поезда</td>
+                <td class="s14">Индекс поезда</td>
+                <td class="s15">Операция</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </section>
+
+
+
+    <section id="source_and_credits6">
+        <h3 align="center">Анализ погрузки лечных грузов на ПКП</h3>
+
+
+
+        <table border="3" bgcolor="#f0f8ff">
+            <tbody>
+            <tr>
+                <td class="s6">Дорога дислокации</td>
+                <td class="s7">Дислокация</td>
+                <td class="s8">Депо приписки</td>
+                <td class="s9">Вид тяги</td>
+                <td class="s10">Серия локомотива</td>
+                <td class="s11">Заводской номер локомотива</td>
+                <td class="s12">Дата\время посл. операции</td>
+                <td class="s13">Номер поезда</td>
+                <td class="s14">Индекс поезда</td>
+                <td class="s15">Операция</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            <tr>
+                <td>Латвийская</td>
+                <td>БГСТ-ДАУГ</td>
+                <td>ТЧ-08</td>
+                <td>Тепловоз</td>
+                <td>2ТЭ10У</td>
+                <td>0333</td>
+                <td>08-30</td>
+                <td>2817</td>
+                <td>1613 041 1100</td>
+                <td>СДЧ4</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </section>
+
+
 
 
 </div>
