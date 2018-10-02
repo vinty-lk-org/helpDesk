@@ -22,7 +22,7 @@
     <style>
 
 
-
+        /*#525252*/
 
         html {
             background-color: #fff;
@@ -38,6 +38,10 @@
 
         a {
             color: #9CCC65;
+        }
+
+        h3 {
+            text-align: center;
         }
 
         hr {
@@ -121,7 +125,7 @@
 
 <div id="documenter_content">
     <section id="documenter_cover">
-        <h1 align="center">Наличие локомотивных составов для ЖД</h1>
+        <h3>Наличие локомотивных составов для ЖД</h3>
 
 
         <table border="3" bgcolor="#f0f8ff">
@@ -287,7 +291,7 @@
     </section>
 
     <section id="documenter_cover2">
-        <h1 align="center">Суточный план погрузки</h1>
+        <h3>Суточный план погрузки</h3>
 
 
         <table border="3" bgcolor="#f0f8ff">
@@ -453,7 +457,7 @@
     </section>
 
     <section id="customization">
-       <h3 align="center">Анализ грузовой работы</h3>
+       <h3>Анализ грузовой работы</h3>
 
         <table border="3" bgcolor="#f0f8ff">
             <tbody>
@@ -555,7 +559,7 @@
     </section>
 
     <section id="source_and_credits">
-      <h3 align="center">Анализ грузовой работы в разрезе НОДов</h3>
+      <h3>Анализ грузовой работы в разрезе НОДов</h3>
 
 
 
@@ -658,7 +662,7 @@
 
 
     <section id="source_and_credits2">
-        <h3 align="center">Погрузка вагонов на себя и на выход</h3>
+        <h3>Погрузка вагонов на себя и на выход</h3>
 
 
 
@@ -762,7 +766,7 @@
 
 
     <section id="source_and_credits3">
-        <h3 align="center">    Отчеты по грузовой работе</h3>
+        <h3>    Отчеты по грузовой работе</h3>
 
 
 
@@ -865,7 +869,7 @@
 
 
     <section id="source_and_credits4">
-        <h3 align="center">Анализ выполнения графика погрузки грузов</h3>
+        <h3>Анализ выполнения графика погрузки грузов</h3>
 
 
 
@@ -969,7 +973,7 @@
 
 
     <section id="source_and_credits5">
-        <h3 align="center">Анализ погрузки и наличия на БЧ</h3>
+        <h3>Анализ погрузки и наличия на БЧ</h3>
 
 
 
@@ -1073,7 +1077,7 @@
 
 
     <section id="source_and_credits6">
-        <h3 align="center">Анализ погрузки лечных грузов на ПКП</h3>
+        <h3>Анализ погрузки лечных грузов на ПКП</h3>
 
 
 
